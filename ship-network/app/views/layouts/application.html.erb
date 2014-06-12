@@ -3,11 +3,13 @@
 <head>
   <title>ShipNetwork</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <!-- load required libraries in order -->
+  <%= render 'layouts/share/javascript_tags' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
 </head>
 <body>
-	
 	
 	<!-- header -->
 	<%= render 'layouts/share/header' %>
@@ -22,7 +24,6 @@
 	  	<%= render 'layouts/share/footer' %>
 		<!-- end of footer -->
 	</div>
-		
-
+	
 </body>
 </html>
