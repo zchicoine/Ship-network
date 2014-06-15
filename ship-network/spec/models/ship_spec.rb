@@ -48,4 +48,19 @@ describe Ship do
 
         end
     end
+
+    describe "check for ship relationship with other tables" do
+        before {
+          # here should create the relationship
+          @ship_instance.save
+        }
+        describe "check for ports relationship"do
+
+          describe "when ship has many ports" do
+
+          end
+        end
+
+
+    end
 end 
