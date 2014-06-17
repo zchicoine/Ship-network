@@ -7,11 +7,11 @@ require 'rails_helper'
 
 describe Ship do 
     # before to run any test create a ship object
-    before { @ship_instance = Ship.new(name: "marine prince", type: "SDBC" ,
+    before { @port_instance = Ship.new(name: "marine prince", type: "SDBC" ,
                      built: "2012") }
     # makes @ship_instance the default subject of the test example so we don't use
     # expect(@ship_instance)
-    subject { @ship_instance }
+    subject { @port_instance }
     
     it { should respond_to(:name) }
     it { should respond_to(:type) }
@@ -19,15 +19,15 @@ describe Ship do
     it  { should be_valid }
     
     describe "when name is not present" do
-        before { @ship_instance.name = " " }
+        before { @port_instance.name = " " }
         it { should_not be_valid }
     end
     
     describe "when ship name is already stored" do
         before do
           #which creates a duplicate ship with the same attributes
-          ship_with_same_name = @ship_instance.name
-          ship_with_same_name.email = @user.name.upcase
+          ship_with_same_name = @port_instance
+          ship_with_same_name.name = @port_instance.name.upcase
           user_with_same_email.save
         end
         it { should_not be_valid }
@@ -35,10 +35,10 @@ describe Ship do
 
     describe "check for invalid attributes for ship" do
         before { 
-            @ship_instance.save 
+            @port_instance.save
         }
 
-        let(:found_ship){@ship_instance.find_by(name: @ship_instance.name)}
+        let(:found_ship){@port_instance.find_by(name: @port_instance.name)}
         describe "with invalid built year" do
           let(:ship_for_invalid_built_year) { found_ship.built("2014") }
           it { should_not eq ship_for_invalid_built_year }
@@ -52,7 +52,7 @@ describe Ship do
     describe "check for ship relationship with other tables" do
         before {
           # here should create the relationship
-          @ship_instance.save
+          @port_instance.save
         }
         describe "check for ports relationship"do
 
