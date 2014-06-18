@@ -7,14 +7,14 @@ require 'rails_helper'
 
 describe Ship do 
     # before to run any test create a ship object
-    before { @port_instance = Ship.new(name: "marine prince", type: "SDBC" ,
+    before { @port_instance = Ship.new(name: "marine prince", category: "SDBC" ,
                      built: "2012") }
     # makes @ship_instance the default subject of the test example so we don't use
     # expect(@ship_instance)
     subject { @port_instance }
     
     it { should respond_to(:name) }
-    it { should respond_to(:type) }
+    it { should respond_to(:category) }
     it { should respond_to(:built) }
     it  { should be_valid }
     
@@ -28,7 +28,7 @@ describe Ship do
           #which creates a duplicate ship with the same attributes
           ship_with_same_name = @port_instance
           ship_with_same_name.name = @port_instance.name.upcase
-          user_with_same_email.save
+          ship_with_same_name.save
         end
         it { should_not be_valid }
     end
@@ -38,9 +38,9 @@ describe Ship do
             @port_instance.save
         }
 
-        let(:found_ship){@port_instance.find_by(name: @port_instance.name)}
+        let(:found_ship){Ship.find_by(name: @port_instance.name)}
         describe "with invalid built year" do
-          let(:ship_for_invalid_built_year) { found_ship.built("2014") }
+          let(:ship_for_invalid_built_year) { found_ship.built = 2014 }
           it { should_not eq ship_for_invalid_built_year }
 
           #it {expect(user_for_invalid_password).to be_falsey }

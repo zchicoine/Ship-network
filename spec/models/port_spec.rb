@@ -7,15 +7,15 @@ require 'rails_helper'
 
 describe Port do
   # before to run any test create a ship object
-  before { @port_instance = Port.new(name: "Fredericia", latitude: "55.55" ,
-                                     longitude: "9.75") }
+  before { @port_instance = Port.new(name: "Fredericia", latitude_coordinate: "55.55" ,
+                                     longitude_coordinate: "9.75") }
   # makes @ship_instance the default subject of the test example so we don't use
   # expect(@ship_instance)
   subject { @port_instance }
 
   it { should respond_to(:name) }
-  it { should respond_to(:latitude) }
-  it { should respond_to(:longitude) }
+  it { should respond_to(:latitude_coordinate) }
+  it { should respond_to(:longitude_coordinate) }
   it  { should be_valid }
 
   describe "when name is not present" do
@@ -38,9 +38,9 @@ describe Port do
       @port_instance.save
     }
 
-    let(:found_port){@port_instance.find_by(name: @port_instance.name)}
+    let(:found_port){Port.find_by(name: @port_instance.name)}
     describe "with invalid longitude " do
-      let(:port_for_invalid_longitude) { found_port.longitude("2014") }
+      let(:port_for_invalid_longitude) { found_port.longitude_coordinate = 400 }
       # port_instance should not be equal to port_for_invalid_longitude
       it { should_not eq port_for_invalid_longitude }
 
