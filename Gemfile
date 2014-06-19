@@ -14,8 +14,9 @@ end
 group :test do
   gem 'selenium-webdriver', '~> 2.42.0' 
   gem 'capybara', '~> 2.3.0'
-  
-   gem 'factory_girl_rails', '~> 4.4.1'
+  gem 'shoulda'
+
+  gem 'factory_girl_rails', '~> 4.4.1'
 end
 
 

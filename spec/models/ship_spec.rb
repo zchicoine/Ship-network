@@ -16,6 +16,7 @@ describe Ship do
     it { should respond_to(:name) }
     it { should respond_to(:category) }
     it { should respond_to(:built) }
+
     it  { should be_valid }
     
     describe "when name is not present" do
@@ -71,6 +72,7 @@ describe Ship do
               @ship_instance.ports = @ports_array
               @ship_instance.save
             }
+            it { should have_many(:ports).through(:shipments)}
             specify{ expect(@ship_instance.ports).to eq @ports_array}
 
 
