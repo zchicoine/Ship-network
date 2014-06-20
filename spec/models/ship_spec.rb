@@ -64,6 +64,13 @@ describe Ship do
                   Port.create!(name: 'Portsmouth', latitude_coordinate: 15.56666667, longitude_coordinate: -61.46666667)
 
             ]
+            @shipments_array = [
+
+                Shipment.create!(open_start_date: Time.now, open_end_date: 55.08333333),
+                Shipment.create!(open_start_date: 'Djibouti', open_end_date: 11.6),
+                Shipment.create!(open_start_date: 'Portsmouth', open_end_date: 15.56666667)
+
+            ]
 
           }
 
@@ -77,7 +84,8 @@ describe Ship do
 
 
 
-            end
+          end
+
 
         end
 
