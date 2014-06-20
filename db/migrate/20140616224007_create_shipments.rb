@@ -8,5 +8,8 @@ class CreateShipments < ActiveRecord::Migration
       
       t.timestamps
     end
+    # add_index lines make it faster to access information via the join model
+    add_index :shipments, :port_id
+    add_index :shipments, :ship_id
   end
 end
