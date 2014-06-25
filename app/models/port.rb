@@ -7,6 +7,6 @@ class Port < ActiveRecord::Base
 	validates :built,
 		presence: true
 	validates :category,
-		presence :true
+		presence: true
 		
 end
