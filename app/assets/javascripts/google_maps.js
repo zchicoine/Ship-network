@@ -1,4 +1,7 @@
 
+ 
+ //function start_app(){
+
  var dflt_latLng;
 
  function map_properties(){
@@ -50,7 +53,7 @@
 						  }];
  	return map_styles;
  }
-
+//$("#free_tour").click(function(event){
  function initialize() {
 
       var mapOptions = {
@@ -159,6 +162,9 @@
     	
 */
   			
-}
-
+	}
 google.maps.event.addDomListener(window, 'load', initialize);
+ 	
+ //	}
+
+
