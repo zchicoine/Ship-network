@@ -12,20 +12,22 @@
 
 </head>
 <body>
-	<%= render 'layouts/share/entry_banner' %>
+<!--  <%= render 'main_pages/entry_banner' %>  -->
 	<!-- header -->
 	<%= render 'layouts/share/header' %>
 	<!-- end of header -->
 	
 	<!-- container -->
-	<div class="container">
-		<div class="starter-template">
-		<%= yield %>
-		</div><!-- end of container -->
+	<div class="container starter-template">
+      <!-- <div class="starter-template">
+
+		</div> -->
+      <%= yield %>
 		<!-- footer -->
-	  	<%= render 'layouts/share/footer' %>
+
 		<!-- end of footer -->
 	</div>
-	
+<%= render 'layouts/share/footer' %>
+    <!-- end of container -->
 </body>
 </html>
