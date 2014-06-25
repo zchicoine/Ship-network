@@ -50,29 +50,28 @@ describe Ship do
         end
     end
 
-    describe "check for ship relationship with other tables" do
+    describe "relationship with other tables," do
         before {
           # here should create the relationship
           @ship_instance.save
+          @ports_array = [
+
+              Port.create!(name: 'Ronne', latitude_coordinate: 55.08333333, longitude_coordinate: 14.68333333),
+              Port.create!(name: 'Djibouti', latitude_coordinate: 11.6, longitude_coordinate: 43.13333333),
+              Port.create!(name: 'Portsmouth', latitude_coordinate: 15.56666667, longitude_coordinate: -61.46666667)
+
+          ]
+          @shipments_array = [
+
+              Shipment.create!(open_start_date: Time.now, open_end_date: 55.08333333),
+              Shipment.create!(open_start_date: 'Djibouti', open_end_date: 11.6),
+              Shipment.create!(open_start_date: 'Portsmouth', open_end_date: 15.56666667)
+
+          ]
         }
+
         describe "check for ports relationship" do
-          before {
-            @ports_array = [
 
-                  Port.create!(name: 'Ronne', latitude_coordinate: 55.08333333, longitude_coordinate: 14.68333333),
-                  Port.create!(name: 'Djibouti', latitude_coordinate: 11.6, longitude_coordinate: 43.13333333),
-                  Port.create!(name: 'Portsmouth', latitude_coordinate: 15.56666667, longitude_coordinate: -61.46666667)
-
-            ]
-            @shipments_array = [
-
-                Shipment.create!(open_start_date: Time.now, open_end_date: 55.08333333),
-                Shipment.create!(open_start_date: 'Djibouti', open_end_date: 11.6),
-                Shipment.create!(open_start_date: 'Portsmouth', open_end_date: 15.56666667)
-
-            ]
-
-          }
 
           describe "when ship has many ports" do
             before {
@@ -88,7 +87,22 @@ describe Ship do
 
 
         end
+        describe "check for shipment relationship" do
+          before {
+            @ship_instance.shipments = @shipments_array
 
+          }
+
+          specify{ expect(@ship_instance.shipments).to_not eq @shipments_array}
+
+            it "should not be able to update shipments attributes unless it goes through ports " do
+
+                 expect(@ship_instance.shipments.first.update(open_start_date: Time.new(2014,2,2))).to be_falsey
+
+            end
+
+
+        end
 
 
     end
