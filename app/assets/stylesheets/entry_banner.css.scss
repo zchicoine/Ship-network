@@ -1,0 +1,76 @@
+
+@import "bootstrap";
+
+#main_banner{
+
+
+}
+.banner{
+
+background-color: gray;
+opacity: 0.3;
+}
+
+.banner_background{
+  position: absolute;
+  background-color: #0A94CC;
+  opacity: 0.95;
+  width: 75%;
+  height: 45%;
+  margin-left: 10%;
+  margin-right:10%;
+  margin-top: 15%;
+  margin-bottom: 20%;
+  min-width: 650px;
+  min-height: 200px;
+  z-index: 10;
+  padding-left: 10%;
+  padding-right: 10%;
+  text-align: center;
+  -moz-box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+  -webkit-box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+.banner1{
+
+color:white;
+font-family: "Arial Narrow";
+
+}
+
+#login{
+	
+	width:175px;
+	height:60px;
+	margin-right: 600px;
+	margin-top: 65px;
+	-moz-box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+	color:white;
+	font-size: 20px;
+}
+
+#sign_up{
+	
+	width:175px;
+	height:60px;
+	margin-right: 100px;
+	margin-top: -81px;
+	-moz-box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+	color:white;
+	font-size: 20px;
+}
+
+
+#free_tour{
+	
+	width:175px;
+	height:60px;
+	margin-right: -264px;
+	margin-top: -81px;
+	-moz-box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+	color:white;
+	font-size: 20px;
+}
