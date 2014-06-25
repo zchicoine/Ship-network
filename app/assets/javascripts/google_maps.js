@@ -50,7 +50,7 @@
 						  }];
  	return map_styles;
  }
- 
+
  function initialize() {
 
       var mapOptions = {
@@ -82,10 +82,10 @@
     	
     		//var zoomToNumber = window.map.getZoom() - 3;
 			//var getClickedPostion = new google.maps.LatLng(11.289703, -81.464677),
-
+			var center= new google.maps.LatLng(11.289703, -81.464677);
 			//window.map.setCenter(getClickedPostion);
 				 window.map.setZoom(1);
-				// window.map.setCenter(center);
+				window.map.setCenter(center);
 			// //window.map.fitBounds(11.289703, -81.464677),
 		//	window.map  = new google.maps.Map(document.getElementById("googleMap"),mapOptions);
            //window.map.setOptions({styles: mapStyle});
