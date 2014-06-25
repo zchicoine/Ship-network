@@ -1,32 +1,9 @@
 
  var dflt_latLng;
- function initialize() {
 
-      var mapOptions = {
-          center: new google.maps.LatLng(11.289703, -81.464677),
-          zoom: 1,
-          disableDefaultUI: true,
-        	panControl: false,
-        	streetViewControl: false,
-    		zoomControl: false,
-    	    disableDoubleClickZoom: true,
-          draggable: false,
-          keyboardShortcuts: false,
-          // never change the minimum zoom level from 1 to anything else
-          minZoom:1,
-          
-        };
-
-       //google.load('visualization', '1', { 'packages': ['geochart'] });
-       
-        var mapStyle = [
-							{
-							"featureType": "administrative.country",
-							"elementType": "icon",
-							"stylers": [
-							  { "visibility": "off" }
-							]
-						  },{
+ function map_properties(){
+ 	var map_styles = new Object();
+ 	map_styles = [{
 							"featureType": "administrative.province",
 							"stylers": [
 							  { "visibility": "off" }
@@ -70,9 +47,31 @@
 							"stylers": [
 							  { "visibility": "off" }
 							]
-						  }
-						];
+						  }];
+ 	return map_styles;
+ }
+ 
+ function initialize() {
 
+      var mapOptions = {
+          center: new google.maps.LatLng(11.289703, -81.464677),
+          zoom: 1,
+          disableDefaultUI: true,
+        	panControl: false,
+        	streetViewControl: false,
+    		zoomControl: false,
+    	    disableDoubleClickZoom: true,
+          draggable: false,
+          keyboardShortcuts: false,
+          // never change the minimum zoom level from 1 to anything else
+          minZoom:1,
+          
+        };
+
+       //google.load('visualization', '1', { 'packages': ['geochart'] });
+       
+        var mapStyle = map_properties();
+       
 		// set the map to the specified div
         window.map  = new google.maps.Map(document.getElementById("googleMap"),
             mapOptions);
@@ -102,15 +101,7 @@
 			window.map.setCenter(getClickedPostion);
 			window.map.setZoom(zoomToNumber);
 
-			var map_style = [
-							{
-							"featureType": "administrative.country",
-							"elementType": "icon",
-							"stylers": [
-							  { "visibility": "on" }
-							]
-						  }
-						  ];
+			var map_style = map_properties(); 
 			window.map.setOptions({styles: map_style});
 			//window.map.setZoom(4.5);
 			//$("body").css("cursor","-webkit-zoom-out");
