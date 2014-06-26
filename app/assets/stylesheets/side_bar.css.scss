@@ -1,10 +1,47 @@
+
 .aside_ship_details{
 
   margin-top:20px;
   width:35%;
 
-  th {
-    text-align: center;
+  table{
+
   }
+
+
+  table{
+    border: solid white 2px;
+    th {
+
+      color: #F0F1F1;
+      text-align: center;
+      background-color: #0A94CB;
+    }
+    tr {
+      background-color: white;
+    }
+
+  }
+
+}
+table thead:first-child tr:first-child th:first-child{
+
+  -moz-border-radius-topleft:12px;
+  -webkit-border-top-left-radius:12px;
+  border-top-left-radius:12px;
+  -moz-border-radius-topright:12px;
+
+  -webkit-border-top-right-radius:12px;
+  border-top-right-radius:12px;
+
+}
+table thead:last-child tr:last-child th:last-child{
+
+  -moz-border-radius-bottomleft:10px;
+  -webkit-border-bottom-left-radius:10px;
+  border-bottom-left-radius:10px;
+-moz-border-radius-bottomright:10px;
+  -webkit-border-bottom-right-radius:10px;
+  border-bottom-right-radius:10px;
 
 }
