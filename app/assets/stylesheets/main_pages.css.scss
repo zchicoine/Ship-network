@@ -1,6 +1,6 @@
 @import "bootstrap";
 
-$grayMediumLight: #eaeaea;
+$grayMediumLight: #0A94CB;
 
 body {
   padding-top: 50px;
@@ -37,5 +37,9 @@ footer {
   }
 }
 
+.transparent{
+  
+  opacity: 0.1;
+}
 
 

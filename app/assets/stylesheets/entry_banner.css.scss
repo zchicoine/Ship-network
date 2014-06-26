@@ -13,7 +13,7 @@ opacity: 0.3;
 
 .banner_background{
   position: absolute;
-  background-color: #0A94CC;
+  background-color: #0A94CB;
   opacity: 0.95;
   width: 75%;
   height: 45%;
@@ -38,6 +38,11 @@ font-family: "Arial Narrow";
 
 }
 
+.btn-primary{
+	background-color: #D6DE23;
+	border-color: #D6DE23;
+}
+
 #login{
 	
 	width:175px;
@@ -48,6 +53,9 @@ font-family: "Arial Narrow";
 	-webkit-box-shadow: 0 2px 5px rgba(0,0,0,0.5);
 	color:white;
 	font-size: 20px;
+	background-color: #D6DE23;
+	border-color: #D6DE23;
+
 }
 
 #sign_up{
@@ -60,6 +68,9 @@ font-family: "Arial Narrow";
 	-webkit-box-shadow: 0 2px 5px rgba(0,0,0,0.5);
 	color:white;
 	font-size: 20px;
+	background-color: #D6DE23;
+	border-color: #D6DE23;
+
 }
 
 
@@ -73,4 +84,7 @@ font-family: "Arial Narrow";
 	-webkit-box-shadow: 0 2px 5px rgba(0,0,0,0.5);
 	color:white;
 	font-size: 20px;
+	background-color: #D6DE23;
+	border-color: #D6DE23;
+
 }

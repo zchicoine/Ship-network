@@ -11,12 +11,14 @@
   <%= csrf_meta_tags %>
 
 </head>
-<body>
+<body id="dumb">
+
 	<%= render 'layouts/share/entry_banner' %>
+	<span class="transparent">
 	<!-- header -->
+
 	<%= render 'layouts/share/header' %>
 	<!-- end of header -->
-	
 	<!-- container -->
 	<div class="container">
 		<div class="starter-template">
@@ -26,6 +28,6 @@
 	  	<%= render 'layouts/share/footer' %>
 		<!-- end of footer -->
 	</div>
-	
+	</span>
 </body>
 </html>

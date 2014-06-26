@@ -1,12 +1,91 @@
 
  
  //function start_app(){
+var mapLabel_North_America;
+var getClickedPostion;
 
  var dflt_latLng;
+
+ function set_label_names(){
+
+ mapLabel_North_America = new Label({
+           text: 'Region 1',
+           position: new google.maps.LatLng(48.2893, -99.3594),
+           map: window.map,
+           fontSize: 200,
+           align: 'center'
+         });
+  var mapLabel_South_America = new Label({
+           text: 'Region 2',
+           position: new google.maps.LatLng(-10.4893, -59.3594),
+           map: window.map,
+           fontSize: 200,
+           align: 'center'
+         });
+  var mapLabel_Africa = new Label({
+           text: 'Region 3',
+           position: new google.maps.LatLng(17.6493, 11.5994),
+           map: window.map,
+           fontSize: 200,
+           align: 'center'
+         });
+  var mapLabel_Persian_Gulf = new Label({
+           text: 'Region 4',
+           color: 'transparent',
+           position: new google.maps.LatLng(33.1376, 47.6367),
+           map: window.map,
+           fontSize: 200,
+           align: 'center'
+         });
+  var mapLabel_Australia = new Label({
+           text: 'Region 5',
+           position: new google.maps.LatLng(-25.8000, 133.2422),
+           map: window.map,
+           fontSize: 200,
+           align: 'center'
+         });
+
+   var mapLabel_Europe = new Label({
+           text: 'Region 6',
+           position: new google.maps.LatLng(53.1289, 45.1102),
+           map: window.map,
+           fontSize: 200,
+           align: 'center'
+         });
+   var mapLabel_IMB = new Label({
+           text: 'Region 7',
+           position: new google.maps.LatLng(24.4471,85.1660),
+           map: window.map,
+           fontSize: 200,
+           align: 'center'
+         });
+   var mapLabel_JPN = new Label({
+           text: 'Region 8',
+           position: new google.maps.LatLng(35.8178, 118.0371),
+           map: window.map,
+           fontSize: 200,
+           align: 'center'
+         });
+   var mapLabel_PHPLNS = new Label({
+           text: 'Region 9',
+           position: new google.maps.LatLng(-4.0396, 121.2891),
+           map: window.map,
+           fontSize: 200,
+           align: 'center'
+         });
+
+
+
+ }
 
  function map_properties(){
  	var map_styles = new Object();
  	map_styles = [{
+              "featureType": "administrative.country",
+              "stylers": [
+                { "visibility": "off" }
+              ]
+              },{
 							"featureType": "administrative.province",
 							"stylers": [
 							  { "visibility": "off" }
@@ -53,118 +132,82 @@
 						  }];
  	return map_styles;
  }
+
+//function to initialize the map after clickng on banner
+function start_app(){
+
+initialize();
+}
 //$("#free_tour").click(function(event){
  function initialize() {
 
       var mapOptions = {
           center: new google.maps.LatLng(11.289703, -81.464677),
-          zoom: 1,
+          zoom: 2,
           disableDefaultUI: true,
         	panControl: false,
         	streetViewControl: false,
-    		zoomControl: false,
+    		  zoomControl: false,
     	    disableDoubleClickZoom: true,
           draggable: false,
           keyboardShortcuts: false,
           // never change the minimum zoom level from 1 to anything else
-          minZoom:1,
+          minZoom:2,
           
         };
 
-       //google.load('visualization', '1', { 'packages': ['geochart'] });
-       
+   // setting up custom map properties 
         var mapStyle = map_properties();
        
 		// set the map to the specified div
-        window.map  = new google.maps.Map(document.getElementById("googleMap"),
-            mapOptions);
+        window.map  = new google.maps.Map(document.getElementById("googleMap"),mapOptions);
            map.setOptions({styles: mapStyle});
-        
-        
-        google.maps.event.addListener(map, 'rightclick', function(e) {
-    	
-    		//var zoomToNumber = window.map.getZoom() - 3;
-			//var getClickedPostion = new google.maps.LatLng(11.289703, -81.464677),
-			var center= new google.maps.LatLng(11.289703, -81.464677);
-			//window.map.setCenter(getClickedPostion);
-				 window.map.setZoom(1);
-				window.map.setCenter(center);
-			// //window.map.fitBounds(11.289703, -81.464677),
-		//	window.map  = new google.maps.Map(document.getElementById("googleMap"),mapOptions);
-           //window.map.setOptions({styles: mapStyle});
-			$("body").css("cursor","default");
-		});	
 
-
-
+      
+      // setting up label names
+        set_label_names();
+         
+      // click  event function for zooming in   
         google.maps.event.addListener(map, 'click', function(e) {  
 
-            var zoomToNumber = window.map.getZoom() + 2;
-			var getClickedPostion = e.latLng
+      var zoomToNumber = window.map.getZoom() + 2;
+			getClickedPostion = e.latLng
 			window.map.setCenter(getClickedPostion);
 			window.map.setZoom(zoomToNumber);
 
-			var map_style = map_properties(); 
-			window.map.setOptions({styles: map_style});
-			//window.map.setZoom(4.5);
-			//$("body").css("cursor","-webkit-zoom-out");
-		//	$("body").css("cursor","-webkit-zoom-out");
-			//window.map.panBy(200,0);
+			var map_style = [{
+              "featureType": "administrative.country",
+              "stylers": [
+                { "visibility": "on" }
+              ]
+              }]; 
+			window.map.setOptions({styles: map_style}); 
+     /* $("#googleMap").fadeOut("fast",function(){
 
-});
+        mapLabel_North_America = new Label({
+          text: ''
+
+        });
+      }); */
+			
+    });
 
 
-/*
-  var mapLabel_NA = new Label({
-         //  text: 'North America',
-           position: new google.maps.LatLng(48.2893, -99.3594),
-           map: window.map,
-           fontSize: 200,
-           align: 'center'
-         });
-  var mapLabel_SA = new Label({
-         //  text: 'South America',
-           position: new google.maps.LatLng(-10.4893, -059.3594),
-           map: window.map,
-           fontSize: 200,
-           align: 'center'
-         });
-/*  var mapLabel_AF = new Label({
-           text: 'Africa',
-           position: new google.maps.LatLng(17.6493, 011.5994),
-           map: window.map,
-           fontSize: 200,
-           align: 'center'
-         });
-  var mapLabel_AS = new Label({
-         //  text: 'Asia',
-           position: new google.maps.LatLng(52.0259, 42.5391),
-           map: window.map,
-           fontSize: 200,
-           align: 'center'
-         });
- /* var mapLabel_AUS = new Label({
-           text: 'Australia',
-           position: new google.maps.LatLng(-24.2893, 045.7031),
-           map: window.map,
-           fontSize: 200,
-           align: 'center'
-         });
+// zoom out function     
 
-   var mapLabel_EUR = new Label({
-           text: 'Europe',
-           position: new google.maps.LatLng(53.1289, 045.1102),
-           map: window.map,
-           fontSize: 200,
-           align: 'center'
-         }); 	
-         // when the map clicked twice   
-    	
-*/
-  			
+ google.maps.event.addListener(map, 'rightclick', function(e) {
+      var center= new google.maps.LatLng(11.289703, -81.464677);
+         window.map.setZoom(2);
+        window.map.setCenter(getClickedPostion);
+        window.map.setOptions({styles: mapStyle});
+      $("body").css("cursor","default");
+      //set_label_names();
+      initialize();
+    }); 
 	}
 google.maps.event.addDomListener(window, 'load', initialize);
- 	
- //	}
+
+
+
 
 

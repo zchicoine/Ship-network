@@ -9,8 +9,8 @@ function Label(opt_options) {
   span.style.cssText = 'position: relative; left: -50%; top: -8px; ' +
   'white-space: nowrap; ' + 'text-transform: capitalize;'+
   'font-family: "Lucida Grande", "Arial", sans-serif;'+
-   'font-size: 12px;'+
-   'font-weight: bold;'+
+  'font-size: 10px;'+
+  'font-weight: bold;'+
   'padding: 2px; background-color: transparent';
 
 

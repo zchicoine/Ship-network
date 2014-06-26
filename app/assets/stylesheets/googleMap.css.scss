@@ -1,42 +1,35 @@
-
-
 #outer-map{
 	
 	margin-left:10px;
 	margin-top:20px;
 	height: 800px; 
 	width: 800px;
-	
-
 }
 
 #googleMap{
 
-  	width: 475px;
-    height: 475px;
+  	width: 600px;
+    height: 600px;
     position: relative;
-    background-color: white;
-    
-    margin-top: 10px;
-    margin-left: 250px;
-    
+    background-color: white;    
+    margin-top: 5px;
+    margin-left: 250px;    
    -moz-border-radius: 999px; 
    -webkit-border-radius: 999px; 
-   border-radius: 460px;
-    
+   border-radius: 460px;    
 }
 
 
 #button-chevron-left{
   position:absolute;
   left:276px;
-  top: 350px;
+  top: 400px;
   }
   
 #button-chevron-right{
   position:absolute;
-  right:398px;
-  top: 350px;
+  right: 250px;
+  top: 400px;
 
 
 }
