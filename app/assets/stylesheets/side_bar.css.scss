@@ -50,8 +50,42 @@ table thead:last-child tr:last-child th:last-child{
   border-bottom-right-radius:10px;
 
 }
-div.scroll_inside_table td{
+div.scroll_inside_table {
   background-color: #eaeaea;
-  text-align: left;
-  border-top: solid #ffffff 0px !important;
+  table {
+    background-color: #eaeaea;
+    border: #eaeaea !important;
+  }
+  td{
+
+    background-color: #eaeaea;
+    text-align: left;
+    border-top: solid #ffffff 0px !important;
+  }
+}
+.scroll_inside_table::-webkit-scrollbar{
+  -moz-webkit-appearance: none;
+  -ms-webkit-appearance: none;
+  -o-webkit-appearance: none;
+  -webkit-appearance: none;
+}
+.scroll_inside_table::-webkit-scrollbar:vertical{
+  width: 10px;
+}
+/*
+.scroll_inside_table::-webkit-scrollbar:horizontal {
+  height: 11px;
+}
+*/
+.scroll_inside_table::-webkit-scrollbar-thumb {
+
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  border-radius: 10px;
+
+
+  border: 1px solid #ffffff; /* should match background, can't be transparent */
+
+  background-color: rgba(0, 0, 0, 0.64);
 }
