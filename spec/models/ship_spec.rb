@@ -16,6 +16,11 @@ describe Ship do
     it { should respond_to(:name) }
     it { should respond_to(:category) }
     it { should respond_to(:built) }
+    # it { should respond_to(:built) }
+    # it { should respond_to(:built) }
+    # it { should respond_to(:built) }
+    # it { should respond_to(:built) }
+    # it { should respond_to(:built) }
 
     it  { should be_valid }
     
