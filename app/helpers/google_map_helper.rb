@@ -13,14 +13,14 @@ module GoogleMapHelper
         end
         # check if region is equal all
         if region.eql?("all")
-            @ports_coordinate = Port.select(:latitude_coordinate, :longitude_coordinate).take(quantity)
+            @ports_coordinate = Port.select(:latitude, :longitude).take(quantity)
         else
 
             # @ports_coordinate = Port.select(:latitude_coordinate , :longitude_coordinate)
         end
 
         # convert to an array
-        @ports_coordinate = @ports_coordinate.map { |l| [l.latitude_coordinate, l.longitude_coordinate] }
+        @ports_coordinate = @ports_coordinate.map { |l| [l.latitude, l.longitude] }
     end
 
 
@@ -29,8 +29,8 @@ module GoogleMapHelper
         if (!port_name.blank? && !port_coordinate.empty?)
             _port = Port.includes(:ships)
             _port = _port.find_by(name: port_name) ||
-                _port.find_by(latitude_coordinate: port_coordinate[0],
-                              longitude_coordinate: port_coordinate[1])
+                _port.find_by(latitude: port_coordinate[0],
+                              longitude: port_coordinate[1])
         else
             "the parameters invalid"
         end

@@ -11,12 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140616224007) do
+ActiveRecord::Schema.define(version: 20140628232148) do
 
   create_table "ports", force: true do |t|
     t.string   "name"
-    t.float    "latitude_coordinate"
-    t.float    "longitude_coordinate"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "region"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -24,16 +25,24 @@ ActiveRecord::Schema.define(version: 20140616224007) do
   create_table "shipments", force: true do |t|
     t.integer  "port_id"
     t.integer  "ship_id"
-    t.datetime "open_start_date"
-    t.datetime "open_end_date"
+    t.date     "open_start_date"
+    t.date     "open_end_date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "shipments", ["port_id"], name: "index_shipments_on_port_id"
+  add_index "shipments", ["ship_id"], name: "index_shipments_on_ship_id"
+
   create_table "ships", force: true do |t|
     t.string   "name"
-    t.string   "category"
-    t.string   "built"
+    t.integer  "built"
+    t.decimal  "draft"
+    t.integer  "deadweight"
+    t.integer  "beam"
+    t.integer  "loa"
+    t.string   "vessel_type"
+    t.string   "vessel_class"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
