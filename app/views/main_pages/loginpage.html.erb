@@ -1,34 +1,25 @@
-
 <title>
 Login page
 </title>
-</head>
-<body>
+<head>
+
 <center><h1 style=Georgia, "Times New Roman",;text-align="center";font-size:20pt;
 color:#00FF00;>
-Simple Login Page
+<b>Simple Login Page</b>
 </h1></center>
+
 <form name="login">
 <center>
-Username<input type="text" name="userid"/><br>
-Password<input type="password" name="pswrd"/><br>
+Username  <input type="text" name="userid"/><br><br>
+Password  <input type="password" name="pswrd"/><br>
 <br>
-<input type="button" onclick="check(this.form)" value="Login"/>
-<input type="reset" value="Cancel"/>
-<input type="reset" value="logout"/> 
-</center>  
+           <input type=  "button"onclick="check(this.form)"   value="Login"/>
+           <input type=  "reset"  value= "Cancel"/><br>
+
+ 
+           <input type=  "checkbox" onClick="remember_me()">  Remember me
+
+</center>
+
 </form>
-<script language="javascript">
-function check(form)/*function to check userid & password*/
-{
-/*the following code checkes whether the entered userid and password are matching*/
-if(form.userid.value == "myuserid" && form.pswrd.value == "mypswrd")
-{
-window.open('target.html')/*opens the target page while Id & password matches*/
-}
-else
-{
-alert("Wrong Username or Password")/*displays error message*/
-}
-}
-</script>
+
