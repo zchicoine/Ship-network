@@ -4,8 +4,8 @@ class ShipsController < ApplicationController
   # GET /shipss
   # GET /ships.json
   def index
-    @ships = Ship.all
-    @ports = Port.all
+    #@ships = Ship.all
+   # @ports = Port.all
   end
 
   # GET /ships/1
