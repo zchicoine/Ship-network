@@ -36,7 +36,7 @@ module GoogleMapHelper
         end
         unless _port.nil?
             # extract the information depended on the user level of access
-            ship_array = _port.ships.all.map { |var| [var.name, var.built, var.category] }
+            ship_array = _port.ships.all.map { |var| [var.name, var.built, var.vessel_type] }
             ship_array
 
         else
