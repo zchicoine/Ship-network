@@ -1,9 +1,14 @@
 <div>
 <aside class="aside_ship_details pull-right">
 
+    <% if @table.nil? %>
 
-    <%= render 'side_bar/map_controller_panel' %>
-    <%= render 'side_bar/default' %>
-    <% render 'side_bar/region' %>
+        <%= render 'side_bar/default' %>
+    <% elsif @table.to_str.eql?('region') %>
+        <%= render 'side_bar/region' %>
+    <%end%>
+    <% render 'side_bar/map_controller_panel' %>
+
+
 </aside>
 </div>

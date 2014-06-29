@@ -3,57 +3,28 @@ After the user click the region on the map this side will appear.
 -->
 
 
-    <table class="table " cellspacing="0">
+    <table id="table_after_clicking_on_a_region" class="table informative_table" cellspacing="0">
 
       <thead>
       <tr >
-        <th colspan="3">General Information</th>
+        <th colspan="<%= 2%>"><%= @region_info[:name] %></th>
 
       </tr>
       </thead>
       <tr>
-        <td>Jill</td>
-        <td>Smith</td>
-        <td>50</td>
-      </tr>
-      <tr>
-        <td>Jill</td>
-        <td>Smith</td>
-        <td>50</td>
-      </tr>
-      <tr>
-        <td>Jill</td>
-        <td>Smith</td>
-        <td>50</td>
+        <td></td>
+        <td></td>
       </tr>
 
-      <thead>
-      <tr>
-        <th colspan="3">Total # of Ships</th>
-      </tr>
-      </thead>
-      <tr>
-        <td>Jill</td>
-        <td>Smith</td>
-        <td>50</td>
-      </tr>
-      <tr>
-        <td>Jill</td>
-        <td>Smith</td>
-        <td>50</td>
-      </tr>
-      <tr>
-        <td>Jill</td>
-        <td>Smith</td>
-        <td>50</td>
-      </tr>
+
+
       <thead >
       <tr>
-        <th colspan="3">List of Ports in Region</th>
+        <th colspan="<%= 2%>">List of Ports in Region</th>
       </tr>
       </thead>
       <tr>
-        <td colspan="3">
+        <td colspan="<%= 2%>">
           <div class="scroll_inside_table" style="overflow: auto; height: 150px; padding: 4px">
 
 
@@ -103,9 +74,30 @@ After the user click the region on the map this side will appear.
           </div>
         </td>
       </tr>
+
+
+        <thead>
+        <tr>
+            <th colspan="<%= 2%>">Region Stats</th>
+        </tr>
+        </thead>
+        <tr class="thick_horizontal_line">
+
+            <td>Total Ships:</td>
+            <td>70</td>
+        </tr>
+        <% vessel_classes.each do |_class| %>
+            <tr>
+                <td><%=" #{_class}:" %></td>
+                <td>10</td>
+            </tr>
+        <% end %>
+
+
+
       <thead>
       <tr>
-        <th colspan="3">Total Deadweight     2033 tones</th>
+        <th colspan="3">Total Deadweight  2033 tones</th>
       </tr>
       </thead>
     </table>
