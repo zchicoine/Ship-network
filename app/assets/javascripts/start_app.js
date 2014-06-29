@@ -6,7 +6,7 @@ $(window).load(function(){
 $("#free_tour").click(function(e){
 
 	//jquery to set opacity to zero
-	$("#dumb>span").removeClass('transparent');
+	$("#transparent_div").removeClass('transparent');
 
 	//jquery to fadeOut the banner
 	$("#main_banner").fadeOut("slow",function(){});
