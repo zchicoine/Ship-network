@@ -11,23 +11,22 @@
   <%= csrf_meta_tags %>
 
 </head>
-<body id="dumb">
-
+<body>
 	<%= render 'layouts/share/entry_banner' %>
-	<span class="transparent">
+    <span class="transparent">
+      
 	<!-- header -->
-
 	<%= render 'layouts/share/header' %>
-	<!-- end of header -->
+	<!-- end of header -->	
 	<!-- container -->
 	<div class="container">
 		<div class="starter-template">
 		<%= yield %>
 		</div><!-- end of container -->
 		<!-- footer -->
-	  	<%= render 'layouts/share/footer' %>
 		<!-- end of footer -->
 	</div>
-	</span>
+    <%= render 'layouts/share/footer' %>
+    </span>
 </body>
 </html>

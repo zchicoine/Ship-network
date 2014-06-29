@@ -1,3 +1,44 @@
 // Place all the styles related to the google_map controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+#outer-map{
+
+  //margin-left:10px;
+ // margin-top:20px;
+ // height: 800px;
+  width: 65%;
+  float: left !important;
+
+}
+
+#googleMap{
+
+  width: 475px;
+  height: 475px;
+ // position: relative;
+  background-color: white;
+
+  margin-top: 10px;
+ // margin-left: 250px;
+
+  -moz-border-radius: 999px;
+  -webkit-border-radius: 999px;
+  border-radius: 999px;
+
+}
+
+
+#button-chevron-left{
+  position:absolute;
+  left:276px;
+  top: 350px;
+}
+
+#button-chevron-right{
+  position:absolute;
+  right:398px;
+  top: 350px;
+
+}
