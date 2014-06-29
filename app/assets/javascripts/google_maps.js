@@ -170,7 +170,7 @@ initialize();
       // click  event function for zooming in   
         google.maps.event.addListener(map, 'click', function(e) {  
 
-      var zoomToNumber = window.map.getZoom() + 2;
+      var zoomToNumber = window.map.getZoom() + 1;
 			getClickedPostion = e.latLng
 			window.map.setCenter(getClickedPostion);
 			window.map.setZoom(zoomToNumber);
