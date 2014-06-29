@@ -14,8 +14,9 @@ end
 group :test do
   gem 'selenium-webdriver', '~> 2.42.0' 
   gem 'capybara', '~> 2.3.0'
-  
-   gem 'factory_girl_rails', '~> 4.4.1'
+  gem 'shoulda'
+
+  gem 'factory_girl_rails', '~> 4.4.1'
 end
 
 
@@ -51,3 +52,8 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
+
+group :production do
+  gem 'rails_12factor'
+  gem 'pg'
+end
