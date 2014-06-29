@@ -17,6 +17,8 @@ function Label(opt_options) {
   var div = this.div_ = document.createElement('div');
   div.appendChild(span);
   div.style.cssText = 'position: absolute; display: none';
+  // div class name to delete later so as to make the region labels disappear
+  div.className = 'region_labels';
 };
 Label.prototype = new google.maps.OverlayView;
 

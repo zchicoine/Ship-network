@@ -12,67 +12,49 @@ var getClickedPostion;
            text: 'Region 1',
            position: new google.maps.LatLng(48.2893, -99.3594),
            map: window.map,
-           fontSize: 200,
-           align: 'center'
-         });
+           });
   var mapLabel_South_America = new Label({
            text: 'Region 2',
            position: new google.maps.LatLng(-10.4893, -59.3594),
            map: window.map,
-           fontSize: 200,
-           align: 'center'
-         });
+           });
   var mapLabel_Africa = new Label({
            text: 'Region 3',
            position: new google.maps.LatLng(17.6493, 11.5994),
            map: window.map,
-           fontSize: 200,
-           align: 'center'
-         });
+           });
   var mapLabel_Persian_Gulf = new Label({
            text: 'Region 4',
            color: 'transparent',
            position: new google.maps.LatLng(33.1376, 47.6367),
            map: window.map,
-           fontSize: 200,
-           align: 'center'
-         });
+           });
   var mapLabel_Australia = new Label({
            text: 'Region 5',
            position: new google.maps.LatLng(-25.8000, 133.2422),
            map: window.map,
-           fontSize: 200,
-           align: 'center'
-         });
+           });
 
    var mapLabel_Europe = new Label({
            text: 'Region 6',
            position: new google.maps.LatLng(53.1289, 45.1102),
            map: window.map,
-           fontSize: 200,
-           align: 'center'
-         });
+           });
    var mapLabel_IMB = new Label({
            text: 'Region 7',
            position: new google.maps.LatLng(24.4471,85.1660),
            map: window.map,
-           fontSize: 200,
-           align: 'center'
-         });
+          });
    var mapLabel_JPN = new Label({
            text: 'Region 8',
            position: new google.maps.LatLng(35.8178, 118.0371),
            map: window.map,
-           fontSize: 200,
-           align: 'center'
-         });
+          });
    var mapLabel_PHPLNS = new Label({
            text: 'Region 9',
            position: new google.maps.LatLng(-4.0396, 121.2891),
            map: window.map,
-           fontSize: 200,
-           align: 'center'
-         });
+          });
 
 
 
@@ -170,6 +152,7 @@ initialize();
       // click  event function for zooming in   
         google.maps.event.addListener(map, 'click', function(e) {  
 
+$('.region_labels').remove();
       var zoomToNumber = window.map.getZoom() + 1;
 			getClickedPostion = e.latLng
 			window.map.setCenter(getClickedPostion);
@@ -182,13 +165,7 @@ initialize();
               ]
               }]; 
 			window.map.setOptions({styles: map_style}); 
-     /* $("#googleMap").fadeOut("fast",function(){
-
-        mapLabel_North_America = new Label({
-          text: ''
-
-        });
-      }); */
+     
 			
     });
 
@@ -201,7 +178,7 @@ initialize();
         window.map.setCenter(getClickedPostion);
         window.map.setOptions({styles: mapStyle});
       $("body").css("cursor","default");
-      //set_label_names();
+      
       initialize();
     }); 
 	}
