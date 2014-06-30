@@ -12,7 +12,7 @@ class SideBarController < ApplicationController
        # @region_info = JSON.parse(params[:name])
       @region_info = { name:'North America'}
         #redirect_to root_path
-        render :partial =>  'side_bar/region'
+        render :partial =>  'side_bar/table_body/region'
        # respond_to do |format|
        #     msg = { :status => "ok", :message => "Success!", :html => "<b>...</b>" }
        #     format.json  { render :json => msg } # don't do msg.to_json

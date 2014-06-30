@@ -1,13 +1,44 @@
-<div>
-<aside class="aside_ship_details pull-right">
+<div class="aside_ship_details pull-right">
+<aside >
 
-    <% if @table.nil? %>
-
-        <%= render 'side_bar/default' %>
-    <% elsif @table.to_str.eql?('region') %>
-        <%= render 'side_bar/region' %>
-    <%end%>
     <% render 'side_bar/map_controller_panel' %>
+    <table class="table" >
+        <thead>
+
+        </thead>
+
+
+        <tbody >
+            <tr>
+                <td>
+                    <div >
+                        <table class="aside_ship_details_table_body table  informative_table">
+                            <%= render 'side_bar/table_body/default' %>
+                        </table>
+
+                    </div>
+                </td>
+            </tr>
+
+        </tbody>
+
+
+
+
+        <tfoot>
+        <tr>
+            <td>
+                <div>
+                    <table class="aside_ship_details_table_foot table  informative_table">
+                        <%= render 'side_bar/part_of_table/total_deadweight' %>
+                    </table>
+
+                </div>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+
 
 
 </aside>

@@ -1,4 +1,6 @@
 //<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+
 $(window).load(function(){
 
 	$("#button-chevron-right").click(function(){
@@ -11,25 +13,26 @@ $(window).load(function(){
 
 
 //        // ajax parameters
-//        $.ajax({
-//            url:'side_bar/region',
-//            beforeSend: function(){
-//                // Handle the beforeSend event
-//            },
-//            type: 'GET',
-//            data:'works',
-//            complete: function(r){
-//                // Handle the complete event
-//                // alert(r);
-//
-//            },
-//            success: function(result) {
-//                $('.aside_ship_details').html(result);
-//            },
-//            error: function(){
-//                alert('error')
-//            }
-//        });
+        $.ajax({
+            url:'side_bar/region',
+            beforeSend: function(){
+                // Handle the beforeSend event
+            },
+            type: 'GET',
+            data:'works',
+            complete: function(r){
+                // Handle the complete event
+                // alert(r);
+
+            },
+            success: function(result) {
+
+                $('.aside_ship_details_table_body').html(result);
+            },
+            error: function(){
+                alert('error');
+            }
+        });
 	});
 
 

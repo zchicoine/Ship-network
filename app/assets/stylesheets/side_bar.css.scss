@@ -1,14 +1,23 @@
 /* --- General format of the side --- */
 .aside_ship_details {
 
-  margin-top: 20px;
+  //margin-top: 20px;
   width: 30%;
+  table td {
+      border-top: solid #ffffff 0px !important;
+  }
+    table table{
+        border: solid white 2px;
+    }
+  table tbody tr td div table td{
 
-  table {
-    border: solid white 2px;
+      border-top: solid #dddddd 1px !important;
+
+      z-index: 10;
     font-family: roboto;
     th{
         font-weight:100;
+
     }
   }
 }
@@ -28,9 +37,8 @@
 }
 /*  end */
 
-/* informative table */
+/*  table body  */
 .informative_table{
-
     thead:first-child tr:first-child th:first-child{
         text-align: center;
         -moz-border-radius-topleft:12px;
@@ -66,25 +74,43 @@
     }
 
 }
-/*  */
+/* end  */
+
+/*  table foot  */
+.aside_ship_details_table_foot{
+  //  margin-top: -15px;
+    border: solid #ffffff 0px !important;
+
+
+
+
+    thead:first-child tr:first-child th:first-child{
+        text-align: center;
+        -moz-border-radius-topleft:0px;
+        -webkit-border-top-left-radius:0px;
+        border-top-left-radius:0px;
+        -moz-border-radius-topright:0px;
+
+        -webkit-border-top-right-radius:0px;
+        border-top-right-radius:0px;
+
+    }
+
+
+
+}
+/*  end    */
 /*  -----   default table ----- */
-#side_bar_default_table {
-    th{
-        text-align: left;
-    }
-    tr{
-        text-align: left;
-    }
+.side_bar_default_table {
+
 }
 /*  end */
 
 
 /*  ----  after a region has been clicked  ----   */
-#table_after_clicking_on_a_region {
+.table_after_clicking_on_a_region {
 
-    tr{
-        text-align: left;
-    }
+
 }
 
 .thick_horizontal_line{
@@ -135,6 +161,8 @@ div.scroll_inside_table {
 
 /*end scroll*/
 /* end after a region has been clicked */
+
+
 
 
 

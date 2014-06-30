@@ -1,0 +1,16 @@
+<thead id="region_stats_table">
+<tr>
+    <th colspan="<%= 2%>">Region Stats</th>
+</tr>
+</thead>
+<tr class="thick_horizontal_line">
+
+    <td>Total Ships:</td>
+    <td>70</td>
+</tr>
+<% vessel_classes.each do |_class| %>
+    <tr>
+        <td><%=" #{_class}:" %></td>
+        <td>10</td>
+    </tr>
+<% end %>
