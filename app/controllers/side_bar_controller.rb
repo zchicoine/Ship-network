@@ -24,5 +24,11 @@ class SideBarController < ApplicationController
         @table = self.action_name
     end
 
+    def ship
+
+        @region_info = { name:'North America'}
+        render :partial =>  'side_bar/table_body/ship'
+    end
+
 
 end

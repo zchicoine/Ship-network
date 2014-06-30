@@ -5,20 +5,8 @@ After the user click the region on the map this side will appear.
 
 
 
-      <thead class="table_after_clicking_on_a_region text-left">
-      <tr >
-        <th colspan="<%= 2%>"><%= @region_info[:name] %></th>
-
-      </tr>
-      </thead>
-      <tr>
-        <td></td>
-        <td></td>
-      </tr>
-
-
-
-      <thead class="table_after_clicking_on_a_region text-left">
+    <%= render 'side_bar/part_of_table/port_header_name'%>
+    <thead class="table_after_clicking_on_a_region text-left">
       <tr>
         <th colspan="<%= 2%>">List of Ports in Region</th>
       </tr>

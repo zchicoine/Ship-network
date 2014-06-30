@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     root 'main_pages#index'
 
     get 'side_bar/region' => 'side_bar#region'
+    get 'side_bar/ship' => 'side_bar#ship'
   # You can have the root of your site routed with "root"
  
 

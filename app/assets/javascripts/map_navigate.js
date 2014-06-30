@@ -14,7 +14,7 @@ $(window).load(function(){
 
 //        // ajax parameters
         $.ajax({
-            url:'side_bar/region',
+            url:'side_bar/ship',
             beforeSend: function(){
                 // Handle the beforeSend event
             },
@@ -29,8 +29,8 @@ $(window).load(function(){
 
                 $('.aside_ship_details_table_body').html(result);
             },
-            error: function(){
-                alert('error');
+            error: function(r){
+                alert(r.message);
             }
         });
 	});
