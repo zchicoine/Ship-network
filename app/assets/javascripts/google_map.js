@@ -25,7 +25,6 @@ var getClickedPostion;
            });
   var mapLabel_Persian_Gulf = new Label({
            text: 'Region 4',
-           color: 'transparent',
            position: new google.maps.LatLng(33.1376, 47.6367),
            map: window.map,
            });
@@ -115,6 +114,16 @@ var getClickedPostion;
  	return map_styles;
  }
 
+
+ 
+
+  // Construct the polygon
+  // Note that we don't specify an array or arrays, but instead just
+  // a simple array of LatLngs in the paths property
+ 
+
+  
+
 //function to initialize the map after clickng on banner
 function start_app(){
 
@@ -122,6 +131,7 @@ initialize();
 }
 //$("#free_tour").click(function(event){
  function initialize() {
+
 
       var mapOptions = {
           center: new google.maps.LatLng(11.289703, -81.464677),
@@ -143,21 +153,31 @@ initialize();
        
 		// set the map to the specified div
         window.map  = new google.maps.Map(document.getElementById("googleMap"),mapOptions);
-           map.setOptions({styles: mapStyle});
+        map.setOptions({styles: mapStyle});
 
-      
+        //draw outline on north america and setMap for that  
+        regionNorthAmerica.setMap(map);
       // setting up label names
         set_label_names();
          
       // click  event function for zooming in   
         google.maps.event.addListener(map, 'click', function(e) {  
 
-$('.region_labels').remove();
-      var zoomToNumber = window.map.getZoom() + 1;
-			getClickedPostion = e.latLng
-			window.map.setCenter(getClickedPostion);
-			window.map.setZoom(zoomToNumber);
+      $('.region_labels').remove();
+       var zoomToNumber = window.map.getZoom() + 2;
+			 getClickedPostion = e.latLng
+       // make a function call to decide which region is being clicked on
+       console.log(getClickedPostion);
+			 window.map.setCenter(getClickedPostion);
+			 window.map.setZoom(zoomToNumber);
 
+       /*     $.ajax({
+        type: "POST",
+        url: ,
+        data: getClickedPostion,
+        success: success,
+        dataType: dataType
+      });*/
 			var map_style = [{
               "featureType": "administrative.country",
               "stylers": [
@@ -176,13 +196,15 @@ google.maps.event.addListener(map, 'mouseover', function(event) {
 
 // zoom out function     
  google.maps.event.addListener(map, 'rightclick', function(e) {
-      var center= new google.maps.LatLng(11.289703, -81.464677);
-         window.map.setZoom(2);
-        window.map.setCenter(getClickedPostion);
+     // var center= new google.maps.LatLng(11.289703, -81.464677);
+        window.map.setZoom(2);
         window.map.setOptions({styles: mapStyle});
+
+        window.map.setCenter(getClickedPostion);
       $("body").css("cursor","default");
       
-      initialize();
+      set_label_names();
+    
     }); 
 	}
 
