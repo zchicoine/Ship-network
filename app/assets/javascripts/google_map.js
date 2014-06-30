@@ -169,9 +169,12 @@ $('.region_labels').remove();
 			
     });
 
+//preventing cursor to change when hovering over region label text
+google.maps.event.addListener(map, 'mouseover', function(event) {
+    $('body').css("cursor","default");
+  });
 
 // zoom out function     
-
  google.maps.event.addListener(map, 'rightclick', function(e) {
       var center= new google.maps.LatLng(11.289703, -81.464677);
          window.map.setZoom(2);
@@ -182,6 +185,8 @@ $('.region_labels').remove();
       initialize();
     }); 
 	}
+
+
 google.maps.event.addDomListener(window, 'load', initialize);
 
 
