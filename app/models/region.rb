@@ -1,4 +1,45 @@
+
 class Region
+
+    # this class replacing enum.
+    class Region_names
+        include Singleton
+
+        def north_america
+            "North America"
+        end
+        def south_america
+            "South America"
+        end
+        def africa
+            "Africa"
+        end
+        def persian_gulf
+            "Persian Gulf"
+        end
+        def australia
+            "Australia"
+        end
+        def europe
+            "Europe"
+        end
+        def india
+            "India"
+        end
+        def mid_to_north_china
+            "Mid to North China"
+        end
+        def south_east_asia
+            "South East Asia"
+        end
+
+
+
+    end
+    # end Region_names class
+
+
+    REGIONS = Region_names.instance
 
     def self.all
 
@@ -20,6 +61,13 @@ class Region
                                 "India" => lat_lng[7],"Mid to North China" => lat_lng[8],
                                 "South East Asia" => lat_lng[9]}
     end
+
+
+
+
+
+
+
 
 
 
