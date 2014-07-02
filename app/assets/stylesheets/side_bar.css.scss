@@ -3,8 +3,13 @@
 
   //margin-top: 20px;
   width: 30%;
-  table td {
+    font-family: roboto !important;
+
+    table td {
       border-top: solid #ffffff 0px !important;
+      z-index: 10;
+
+
   }
     table table{
         border: solid white 2px;
@@ -13,29 +18,29 @@
 
       border-top: solid #dddddd 1px !important;
 
-      z-index: 10;
-    font-family: roboto;
-    th{
-        font-weight:100;
 
-    }
+     table div table tr{
+
+
+      }
+
   }
 }
 /* --- end ---  */
+/* table head */
 /*  map controller table */
-
+.aside_ship_details_table_head {
+    //  margin-top: -15px;
+    border: solid #ffffff 0px !important;
+}
 #map_controller_panel{
 
-    th{
-        background-color: #0a6998;
-        color: #ffffff;
-        text-align: center;
-    }
-    tr {
-        background-color: #e2f2f5;
-    }
+//width:90%
 }
-/*  end */
+
+/*  end  map controller table */
+/*  end table head  */
+
 
 /*  table body  */
 .informative_table{
@@ -66,14 +71,30 @@
         color: #ffffff;
         font-size: 14pt;
         background-color: #0A94CB;
+        font-weight:100 !important;
 
     }
     tr {
         height: 1px !important;
         background-color: white;
+        font-weight:800 ;
+
     }
 
 }
+
+/*  -----   default table ----- */
+.side_bar_default_table {
+
+}
+/*  end */
+
+/*  ----  after a region has been clicked  ----   */
+.table_after_clicking_on_a_region {
+
+
+}
+
 /* end  */
 
 /*  table foot  */
@@ -100,18 +121,10 @@
 
 }
 /*  end    */
-/*  -----   default table ----- */
-.side_bar_default_table {
-
-}
-/*  end */
 
 
-/*  ----  after a region has been clicked  ----   */
-.table_after_clicking_on_a_region {
 
 
-}
 
 .thick_horizontal_line{
     border-bottom: solid 3px !important;
