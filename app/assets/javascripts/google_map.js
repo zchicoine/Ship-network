@@ -55,8 +55,6 @@ var getClickedPostion;
            map: window.map,
           });
 
-
-
  }
 
  function map_properties(){
@@ -114,9 +112,6 @@ var getClickedPostion;
  	return map_styles;
  }
 
-
- 
-
   // Construct the polygon
   // Note that we don't specify an array or arrays, but instead just
   // a simple array of LatLngs in the paths property
@@ -160,9 +155,72 @@ initialize();
         regionNorthAmerica.setMap(map);
       // setting up label names
         set_label_names();
-         
-      // click  event function for zooming in   
-        google.maps.event.addListener(map, 'click', function(e) {  
+      
+	  
+	  //setting up ports on the map
+	var port = [['Fredericia',55.55,9.75],['Frederikshavn',55.46666667,8.4333333],['Barahona',18.2,-71.06666667],['La Romana',18.45,-69.01666667]];
+	var myCenter=new google.maps.LatLng(51.508742,-0.120850);
+	//Info Window Content
+    var infoWindowContent = [
+        ['<div class="info_content">' +
+        '<h3 style="text-align:center">Fredericia</h3>' +
+		'<table style="width:300px"><tr><td><h4>Vessel</h4></td><td>ship1</td><td>ship2</td><td>ship3</td></tr></table>'+
+		'</div>'],
+        ['<div class="info_content">' +
+        '<h3>Esbjerg</h3>' +'</div>'],
+		['<div class="info_content">' +
+        '<h3>Barahona</h3>' +'</div>'],
+		['<div class="info_content">' +
+        '<h3>La Romana</h3>' +'</div>']
+	];
+	//Display multiple markers on a map
+    var infoWindow = new google.maps.InfoWindow(), marker, i;
+	function initialize2()	
+	{
+		var mapProp = {
+		center:myCenter,
+		zoom:2,
+		mapTypeId:google.maps.MapTypeId.ROADMAP
+	};
+
+	var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+	var iconBase = 'port.png';
+	var iconBase2 = 'portHover.png';
+	
+	for(var i=0;i<port.length;i++){
+		var position = new google.maps.LatLng(port[i][1],port[i][2]);
+		var marker = new google.maps.Marker({
+			position:position,
+			map: map,
+			icon: iconBase,
+			title: port[i][0]+', 5 ships'
+		});
+		
+		google.maps.event.addListener(marker, 'mouseover', function() {
+			marker.setIcon(iconBase2);
+		});
+		google.maps.event.addListener(marker, 'mouseout', function() {
+			marker.setIcon(iconBase);
+		});
+	
+	marker.setMap(map);
+	// Allow each marker to have an info window    
+        google.maps.event.addListener(marker, 'click', (function(marker, i){
+            return function() {
+                infoWindow.setContent(infoWindowContent[i][0]);
+                infoWindow.open(map, marker);
+            }
+        })(marker, i));
+
+        // Automatically center the map fitting all markers on the screen
+        //map.fitBounds(bounds);
+	}	
+	}
+	google.maps.event.addDomListener(window, 'load', initialize2);
+
+     
+	 // click  event function for zooming in   
+     google.maps.event.addListener(map, 'click', function(e) {  
 
       $('.region_labels').remove();
        var zoomToNumber = window.map.getZoom() + 2;
