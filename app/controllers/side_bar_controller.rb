@@ -5,23 +5,20 @@ class SideBarController < ApplicationController
 
     def region
 
-    @table =self.action_name
-       # unless name.is_a?(as_json)
-       #     "Error: has to be json object."
-       #  end
-       # @region_info = JSON.parse(params[:name])
-      @region_info = { name:'North America'}
+        region_name = params.require(:region).permit(:name, :coordinates)
+
+
+
+
+      @region_info = { name:region_name[:name]}
         #redirect_to root_path
         render :partial =>  'side_bar/table_body/region'
-       # respond_to do |format|
-       #     msg = { :status => "ok", :message => "Success!", :html => "<b>...</b>" }
-       #     format.json  { render :json => msg } # don't do msg.to_json
-       # end
+
 
     end
     def default
 
-        @table = self.action_name
+
     end
 
     def ship
@@ -30,5 +27,8 @@ class SideBarController < ApplicationController
         render :partial =>  'side_bar/table_body/ship'
     end
 
+    def port
+
+    end
 
 end

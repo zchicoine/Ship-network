@@ -11,15 +11,16 @@ $(window).load(function(){
 
 
 
+            var data_json = { "region": { "name": "North America", "coordinates": "123 Carrot Street" } };
 
 //        // ajax parameters
         $.ajax({
-            url:'side_bar/ship',
+            url:'side_bar/region',
             beforeSend: function(){
                 // Handle the beforeSend event
             },
-            type: 'GET',
-            data:'works',
+            type: 'POST',
+            data:data_json,
             complete: function(r){
                 // Handle the complete event
                 // alert(r);
