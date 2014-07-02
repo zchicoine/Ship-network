@@ -139,6 +139,7 @@ initialize();
           disableDefaultUI: true,
         	panControl: false,
         	streetViewControl: false,
+          setScrollable: false,
     		  zoomControl: false,
     	    disableDoubleClickZoom: true,
           draggable: false,
