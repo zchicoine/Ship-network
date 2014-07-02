@@ -16,7 +16,7 @@ module GoogleMapHelper
             @ports_coordinate = Port.select(:latitude, :longitude).take(quantity)
         else
 
-            # @ports_coordinate = Port.select(:latitude_coordinate , :longitude_coordinate)
+             @ports_coordinate = Port.select(:latitude , :longitude).where(region: region).take(quantity)
         end
 
         # convert to an array
