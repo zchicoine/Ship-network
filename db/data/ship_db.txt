@@ -1,0 +1,151 @@
+Hidalga;	;	7.8;	12200;	20;	140;	SDBC;	
+Genco Hunter;	2007;	12.8;	58479;	32.26;	190;	SDBC;	
+Nin;	2000;	9.568;	28373;	27;	172;	SDBC;	BV
+Oak Bay;	2013;	10.568;	55923;	32.26;	190;	SDBC;	NK
+Kiwi Trader;	2000;	9.56;	31879;	29.4;	176.82;	SDBC;	NK
+Marine Prince;	2012;	10.116;	35500;	30;	179.99;	SDBC;	NK
+Hamra;	2001;	;	8874;	;	;	TWEEN;	
+Skodsborg;	;	;	10144;	;	;	RORO;	
+Nordana Mathilde;	2010;	;	12016;	;	;	TWEEN;	
+Nordana Malee;	2009;	;	11940;	;	;	TWEEN;	
+Fanja;	2000;	;	8874;	;	;	TWEEN;	
+Nordana Madeleine;	2009;	;	12016;	;	;	TWEEN;	
+Billesborg;	2011;	;	12580;	;	;	TWEEN;	
+Celine C;	2011;	;	12914;	;	;	TWEEN;	
+Nordana Emilie;	2005;	;	12782;	;	;	TWEEN;	
+Fredensborg;	2011;	;	12580;	;	;	TWEEN;	
+Nordana Emma;	2005;	;	12782;	;	;	TWEEN;	
+Oslo Bulk 7;	;	;	8000;	;	;	SDBC;	
+Oslo Bulk 11;	;	;	8000;	;	;	SDBC;	
+Oslo Merchant;	;	;	16400;	;	;	SDBC;	
+Tai Honesty;	2007;	12.487;	55418;	;	;	SDBC;	
+K Ruby;	2011;	12.735;	55688;	;	;	SDBC;	
+Tai Success;	2013;	13.01;	61486;	;	;	SDBC;	
+Voc Rose;	1998;	11.777;	47183;	;	;	SDBC;	
+Josco Runzhou;	2011;	12.65;	58567;	;	;	SDBC;	
+Western Houston;	2012;	10;	31638;	27;	176.5;	SDBC;	
+Bandura;	2010;	7.21;	8305;	16.13;	118.14;	MPP;	
+Nordic Riga;	2010;	10.8;	35083;	28.4;	179.9;	SDBC;	ABS
+Pythagoras;	2012;	12.715;	56085;	32.25;	189.99;	SDBC;	
+Pacific Logger;	2000;	9.56;	31877;	29.4;	176.82;	SDBC;	NK
+Thor Wave;	1998;	11.4;	39042;	29;	187.7;	OHBS;	
+Shi Zi Shan;	2011;	12.818;	56621;	32.26;	189.99;	SDBC;	
+Industrial Sabre;	2008;	;	12744;	;	;	MPP;	
+Hr Revolution;	2005;	;	10536;	;	;	MPP;	
+Hr Resolution;	2005;	;	10536;	;	;	MPP;	
+Industrial Maya;	2013;	;	9765;	;	;	MPP;	
+Industrial Brio;	2009;	;	9030;	;	;	MPP;	
+Industrial Dream;	2007;	;	8000;	;	;	MPP;	
+Industrial Krista;	2010;	;	7950;	;	;	MPP;	
+Brielle;	2010;	;	7950;	;	;	MPP;	
+Industrial Sailor;	2008;	;	12744;	;	;	MPP;	
+Industrial Eagle;	2008;	;	10000;	;	;	MPP;	
+Momentum Scan;	2011;	;	9765;	;	;	MPP;	
+Industrial Dart;	2008;	;	8034;	;	;	MPP;	
+Industrial Dawn;	2008;	;	8034;	;	;	MPP;	
+Industrial Charger;	2001;	;	8000;	;	;	MPP;	
+Industrial Karoline;	2010;	;	7950;	;	;	MPP;	
+Industrial Hedland;	2009;	;	7570;	;	;	MPP;	
+Industrial Sierra;	2008;	;	12744;	;	;	MPP;	
+Hr Recommendation;	2005;	;	10536;	;	;	MPP;	
+Hr Recognition;	2005;	;	10536;	;	;	MPP;	
+Motion Scan;	2011;	;	9765;	;	;	MPP;	
+Flintersky;	2002;	;	9120;	;	;	MPP;	
+Industrial Merchant;	2011;	;	9765;	;	;	MPP;	
+Industrial Chief;	2001;	;	8000;	;	;	MPP;	
+Cfl Promise;	2008;	;	;	;	;	SDBC;	
+Cfl Prospect;	2009;	;	;	;	;	SDBC;	
+Cfl Prudence;	2008;	;	;	;	;	SDBC;	
+Cfl Proud;	2008;	;	;	;	;	SDBC;	
+Cfl Perfect;	2009;	;	;	;	;	SDBC;	
+Marvel Scan;	2013;	;	9765;	;	;	MPP;	
+Industrial Aquila;	;	;	8000;	;	;	MPP;	
+Industrial Trader;	1999;	;	6000;	;	;	MPP;	
+Oslo Wave;	2000;	;	17471;	;	;	MPP;	
+Hhl Amazon;	2008;	;	12744;	;	;	MPP;	
+Trade Navigator;	2013;	;	8159;	;	;	MPP;	
+Industrial Kimberly;	2010;	;	7950;	;	;	MPP;	
+Anna Scan;	2006;	;	3490;	;	;	MPP;	
+Minanur Cebi;	2005;	8.444;	18830;	25.2;	139.92;	SDBC;	NK
+Rainbow Quest;	2011;	10.27;	34570;	28.82;	179.88;	SDBC;	ABS
+Great Ocean;	2011;	10.8;	35196;	28.4;	179.9;	SDBC;	KR
+Id Black Sea;	2009;	9.82;	28367;	;	;	SDBC;	
+Eco Splendor;	2013;	10.02;	38302;	30.64;	183;	SDBC;	NK
+Pacific Ocean;	1990;	11.21;	42263;	30.5;	182.8;	SDBC;	NK
+Victoria Harbour;	2011;	10.035;	29094;	27.01;	169.99;	SDBC;	LR
+Kaiti Hill;	2004;	9.716;	29727;	27;	170.7;	SDBC;	NK
+Bulk Chile;	2009;	12.5;	55100;	32.26;	189.9;	SDBC;	NK
+Ibi;	2005;	;	19950;	;	;	MPP;	
+Clipper Belle;	2012;	10.538;	38204;	;	;	SDBC;	
+Clipper Bliss;	2014;	10.538;	38147;	;	;	SDBC;	
+Pretty Ivy;	2011;	10.8;	35214;	;	;	SDBC;	
+Doris;	2011;	9.917;	34467.5;	;	;	SDBC;	
+Tate J;	2012;	9.917;	34439.1;	;	;	SDBC;	
+Margrete;	2002;	;	;	;	;	;	
+Nbp Trader;	2010;	;	9302;	18.2;	107;	MPP;	GL
+Beauforte;	2010;	;	;	;	;	;	
+Industrial Revolution;	2005;	;	10536;	;	;	MPP;	
+East Bangkok;	2012;	10.2;	32527;	;	;	SDBC;	
+Clipper Kamoshio;	2009;	10.022;	32226;	;	;	SDBC;	
+Cs Chara;	2006;	9.815;	30634;	;	;	SDBC;	
+Voc Daisy;	1998;	11.777;	47183;	;	;	SDBC;	
+Tai Hunter;	2007;	12.487;	55418;	;	;	SDBC;	
+Prosperity;	1997;	8.094;	8601;	17.7;	130.87;	SDBC;	IACS
+Molat;	2000;	9.568;	28355;	27;	172;	SDBC;	
+Orient Acrux;	2013;	10;	32700;	28.4;	181.1;	OHBS;	NK
+Aston Trader Ii;	2008;	12.502;	55496;	32.26;	189.99;	SDBC;	
+Bunun Wisdom;	2012;	10.538;	38168;	29.83;	179.97;	SDBC;	
+Hudson Trader I;	2009;	12.82;	58129;	32.26;	189.99;	SDBC;	
+Bente;	2008;	5.65;	4000;	14.5;	89.63;	SDBC;	
+Lieke;	2011;	7.2;	9214;	19.8;	122.2;	MPP;	
+New Vela;	1999;	6.2;	;	;	;	MPP;	
+St. George;	2009;	10.15;	32657;	28.4;	179.9;	SDBC;	BV
+St. Peter;	2009;	10.15;	32688;	28.4;	179.9;	SDBC;	BV
+Arne;	1998;	7.13;	9141;	16.5;	134.5;	MPP;	
+Maren;	2007;	7.1;	8050;	18.2;	108.2;	SDBC;	
+Just Fitz Iii;	2010;	9.816;	33693.1;	30;	180;	SDBC;	LR
+Nahide M;	1995;	9.76;	27917;	27;	169.03;	OHBS;	
+Ugur Dadayli;	2010;	;	;	;	;	SDBC;	BV
+Arikan Dadayli;	1992;	;	;	;	;	SDBC;	BV
+Kazim Dadayli;	1988;	;	;	;	;	SDBC;	BV
+Er Basel;	2011;	12.85;	55530;	32.26;	187.88;	SDBC;	
+Jasmine Ace;	2006;	10.019;	32496;	28.4;	177;	SDBC;	
+Borisfen;	;	3.2;	;	;	;	;	
+Zheng Yang;	1991;	10.023;	22551;	14.6;	176.68;	MPP;	NK
+Marcolorado;	2010;	9.99;	34905.5;	30;	185;	SDBC;	GL
+Kumsal;	1974;	6.046;	3150;	13.03;	77.47;	SDBC;	
+Yun Tong Hai;	1997;	13.87;	74005;	32.26;	225;	SDBC;	
+Adamastos;	1995;	13.767;	73506;	32.25;	224.07;	SDBC;	
+Shing Mu;	1998;	8.813;	16861;	22;	143.5;	SDBC;	
+Mandarin Noble;	2012;	12.8;	56692;	32.26;	189.99;	SDBC;	
+Dogan Bay;	2003;	8.632;	12260;	;	;	SDBC;	BV
+Blue Balance;	1998;	11.62;	45713;	30.4;	185.74;	SDBC;	NK
+Ikaria Angel;	1999;	11.62;	46667;	31;	189.8;	SDBC;	
+Deltuva;	1995;	8.52;	;	23;	149.4;	SDBC;	
+Sea Orchid;	1997;	;	10132;	;	;	SDBC;	
+Lm Selene;	2009;	14.9;	93259;	38;	229.2;	SDBC;	
+Vtc Glory;	1998;	9.566;	23620;	26;	150.52;	SDBC;	NK
+Vtc Tiger;	1998;	9.76;	28666;	27.2;	169;	SDBC;	NK
+Temara;	2007;	12.54;	53411;	32.26;	190;	SDBC;	
+Cava;	2012;	10.15;	32252.3;	28.4;	179.9;	SDBC;	BV
+Clipper Commander;	1998;	;	8874;	;	;	;	
+Clipper Cristobal;	1998;	;	8874;	;	;	;	
+Clipper Mistral;	1999;	;	8970;	;	;	;	
+Thorco Ambition;	2005;	;	9821;	;	;	;	
+Emsland;	2010;	;	10700;	;	;	;	
+Clipper Magdalena;	2001;	;	17490;	;	;	;	
+Thorco Legend;	2012;	;	17000;	;	;	;	
+Alert;	1999;	8.48;	13347;	21.2;	128;	MPP;	
+Zealand Beatrix;	2010;	;	13005;	;	;	OHBS;	
+Active;	2008;	;	12523;	19.6;	115.3;	OHBS;	
+Zealand Delilah;	2011;	;	13005;	;	;	OHBS;	
+Falcon Trader Ii;	2008;	12.448;	54924;	32.26;	189.99;	SDBC;	NK
+Ocean Fantasy;	2002;	9.8;	24547;	26;	154.5;	SDBC;	
+Paz Navigator;	;	;	;	;	;	MPP;	
+Bornholm;	;	;	;	;	;	;	
+Sylvia;	;	;	;	;	;	;	
+Er Bilbao;	2010;	12.85;	55585;	32.26;	187.88;	SDBC;	
+Global Success;	2013;	12.676;	58687;	32.26;	197;	SDBC;	
+Fanfare;	;	;	12700;	;	;	TWEEN;	
+Hr Constellation;	;	;	12400;	;	;	TWEEN;	
+Fortitude;	;	;	12700;	;	;	TWEEN;	
