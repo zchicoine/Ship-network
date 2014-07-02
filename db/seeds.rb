@@ -2,38 +2,30 @@
 Ship.destroy_all 
 Port.destroy_all 
 
+regions = ["North America","South America" , "Africa" ,"Persian Gulf" ,
+                   "Australia"  ,"Europe"  , "India","Mid to North China" , "South East Asia" ]
+
 #Read .txt file of port data and add it to database
 open("db/data/port_db.txt") do |ports|  
   ports.read.each_line do |port|  
-  	#Encode it to read foreign characters or it will not read the file.
+  	# .encode to fix UTF-8-encoded text (or it will not split the string in the next line) 
   	port.encode!('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '') 	
     name, latitude, longitude = port.chomp.split(";")
-    Port.create!(name: name, latitude: latitude.to_f, longitude: longitude.to_f)  
+    Port.create!(name: name, latitude: latitude.to_f, longitude: longitude.to_f, region: regions.sample)  
+  end  
+end  
+
+#Read .txt file of ship data and add it to database
+open("db/data/ship_db.txt") do |ships|  
+  ships.read.each_line do |ship|  
+  	# .encode to fix UTF-8-encoded text (or it will not split the string in the next line) 
+  	ship.encode!('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '') 	
+    name, built, draft, deadweight, beam, loa, vessel_type, vessel_class = ship.chomp.split(";")
+    Ship.create!(name: name, built: built.to_i, draft: draft.to_d, deadweight: deadweight.to_i, beam: beam.to_i, 
+		loa: loa.to_i, vessel_type: vessel_type, vessel_class: vessel_class, ports: [Port.all.sample, Port.all.sample])  
   end  
 end  
 
 
 
-Ship.create!([{
-	name: "ship 1",
-	vessel_type: "Cargo",
-	built: 15,
-	#ports: [montreal, new_york]
-
-	},
-	{
-	name: "ship 2",
-	vessel_type: "Commerce",
-	built: 10,	
-	#ports: [new_york]
-	},
-	{
-	name: "ship 3",
-	vessel_type: "Cargo",
-	built: 20,	
-	#ports: [vancouver, new_york]
-	}])
-
-
-
-p "Created #{Port.count} ports"
+p "Created #{Port.count} ports and #{Ship.count} ships"
