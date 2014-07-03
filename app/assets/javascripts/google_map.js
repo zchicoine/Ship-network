@@ -1,6 +1,8 @@
 
  
  //function start_app(){
+
+var map_value;
 var mapLabel_North_America;
 var getClickedPostion;
 
@@ -116,6 +118,15 @@ var getClickedPostion;
   // Note that we don't specify an array or arrays, but instead just
   // a simple array of LatLngs in the paths property
  
+function handleMouseOverNorthAmerica(event) {
+    console.log('I am hovering');
+    regionNorthAmerica.fillOpacity = 0.85;
+    regionNorthAmerica.fillColor='#f0f1f1';
+    regionNorthAmerica.strokeColor='#ff0000';
+    regionNorthAmerica.setMap(map);
+//    document.getElementById('region-label').innerHTML='North America';
+ //   document.getElementById('region-label').style.visibility='visible';
+  }
 
   
 
@@ -140,7 +151,7 @@ initialize();
           draggable: false,
           keyboardShortcuts: false,
           // never change the minimum zoom level from 1 to anything else
-          minZoom:2,
+          minZoom:2
           
         };
 
@@ -150,11 +161,14 @@ initialize();
 		// set the map to the specified div
         window.map  = new google.maps.Map(document.getElementById("googleMap"),mapOptions);
         map.setOptions({styles: mapStyle});
-
-        //draw outline on north america and setMap for that  
-        regionNorthAmerica.setMap(map);
-      // setting up label names
         set_label_names();
+        //draw outline on north america and setMap for that  
+        //regionNorthAmerica.setMap(map); 
+      //  region_outlines(map);
+        region_event_listeners();
+      regionEurope.setMap(map);
+      // setting up label names
+        
       
 	  
 	  //setting up ports on the map
@@ -227,7 +241,7 @@ initialize();
      google.maps.event.addListener(map, 'click', function(e) {  
 
       $('.region_labels').remove();
-       var zoomToNumber = window.map.getZoom() + 2;
+       var zoomToNumber = window.map.getZoom() + 1;
 			 getClickedPostion = e.latLng
        // make a function call to decide which region is being clicked on
        console.log(getClickedPostion);
@@ -260,15 +274,29 @@ initialize();
 // zoom out function     
      google.maps.event.addListener(map, 'rightclick', function(e) {
          // var center= new google.maps.LatLng(11.289703, -81.464677);
+
+         
             window.map.setZoom(2);
             window.map.setOptions({styles: mapStyle});
 
             window.map.setCenter(getClickedPostion);
           $("body").css("cursor","default");
           
-          set_label_names();
+                  set_label_names();
+                  region_outlines(map);
+
         
+        });
+
+/*
+        google.maps.event.addListener(map,'mousemove',function(event){
+
+          var latitude = event.latLng.lat();
+          var longitude = event.latLng.lng();
+         console.log(latitutde);
+
         }); 
+*/
 	
  }
 
@@ -276,6 +304,95 @@ initialize();
 google.maps.event.addDomListener(window, 'load', initialize);
 
 
+function region_outlines(map_value){
+
+        regionNorthAmerica.setMap(map_value);
+        regionSouthAmerica.setMap(map_value);
+        regionEurope.setMap(map_value);
+      //  regionEastEurope.setMap(map_value);
+        regionAfrica.setMap(map_value);
+        regionMiddleEast.setMap(map_value);
+        regionAustralia.setMap(map_value);
+      //  regionAsia.setMap(map);
+      //  regionIndia.setMap(map_value);
+
+
+}
 
 
 
+function handleClickNorthAmerica(event) {
+ //   window.location='http://shurie.com/coder/code_details.asp?CodeID=53';
+ //initialize();
+ $('.region_labels').remove();
+ getClickedPostion = event.latLng
+       // make a function call to decide which region is being clicked on
+       console.log(getClickedPostion);
+       window.map.setCenter(getClickedPostion);
+       
+ window.map.setZoom(4);
+ region_outlines(null);
+  }
+
+
+function handleMouseOverEurope(){
+
+  //console.log(e.latLng);
+  regionEurope = new google.maps.Polygon({
+    paths: regionEuropeCoords,
+     strokeColor: "blue",
+    strokeWeight: 0,
+    strokeOpacity: 0,
+    fillColor: "red",
+    fillOpacity: 1
+  });
+  regionEurope.setMap(map);
+}
+
+function handleMouseOutEurope(){
+
+/*
+regionEurope = new google.maps.Polygon({
+    paths: regionEuropeCoords,
+    fillColor: "blue",
+    fillOpacity: 1
+  });
+*/
+ regionEurope.setMap(null);
+// initialize();
+}
+
+
+function handleMouseClickEurope(){
+
+  console.log('Europe');
+}
+
+function region_event_listeners(){
+/*
+  google.maps.event.addDomListener(regionNorthAmerica, 'click', handleClickNorthAmerica);
+  google.maps.event.addDomListener(regionNorthAmerica, 'mouseover', handleMouseOverNorthAmerica);
+  */
+
+google.maps.event.addDomListener(regionEurope, 'click', handleMouseClickEurope);
+  google.maps.event.addDomListener(regionEurope, 'mouseover', handleMouseOverEurope);
+  google.maps.event.addDomListener(regionEurope, 'mouseout', handleMouseOutEurope);
+/*
+  google.maps.event.addDomListener(regionSouthAmerica, 'click', handleClickSouthAmerica);
+  google.maps.event.addDomListener(regionSouthAmerica, 'mouseover', handleMouseOverSouthAmerica);
+
+  google.maps.event.addDomListener(regionEurope, 'click', handleClickEurope);
+  
+
+  google.maps.event.addDomListener(regionAfrica, 'click', handleClickAfrica);
+  google.maps.event.addDomListener(regionAfrica, 'mouseover', handleMouseOverAfrica);
+
+  google.maps.event.addDomListener(regionMiddleEast, 'click', handleClickMiddleEast);
+  google.maps.event.addDomListener(regionMiddleEast, 'mouseover', handleMouseOverMiddleEast);
+
+  google.maps.event.addDomListener(regionAustralia, 'click', handleClickAustralia);
+  google.maps.event.addDomListener(regionAustralia, 'mouseover', handleMouseOverAustralia);
+
+*/
+
+}

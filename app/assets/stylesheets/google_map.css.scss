@@ -13,6 +13,23 @@
 
 }
 
+#layerMap{
+
+ width: 650px;
+  height: 650px;
+ //position: relative;
+  background-color: white;
+
+  //margin-bottom: 200px;
+  margin-top: -72px;
+  margin-left: -70px;
+
+  -moz-border-radius: 999px;
+  -webkit-border-radius: 999px;
+  border-radius: 999px;
+  
+}
+
 #googleMap{
 
   width: 650px;
