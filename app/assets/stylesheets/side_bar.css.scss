@@ -14,6 +14,7 @@
     table table{
         border: solid white 2px;
     }
+
   table tbody tr td div table td{
 
       border-top: solid #dddddd 1px !important;
@@ -26,16 +27,39 @@
 
   }
 }
+
+#side_table{
+
+ thead{
+     background-color: #0A94CB;
+ }
+
+}
 /* --- end ---  */
 /* table head */
-/*  map controller table */
+
 .aside_ship_details_table_head {
     //  margin-top: -15px;
     border: solid #ffffff 0px !important;
 }
-#map_controller_panel{
 
-//width:90%
+/*  map controller table */
+
+#map_controller_panel{
+    margin: auto;
+    width:95%
+}
+.map_controller_go_to_region{
+    background-color: #f0f1f1;
+    li{
+        height: 25px;
+        cursor: pointer;
+        margin-left: 10px;
+
+    }
+    li:hover{
+        color: #cb9007;
+    }
 }
 
 /*  end  map controller table */
@@ -44,27 +68,7 @@
 
 /*  table body  */
 .informative_table{
-    thead:first-child tr:first-child th:first-child{
-        text-align: center;
-        -moz-border-radius-topleft:12px;
-        -webkit-border-top-left-radius:12px;
-        border-top-left-radius:12px;
-        -moz-border-radius-topright:12px;
 
-        -webkit-border-top-right-radius:12px;
-        border-top-right-radius:12px;
-
-    }
-    thead:last-child tr:last-child th:last-child{
-
-        -moz-border-radius-bottomleft:10px;
-        -webkit-border-bottom-left-radius:10px;
-        border-bottom-left-radius:10px;
-        -moz-border-radius-bottomright:10px;
-        -webkit-border-bottom-right-radius:10px;
-        border-bottom-right-radius:10px;
-
-    }
 
     th {
 
