@@ -189,16 +189,20 @@ initialize();
 	
 	for(var i=0;i<port.length;i++){
 		var position = new google.maps.LatLng(port[i][1],port[i][2]);
-		var marker = new google.maps.Marker({
+	new google.maps.Size(20, 34),
+	 marker = new google.maps.Marker({
 			position: position,
 			map: map,
 			icon: iconBase,
-			title: port[i][0]+', 5 ships'
+			title: port[i][0]+', 5 ships',
+      
 		});
 		
 		google.maps.event.addListener(marker, 'mouseover', function() {
+    //  marker_color=new google.maps.MarkerImage(iconBase2);
 			marker.setIcon(iconBase2);
 		});
+
 		google.maps.event.addListener(marker, 'mouseout', function() {
 			marker.setIcon(iconBase);
 		});
