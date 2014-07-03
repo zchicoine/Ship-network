@@ -1,8 +1,8 @@
 class SideBarController < ApplicationController
     include SideBarHelper
 
-    @table # to decide which table will be display
-    @region_info
+
+
 
     def region
 
@@ -19,17 +19,18 @@ class SideBarController < ApplicationController
 
     end
     def default
-
-
+        @region_info = { name:'General Information'}
+        render :partial =>  'side_bar/table_body/default'
     end
 
     def ship
-
         @region_info = { name:'North America'}
         render :partial =>  'side_bar/table_body/ship'
     end
 
     def port
+        @region_info = { name:'North America'}
+        render :partial =>  'side_bar/table_body/port'
 
     end
 

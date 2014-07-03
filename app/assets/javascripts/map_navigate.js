@@ -15,7 +15,7 @@ $(window).load(function(){
 
 //        // ajax parameters
         $.ajax({
-            url:'side_bar/region',
+            url:'side_bar/ship',
             beforeSend: function(){
                 // Handle the beforeSend event
             },
