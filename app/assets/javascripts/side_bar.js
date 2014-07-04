@@ -5,3 +5,29 @@ go_to_region = function (coordinates){
     window.map.setCenter(_latLng);
     window.map.setZoom(4);
 }
+
+$(window).load(function() {
+    var visible = true;
+    $(".triangle_image").click(function () {
+
+
+
+        $('.hide_table').animate({width: '0px'}, 1, function() {
+            $(this).toggle(function() {
+                visible = !visible;
+                if (!visible) {
+                    $(".triangle_image").attr("src", "assets/greentriangle_up.png");
+                }
+                else {
+
+                    $(".triangle_image").attr("src", "assets/greentriangle_down.png");
+
+                }
+            });
+
+       // $('.hide_table').toggle( {direction: 'up'}, 1400, function () {
+
+        });
+    });
+
+});
