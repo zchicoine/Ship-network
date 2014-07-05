@@ -8,15 +8,15 @@
   //margin-left:10px;
  // margin-top:20px;
  // height: 800px;
-  width: 65%;
+  width: 70%;
   float: left !important;
 
 }
 
 #googleMap{
-
-  width: 775px;
-  height: 775px;
+   margin: auto;
+  width: 725px;
+  height: 725px;
  // position: relative;
   background-color: white;
 
@@ -30,15 +30,3 @@
 }
 
 
-#button-chevron-left{
-  position:absolute;
-  left:276px;
-  top: 350px;
-}
-
-#button-chevron-right{
-  position:absolute;
-  right:398px;
-  top: 350px;
-
-}

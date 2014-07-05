@@ -3,16 +3,16 @@
 $(window).load(function(){
 
 
-$("#free_tour").click(function(e){
+    $("#free_tour").click(function(e){
 
-	//jquery to set opacity to zero
-	$("#transparent_div").removeClass('transparent');
+        //jquery to set opacity to zero
+        $("#transparent_div").removeClass('transparent');
 
-	//jquery to fadeOut the banner
-	$("#main_banner").fadeOut("slow",function(){});
+        //jquery to fadeOut the banner
+        $("#main_banner").fadeOut("slow",function(){});
 
-	//start_app();
-});
+        //start_app();
+    });
 
 
 });

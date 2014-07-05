@@ -1,0 +1,27 @@
+$image_height: 50px;
+
+@mixin  vertical_align{
+    margin-top: -moz-calc(50% - 25px);
+    /* WebKit */
+    margin-top: -webkit-calc(50% - 25px);
+    /* Opera */
+    margin-top: -o-calc(50% - 25px);
+    /* Standard */
+    margin-top: calc(50% - 25px);
+}
+
+
+#right-img-responsive{
+  position:relative;
+  float: right;
+  height:$image_height;
+  @include  vertical_align;
+}
+
+#left-img-responsive{
+ position:relative;
+ float: left;
+ height:$image_height;
+ @include  vertical_align;
+
+}
