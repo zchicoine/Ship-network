@@ -20,7 +20,7 @@
        <th colspan="<%= 2 %>" id="shipsByRegion"> <%= image_tag("greentriangle_down.png", size: "16", class:"triangle_image")%> # of Ships by Region:</th>
       </tr>
       </thead>
-        <tbody class=" hide_table">
+        <tbody class=" hide_table_region">
         <% get_all_regions.each do |_class| %>
             <tr class="text-left " >
                 <td><%= _class %></td>

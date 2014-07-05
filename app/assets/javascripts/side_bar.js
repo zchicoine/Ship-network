@@ -12,8 +12,10 @@ $(window).load(function() {
 
 
 
-        $('.hide_table').animate({width: '0px'}, 1, function() {
-            $(this).toggle(function() {
+        $('.hide_table_region').children().each(function(){
+            console.log(this);
+            $(this).animate({height: 'toggle',opacity:'toggle'}, "slow", function() {
+
                 visible = !visible;
                 if (!visible) {
                     $(".triangle_image").attr("src", "assets/greentriangle_up.png");
@@ -23,10 +25,9 @@ $(window).load(function() {
                     $(".triangle_image").attr("src", "assets/greentriangle_down.png");
 
                 }
+
+
             });
-
-       // $('.hide_table').toggle( {direction: 'up'}, 1400, function () {
-
         });
     });
 
