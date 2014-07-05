@@ -7,7 +7,7 @@ var mapLabel_North_America;
 var getClickedPostion;
 
  var dflt_latLng;
-
+var geocoder;
  function set_label_names(){
 
  mapLabel_North_America = new Label({
@@ -169,7 +169,7 @@ initialize();
       regionEurope.setMap(map);
       // setting up label names
         
-      
+      geocoder = new google.maps.Geocoder();
 	  
 	  //setting up ports on the map
 	var port = [['Fredericia',55.55,9.75],['Frederikshavn',55.46666667,8.4333333],['Barahona',18.2,-71.06666667],['La Romana',18.45,-69.01666667]];
@@ -262,6 +262,8 @@ initialize();
               ]
               }]; 
 			window.map.setOptions({styles: map_style}); 
+
+      getCountry(getClickedPostion);
      
 			
     });
@@ -321,7 +323,7 @@ function region_outlines(map_value){
 
 
 
-function handleClickNorthAmerica(event) {
+function handleMouseClickEurope(event) {
  //   window.location='http://shurie.com/coder/code_details.asp?CodeID=53';
  //initialize();
  $('.region_labels').remove();
@@ -343,7 +345,7 @@ function handleMouseOverEurope(){
      strokeColor: "blue",
     strokeWeight: 0,
     strokeOpacity: 0,
-    fillColor: "red",
+    fillColor: "blue",
     fillOpacity: 1
   });
   regionEurope.setMap(map);
@@ -362,11 +364,6 @@ regionEurope = new google.maps.Polygon({
 // initialize();
 }
 
-
-function handleMouseClickEurope(){
-
-  console.log('Europe');
-}
 
 function region_event_listeners(){
 /*
@@ -396,3 +393,27 @@ google.maps.event.addDomListener(regionEurope, 'click', handleMouseClickEurope);
 */
 
 }
+
+
+// identify a country based on mouse click
+function getCountry(latLng) {
+    geocoder.geocode( {'latLng': latLng},
+      function(results, status) {
+        if(status == google.maps.GeocoderStatus.OK) {
+          if(results[0]) {
+            for(var i = 0; i < results[0].address_components.length; i++) {
+              if(results[0].address_components[i].types[0] == "country") {
+                alert(results[0].address_components[i].long_name);
+              }
+            }
+          }
+          else {
+            alert("No results");
+          }
+        }
+        else {
+          alert("Status: " + status);
+        }
+      }
+    );
+  }
