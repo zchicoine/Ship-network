@@ -8,15 +8,15 @@
   //margin-left:10px;
  // margin-top:20px;
  // height: 800px;
-  width: 70%;
+  width: 65%;
   float: left !important;
 
 }
 
 #googleMap{
 
-  width: 725px;
-  height: 725px;
+  width: 775px;
+  height: 775px;
  // position: relative;
   background-color: white;
 
@@ -30,15 +30,15 @@
 }
 
 
-//#button-chevron-left{
-// // position:absolute;
-// // left:276px;
-//  top: 350px;
-//}
-//
-//#button-chevron-right{
-//  //position:absolute;
-// // right:398px;
-//  top: 350px;
-//
-//}
+#button-chevron-left{
+  position:absolute;
+  left:276px;
+  top: 350px;
+}
+
+#button-chevron-right{
+  position:absolute;
+  right:398px;
+  top: 350px;
+
+}
