@@ -146,6 +146,7 @@ var geocoder;
         regionAustralia.setMap(map);
         regionMiddleEast.setMap(map);
         regionIndiaSubContinent.setMap(map);
+        regionKoreaJapanRussia.setMap(map);
         region_event_listeners();
        
       geocoder = new google.maps.Geocoder();
@@ -278,6 +279,12 @@ function region_event_listeners(){
 
 google.maps.event.addDomListener(regionIndiaSubContinent, 'click', function(e){
       test(e,regionIndiaSubContinentCoords,"IndiaSubContinent")
+  });
+
+
+
+google.maps.event.addDomListener(regionKoreaJapanRussia, 'click', function(e){
+      test(e,regionKoreaJapanRussiaCoords,"KoreaJapan")
   });
 }
 
