@@ -25,9 +25,11 @@ class SideBarController < ApplicationController
     end
 
     def ship
-        parameters = params.require(:ship_info).permit(:ship_name)
+        parameters = params.require(:ship_info).permit(:ship_name )
         @side_info = {region_name: session[:region_name] || "No region selected" }
         @side_info[:ship_name] = parameters[:ship_name]
+        @side_info[:port_name] = session[:port_name] || "Tyne"
+       @ship_info =  get_ship_information @side_info[:ship_name], @side_info[:port_name]
         respond_to do |format|
             format.html {render :partial =>  'side_bar/table_body/ship'}
             format.js {render 'side_bar/table_body/js/ship'}
@@ -40,7 +42,8 @@ class SideBarController < ApplicationController
 
          @side_info = {region_name: session[:region_name] || "No region selected" }
          @side_info[:port_name] = parameters[:port_name]
-         @side_info[:port_coordinates] = parameters[:port_coordinates]
+        session[:port_name] = @side_info[:port_name]
+        @side_info[:port_coordinates] = parameters[:port_coordinates]
        @ships_at_port =  all_ships_at_specific_port [0,0], @side_info[:port_name]
 
         respond_to do |format|

@@ -23,7 +23,7 @@
     <tr>
         <th>
             <%= image_tag("greentriangle_down.png", size: "16", class:"triangle_image")%>
-           <small>Ship:</small> USS Enterprise
+           <small>Ship:</small> <%= @side_info[:ship_name]%>
         </th>
         <th>
         </th>
@@ -34,7 +34,7 @@
         Class:
     </td>
     <td>
-        Boat
+        <%= @ship_info[0] %>
     </td>
 </tr>
 <tr class="text-left">
@@ -42,7 +42,7 @@
         Open Port:
     </td>
     <td>
-        Dubai
+        <%= @ship_info[2] %>
     </td>
 </tr>
 <tr class="text-left">
@@ -58,7 +58,7 @@
         Deadweight:
     </td>
     <td>
-        2000t
+        <%= @ship_info[1] %>
     </td>
 </tr>
 
