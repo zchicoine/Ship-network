@@ -13,7 +13,7 @@
         <% vessel_classes.each do |_class| %>
           <tr class="text-left">
             <td><%=" #{_class}:" %></td>
-            <td>50</td>
+            <td><%= get_ships_per_class _class%></td>
           </tr>
         <% end %>
 
@@ -25,15 +25,20 @@
       </tr>
       </thead>
       <tbody >
+      <% count = 0%>
         <tr class="text-left thick_horizontal_line" >
             <td>Total Ship</td>
-            <td>2000</td>
+            <td><%= count%></td>
         </tr>
-        <% get_all_regions.each do |_class| %>
+
+        <% get_all_regions.each do |_region| %>
 
                 <tr class="text-left " >
-                        <td><%= _class %></td>
-                        <td>50</td>
+                        <td><%= _region %></td>
+                    <%
+                       temp = get_ships_per_region(_region).to_i
+                       count = count + temp  %>
+                        <td><%= temp%></td>
                 </tr>
 
         <% end %>

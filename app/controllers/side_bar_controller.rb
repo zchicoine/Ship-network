@@ -1,6 +1,6 @@
 class SideBarController < ApplicationController
     include SideBarHelper
-
+    include GoogleMapHelper
 
 
 
@@ -37,9 +37,11 @@ class SideBarController < ApplicationController
 
     def port
         parameters = params.require(:port_info).permit(:port_name)
+
          @side_info = {region_name: session[:region_name] || "No region selected" }
          @side_info[:port_name] = parameters[:port_name]
          @side_info[:port_coordinates] = parameters[:port_coordinates]
+       @ships_at_port =  all_ships_at_specific_port [0,0], @side_info[:port_name]
 
         respond_to do |format|
             format.html {render :partial =>  'side_bar/table_body/port'}

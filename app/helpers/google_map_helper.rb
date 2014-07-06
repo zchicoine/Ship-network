@@ -60,8 +60,8 @@ module GoogleMapHelper
         end
         unless _port.nil?
             # extract the information depended on the user level of access
-            @ship_array = _port.ships.all.map { |var| [var.name, var.built, var.vessel_type] }
-            @ship_array
+           # @ship_array = _port.ships.all.map { |var| [var.name, var.built, var.vessel_type] }
+            @ship_array = _port.ships.all
 
         else
             "Either the parameters invalid or the port does not exist in the system."

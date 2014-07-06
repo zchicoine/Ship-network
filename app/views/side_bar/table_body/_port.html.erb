@@ -38,38 +38,19 @@ After the user click the port on the map this side will appear.
 
 
             <table class="table table-hover text-left">
+                <% @ships_at_port.each do |ship|%>
 
                 <tr >
                     <td>
-                        <%= link_to "hidalga" ,side_bar_ship_path( ship_info: { ship_name: 'hidalga'}),:remote => true, method: :post
+                        <%= link_to ship[:name] ,side_bar_ship_path( ship_info: { ship_name: ship[:name]}),:remote => true, method: :post
+                        %>
+                    </td>
+                    <td>
+                        <%= ship.vessel_type
                         %>
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        genco hunter
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        oak bay
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        kiwi trader
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        marine prince
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        fanja
-                    </td>
-                </tr>
+        <%end%>
 
             </table>
 
