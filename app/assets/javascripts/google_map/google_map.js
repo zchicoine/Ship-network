@@ -224,9 +224,9 @@ var geocoder;
             window.map.setOptions({styles: mapStyle});
 
             window.map.setCenter(getClickedPostion);
-          $("body").css("cursor","default");
+            $("body").css("cursor","default");
           
-                  set_label_names();
+            set_label_names();
         });
 
 

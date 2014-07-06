@@ -5,10 +5,6 @@ $(window).load(function(){
 		 // window.map.panTo(new google.maps.LatLng(38.739391, 47.059104));
             window.map.panBy(150,0);
           //  control();
-
-
-
-        
 	});
 
 
@@ -18,6 +14,14 @@ $(window).load(function(){
 			
 	});
 
+ 	$(".zoom_out").click(function(){  
+      //alert("The paragraph was clicked.");
+   		set_label_names();   
+		window.map.setZoom(2);
+		window.map.setCenter(getClickedPosition);
+		window.map.setOptions({styles: mapStyle});
+      	$("body").css("cursor","default");
+  });
 		
 
 

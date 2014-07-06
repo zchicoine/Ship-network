@@ -1,8 +1,21 @@
 
+
+var regionClick;
+
+function setClickedPosition(getClickedPostion){
+
+  regionClick = getClickedPostion;
+}
+
+function getClickedPostion(){
+
+return regionClick;
+}
+
 function click(getClickedPostion){
 	$('.region_labels').remove();
  	window.map.setCenter(getClickedPostion);
-    window.map.setZoom(4);
+  window.map.setZoom(4);
 }
 
 function test ( event, region_name_coords, region_name) {
@@ -19,6 +32,10 @@ function test ( event, region_name_coords, region_name) {
 
        getClickedPostion = event.latLng
        click(getClickedPostion);
+       setClickedPosition(getClickedPostion);
        send_data_to_side_bar(region_name);
    }
 }
+
+
+ 
