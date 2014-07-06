@@ -5,46 +5,20 @@ function click(getClickedPostion){
     window.map.setZoom(4);
 }
 
-function handleMouseClickEurope(event) {
+function test ( event, region_name_coords, region_name) {
+   if(region_name != undefined) {
+       _region = new google.maps.Polygon({
+           paths: region_name_coords,
+           strokeColor: "blue",
+           strokeWeight: 0,
+           strokeOpacity: 0,
+           fillOpacity: 0
 
-	getClickedPostion = event.latLng
- 	click(getClickedPostion);
- 	send_data_to_side_bar("Europe");
- 
-  }
+       });
+       _region.setMap(map);
 
-  function handleMouseClickNorthAmerica(event) {
- 	getClickedPostion = event.latLng
- 	click(getClickedPostion);
- 	send_data_to_side_bar("NorthAmerica");
- 
-  }
-
-  function handleMouseClickSouthAmerica(event) {
- 	getClickedPostion = event.latLng
- 	click(getClickedPostion);
- 	send_data_to_side_bar("SouthAmerica");
- 
-  }
-
-  function handleMouseClickAustralia(event) {
- 	getClickedPostion = event.latLng
- 	click(getClickedPostion);
- 	send_data_to_side_bar("Australia");
- 
-  }
-
-
-  function handleMouseClickAfrica(event) {
- 	getClickedPostion = event.latLng
- 	click(getClickedPostion);
- 	send_data_to_side_bar("Africa");
- 
-  }
-
-  function handleMouseClickMiddleEast(event) {
- 	getClickedPostion = event.latLng
- 	click(getClickedPostion);
- 	send_data_to_side_bar("MiddleEast");
- 
-  }
+       getClickedPostion = event.latLng
+       click(getClickedPostion);
+       send_data_to_side_bar(region_name);
+   }
+}

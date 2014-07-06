@@ -237,29 +237,41 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
 function region_event_listeners(){
 
-  google.maps.event.addDomListener(regionEurope, 'click', handleMouseClickEurope);
-  google.maps.event.addDomListener(regionEurope, 'mouseover', handleMouseOverEurope);
-  google.maps.event.addDomListener(regionEurope, 'mouseout', handleMouseOutEurope);
+  google.maps.event.addDomListener(regionEurope, 'click', function(e){
+      test(e,regionEuropeCoords,"Europe")
+  });
+//    google.maps.event.addDomListener(regionEurope, 'mouseover', handleMouseOverEurope);
+//    google.maps.event.addDomListener(regionEurope, 'mouseout', handleMouseOutEurope);
 
-  google.maps.event.addDomListener(regionNorthAmerica, 'click', handleMouseClickNorthAmerica);
-  google.maps.event.addDomListener(regionNorthAmerica, 'mouseover', handleMouseOverNorthAmerica);
-  google.maps.event.addDomListener(regionNorthAmerica, 'mouseout', handleMouseOutNorthAmerica);  
+  google.maps.event.addDomListener(regionNorthAmerica, 'click', function(e){
+      test(e,regionNorthAmericaCoords,"NorthAmerica")
+  });
+//  google.maps.event.addDomListener(regionNorthAmerica, 'mouseover', handleMouseOverNorthAmerica);
+//  google.maps.event.addDomListener(regionNorthAmerica, 'mouseout', handleMouseOutNorthAmerica);
 
-  google.maps.event.addDomListener(regionSouthAmerica, 'click', handleMouseClickSouthAmerica);
-  google.maps.event.addDomListener(regionSouthAmerica, 'mouseover', handleMouseOverSouthAmerica);
-  google.maps.event.addDomListener(regionSouthAmerica, 'mouseout', handleMouseOutSouthAmerica);
+  google.maps.event.addDomListener(regionSouthAmerica, 'click', function(e){
+      test(e,regionSouthAmericaCoords,"SouthAmerica")
+  });
+//  google.maps.event.addDomListener(regionSouthAmerica, 'mouseover', handleMouseOverSouthAmerica);
+//  google.maps.event.addDomListener(regionSouthAmerica, 'mouseout', handleMouseOutSouthAmerica);
 
-  google.maps.event.addDomListener(regionAfrica, 'click', handleMouseClickAfrica);
-  google.maps.event.addDomListener(regionAfrica, 'mouseover', handleMouseOverAfrica);
-  google.maps.event.addDomListener(regionAfrica, 'mouseout', handleMouseOutAfrica);
+  google.maps.event.addDomListener(regionAfrica, 'click',function(e){
+      test(e,regionAfricaCoords,"Africa")
+  });
+//  google.maps.event.addDomListener(regionAfrica, 'mouseover', handleMouseOverAfrica);
+//  google.maps.event.addDomListener(regionAfrica, 'mouseout', handleMouseOutAfrica);
 
-  google.maps.event.addDomListener(regionMiddleEast, 'click', handleMouseClickMiddleEast);
-  google.maps.event.addDomListener(regionMiddleEast, 'mouseover', handleMouseOverMiddleEast);
-  google.maps.event.addDomListener(regionMiddleEast, 'mouseout', handleMouseOutMiddleEast);
+  google.maps.event.addDomListener(regionMiddleEast, 'click', function(e){
+      test(e,regionMiddleEastCoords,"MiddleEast")
+  });
+//  google.maps.event.addDomListener(regionMiddleEast, 'mouseover', handleMouseOverMiddleEast);
+//  google.maps.event.addDomListener(regionMiddleEast, 'mouseout', handleMouseOutMiddleEast);
 
-  google.maps.event.addDomListener(regionAustralia, 'click', handleMouseClickAustralia);
-  google.maps.event.addDomListener(regionAustralia, 'mouseover', handleMouseOverAustralia);
-  google.maps.event.addDomListener(regionAustralia, 'mouseout', handleMouseOutAustralia);
+  google.maps.event.addDomListener(regionAustralia, 'click', function(e){
+      test(e,regionAustraliaCoords,"Australia")
+  });
+//  google.maps.event.addDomListener(regionAustralia, 'mouseover', handleMouseOverAustralia);
+//  google.maps.event.addDomListener(regionAustralia, 'mouseout', handleMouseOutAustralia);
 
 
 }
