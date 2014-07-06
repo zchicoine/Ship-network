@@ -4,7 +4,7 @@ class Ship < ActiveRecord::Base
     }
     enum vessel_type: [:notype, :sdbc, :ohbs , :mpp, :tween, :roro]
 
-	has_many :shipments
+	has_many :shipments, dependent: :delete
 	has_many :ports, :through => :shipments
 
 end

@@ -6,7 +6,7 @@
 module GoogleMapHelper
 
 
-    def get_ports quantity = 100, region = "all"
+    def get_ports quantity = 10, region = "all"
         # check the type.
         unless quantity.is_a?(Integer) && region.is_a?(String)
             "Error: Expected integer and String."
@@ -23,6 +23,30 @@ module GoogleMapHelper
         @ports_coordinate = @ports_coordinate.map { |l| [l.latitude, l.longitude] }
     end
 
+    def get_total_deadweight 
+        @total_deadweight= Ship.sum(:deadweight)
+    end
+
+    def get_ships_per_class category_name
+      @ships_per_class = Ship.select(:vessel_class).where(vessel_class: category_name).size
+    end
+
+    def get_ships_per_region region_name
+      @ships_per_region = Port.includes(:ships).where(region: region_name)
+      @ship_count = 0
+      @ships_per_region.each do |port|
+        @ship_count += port.ships.size
+      end
+      @ship_count
+    end
+
+    def get_ports_per_region region_name
+      @ports_per_region = Port.where(region: region_name).size
+    end
+
+    #def ships_at_port port_name  port_name
+
+    #end
 
     def all_ships_at_specific_port port_coordinate = [0, 0], port_name ="null"
 
@@ -36,16 +60,17 @@ module GoogleMapHelper
         end
         unless _port.nil?
             # extract the information depended on the user level of access
-            ship_array = _port.ships.all.map { |var| [var.name, var.built, var.vessel_type] }
-            ship_array
+            @ship_array = _port.ships.all.map { |var| [var.name, var.built, var.vessel_type] }
+            @ship_array
 
         else
             "Either the parameters invalid or the port does not exist in the system."
         end
-
-
     end
 
+    def get_ship_information ship_name
+
+    end
     private
 
 end
