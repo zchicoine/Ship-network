@@ -8,11 +8,11 @@ $(window).load(function(){
 
 
 
-            var data_json = { "region": { "name": "North America", "coordinates": "123 Carrot Street" } };
+            var data_json = { "port": { "port_name": "Ronne", "port_coordinates": "123 Carrot Street" } };
 
 //        // ajax parameters
         $.ajax({
-            url:'side_bar/ship',
+            url:'side_bar/port',
             beforeSend: function(){
                 // Handle the beforeSend event
             },
@@ -36,7 +36,31 @@ $(window).load(function(){
 
 	$("#left-img-responsive").click(function(){	
 			//alert("The paragraph was clicked.");
-           window.map.panBy(-150,0);    	
+           window.map.panBy(-150,0);
+
+
+         var data_json = { "region": { "name": "North America", "coordinates": "123 Carrot Street" } };
+
+        $.ajax({
+            url:'side_bar/ship',
+            beforeSend: function(){
+                // Handle the beforeSend event
+            },
+            type: 'POST',
+            data:data_json,
+            complete: function(r){
+                // Handle the complete event
+                // alert(r);
+
+            },
+            success: function(result) {
+
+                $('.aside_ship_details_table_body').html(result);
+            },
+            error: function(r){
+                alert(r.message);
+            }
+        });
 			
 	});
 

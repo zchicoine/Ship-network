@@ -1,10 +1,10 @@
 <thead>
     <tr>
         <th colspan="2" class="radius-top-left-corner radius-top-right-corner ">
-            <% if  @region_info.nil?  %>
+            <% if  @side_info.nil?  %>
                 General Information
             <% else%>
-                <%= @region_info[:name]%>
+                <%= @side_info[:region_name]%>
             <%end%>
         </th>
     </tr>
