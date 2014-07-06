@@ -1,6 +1,5 @@
 #Destroy everything that is in the db to start from blank
 Ship.destroy_all
-Port.destroy_all
 
 regions = ["North America","South America" , "Africa" ,"Persian Gulf" ,
                    "Australia"  ,"Europe"  , "India","Mid to North China" , "South East Asia" ]
