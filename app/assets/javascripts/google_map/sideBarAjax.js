@@ -1,6 +1,6 @@
         function send_data_to_side_bar(regionName){
 
-        var data_json = { "region": { "name": regionName, "coordinates": "123 Carol" } };
+        var data_json = { "region_info": { "name": regionName, "coordinates": "123 Carol" } };
 
 //        // ajax parameters
         $.ajax({
