@@ -21,7 +21,8 @@ After the user click the region on the map this side will appear.
             <table class="table table-hover text-left">
               <tr >
                 <td>
-                  Manitoba
+                    <%= link_to "Manitoba" , side_bar_port_path(port_info: {port_name: 'Manitoba', port_coordinates:"a"}),:remote => true, method: :post
+                    %>
                 </td>
               </tr>
               <tr>

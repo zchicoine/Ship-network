@@ -8,7 +8,7 @@ $(window).load(function(){
 
 
 
-            var data_json = { "port": { "port_name": "Ronne", "port_coordinates": "123 Carrot Street" } };
+            var data_json = { "port_info": { "port_name": "Ronne", "port_coordinates": "123 Carrot Street" } };
 
 //        // ajax parameters
         $.ajax({
@@ -39,10 +39,11 @@ $(window).load(function(){
            window.map.panBy(-150,0);
 
 
-         var data_json = { "region": { "name": "North America", "coordinates": "123 Carrot Street" } };
+         var data_json = { "region_info": { "name": "North America", "coordinates": "123 Carrot Street" } };
+        //var data_json = { "ship_info": { "ship_name": "North America", "coordinates": "123 Carrot Street" } };
 
         $.ajax({
-            url:'side_bar/ship',
+            url:'side_bar/region',
             beforeSend: function(){
                 // Handle the beforeSend event
             },
