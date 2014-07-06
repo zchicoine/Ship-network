@@ -145,6 +145,7 @@ var geocoder;
         regionAfrica.setMap(map);
         regionAustralia.setMap(map);
         regionMiddleEast.setMap(map);
+        regionIndiaSubContinent.setMap(map);
         region_event_listeners();
        
       geocoder = new google.maps.Geocoder();
@@ -192,6 +193,7 @@ var geocoder;
 	 // click  event function for zooming in   
      google.maps.event.addListener(map, 'click', function(e) {  
 
+
       $('.region_labels').remove();
        var zoomToNumber = window.map.getZoom() + 1;
 			 getClickedPostion = e.latLng
@@ -208,7 +210,7 @@ var geocoder;
               }]; 
 			window.map.setOptions({styles: map_style}); 
 
-      getCountry(getClickedPostion);
+    //  getCountry(getClickedPostion);
      
 			
     });
@@ -274,6 +276,9 @@ function region_event_listeners(){
 //  google.maps.event.addDomListener(regionAustralia, 'mouseout', handleMouseOutAustralia);
 
 
+google.maps.event.addDomListener(regionIndiaSubContinent, 'click', function(e){
+      test(e,regionIndiaSubContinentCoords,"IndiaSubContinent")
+  });
 }
 
 
