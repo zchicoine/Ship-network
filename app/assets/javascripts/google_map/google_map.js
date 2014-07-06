@@ -370,16 +370,16 @@ function getCountry(latLng) {
           if(results[0]) {
             for(var i = 0; i < results[0].address_components.length; i++) {
               if(results[0].address_components[i].types[0] == "country") {
-                alert(results[0].address_components[i].long_name);
+               // alert(results[0].address_components[i].long_name);
               }
             }
           }
           else {
-            alert("No results");
+            //alert("No results");
           }
         }
         else {
-          alert("Status: " + status);
+          //alert("Status: " + status);
         }
       }
     );
