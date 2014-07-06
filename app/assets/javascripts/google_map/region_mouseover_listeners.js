@@ -71,7 +71,7 @@ function handleMouseOverSouthAmerica(){
 function handleMouseOverNorthAmerica(){
 
   
- regionNorthAmerica = new google.maps.Polygon({
+ regionNorthAmeric = new google.maps.Polygon({
     paths: regionNorthAmericaCoords,
     strokeColor: "blue",
     strokeWeight: 0,
@@ -79,5 +79,5 @@ function handleMouseOverNorthAmerica(){
     fillColor: "#0A94CB",
     fillOpacity: 1
   });
-  regionNorthAmerica.setMap(map);
+  regionNorthAmeric.setMap(map);
 }

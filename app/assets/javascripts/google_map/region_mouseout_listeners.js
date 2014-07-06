@@ -12,7 +12,7 @@ function handleMouseOutSouthAmerica(){
 }
 function handleMouseOutNorthAmerica(){
 
- regionNorthAmerica.setMap(null);
+ regionNorthAmeric.setMap(null);
 
 }
 function handleMouseOutAfrica(){
