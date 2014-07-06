@@ -5,7 +5,9 @@
     <%= render 'side_bar/part_of_table/header'%>
       <thead class="side_bar_default_table text-left">
       <tr >
-        <th colspan="<%= 2 %>">Total # of Ships</th>
+        <th colspan="<%= 2 %>">
+            <%= image_tag("greentriangle_down.png", size: "16", class:"triangle_image")%> Total # of Ships
+        </th>
       </tr>
       </thead>
         <% vessel_classes.each do |_class| %>
@@ -17,17 +19,25 @@
 
       <thead class="side_bar_default_table text-left">
       <tr>
-       <th colspan="<%= 2 %>" id="shipsByRegion"> <%= image_tag("greentriangle_down.png", size: "16", class:"triangle_image")%> # of Ships by Region:</th>
+       <th colspan="<%= 2 %>" id="shipsByRegion">
+           <%= image_tag("greentriangle_down.png", size: "16", class:"triangle_image")%> # of Ships by Region:
+       </th>
       </tr>
       </thead>
-        <tbody class=" hide_table_region">
+      <tbody >
+        <tr class="text-left thick_horizontal_line" >
+            <td>Total Ship</td>
+            <td>2000</td>
+        </tr>
         <% get_all_regions.each do |_class| %>
-            <tr class="text-left " >
-                <td><%= _class %></td>
-                <td>50</td>
-            </tr>
+
+                <tr class="text-left " >
+                        <td><%= _class %></td>
+                        <td>50</td>
+                </tr>
+
         <% end %>
 
-        </tbody>
+       </tbody>
 
 

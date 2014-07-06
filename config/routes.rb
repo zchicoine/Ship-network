@@ -7,6 +7,9 @@ Rails.application.routes.draw do
     post 'side_bar/ship' => 'side_bar#ship'
     post 'side_bar/default' => 'side_bar#default'
     post 'side_bar/port' => 'side_bar#port'
+
+
+    get 'main_pages/loginpage'
   # You can have the root of your site routed with "root"
  
 

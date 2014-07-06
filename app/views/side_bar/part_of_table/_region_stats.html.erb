@@ -1,6 +1,8 @@
 <thead id="region_stats_table">
 <tr>
-    <th colspan="<%= 2%>">Region Stats</th>
+    <th colspan="<%= 2%>" class="region_stats">
+        <%= image_tag("greentriangle_down.png", size: "16", class:"triangle_image ")%> Region Stats
+    </th>
 </tr>
 </thead>
 <tr class="thick_horizontal_line text-left">
@@ -9,8 +11,8 @@
     <td>70</td>
 </tr>
 <% vessel_classes.each do |_class| %>
-    <tr class="text-left">
-        <td><%=" #{_class}:" %></td>
-        <td>10</td>
+    <tr >
+        <td class="text-left"><%=" #{_class}:" %></td>
+        <td class="text-right">10</td>
     </tr>
 <% end %>
