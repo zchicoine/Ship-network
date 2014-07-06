@@ -1,16 +1,12 @@
 
- 
- //function start_app(){
-
 var map_value;
-var mapLabel_North_America;
+
 var getClickedPostion;
 
- var dflt_latLng;
 var geocoder;
  function set_label_names(){
 
- mapLabel_North_America = new Label({
+  var mapLabel_North_America = new Label({
            text: 'Region 1',
            position: new google.maps.LatLng(48.2893, -99.3594),
            map: window.map,
@@ -114,17 +110,8 @@ var geocoder;
  	return map_styles;
  }
 
-  // Construct the polygon
-  // Note that we don't specify an array or arrays, but instead just
-  // a simple array of LatLngs in the paths property
+  
 
-
-//function to initialize the map after clickng on banner
-function start_app(){
-
-initialize();
-}
-//$("#free_tour").click(function(event){
  function initialize() {
 
 
@@ -160,13 +147,10 @@ initialize();
         regionMiddleEast.setMap(map);
         region_event_listeners();
        
-      // setting up label names
-        
       geocoder = new google.maps.Geocoder();
 	  
 	  //setting up ports on the map
 	var port = [['Fredericia',55.55,9.75],['Frederikshavn',55.46666667,8.4333333],['Barahona',18.2,-71.06666667],['La Romana',18.45,-69.01666667]];
-//	var myCenter=new google.maps.LatLng(51.508742,-0.120850);
 	//Info Window Content
     var infoWindowContent = [
         ['<div class="info_content">' +
@@ -180,17 +164,6 @@ initialize();
 		['<div class="info_content">' +
         '<h3>La Romana</h3>' +'</div>']
 	];
-	//Display multiple markers on a map
-  //  var infoWindow = new google.maps.InfoWindow(), marker, i;
-	/*function initialize2()	
-	{
-		var mapProp = {
-		center:myCenter,
-		zoom:2,
-		mapTypeId:google.maps.MapTypeId.ROADMAP
-	};*/
-
-	//var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
 	var iconBase = 'port.png';
 	var iconBase2 = 'portHover.png';
 	
@@ -215,21 +188,7 @@ initialize();
 		});
 	
 	marker.setMap(map);
-	// Allow each marker to have an info window    
-   /*     google.maps.event.addListener(marker, 'click', (function(marker, i){
-            return function() {
-                infoWindow.setContent(infoWindowContent[i][0]);
-                infoWindow.open(map, marker);
-            }
-        })(marker, i));*/
-
-        // Automatically center the map fitting all markers on the screen
-        //map.fitBounds(bounds);
-	}	
-	//}
-	
-
-     
+		}	
 	 // click  event function for zooming in   
      google.maps.event.addListener(map, 'click', function(e) {  
 
@@ -241,14 +200,7 @@ initialize();
 			 window.map.setCenter(getClickedPostion);
 			 window.map.setZoom(zoomToNumber);
 
-       /*     $.ajax({
-        type: "POST",
-        url: ,
-        data: getClickedPostion,
-        success: success,
-        dataType: dataType
-      });*/
-			var map_style = [{
+  		var map_style = [{
               "featureType": "administrative.country",
               "stylers": [
                 { "visibility": "on" }
@@ -268,9 +220,6 @@ initialize();
 
 // zoom out function     
      google.maps.event.addListener(map, 'rightclick', function(e) {
-         // var center= new google.maps.LatLng(11.289703, -81.464677);
-
-         
             window.map.setZoom(2);
             window.map.setOptions({styles: mapStyle});
 
@@ -278,59 +227,13 @@ initialize();
           $("body").css("cursor","default");
           
                   set_label_names();
-           //       region_outlines(map);
-
-        
         });
 
-/*
-        google.maps.event.addListener(map,'mousemove',function(event){
 
-          var latitude = event.latLng.lat();
-          var longitude = event.latLng.lng();
-         console.log(latitutde);
-
-        }); 
-*/
-	
  }
 
 //google.maps.event.addDomListener(window, 'load', initialize2);
 google.maps.event.addDomListener(window, 'load', initialize);
-
-function handleMouseOutEurope(){
-
-  regionEurope.setMap(null);
-
-}
-
-
-function handleMouseOutSouthAmerica(){
-
- regionSouthAmerica.setMap(null);
-
-}
-function handleMouseOutNorthAmerica(){
-
- regionNorthAmerica.setMap(null);
-
-}
-function handleMouseOutAfrica(){
-
- regionAfrica.setMap(null);
-
-}
-function handleMouseOutAustralia(){
-
- regionAustralia.setMap(null);
-
-}
-function handleMouseOutMiddleEast(){
-
- regionMiddleEast.setMap(null);
-
-}
-
 
 function region_event_listeners(){
 

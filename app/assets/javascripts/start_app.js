@@ -1,6 +1,6 @@
 
 // jquery to make the banner disappear and enter the website
-$(window).load(function(){
+$(document).ready(function(){
 
 
     $("#free_tour").click(function(e){
@@ -11,7 +11,7 @@ $(window).load(function(){
         //jquery to fadeOut the banner
         $("#main_banner").fadeOut("slow",function(){});
 
-        //start_app();
+        
     });
 
 
