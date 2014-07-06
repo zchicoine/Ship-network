@@ -117,18 +117,7 @@ var geocoder;
   // Construct the polygon
   // Note that we don't specify an array or arrays, but instead just
   // a simple array of LatLngs in the paths property
- 
-function handleMouseOverNorthAmerica(event) {
-    console.log('I am hovering');
-    regionNorthAmerica.fillOpacity = 0.85;
-    regionNorthAmerica.fillColor='#f0f1f1';
-    regionNorthAmerica.strokeColor='#ff0000';
-    regionNorthAmerica.setMap(map);
-//    document.getElementById('region-label').innerHTML='North America';
- //   document.getElementById('region-label').style.visibility='visible';
-  }
 
-  
 
 //function to initialize the map after clickng on banner
 function start_app(){
@@ -163,10 +152,14 @@ initialize();
         map.setOptions({styles: mapStyle});
         set_label_names();
         //draw outline on north america and setMap for that  
-        //regionNorthAmerica.setMap(map); 
-      //  region_outlines(map);
+        regionNorthAmerica.setMap(map); 
+        regionSouthAmerica.setMap(map);
+        regionEurope.setMap(map);
+        regionAfrica.setMap(map);
+        regionAustralia.setMap(map);
+        regionMiddleEast.setMap(map);
         region_event_listeners();
-      regionEurope.setMap(map);
+       
       // setting up label names
         
       geocoder = new google.maps.Geocoder();
@@ -285,7 +278,7 @@ initialize();
           $("body").css("cursor","default");
           
                   set_label_names();
-                  region_outlines(map);
+           //       region_outlines(map);
 
         
         });
@@ -305,92 +298,66 @@ initialize();
 //google.maps.event.addDomListener(window, 'load', initialize2);
 google.maps.event.addDomListener(window, 'load', initialize);
 
-
-function region_outlines(map_value){
-
-        regionNorthAmerica.setMap(map_value);
-        regionSouthAmerica.setMap(map_value);
-        regionEurope.setMap(map_value);
-      //  regionEastEurope.setMap(map_value);
-        regionAfrica.setMap(map_value);
-        regionMiddleEast.setMap(map_value);
-        regionAustralia.setMap(map_value);
-      //  regionAsia.setMap(map);
-      //  regionIndia.setMap(map_value);
-
-
-}
-
-
-
-function handleMouseClickEurope(event) {
- //   window.location='http://shurie.com/coder/code_details.asp?CodeID=53';
- //initialize();
- $('.region_labels').remove();
- getClickedPostion = event.latLng
-       // make a function call to decide which region is being clicked on
-       console.log(getClickedPostion);
-       window.map.setCenter(getClickedPostion);
-       
- window.map.setZoom(4);
- region_outlines(null);
-  }
-
-
-function handleMouseOverEurope(){
-
-  //console.log(e.latLng);
-  regionEurope = new google.maps.Polygon({
-    paths: regionEuropeCoords,
-     strokeColor: "blue",
-    strokeWeight: 0,
-    strokeOpacity: 0,
-    fillColor: "blue",
-    fillOpacity: 1
-  });
-  regionEurope.setMap(map);
-}
-
 function handleMouseOutEurope(){
 
-/*
-regionEurope = new google.maps.Polygon({
-    paths: regionEuropeCoords,
-    fillColor: "blue",
-    fillOpacity: 1
-  });
-*/
- regionEurope.setMap(null);
-// initialize();
+  regionEurope.setMap(null);
+
+}
+
+
+function handleMouseOutSouthAmerica(){
+
+ regionSouthAmerica.setMap(null);
+
+}
+function handleMouseOutNorthAmerica(){
+
+ regionNorthAmerica.setMap(null);
+
+}
+function handleMouseOutAfrica(){
+
+ regionAfrica.setMap(null);
+
+}
+function handleMouseOutAustralia(){
+
+ regionAustralia.setMap(null);
+
+}
+function handleMouseOutMiddleEast(){
+
+ regionMiddleEast.setMap(null);
+
 }
 
 
 function region_event_listeners(){
-/*
-  google.maps.event.addDomListener(regionNorthAmerica, 'click', handleClickNorthAmerica);
-  google.maps.event.addDomListener(regionNorthAmerica, 'mouseover', handleMouseOverNorthAmerica);
-  */
 
-google.maps.event.addDomListener(regionEurope, 'click', handleMouseClickEurope);
+  google.maps.event.addDomListener(regionEurope, 'click', handleMouseClickEurope);
   google.maps.event.addDomListener(regionEurope, 'mouseover', handleMouseOverEurope);
   google.maps.event.addDomListener(regionEurope, 'mouseout', handleMouseOutEurope);
-/*
-  google.maps.event.addDomListener(regionSouthAmerica, 'click', handleClickSouthAmerica);
+
+  google.maps.event.addDomListener(regionNorthAmerica, 'click', handleMouseClickNorthAmerica);
+  google.maps.event.addDomListener(regionNorthAmerica, 'mouseover', handleMouseOverNorthAmerica);
+  google.maps.event.addDomListener(regionNorthAmerica, 'mouseout', handleMouseOutNorthAmerica);  
+
+  google.maps.event.addDomListener(regionSouthAmerica, 'click', handleMouseClickSouthAmerica);
   google.maps.event.addDomListener(regionSouthAmerica, 'mouseover', handleMouseOverSouthAmerica);
+  google.maps.event.addDomListener(regionSouthAmerica, 'mouseout', handleMouseOutSouthAmerica);
 
-  google.maps.event.addDomListener(regionEurope, 'click', handleClickEurope);
-  
-
-  google.maps.event.addDomListener(regionAfrica, 'click', handleClickAfrica);
+  google.maps.event.addDomListener(regionAfrica, 'click', handleMouseClickAfrica);
   google.maps.event.addDomListener(regionAfrica, 'mouseover', handleMouseOverAfrica);
+  google.maps.event.addDomListener(regionAfrica, 'mouseout', handleMouseOutAfrica);
 
-  google.maps.event.addDomListener(regionMiddleEast, 'click', handleClickMiddleEast);
+  google.maps.event.addDomListener(regionMiddleEast, 'click', handleMouseClickMiddleEast);
   google.maps.event.addDomListener(regionMiddleEast, 'mouseover', handleMouseOverMiddleEast);
+  google.maps.event.addDomListener(regionMiddleEast, 'mouseout', handleMouseOutMiddleEast);
 
-  google.maps.event.addDomListener(regionAustralia, 'click', handleClickAustralia);
+  google.maps.event.addDomListener(regionAustralia, 'click', handleMouseClickAustralia);
   google.maps.event.addDomListener(regionAustralia, 'mouseover', handleMouseOverAustralia);
+  google.maps.event.addDomListener(regionAustralia, 'mouseout', handleMouseOutAustralia);
 
-*/
 
 }
 

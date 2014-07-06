@@ -139,8 +139,15 @@ var regionNorthAmericaCoords = [
     //new google.maps.LatLng()
   ];
 
+regionNorthAmerica = new google.maps.Polygon({
+    paths: regionNorthAmericaCoords,
+    strokeColor: "blue",
+    strokeWeight: 0,
+    fillColor: "#ccccff"
+    
+  });
 
-var regionEuropeCoords = [
+ regionEuropeCoords = [
    new google.maps.LatLng(36.102376,-5.625),
     new google.maps.LatLng(37.09024,-9.316406),
     new google.maps.LatLng(38.822591,-9.84375),
@@ -332,44 +339,13 @@ var regionEuropeCoords = [
   ];
 
 
-regionEurope = new google.maps.Polygon({
+var regionEurope = new google.maps.Polygon({
     paths: regionEuropeCoords,
     strokeColor: "blue",
     strokeWeight: 0,
     fillColor: "#ccccff"
     
   });
-
-
-
-var regionCaribCoords = [
-    new google.maps.LatLng(21.779905,-85.078125),
-    new google.maps.LatLng(18.229351,-78.837891),
-    new google.maps.LatLng(11.523088,-75.234375),
-    new google.maps.LatLng(12.726084,-71.806641),
-    new google.maps.LatLng(11.867351,-68.554687),
-    new google.maps.LatLng(10.746969,-64.423828),
-    new google.maps.LatLng(10.919618,-59.941406),
-    new google.maps.LatLng(17.811456,-61.171875),
-    new google.maps.LatLng(21.371244,-71.103516),
-    new google.maps.LatLng(27.059126,-77.431641),
-    new google.maps.LatLng(26.824071,-79.013672),
-    new google.maps.LatLng(24.287027,-78.837891),
-    new google.maps.LatLng(23.160563,-79.892578),
-    new google.maps.LatLng(23.483401,-82.617187),
-    new google.maps.LatLng(22.674847,-84.902344)
-  ];
-
-
- regionCarib = new google.maps.Polygon({
-    paths: regionCaribCoords,
-    strokeColor: "blue",
-    strokeOpacity: 0.8,
-    strokeWeight: 1,
-    fillColor: "#ccccff",
-    fillOpacity: 0.35
-  });
-
 
 
  var regionAfricaCoords = [
@@ -514,7 +490,13 @@ var regionCaribCoords = [
         new google.maps.LatLng(35.835628,-5.976562)
   ];
 
-
+regionAfrica = new google.maps.Polygon({
+    paths: regionAfricaCoords,
+    strokeColor: "blue",
+    strokeWeight: 0,
+    fillColor: "#ccccff"
+    
+  });
 
 var regionSouthAmericaCoords = [
     new google.maps.LatLng(7.188101,-77.958984),
@@ -618,6 +600,14 @@ var regionSouthAmericaCoords = [
 
         
   ];
+
+  regionSouthAmerica = new google.maps.Polygon({
+    paths: regionSouthAmericaCoords,
+    strokeColor: "blue",
+    strokeWeight: 0,
+    fillColor: "#ccccff"
+    
+  });
 
   var regionMiddleEastCoords = [
     new google.maps.LatLng(40.613952,26.05957),
@@ -768,6 +758,14 @@ var regionSouthAmericaCoords = [
     new google.maps.LatLng(39.96028,26.103516)
   ];
 
+
+regionMiddleEast = new google.maps.Polygon({
+    paths: regionMiddleEastCoords,
+    strokeColor: "blue",
+    strokeWeight: 0,
+    fillColor: "#ccccff"
+    
+  });
 
   var regionAustraliaCoords = [
     new google.maps.LatLng(-10.746969,142.119141),
@@ -941,6 +939,13 @@ var regionSouthAmericaCoords = [
   ];
 
 
+regionAustralia = new google.maps.Polygon({
+    paths: regionAustraliaCoords,
+    strokeColor: "blue",
+    strokeWeight: 0,
+    fillColor: "#ccccff"
+    
+  });
 
 var regionAsiaCoords = [
     new google.maps.LatLng(46.073231,49.21875),
@@ -1407,8 +1412,3 @@ var regionAsiaCoords = [
     new google.maps.LatLng(8.26861,73.032213)//8.246664)*/
     ];
 
-
- 
-        //regionCarib.setMap(map);
-        //
- //  google.maps.event.addDomListener(regionNorthAmerica, 'click', handleClickNorthAmerica);
