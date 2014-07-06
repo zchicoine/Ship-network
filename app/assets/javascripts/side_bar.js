@@ -6,13 +6,12 @@ go_to_region = function (coordinates){
     window.map.setZoom(4);
 }
 
-$(window).load(function() {
 
 
 
-    $(".triangle_image").click(function () {
+    $(document).on('click','.triangle_image',function () {
         var image = this;
-
+        console.log("works");
         if (! $(image).hasClass("this_class_only_to_change_image") ) {
 
             $(image).attr("src", "assets/greentriangle_closed.png");
@@ -34,4 +33,3 @@ $(window).load(function() {
 
 
 
-});
