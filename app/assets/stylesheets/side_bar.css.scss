@@ -4,16 +4,34 @@
   //margin-top: 20px;
   width: 30%;
     font-family: roboto !important;
+    // outer table
+    table{
 
-    table td {
-      border-top: solid #ffffff 0px !important;
-      z-index: 10;
-
+        td {
+            border-top: solid #ffffff 0px !important;
+            z-index: 10;
+        }
 
   }
+    // inner tables
     table table{
         border: solid white 2px;
+        tbody tr td:first-child{
+            // from bootstrap
+
+            text-align: left;
+
+        }
+        tbody tr td:nth-child(2){
+            text-align: right;
+
+        }
+
+
+
     }
+
+
 
   table tbody tr td div table td{
 
@@ -27,13 +45,33 @@
 
   }
 }
+.informative_table{
 
-#side_table{
 
+    th {
+
+        color: #ffffff;
+        font-size: 14pt;
+        background-color: #0A94CB;
+        font-weight:100 !important;
+
+    }
+    tr {
+        display: table-row;
+        height: 1px !important;
+        background-color: white;
+        font-weight:800 ;
+
+    }
 
 
 }
-/* --- end ---  */
+
+.dropdown-menu-custom{
+    width: 100%;
+    background-color: #f0f1f1;
+}
+/* --- end the general format ---  */
 /* table head */
 
 .aside_ship_details_table_head {
@@ -66,27 +104,13 @@
 
 
 /*  table body  */
-.informative_table{
+.aside_ship_details_table_body {
 
-
-    th {
-
-        color: #ffffff;
-        font-size: 14pt;
-        background-color: #0A94CB;
-        font-weight:100 !important;
-
-    }
-    tr {
-        display: table-row;
-        height: 1px !important;
-        background-color: white;
-        font-weight:800 ;
-
-    }
-
+        margin-top: -17px;
 
 }
+
+
 
 /*  -----   default table ----- */
 .side_bar_default_table {
@@ -117,7 +141,7 @@
 
 
 }
-/*  end    */
+/*  end table foot   */
 
 
 
@@ -172,10 +196,7 @@ div.scroll_inside_table {
 /*end scroll*/
 /* end after a region has been clicked */
 /* ship */
-.dropdown-menu-custom{
-    width: 100%;
-    background-color: #f0f1f1;
-}
+
 /**/
 
 
