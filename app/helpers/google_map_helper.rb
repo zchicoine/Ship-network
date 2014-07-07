@@ -40,7 +40,7 @@ module GoogleMapHelper
       @ship_count
     end
 
-    def get_ports_per_region region_name
+    def get_number_of_ports_per_region region_name
       @ports_per_region = Port.where(region: region_name).size
     end
 
@@ -74,18 +74,21 @@ module GoogleMapHelper
         @ship_id_info = @ship_info.id
         @ship_verification_uniqueness = Ship.where(name: ship_name)
 
-        if (@ship_verification_uniqueness.size == 0)
-          "No such ship"
-        else if (@ship_verification_uniqueness.size == 1)
-          @ship_info_array = [@ship_info.vessel_class, @ship_info.deadweight, port_name,
+    if (@ship_verification_uniqueness.size == 0)
+      "No such ship"
+    else if (@ship_verification_uniqueness.size == 1)
+           @ship_info_array = [@ship_info.vessel_class, @ship_info.deadweight, port_name,
                                @open_date_info = [@ship_info.shipments.find_by(port_id: @port_id_info).open_start_date,
                                                   @ship_info.shipments.find_by(port_id: @port_id_info).open_end_date]]
-        else
+         else
            "More than one ship with this name"
-        end
-        end
+         end
     end
-    private
+    end
+
+    def get_name_of_ports_and_coordinates_per_region region_name = "null"
+      @name_of_ports_per_region = Port.select(:name, :latitude, :longitude).where(region: region_name)
+    end
 
 end
 
