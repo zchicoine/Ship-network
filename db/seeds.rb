@@ -55,12 +55,11 @@ open("db/data/ship_db.txt") do |ships|
             class_name = "Mini-bulker"
     end
 
-    Ship.create!(name: name, built: built.to_i, draft: draft.to_d, deadweight: deadweight.to_i, beam: beam.to_i, 
+    Ship.create(name: name, built: built.to_i, draft: draft.to_d, deadweight: deadweight.to_i, beam: beam.to_i,
 		loa: loa.to_i, vessel_type: temp, vessel_class: class_name, ports: [Port.all.sample, Port.all.sample])
-  end  
-end  
+    end
 
-
+end
 
 p "Created #{Port.count} ports and #{Ship.count} ships"
 
