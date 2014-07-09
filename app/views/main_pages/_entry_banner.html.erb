@@ -3,9 +3,10 @@
   <div class="banner_background">
     <div class="banner1">
       <h1> Welcome to Sterling Ship Network</h1>
-      <button id="login" class="btn btn-primary" type="button">Login</button>
+        <%= link_to 'Login' , main_pages_loginpage_path, class:'btn btn-primary', id:"login" , :remote => true%>
       <button id="sign_up" class="btn btn-primary" type="button" clickable>Sign Up</button>
       <button id="free_tour" class="btn btn-primary" type="button" clickable>Free Tour</button>
+
     </div>
   </div>
 

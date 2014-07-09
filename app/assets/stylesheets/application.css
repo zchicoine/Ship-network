@@ -14,7 +14,7 @@
  *= require_self
  */
 h1 {
- color:white;font-size:15px;text-align:left;}
+ color:white;font-size:15px;text-align:left;
 }
 
 h3
@@ -39,7 +39,7 @@ input
 input {
   margin: 5px;
   padding-right: 65px;
-  STYLE="color: #FFFFFF; font-family: Verdana; font-weight: bold; font-size: 12px; background-color: #B2B2B2;
+  color: #FFFFFF; font-family: Verdana; font-weight: bold; font-size: 12px; background-color: #B2B2B2;
  
   
 }

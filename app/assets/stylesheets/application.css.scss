@@ -10,8 +10,7 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
- *= require_self
+
  */
 h1 {
  color:white;font-size:15px;text-align:left;
@@ -35,13 +34,13 @@ input
 input {
   margin: 5px;
   padding-right: 65px;
-  color: #FFFFFF; font-family: Verdana; font-weight: bold; font-size: 12px; background-color: #B2B2B2; 
+  color: #FFFFFF; font-family: Verdana; font-weight: bold; font-size: 12px; background-color: #B2B2B2;
 }
   input[type=button],input[type=reset]
 {  background-color: yellow ;
   padding: 8px;border-radius:6px; }
 
- 
+
 
 
 
