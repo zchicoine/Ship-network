@@ -55,4 +55,7 @@ closed_table_side_bar = function () {
     });
 
 
-
+addClass = function(tag){
+    $('.scroll_inside_table table tr').children().removeClass('highlight-clicked-row');
+    $(tag).closest('tr').children().addClass('highlight-clicked-row');
+}

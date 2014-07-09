@@ -154,6 +154,10 @@
 
 /* scroll */
 div.scroll_inside_table {
+    overflow: auto;
+    min-height: 90px;
+    max-height: 150px;
+    padding: 4px;
     background-color: #eaeaea;
     table {
         background-color: #eaeaea;
@@ -177,7 +181,7 @@ div.scroll_inside_table {
 }
 /*
 .scroll_inside_table::-webkit-scrollbar:horizontal {
-  height: 11px;
+  height: 12px !important;
 }
 */
 .scroll_inside_table::-webkit-scrollbar-thumb {
