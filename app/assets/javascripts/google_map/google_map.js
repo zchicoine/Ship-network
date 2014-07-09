@@ -147,6 +147,7 @@ var geocoder;
         regionMiddleEast.setMap(map);
         regionIndiaSubContinent.setMap(map);
         regionKoreaJapanRussia.setMap(map);
+        regionSouthEastAsia.setMap(map);
         region_event_listeners();
        
       geocoder = new google.maps.Geocoder();
@@ -284,7 +285,12 @@ google.maps.event.addDomListener(regionIndiaSubContinent, 'click', function(e){
 
 
 google.maps.event.addDomListener(regionKoreaJapanRussia, 'click', function(e){
-      test(e,regionKoreaJapanRussiaCoords,"KoreaJapan")
+      test(e,regionKoreaJapanRussiaCoords,"RussiaKoreaJapan")
+  });
+
+
+google.maps.event.addDomListener(regionSouthEastAsia, 'click', function(e){
+      test(e,regionSouthEastAsiaCoords,"SouthEastAsia")
   });
 }
 
