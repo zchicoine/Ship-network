@@ -1,34 +1,5 @@
 
 
-<%= render 'side_bar/part_of_table/header'%>
-<tr xmlns="http://www.w3.org/1999/html">
-    <td colspan="2">
-        <div class="dropdown">
-            <div class=" dropdown-menu-custom text-left dropdown-toggle" type="button" id="dropdownListOfShip" data-toggle="dropdown">
-                 Browse Through Ships
-                <span class="caret"></span>
-            </div>
-            <ul class="dropdown-menu full-width" role="menu" aria-labelledby="dropdownListOfShip">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-                <li role="presentation" class="divider"></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
-            </ul>
-        </div>
-    </td>
-
-</tr>
-<thead class="text-left">
-    <tr>
-        <th>
-            <%= image_tag("greentriangle_down.png", size: "16", class:"triangle_image")%>
-           <small>Ship:</small> <%= @side_info[:ship_name]%>
-        </th>
-        <th>
-        </th>
-    </tr>
-</thead>
 <tr class="text-left">
     <td>
         Class:
@@ -62,4 +33,3 @@
     </td>
 </tr>
 
-<%= render 'side_bar/part_of_table/region_stats'%>

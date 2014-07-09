@@ -5,20 +5,9 @@ After the user click the port on the map this side will appear.
 
 
 
-<%= render 'side_bar/part_of_table/header'%>
-<thead class="table_after_clicking_on_a_port text-left">
-    <tr>
-        <th >
-            <small>port: </small><%=  @side_info[:port_name]%>
-        </th>
-        <th >
-            <%= "10 Ships"
-             #"#{all_ships_at_specific_port [0,0], @side_info[:port_name]} Ships: "
-            %>
-        </th>
-    </tr>
+<%= render 'side_bar/part_of_table/headers/header'%>
+<%= render 'side_bar/part_of_table/headers/port_header_name' %>
 
-</thead>
 <tr>
     <td colspan="<%= 2%>">
 
@@ -31,33 +20,18 @@ After the user click the port on the map this side will appear.
     </th>
 </tr>
 </thead>
-<tbody >
-<tr>
+<tbody class="ship-list">
+<tr >
     <td colspan="<%= 2%>">
-        <div class="scroll_inside_table" style="overflow: auto; height: 150px; padding: 4px">
-
-
-            <table class="table table-hover text-left">
-                <% @ships_at_port.each do |ship|%>
-
-                <tr >
-                    <td>
-                        <%= link_to ship[:name] ,side_bar_ship_path( ship_info: { ship_name: ship[:name]}),:remote => true, method: :post
-                        %>
-                    </td>
-                    <td>
-                        <%= ship.vessel_type
-                        %>
-                    </td>
-                </tr>
-        <%end%>
-
-            </table>
-
-        </div>
+        <%= render 'side_bar/part_of_table/bodies/ship_list' %>
     </td>
 </tr>
+<tbody id="ship-details-section">
+
+
+</tbody>
+
 </tbody >
-<%= render 'side_bar/part_of_table/region_stats' %>
+<%= render 'side_bar/part_of_table/bodies/region_stats' %>
 
 

@@ -34,7 +34,7 @@ class SideBarController < ApplicationController
             format.html {render :partial =>  'side_bar/table_body/ship'}
             format.js {render 'side_bar/table_body/js/ship'}
         end
-        # render :partial =>  'side_bar/table_body/ship'
+
     end
 
     def port
