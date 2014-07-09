@@ -23,15 +23,15 @@ module GoogleMapHelper
         @ports_coordinate = @ports_coordinate.map { |l| [l.latitude, l.longitude] }
     end
 
-    def get_total_deadweight 
+    def get_total_deadweight_for_total_ships
         @total_deadweight= Ship.sum(:deadweight)
     end
 
-    def get_ships_per_class category_name
+    def get_number_of_ships_per_class category_name
       @ships_per_class = Ship.select(:vessel_class).where(vessel_class: category_name).size
     end
 
-    def get_ships_per_region region_name
+    def get_number_of_ships_per_region region_name
       @ships_per_region = Port.includes(:ships).where(region: region_name)
       @ship_count = 0
       @ships_per_region.each do |port|
@@ -44,11 +44,7 @@ module GoogleMapHelper
       @ports_per_region = Port.where(region: region_name).size
     end
 
-    #def ships_at_port port_name  port_name
-
-    #end
-
-    def all_ships_at_specific_port port_coordinate = [0, 0], port_name ="null"
+    def get_all_ships_at_specific_port port_coordinate = [0, 0], port_name ="null"
 
         if (!port_name.blank? && !port_coordinate.empty?)
             _port = Port.includes(:ships)
