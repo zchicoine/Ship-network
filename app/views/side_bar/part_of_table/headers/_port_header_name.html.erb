@@ -4,8 +4,8 @@
         <small>port: </small><%=  @side_info[:port_name]%>
     </th>
     <th class="text-right" >
-        <%= "10 Ships"
-            #"#{all_ships_at_specific_port [0,0], @side_info[:port_name]} Ships: "
+        <%=
+            "#{@ships_at_port.size} Ships"
         %>
     </th>
 </tr>

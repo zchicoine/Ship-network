@@ -21,7 +21,7 @@
                         <% regions_names_coordinates.each do |region|%>
 
                             <%= content_tag :li, class: "map_controller_go_to_region_li", role:"presentation",
-                                            onclick:"go_to_region(#{region[1]})" do %>
+                                            onclick:"go_to_region(#{region[1]},'#{region[0]}')" do %>
                               <%=region[0]%>
                             <% end %>
                         <% end %>
