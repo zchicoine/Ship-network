@@ -1,8 +1,7 @@
 class Ship < ActiveRecord::Base
-    before_create{
+  validates_numericality_of :deadweight, :greater_than => 0
 
-    }
-    enum vessel_type: [:notype, :sdbc, :ohbs , :mpp, :tween, :roro]
+  enum vessel_type: [:notype, :sdbc, :ohbs , :mpp, :tween, :roro]
 
 	has_many :shipments
 	has_many :ports, :through => :shipments, :dependent => :destroy
