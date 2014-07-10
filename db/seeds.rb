@@ -5,17 +5,6 @@ Port.destroy_all
 regions = ["North America","South America" , "Africa" ,"Persian Gulf" ,
                    "Australia"  ,"Europe"  , "India","Mid to North China" , "South East Asia" ]
 
-#Read .txt file of port data and add it to database
-open("db/data/port_db.txt") do |ports|
-  ports.read.each_line do |port|  
-  	# .encode to fix UTF-8-encoded text (or it will not split the string in the next line) 
-  	port.encode!('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '') 	
-    name, latitude, longitude = port.chomp.split(";")
-    Port.create!(name: name, latitude: latitude.to_f, longitude: longitude.to_f, region: regions.sample)  
-  end  
-end  
-
-
 #Read .txt file of ship data and add it to database
 open("db/data/ship_db.txt") do |ships|  
   ships.read.each_line do |ship|  
@@ -56,8 +45,21 @@ open("db/data/ship_db.txt") do |ships|
     end
 
     Ship.create(name: name, built: built.to_i, draft: draft.to_d, deadweight: deadweight.to_i, beam: beam.to_i,
-		loa: loa.to_i, vessel_type: temp, vessel_class: class_name, ports: [Port.all.sample, Port.all.sample])
+		loa: loa.to_i, vessel_type: temp, vessel_class: class_name)
+  end
+
+  #Read .txt file of port data and add it to database
+  open("db/data/port_db.txt") do |ports|
+    ports.read.each_line do |port|
+      # .encode to fix UTF-8-encoded text (or it will not split the string in the next line)
+      port.encode!('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '')
+      name, latitude, longitude = port.chomp.split(";")
+      all_ships = Ship.all
+      Port.create!(name: name, latitude: latitude.to_f, longitude: longitude.to_f, region: regions.sample, ships: [all_ships.sample,
+          all_ships.sample,all_ships.sample,all_ships.sample,all_ships.sample,all_ships.sample,all_ships.sample,all_ships.sample,all_ships.sample,all_ships.sample])
     end
+  end
+
 
 end
 
