@@ -13,6 +13,6 @@
 <% vessel_classes.each do |_class| %>
     <tr >
         <td class="text-left"><%=" #{_class}:" %></td>
-        <td class="text-right">10</td>
+        <td class="text-right"><%= get_number_of_ships_per_class _class%></td>
     </tr>
 <% end %>
