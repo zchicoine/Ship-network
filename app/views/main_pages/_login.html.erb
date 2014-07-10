@@ -1,23 +1,30 @@
+<form name="login" class="form-horizontal" role="form">
+    <h3>&nbsp Log In:</h3>
 
 
+   <div class="form-group row">
+        <div class="col-xs-4">
+            <label class="col-sm-2 control-label">
+                &nbsp Username:
+            </label>
+             <input class="form-control" type="text" name="userid" placeholder="User Name"/>
+        </div>
+        <div class="col-xs-4">
+            <label class="col-sm-2 control-label">
+                Password:
+            </label>
+            <input class="form-control" type="password" name="password" placeholder="Password"/>
+        </div>
+    </div>
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" onClick=""> Remember me
+        </label>
+    </div>
+    <input class="banner_button" type="button" onclick="check(this.form)" value="Login"/>
+    <input class="banner_button" type="reset" value="Cancel"/>
 
-
-
-        <form name="login">
-            <h3>&nbsp Log In:</h3>
-
-                <div>
-                    <span style="padding-right: 12em; padding-left:6em">&nbsp Username: </span>                    Password:<br />
-                </div>
-                <input type="text" name="userid"/>
-
-                <input type="password" name="password"/><br/>
-                <input type=  "checkbox" onClick="remember_me()">  Remember me<br/>
-
-                <input type=  "button"onclick="check(this.form)"   value="Login"/>
-                <input type=  "reset"  value= "Cancel"/><br/>
-
-        </form>
+</form>
 
 
 

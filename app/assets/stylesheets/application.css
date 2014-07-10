@@ -13,44 +13,9 @@
  *= require_tree .
  *= require_self
  */
-/*h1 {*/
- /*color:white;font-size:15px;text-align:left;*/
-/*}*/
-
-h3
-{color:white; font-size:20;text-align:left;}
-form
-{
-  border :0px solid #000;
-  background-color:#5bc0de; ; padding: 35px; width: 700px;  height:245px; margin:0 auto;">
 
 
 
-
-    }
-input
-{
-  -moz-border-radius: 15px;
-    border-radius: 15px;
-    border:solid 1px white;
-    padding:5px;}
-
-
-input {
-  margin: 5px;
-  padding-right: 65px;
-  color: #FFFFFF; font-family: Verdana; font-weight: bold; font-size: 12px; background-color: #B2B2B2;
-
-
-}
-
-  input[type=button],input[type=reset]
-{
-  background-color: yellow ;
-  padding: 8px;border-radius:6px;
-}
-
- 
 
 
 

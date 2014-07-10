@@ -1,9 +1,11 @@
-go_to_region = function (coordinates){
-    console.log(coordinates);
+go_to_region = function (coordinates , regionName){
+    console.log(regionName);
+   // console.log(coordinates);
    _latLng =  new google.maps.LatLng(coordinates[0], coordinates[1]);
-    console.log(_latLng);
+   // console.log(_latLng);
     window.map.setCenter(_latLng);
     window.map.setZoom(4);
+    send_data_to_side_bar(regionName);
 }
 
 closed_table_side_bar = function () {

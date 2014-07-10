@@ -153,45 +153,7 @@ var geocoder;
       geocoder = new google.maps.Geocoder();
 	  
 	  //setting up ports on the map
-	var port = [['Fredericia',55.55,9.75],['Frederikshavn',55.46666667,8.4333333],['Barahona',18.2,-71.06666667],['La Romana',18.45,-69.01666667]];
-	//Info Window Content
-    var infoWindowContent = [
-        ['<div class="info_content">' +
-        '<h3 style="text-align:center">Fredericia</h3>' +
-		'<table style="width:300px"><tr><td><h4>Vessel</h4></td><td>ship1</td><td>ship2</td><td>ship3</td></tr></table>'+
-		'</div>'],
-        ['<div class="info_content">' +
-        '<h3>Esbjerg</h3>' +'</div>'],
-		['<div class="info_content">' +
-        '<h3>Barahona</h3>' +'</div>'],
-		['<div class="info_content">' +
-        '<h3>La Romana</h3>' +'</div>']
-	];
-	var iconBase = 'port.png';
-	var iconBase2 = 'portHover.png';
-	
-	for(var i=0;i<port.length;i++){
-		var position = new google.maps.LatLng(port[i][1],port[i][2]);
-	new google.maps.Size(20, 34),
-	 marker = new google.maps.Marker({
-			position: position,
-			map: map,
-			icon: iconBase,
-			title: port[i][0]+', 5 ships',
-      
-		});
-		
-		google.maps.event.addListener(marker, 'mouseover', function() {
-    //  marker_color=new google.maps.MarkerImage(iconBase2);
-			marker.setIcon(iconBase2);
-		});
 
-		google.maps.event.addListener(marker, 'mouseout', function() {
-			marker.setIcon(iconBase);
-		});
-	
-	marker.setMap(map);
-		}	
 	 // click  event function for zooming in   
      google.maps.event.addListener(map, 'click', function(e) {  
 
@@ -242,55 +204,67 @@ google.maps.event.addDomListener(window, 'load', initialize);
 function region_event_listeners(){
 
   google.maps.event.addDomListener(regionEurope, 'click', function(e){
+
       test(e,regionEuropeCoords,"Europe")
   });
 //    google.maps.event.addDomListener(regionEurope, 'mouseover', handleMouseOverEurope);
 //    google.maps.event.addDomListener(regionEurope, 'mouseout', handleMouseOutEurope);
 
   google.maps.event.addDomListener(regionNorthAmerica, 'click', function(e){
-      test(e,regionNorthAmericaCoords,"NorthAmerica")
+
+      test(e,regionNorthAmericaCoords,"North America")
+      send_data_to_get_port_coordinates("North America")
   });
 //  google.maps.event.addDomListener(regionNorthAmerica, 'mouseover', handleMouseOverNorthAmerica);
 //  google.maps.event.addDomListener(regionNorthAmerica, 'mouseout', handleMouseOutNorthAmerica);
 
   google.maps.event.addDomListener(regionSouthAmerica, 'click', function(e){
-      test(e,regionSouthAmericaCoords,"SouthAmerica")
+      send_data_to_get_port_coordinates("South America" )
+      test(e,regionSouthAmericaCoords,"South America")
   });
 //  google.maps.event.addDomListener(regionSouthAmerica, 'mouseover', handleMouseOverSouthAmerica);
 //  google.maps.event.addDomListener(regionSouthAmerica, 'mouseout', handleMouseOutSouthAmerica);
 
   google.maps.event.addDomListener(regionAfrica, 'click',function(e){
+      send_data_to_get_port_coordinates("Africa" )
       test(e,regionAfricaCoords,"Africa")
   });
 //  google.maps.event.addDomListener(regionAfrica, 'mouseover', handleMouseOverAfrica);
 //  google.maps.event.addDomListener(regionAfrica, 'mouseout', handleMouseOutAfrica);
 
   google.maps.event.addDomListener(regionMiddleEast, 'click', function(e){
-      test(e,regionMiddleEastCoords,"MiddleEast")
+      send_data_to_get_port_coordinates("Middle East" )
+      test(e,regionMiddleEastCoords,"Middle East")
   });
 //  google.maps.event.addDomListener(regionMiddleEast, 'mouseover', handleMouseOverMiddleEast);
 //  google.maps.event.addDomListener(regionMiddleEast, 'mouseout', handleMouseOutMiddleEast);
 
   google.maps.event.addDomListener(regionAustralia, 'click', function(e){
+
       test(e,regionAustraliaCoords,"Australia")
+      send_data_to_get_port_coordinates("Australia" )
   });
 //  google.maps.event.addDomListener(regionAustralia, 'mouseover', handleMouseOverAustralia);
 //  google.maps.event.addDomListener(regionAustralia, 'mouseout', handleMouseOutAustralia);
 
 
 google.maps.event.addDomListener(regionIndiaSubContinent, 'click', function(e){
-      test(e,regionIndiaSubContinentCoords,"IndiaSubContinent")
+    send_data_to_get_port_coordinates("India" )
+    test(e,regionIndiaSubContinentCoords,"India")
   });
 
 
 
 google.maps.event.addDomListener(regionKoreaJapanRussia, 'click', function(e){
-      test(e,regionKoreaJapanRussiaCoords,"RussiaKoreaJapan")
+
+      test(e,regionKoreaJapanRussiaCoords,"Mid to North China")
+    send_data_to_get_port_coordinates("Mid to North China" )
   });
 
 
 google.maps.event.addDomListener(regionSouthEastAsia, 'click', function(e){
-      test(e,regionSouthEastAsiaCoords,"SouthEastAsia")
+      test(e,regionSouthEastAsiaCoords,"South East Asia")
+    send_data_to_get_port_coordinates(regionName )
   });
 }
 
