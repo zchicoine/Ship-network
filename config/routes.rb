@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     post 'side_bar/default' => 'side_bar#default'
     post 'side_bar/port' => 'side_bar#port'
     post  'google_map/port_coordinates' => 'google_map#port_coordinates'
+    post  'google_map/display_ship_on_side_bar' => 'google_map#display_ship_on_side_bar'
+
 
     get 'main_pages/loginpage'
   # You can have the root of your site routed with "root"

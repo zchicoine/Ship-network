@@ -17,8 +17,8 @@ function send_data_to_get_port_coordinates(regionName ){
 
         },
         success: function(result) {
-            console.log('1.1');
-            text( result.coordinates)
+
+            display_ports( result.coordinates , result.name)
           //  alert(result.coordinates);
 
         },
@@ -29,10 +29,42 @@ function send_data_to_get_port_coordinates(regionName ){
     });
 
 }
+function send_data_to_get_ship_side_bar(port_name ){
+
+    var data_json = { "port_info": { "port_name": port_name } };
+
+//        // ajax parameters
+    $.ajax({
+        url:'google_map/display_ship_on_side_bar',
+        beforeSend: function(){
+
+            // Handle the beforeSend event
+        },
+        type: 'POST',
+        data:data_json,
+        complete: function(r){
+            // Handle the complete event
+            // alert(r);
+
+        },
+        success: function(result) {
+            $('.aside_ship_details_table_body').html(result)
+            $('.region_stats .triangle_image').addClass('closed_table')
+            closed_table_side_bar()
+            //display_ports( result.coordinates)
+            //  alert(result.coordinates);
+
+        },
+        error: function(r){
+
+          //  alert(r);
+        }
+    });
+
+}
 
 
-
-function text( port){
+function display_ports( port , port_name){
     var iconDefault = {
         url: 'assets/google_map/but_default_24.png'
         // This marker is 20 pixels wide by 32 pixels tall.
@@ -64,7 +96,7 @@ function text( port){
                 position: position,
                 map: map,
                 icon: iconDefault,
-                title: ', ~ ships'
+                title: port_name[i]
 
             });
 
@@ -86,6 +118,7 @@ function text( port){
         })(marker, "  "));
         google.maps.event.addListener(marker, 'click', (function( marker,title) {
             return function() {
+                send_data_to_get_ship_side_bar(marker.getTitle());
                 marker.setIcon(iconClick);
             }
 

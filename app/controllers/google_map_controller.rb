@@ -1,7 +1,16 @@
 class GoogleMapController < ApplicationController
  include GoogleMapHelper
-  def map
+  def display_ship_on_side_bar
 
+      parameters = params.require(:port_info).permit(:port_name)
+
+      @side_info = {region_name: session[:region_name] || "No region selected" }
+      @side_info[:port_name] = parameters[:port_name]
+      session[:port_name] = @side_info[:port_name]
+      @side_info[:port_coordinates] = parameters[:port_coordinates]
+      @ships_at_port =  get_all_ships_at_specific_port [0,0], @side_info[:port_name]
+
+         render :partial =>  'side_bar/table_body/port'
 
   end
 
@@ -12,7 +21,7 @@ class GoogleMapController < ApplicationController
          ports_coordinates_array = ports_coordinates.all.map { |var| [ var.latitude, var.longitude] }
         #  ports_coordinates.as_json
         #   return ports_coordinates_array
-        render :json => {coordinates: ports_coordinates_array}
+        render :json => {name:ports_coordinates.all.map { |var| var.name }, coordinates: ports_coordinates_array}
 
     end
 
