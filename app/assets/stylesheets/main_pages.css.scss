@@ -1,7 +1,5 @@
 @import "bootstrap";
 
-
-
 $grayMediumLight: #0A94CB;
 
 body {
@@ -13,30 +11,29 @@ body {
   padding: 40px 15px;
   text-align: center;
 }
-/* header */
+
 .header-text {
     a{
-        color: #ffffff ;
+        color: #ffffff;
     }
-
 }
-/*end header */
 
-/* footer */
 footer {
   margin-top: 45px;
   padding-top: 5px;
   border-top: 1px solid $grayMediumLight;
   color: $gray-lighter;
   a {
-    color: $gray;
-    &:hover {
-      color: $gray-darker;
-    }
-  }
+     color: $gray;
+     &:hover {
+       color: $gray-darker;
+     }
+   }
+
   small {
     float: left;
   }
+
   ul {
     float: right;
     list-style: none;
@@ -48,8 +45,19 @@ footer {
 }
 
 .transparent{
-  
   opacity: 0.1;
 }
 
+.labels{
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+}
 
+.passColor{
+  color: white;
+}
+
+.textStyle {
+  font-family: roboto !important;
+}
