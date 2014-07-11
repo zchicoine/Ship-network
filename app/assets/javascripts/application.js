@@ -19,9 +19,13 @@
 function check(form)/*function to check userid & password*/
 {
 /*the following code checkes whether the entered userid and password are matching*/
-if(form.userid.value == "myuserid" && form.password.value == "mypswrd")
+if(form.userid.value == "Zack" && form.password.value == "ship")
 {
-window.open('index.html')/*opens the target page while Id & password matches*/
+//jquery to set opacity to zero
+    $("#transparent_div").removeClass('transparent');
+
+    //jquery to fadeOut the banner
+    $("#main_banner").fadeOut("slow",function(){});
 }
 else
 {
