@@ -58,7 +58,7 @@ function send_data_to_get_ship_side_bar(port_name ){
         },
         error: function(r){
 
-            alert(r);
+            alert(r.message);
         }
     });
 
@@ -97,7 +97,7 @@ function display_ports( port , port_name){
                 position: position,
                 map: map,
                 icon: iconDefault,
-                title: port_name[i] + ' has 10 ships'
+                title: port_name[i]
 
             });
 
