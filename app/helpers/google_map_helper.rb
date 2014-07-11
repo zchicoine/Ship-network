@@ -26,7 +26,9 @@ module GoogleMapHelper
     def get_total_deadweight_for_total_ships
         @total_deadweight= Ship.sum(:deadweight)
     end
-
+    def get_total_number_of_ship
+        Ship.all.size
+    end
     def get_number_of_ships_per_class category_name
       @ships_per_class = Ship.select(:vessel_class).where(vessel_class: category_name).size
     end
@@ -38,6 +40,15 @@ module GoogleMapHelper
         @ship_count += port.ships.size
       end
       @ship_count
+    end
+
+    def get_number_of_ships_per_region_per_class region_name , category_name
+        @ships_per_region = Port.includes(:ships).where(region: region_name)
+        @ship_count = 0
+        @ships_per_region.each do |port|
+            @ship_count += port.ships.where(vessel_class: category_name).size
+        end
+        @ship_count
     end
 
     def get_number_of_ports_per_region region_name

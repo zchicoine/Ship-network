@@ -25,7 +25,14 @@
       </tr>
       </thead>
       <tbody >
-      <% count = 0%>
+      <%
+         count = 0
+         get_all_regions.each do |_region|
+               temp = get_number_of_ships_per_region(_region).to_i
+                 count = count + temp
+         end
+      %>
+
         <tr class="text-left thick_horizontal_line" >
             <td>Total Ship</td>
             <td><%= count%></td>
@@ -37,7 +44,7 @@
                         <td><%= _region %></td>
                     <%
                        temp = get_number_of_ships_per_region(_region).to_i
-                       count = count + temp  %>
+                     %>
                         <td><%= temp%></td>
                 </tr>
 

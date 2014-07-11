@@ -8,11 +8,11 @@
 <tr class="thick_horizontal_line text-left">
 
     <td>Total Ships:</td>
-    <td>70</td>
+    <td><%=  get_number_of_ships_per_region @side_info[:region_name]%></td>
 </tr>
 <% vessel_classes.each do |_class| %>
     <tr >
         <td class="text-left"><%=" #{_class}:" %></td>
-        <td class="text-right"><%= get_number_of_ships_per_class _class%></td>
+        <td class="text-right"><%= get_number_of_ships_per_region_per_class @side_info[:region_name], _class%></td>
     </tr>
 <% end %>
