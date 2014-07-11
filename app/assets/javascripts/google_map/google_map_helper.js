@@ -48,16 +48,17 @@ function send_data_to_get_ship_side_bar(port_name ){
 
         },
         success: function(result) {
-            $('.aside_ship_details_table_body').html(result)
+            $('.aside_ship_details_table_body').html(result.partial_page)
             $('.region_stats .triangle_image').addClass('closed_table')
             closed_table_side_bar()
+
             //display_ports( result.coordinates)
-            //  alert(result.coordinates);
+              //alert( result.number_ships);
 
         },
         error: function(r){
 
-          //  alert(r);
+            alert(r);
         }
     });
 
@@ -96,7 +97,7 @@ function display_ports( port , port_name){
                 position: position,
                 map: map,
                 icon: iconDefault,
-                title: port_name[i]
+                title: port_name[i] + ' has 10 ships'
 
             });
 

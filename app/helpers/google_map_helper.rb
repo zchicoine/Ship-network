@@ -55,6 +55,9 @@ module GoogleMapHelper
       @ports_per_region = Port.where(region: region_name).size
     end
 
+    def get_number_ships_at_specific_port port_name = "null"
+        get_all_ships_at_specific_port([0,0],  port_name).size
+    end
     def get_all_ships_at_specific_port port_coordinate = [0, 0], port_name ="null"
 
         if (!port_name.blank? && !port_coordinate.empty?)
