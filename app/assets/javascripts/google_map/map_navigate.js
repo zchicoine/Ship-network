@@ -22,11 +22,11 @@ $(window).load(function(){
  	$(".zoom_out").click(function(){  
       //alert("The paragraph was clicked.");
    		set_label_names();   
-		window.map.setZoom(2);
-		window.map.setCenter(getClickedPosition);
-		window.map.setOptions({styles: mapStyle});
-      	$("body").css("cursor","default");
-  });
+   		initialize();
+   		setMarkers(null,markerArray);
+   		window.map.setZoom(2);
+   		$("body").css("cursor","default");
+   	});
 		
 
 
