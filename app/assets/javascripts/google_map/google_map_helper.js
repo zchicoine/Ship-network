@@ -1,4 +1,4 @@
-function send_data_to_get_port_coordinates(regionName ){
+function send_data_to_get_port_coordinates(regionName){
 
     var data_json = { "region_info": { "name": regionName, "coordinates": "123 Carol" } };
 
@@ -29,6 +29,7 @@ function send_data_to_get_port_coordinates(regionName ){
     });
 
 }
+
 function send_data_to_get_ship_side_bar(port_name ){
 
     var data_json = { "port_info": { "port_name": port_name } };
@@ -66,6 +67,7 @@ function send_data_to_get_ship_side_bar(port_name ){
 
 
 function display_ports( port , port_name){
+    
     var iconDefault = {
         url: 'assets/google_map/but_default_24.png'
         // This marker is 20 pixels wide by 32 pixels tall.
@@ -87,9 +89,8 @@ function display_ports( port , port_name){
         // The origin for this image is 0,0.
 
     };
-
-
-    for(var i=0;i<port.length;i++){
+    
+     for(var i=0;i<port.length;i++){
       //  console.log(port[i][0]);
         var position = new google.maps.LatLng(port[i][0],port[i][1]);
           new google.maps.Size(20, 34),
@@ -99,8 +100,9 @@ function display_ports( port , port_name){
                 icon: iconDefault,
                 title: port_name[i]
 
-            });
+            });    
 
+            markerArray.push(marker);
         google.maps.event.addListener(marker, 'mouseover', (function( marker,title) {
             return function() {
                 marker.setIcon(iconHover);
@@ -126,7 +128,16 @@ function display_ports( port , port_name){
         })(marker, "  "));
 
 
-        marker.setMap(map);
+       setMarkers(map,markerArray);
 
     }
+
+
+}
+
+function setMarkers(value,markerArray){
+    var v = value;
+    for(var i = 0; i < markerArray.length; ++i){
+                markerArray[i].setMap(v);
+            }
 }
