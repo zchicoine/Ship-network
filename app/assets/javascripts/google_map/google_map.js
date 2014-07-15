@@ -1,6 +1,6 @@
 
 var map_value;
-
+var markerArray = [];
 var getClickedPostion;
 
 var geocoder;
@@ -188,11 +188,14 @@ var geocoder;
      google.maps.event.addListener(map, 'rightclick', function(e) {
             window.map.setZoom(2);
             window.map.setOptions({styles: mapStyle});
+          //  setMarkers(null,marker);
+          setMarkers(null,markerArray);
+                //regionSouthAmerica.setMap(map);
 
             window.map.setCenter(getClickedPostion);
             $("body").css("cursor","default");
-          
-            set_label_names();
+           // region_event_listeners();
+            //set_label_names();
         });
 
 
