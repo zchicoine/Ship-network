@@ -146,8 +146,8 @@ var geocoder;
         regionAustralia.setMap(map);
         regionMiddleEast.setMap(map);
         regionIndiaSubContinent.setMap(map);
-        regionKoreaJapanRussia.setMap(map);
-        regionSouthEastAsia.setMap(map);
+        regionFarEast.setMap(map);
+        
         region_event_listeners();
        
       geocoder = new google.maps.Geocoder();
@@ -239,8 +239,8 @@ function region_event_listeners(){
       send_data_to_get_port_coordinates("Middle East" )
       test(e,regionMiddleEastCoords,"Middle East")
   });
-//  google.maps.event.addDomListener(regionMiddleEast, 'mouseover', handleMouseOverMiddleEast);
-//  google.maps.event.addDomListener(regionMiddleEast, 'mouseout', handleMouseOutMiddleEast);
+  google.maps.event.addDomListener(regionMiddleEast, 'mouseover', handleMouseOverMiddleEast);
+  google.maps.event.addDomListener(regionMiddleEast, 'mouseout', handleMouseOutMiddleEast);
 
   google.maps.event.addDomListener(regionAustralia, 'click', function(e){
 
@@ -258,17 +258,12 @@ google.maps.event.addDomListener(regionIndiaSubContinent, 'click', function(e){
 
 
 
-google.maps.event.addDomListener(regionKoreaJapanRussia, 'click', function(e){
+google.maps.event.addDomListener(regionFarEast, 'click', function(e){
 
       test(e,regionKoreaJapanRussiaCoords,"Mid to North China")
     send_data_to_get_port_coordinates("Mid to North China" )
   });
 
-
-google.maps.event.addDomListener(regionSouthEastAsia, 'click', function(e){
-      test(e,regionSouthEastAsiaCoords,"South East Asia")
-    send_data_to_get_port_coordinates(regionName )
-  });
 }
 
 

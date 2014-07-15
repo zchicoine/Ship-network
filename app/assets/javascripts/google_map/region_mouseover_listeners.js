@@ -12,19 +12,18 @@
 //  regionEurope.setMap(map);
 //}
 //
-//function handleMouseOverMiddleEast(){
-//
-//
-// regionMiddleEast = new google.maps.Polygon({
-//    paths: regionMiddleEastCoords,
-//     strokeColor: "blue",
-//    strokeWeight: 0,
-//    strokeOpacity: 1,
-//    fillColor: "#0A94CB",
-//    fillOpacity: 1
-//  });
-//  regionMiddleEast.setMap(map);
-//}
+function handleMouseOverMiddleEast(){
+ regionMiddleEast = new google.maps.Polygon({
+    paths: regionMiddleEastCoords,
+    strokeColor: "blue",
+   strokeWeight: 0.5,
+   strokeOpacity: 0.5,
+   fillColor: "transparent",
+   fillOpacity: 0
+
+ });
+ regionMiddleEast.setMap(map);
+}
 //
 //function handleMouseOverAustralia(){
 //
