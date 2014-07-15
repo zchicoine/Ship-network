@@ -25,8 +25,8 @@
 // regionAustralia.setMap(null);
 //
 //}
-//function handleMouseOutMiddleEast(){
-//
-// regionMiddleEast.setMap(null);
-//
-//}
+function handleMouseOutMiddleEast(){
+
+regionMiddleEast.setMap(null);
+
+}
