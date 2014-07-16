@@ -7,20 +7,22 @@ require 'rails_helper'
 
 describe Ship do 
     # before to run any test create a ship object
-    before { @ship_instance = Ship.new(name: "marine prince", category: "SDBC" ,
-                     built: "2012") }
+    before { @ship_instance = Ship.new(
+        name: "marine prince", vessel_type: Ship.vessel_types[:ohbs] ,
+        built: "2012", deadweight: 200000, vessel_class:"Capesize",
+        draft:9.568, beam:27, loa:190) }
     # makes @ship_instance the default subject of the test example so we don't use
     # expect(@ship_instance)
     subject { @ship_instance }
     
     it { should respond_to(:name) }
-    it { should respond_to(:category) }
+    it { should respond_to(:vessel_type) }
     it { should respond_to(:built) }
-    # it { should respond_to(:built) }
-    # it { should respond_to(:built) }
-    # it { should respond_to(:built) }
-    # it { should respond_to(:built) }
-    # it { should respond_to(:built) }
+    it { should respond_to(:vessel_class) }
+    it { should respond_to(:deadweight) }
+    it { should respond_to(:draft) }
+    it { should respond_to(:beam) }
+    it { should respond_to(:loa) }
 
     it  { should be_valid }
     
@@ -46,11 +48,19 @@ describe Ship do
 
         let(:found_ship){Ship.find_by(name: @ship_instance.name)}
         describe "with invalid built year" do
-          let(:ship_for_invalid_built_year) { found_ship.built = 2014 }
+          let(:ship_for_invalid_built_year) { found_ship.built = 2017 }
           it { should_not eq ship_for_invalid_built_year }
 
           #it {expect(user_for_invalid_password).to be_falsey }
           specify { expect(ship_for_invalid_built_year).to be_falsey }
+
+        end
+        describe "with invalid deadweight " do
+            let(:ship_for_invalid_deadweight) { found_ship.deadweight = -1 }
+            it { should_not eq ship_for_invalid_deadweight }
+
+            #it {expect(user_for_invalid_password).to be_falsey }
+            specify { expect(ship_for_invalid_deadweight).not_to be_valid}
 
         end
     end
@@ -61,9 +71,9 @@ describe Ship do
           @ship_instance.save
           @ports_array = [
 
-              Port.create!(name: 'Ronne', latitude_coordinate: 55.08333333, longitude_coordinate: 14.68333333),
-              Port.create!(name: 'Djibouti', latitude_coordinate: 11.6, longitude_coordinate: 43.13333333),
-              Port.create!(name: 'Portsmouth', latitude_coordinate: 15.56666667, longitude_coordinate: -61.46666667)
+              Port.create!(name: 'Ronne', latitude: 55.08333333, longitude: 14.68333333),
+              Port.create!(name: 'Djibouti', latitude: 11.6, longitude: 43.13333333),
+              Port.create!(name: 'Portsmouth', latitude: 15.56666667, longitude: -61.46666667)
 
           ]
           @shipments_array = [

@@ -7,15 +7,15 @@ require 'rails_helper'
 
 describe Port do
     # before to run any test create a ship object
-    before { @port_instance = Port.new(name: "Fredericia", latitude_coordinate: "55.55",
-                                       longitude_coordinate: "9.75") }
+    before { @port_instance = Port.new(name: "Fredericia", latitude: "55.55",
+                                       longitude: "9.75") }
     # makes @ship_instance the default subject of the test example so we don't use
     # expect(@ship_instance)
     subject { @port_instance }
 
     it { should respond_to(:name) }
-    it { should respond_to(:latitude_coordinate) }
-    it { should respond_to(:longitude_coordinate) }
+    it { should respond_to(:latitude) }
+    it { should respond_to(:longitude) }
     # it { should respond_to(:regin) }
     it { should be_valid }
 
@@ -41,7 +41,7 @@ describe Port do
 
         let(:found_port) { Port.find_by(name: @port_instance.name) }
         describe "with invalid longitude " do
-            let(:port_for_invalid_longitude) { found_port.longitude_coordinate = 400 }
+            let(:port_for_invalid_longitude) { found_port.longitude = 400 }
             # port_instance should not be equal to port_for_invalid_longitude
             it { should_not eq port_for_invalid_longitude }
 
@@ -56,32 +56,34 @@ describe Port do
         before {
             # here should create the relationship
             @port_instance.save
-            ships = Ship.create!([{
+            @_ships = Ship.create!([{
                                       name: "genco hunter",
-                                      category: "SDBC",
+                                      vessel_type: Ship.vessel_types[:ohbs],
                                       built: "2007",
+                                     deadweight: 2040,
                                   },
                                   {
                                       name: "oak bay",
-                                      category: "Commerce",
+                                      vessel_type: Ship.vessel_types[:mpp],
                                       built: "2013",
-
+                                      deadweight: 340,
                                   },
                                   {
                                       name: "hamra",
-                                      category: "TWEEN",
+                                      vessel_type: Ship.vessel_types[:tween],
                                       built: "2001",
-
+                                      deadweight: 2440,
                                   }])
         }
         describe "check for ships relationship" do
-            before {
-                @port_instance.ships = ships
-            }
-            describe "when port has many ships" do
 
-                it { should have_many(:ship).through(:shipments)}
-                specify{ expect(@port_instance.ships).to eq ships}
+            describe "when port has many ships" do
+                before {
+                    @port_instance.ships = @_ships
+                    @port_instance.save
+                }
+                it { should have_many(:ships).through(:shipments)}
+                specify{ expect(@port_instance.ships).to eq @_ships}
             end
         end
 
