@@ -56,15 +56,71 @@ describe Ship do
 
         end
         describe "with invalid deadweight " do
-            let(:ship_for_invalid_deadweight) { found_ship.deadweight = -1 }
-            it { should_not eq ship_for_invalid_deadweight }
+            before{ found_ship.deadweight = -1 }
 
             #it {expect(user_for_invalid_password).to be_falsey }
-            specify { expect(ship_for_invalid_deadweight).not_to be_valid}
+            it { expect(found_ship).to validate_numericality_of(:deadweight)}
+
+        end
+
+        describe "with invalid vessel type " do
+            before{ found_ship.vessel_type = Ship.vessel_types[17] }
+
+            #it {expect(user_for_invalid_password).to be_falsey }
+            it { expect(found_ship).to be_valid}
 
         end
     end
+    describe "validate requirements" do
+        before {
+            @ship_instance.save
+        }
 
+        let(:found_ship){Ship.find_by(name: @ship_instance.name)}
+       describe "match vessel category with deadweight" do
+
+            specify "deadweight greater than 100000" do
+                found_ship.deadweight = 200000
+                found_ship.save
+                expect(found_ship.vessel_class).to eq "Capesize"
+            end
+            specify "deadweight between 80000..100000" do
+                found_ship.deadweight = 85000
+                found_ship.save
+                expect(found_ship.vessel_class).to eq "Post-Panamax"
+            end
+
+            specify "deadweight between 65000..80000" do
+                found_ship.deadweight = 65050
+                found_ship.save
+                expect(found_ship.vessel_class).to eq "Panamax"
+            end
+
+            specify "deadweight between 50000..65000" do
+                found_ship.deadweight = 53000
+                found_ship.save
+                expect(found_ship.vessel_class).to eq "Supramax"
+            end
+            specify "deadweight between 38000..50000" do
+                found_ship.deadweight = 43000
+                found_ship.save
+                expect(found_ship.vessel_class).to eq "Handymax"
+            end
+            specify "deadweight between 18000..38000" do
+                found_ship.deadweight = 33000
+                found_ship.save
+                expect(found_ship.vessel_class).to eq "Supramax"
+            end
+            specify "deadweight between 1000..18000" do
+                found_ship.deadweight = 2000
+                found_ship.save
+                expect(found_ship.vessel_class).to eq "Mini-bulker"
+            end
+
+
+       end
+
+    end
     describe "relationship with other tables," do
         before {
           # here should create the relationship
