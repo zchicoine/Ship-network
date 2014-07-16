@@ -40,13 +40,18 @@ describe Port do
         }
 
         let(:found_port) { Port.find_by(name: @port_instance.name) }
-        describe "with invalid longitude " do
-            let(:port_for_invalid_longitude) { found_port.longitude = 400 }
+        describe "with invalid latitude " do
+            before{ found_port.latitude = 200 }
             # port_instance should not be equal to port_for_invalid_longitude
-            it { should_not eq port_for_invalid_longitude }
 
-            #it {expect(user_for_invalid_password).to be_falsey }
-            specify { expect(port_for_invalid_longitude).to be_falsey }
+            it { expect(found_port).to_not be_valid}
+
+        end
+        describe "with invalid longitude " do
+            before{ found_port.longitude = 400 }
+            # port_instance should not be equal to port_for_invalid_longitude
+
+            it { expect(found_port).to_not be_valid}
 
         end
 
