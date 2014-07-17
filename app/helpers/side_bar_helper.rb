@@ -20,13 +20,18 @@ module SideBarHelper
 
     end
     # return
-    def get_number_of_ships_per_class
-        ships_per_class = Ship.group(:vessel_class).size
+    def get_number_of_ships_for_all_class
+        ships_per_class = Port.joins(:ships).group(:vessel_class).size
 
     end
 
-    def get_number_of_ships_per_region
+    def get_number_of_ships_for_all_regions
         ships_per_region = Port.joins(:ships).group(:region).size
+
+    end
+
+    def get_number_of_ships_per_region_for_all_class region_name
+        ships_per_region_based_on_classes = Port.joins(:ships).where(region: region_name).group(:vessel_class).size
 
     end
 

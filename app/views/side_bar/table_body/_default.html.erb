@@ -10,7 +10,7 @@
         </th>
       </tr>
       </thead>
-        <% ship_category_size = get_number_of_ships_per_class
+        <% ship_category_size = get_number_of_ships_for_all_class
            vessel_classes.each do |_name| %>
           <tr class="text-left">
             <td><%=" #{_name}:" %></td>
@@ -28,7 +28,7 @@
       <tbody >
       <%
          count = 0
-         regions =  get_number_of_ships_per_region
+         regions =  get_number_of_ships_for_all_regions
          region_hash_array =[]
          get_all_regions.each do |_name|
 
