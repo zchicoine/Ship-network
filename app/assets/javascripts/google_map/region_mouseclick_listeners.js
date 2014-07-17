@@ -32,17 +32,17 @@ function test ( event, region_name_coords, region_name) {
        if(region_name=="Europe"){
         a = new Field("test");
         a.setValue(europe_port_array);
-       // alert((a.getValue()).length);
+        alert(region_name);
        }
        else if(region_name=="North America"){
         a = new Field("test");
         a.setValue(north_america_port_array);
-        //alert((a.getValue()).length);
+        alert(region_name);
        }
        else if(region_name=="South America"){
         a = new Field("test");
         a.setValue(south_america_port_array);
-        //alert((a.getValue()).length);
+        alert(region_name);
        }
        else if(region_name=="Africa"){
         a = new Field("test");

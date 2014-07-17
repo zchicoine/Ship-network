@@ -15,9 +15,9 @@ var i=0;
 var a;
 
 var europe_port_array = [
-new google.maps.LatLng(52.3666,4.9),
+new google.maps.LatLng(52.3666,4.8999),
 //Recalada
-new google.maps.LatLng(41.016666,28.983333),
+new google.maps.LatLng(41.016666,28.983),
 //lagos
 new google.maps.LatLng(38.11666,13.33333)
 ];
