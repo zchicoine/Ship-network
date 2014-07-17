@@ -149,6 +149,10 @@ var geocoder;
         regionFarEast.setMap(map);
         
         region_event_listeners();
+         a=new Field("test");
+          a.setValue(region_layer_array);
+
+        //a.setValue(region_layer_array);
        
       geocoder = new google.maps.Geocoder();
 	  

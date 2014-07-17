@@ -1,17 +1,4 @@
 //<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-var region_layer_array = [
-				new google.maps.LatLng(52.370216,4.895168),
-//new orleans
-new google.maps.LatLng(29.951066,-90.071532),
-//Recalada
-new google.maps.LatLng(-34.786878,-55.883175),
-//lagos
-new google.maps.LatLng(6.524379,3.379206),
-//muskat
-new google.maps.LatLng(23.610000,58.540000)
-//
-];
-var i=0;
 $(window).load(function(){
 
 	$("#outer-map").click(function(e){
@@ -20,17 +7,22 @@ $(window).load(function(){
 	});
 
 	$("#right-img-responsive").click(function(){	
-		if(this.id=='right-img-responsive' && i!=(location_array.length-1))
-			{
 
-			window.map.setCenter(region_layer_array[i]);
-			window.map.setZoom(3);
+		//var a = new Field("test");
+		//a.setValue(region_layer_array);
+		var temp = a.getValue();
+		console.log(temp.length-1);
+		if(this.id=='right-img-responsive' && i!=(temp.length-1))
+			{
+			//alert(temp.length-1);
+			window.map.setCenter(temp[i]);
+			window.map.setZoom(4);
 			i++;
 
 		}
-		else if(i==(location_array.length-1)){
-			window.map.setCenter(region_layer_array[(region_layer_array.length-1)]);
-			window.map.setZoom(3);
+		else if(i==(temp.length-1)){
+			window.map.setCenter(temp[(temp.length-1)]);
+			window.map.setZoom(4);
 			i=0;
 			
 		}
