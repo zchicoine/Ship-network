@@ -26,7 +26,7 @@ open("db/data/ship_db.txt") do |ships|
     end
 
     case deadweight.to_i
-        when deadweight.to_i > 100000
+        when 100000..10000000000
            category_name = 7
         when 80000..100000
           category_name = 6
@@ -63,11 +63,10 @@ end
         Port.create!(name: name, latitude: latitude.to_f, longitude: longitude.to_f, region: regions.sample, ships: [all_ships.sample,
                                  all_ships.sample,all_ships.sample,all_ships.sample,all_ships.sample,all_ships.sample,all_ships.sample,all_ships.sample,all_ships.sample,all_ships.sample])
       rescue => e
-        puts e.message + name
+        puts e.message + " " + name
       end
     end
   end
-
 
 p "Created #{Port.count} ports and #{Ship.count} ships"
 
