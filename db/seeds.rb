@@ -47,21 +47,19 @@ open("db/data/ship_db.txt") do |ships|
     Ship.create(name: name, built: built.to_i, draft: draft.to_d, deadweight: deadweight.to_i, beam: beam.to_i,
 		loa: loa.to_i, vessel_type: temp, vessel_class: class_name)
   end
+end
 
+  all_ships = Ship.all
   #Read .txt file of port data and add it to database
   open("db/data/port_db.txt") do |ports|
     ports.read.each_line do |port|
       # .encode to fix UTF-8-encoded text (or it will not split the string in the next line)
       port.encode!('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '')
       name, latitude, longitude = port.chomp.split(";")
-      all_ships = Ship.all
-      Port.create!(name: name, latitude: latitude.to_f, longitude: longitude.to_f, region: regions.sample, ships: [all_ships.sample,
+      Port.create(name: name, latitude: latitude.to_f, longitude: longitude.to_f, region: regions.sample, ships: [all_ships.sample,
           all_ships.sample,all_ships.sample,all_ships.sample,all_ships.sample,all_ships.sample,all_ships.sample,all_ships.sample,all_ships.sample,all_ships.sample])
     end
   end
-
-
-end
 
 p "Created #{Port.count} ports and #{Ship.count} ships"
 
