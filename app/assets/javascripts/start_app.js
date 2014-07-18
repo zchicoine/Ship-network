@@ -2,7 +2,8 @@
 // jquery to make the banner disappear and enter the website
 $(document).ready(function(){
 
-
+    $('*').tooltip({template :'<div class="tooltip " role="tooltip"><div class="tooltip-arrow ship-blue-background-color"></div><div class="tooltip-inner "></div></div>'
+});
     $("#free_tour").click(function(e){
 //jquery to set opacity to zero
         $("#transparent_div").removeClass('transparent');
