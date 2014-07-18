@@ -69,10 +69,11 @@ function send_data_to_get_ship_side_bar(port_name ){
 function display_ports( port , port_name){
     
     var iconDefault = {
-        url: 'assets/google_map/but_default_24.png'
+        url: 'assets/google_map/but_default_24.png',
         // This marker is 20 pixels wide by 32 pixels tall.
-
-        // The origin for this image is 0,0.
+         size: new google.maps.Size(10, 30)
+    // The origin for this image is 0,0.
+         
 
     };
     var iconHover = {
@@ -93,7 +94,7 @@ function display_ports( port , port_name){
      for(var i=0;i<port.length;i++){
       //  console.log(port[i][0]);
         var position = new google.maps.LatLng(port[i][0],port[i][1]);
-          new google.maps.Size(20, 34),
+               
             marker = new google.maps.Marker({
                 position: position,
                 map: map,
