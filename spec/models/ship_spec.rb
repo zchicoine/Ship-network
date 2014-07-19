@@ -9,7 +9,7 @@ describe Ship do
     # before to run any test create a ship object
     before { @ship_instance = Ship.new(
         name: "marine prince", vessel_type: Ship.vessel_types[:ohbs] ,
-        built: "2012", deadweight: 200000, vessel_class:"Capesize",
+        built: "2012", deadweight: 200000, vessel_category: Ship.vessel_categories[:Capesize],
         draft:9.568, beam:27, loa:190) }
     # makes @ship_instance the default subject of the test example so we don't use
     # expect(@ship_instance)
@@ -18,7 +18,7 @@ describe Ship do
     it { should respond_to(:name) }
     it { should respond_to(:vessel_type) }
     it { should respond_to(:built) }
-    it { should respond_to(:vessel_class) }
+    it { should respond_to(:vessel_category) }
     it { should respond_to(:deadweight) }
     it { should respond_to(:draft) }
     it { should respond_to(:beam) }
@@ -82,39 +82,39 @@ describe Ship do
             specify "deadweight greater than 100000" do
                 found_ship.deadweight = 200000
                 found_ship.save
-                expect(found_ship.vessel_class).to eq "Capesize"
+                expect(found_ship.vessel_category).to eq Ship.vessel_categories[:Capesize]
             end
             specify "deadweight between 80000..100000" do
                 found_ship.deadweight = 85000
                 found_ship.save
-                expect(found_ship.vessel_class).to eq "Post-Panamax"
+                expect(found_ship.vessel_category).to eq Ship.vessel_categories[:PostPanamax]
             end
 
             specify "deadweight between 65000..80000" do
                 found_ship.deadweight = 65050
                 found_ship.save
-                expect(found_ship.vessel_class).to eq "Panamax"
+                expect(found_ship.vessel_category).to eq Ship.vessel_categories[:Panamax]
             end
 
             specify "deadweight between 50000..65000" do
                 found_ship.deadweight = 53000
                 found_ship.save
-                expect(found_ship.vessel_class).to eq "Supramax"
+                expect(found_ship.vessel_category).to eq Ship.vessel_categories[:Supramax]
             end
             specify "deadweight between 38000..50000" do
                 found_ship.deadweight = 43000
                 found_ship.save
-                expect(found_ship.vessel_class).to eq "Handymax"
+                expect(found_ship.vessel_category).to eq Ship.vessel_categories[:Handymax]
             end
             specify "deadweight between 18000..38000" do
                 found_ship.deadweight = 33000
                 found_ship.save
-                expect(found_ship.vessel_class).to eq "Supramax"
+                expect(found_ship.vessel_category).to eq Ship.vessel_categories[:Supramax]
             end
             specify "deadweight between 1000..18000" do
                 found_ship.deadweight = 2000
                 found_ship.save
-                expect(found_ship.vessel_class).to eq "Mini-bulker"
+                expect(found_ship.vessel_category).to eq Ship.vessel_categories[:Minibulker]
             end
 
 
@@ -171,6 +171,15 @@ describe Ship do
                  expect(@ship_instance.shipments.first.update(open_start_date: Time.new(2014,2,2))).to be_falsey
 
             end
+
+
+        end
+        describe "check for ship details relationship" do
+            before {
+
+            }
+
+
 
 
         end
