@@ -41,8 +41,8 @@ ActiveRecord::Schema.define(version: 20140717222902) do
     t.integer  "deadweight"
     t.integer  "beam"
     t.integer  "loa"
-    t.integer  "vessel_type",     limit: 255
-    t.integer  "vessel_category", limit: 255, default: 0
+    t.integer  "vessel_type",  limit: 255
+    t.integer  "vessel_class", limit: 255, default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
