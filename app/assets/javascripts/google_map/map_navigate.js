@@ -8,26 +8,29 @@ $(window).load(function(){
 
 	$("#right-img-responsive").click(function(){	
 
+/*
 		//var a = new Field("test");
 		//a.setValue(region_layer_array);
 		var temp = a.getValue();
 		console.log(temp.length-1);
-		alert(temp);
+		//alert(temp);
 		if(this.id=='right-img-responsive' && i!=(temp.length-1))
 			{
-			alert(temp[i]);
+			//alert(temp[i]);
 			window.map.setCenter(temp[i]);
-			window.map.setZoom(4);
+			window.map.setZoom(5);
 			i++;
 
 		}
 		else if(i==(temp.length-1)){
-			alert(temp[i]);
+			//alert(temp[i]);
 			window.map.setCenter(temp[(temp.length-1)]);
-			window.map.setZoom(4);
+			window.map.setZoom(5);
 			i=0;
 			
 		}
+*/
+		window.map.panBy(150,0); 
 		
 	});
 
@@ -41,8 +44,6 @@ $(window).load(function(){
  	$(".zoom_out").click(function(){  
       //alert("The paragraph was clicked.");
    		set_label_names();   
-   		a=new Field("test");
-          a.setValue(region_layer_array);
    		initialize();
    		setMarkers(null,markerArray);
    		window.map.setZoom(2);

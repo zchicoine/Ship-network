@@ -3,9 +3,12 @@
 $(document).ready(function(){
 
 
-    $("#fre_tour").click(function(e){
+    $("#free_tour").click(function(e){
 
+         $("#transparent_div").removeClass('transparent');
 
+        //jquery to fadeOut the banner
+        $("#main_banner").fadeOut("slow",function(){});
         
     });
 
