@@ -44,9 +44,9 @@ open("db/data/ship_db.txt") do |ships|
 
     begin
     Ship.create!(name: name, built: built.to_i, draft: draft.to_d, deadweight: deadweight.to_i, beam: beam.to_i,
-		             loa: loa.to_i, vessel_type: temp, vessel_category: category_name)
+		             loa: loa.to_i, vessel_type: temp, vessel_class: category_name)
     rescue => e
-      puts e.message + name
+      puts e.message + " for  vessel: " + name
     end
   end
 end
@@ -63,7 +63,7 @@ end
         Port.create!(name: name, latitude: latitude.to_f, longitude: longitude.to_f, region: regions.sample, ships: [all_ships.sample,
                                  all_ships.sample,all_ships.sample,all_ships.sample,all_ships.sample,all_ships.sample,all_ships.sample,all_ships.sample,all_ships.sample,all_ships.sample])
       rescue => e
-        puts e.message + " " + name
+        puts e.message + " for  port: " + name
       end
     end
   end
