@@ -174,6 +174,15 @@ describe Ship do
 
 
         end
+        describe "check for ship details relationship" do
+            before {
+
+            }
+
+
+
+
+        end
 
 
     end
