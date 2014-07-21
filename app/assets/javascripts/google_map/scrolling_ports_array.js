@@ -1,4 +1,10 @@
 var curr_array;
+
+/*
+
+region layer port coordinates to pre define scrolling through the globe 
+when in the region layer
+*/
 var region_layer_array = [
 				new google.maps.LatLng(52.370216,4.895168),
 //new orleans
@@ -13,6 +19,12 @@ new google.maps.LatLng(23.610000,58.540000)
 ];
 var i=0;
 
+/*
+
+region specific array to set the port coordiantes to pre define the 
+scrolling in a region when at a certain zoom level
+
+*/
 
 var europe_port_array = [
 new google.maps.LatLng(52.3666,4.8999),

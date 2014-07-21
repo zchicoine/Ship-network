@@ -220,7 +220,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
      
 
-      function constructNewCoordinates(polygon) {
+function constructNewCoordinates(polygon) {
         var newCoordinates = [];
         var coordinates = polygon['coordinates'][0];
         for (var i in coordinates) {
@@ -256,7 +256,10 @@ function drawRegions(geometries,region_name){
             
 }
 
+/*
 
+attaching event listeners to every layer drawn onto the map for every country
+*/
 function event_listeners(country,region_name)
 {
   google.maps.event.addListener(country, 'mouseover', function() {
@@ -266,9 +269,17 @@ function event_listeners(country,region_name)
              
             });
 
+  /*
+    this function zooms in by when yo click on a region
+    sets the global zoom value so that right action could be associated to the right navigation button
+    sends data to the side bar
+    removes all the region labels
+
+  */
+
   google.maps.event.addListener(country, 'click', function(e) {
               
-          $('.region_labels').remove();
+        $('.region_labels').remove();
        send_data_to_get_port_coordinates(region_name);
        var zoomToNumber = window.map.getZoom() + 2;
        getClickedPostion = e.latLng
@@ -278,8 +289,7 @@ function event_listeners(country,region_name)
        window.map.setZoom(zoomToNumber);
 
        zval.setZoomValue(zoomToNumber);
-       console.log(zval.getZoomValue());
-             test(e,country,region_name);
+       test(e,country,region_name);
               
               });
             
@@ -322,6 +332,12 @@ function region_name_on_country(country_name){
     console.log('not selected');
 }
 
+
+/*
+
+another function used to set and get global values but to a ariable
+typically a string or number
+*/
 function zoom_value(){
 
     var zoom = 2;
