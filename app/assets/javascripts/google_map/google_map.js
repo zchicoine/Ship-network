@@ -1,9 +1,12 @@
 
-var map_value,region_name;
+var map_value,region_name,z;
 var markerArray = [] , rows =[];
 var getClickedPostion;
 var country_array = [];
-var geocoder, newCoordinates, country, geometries;
+var geocoder, newCoordinates, country, geometries,mapOptions;
+var zval = new zoom_value();
+var global_region_name = new zoom_value();
+var map_styles = new Object();
 
 function set_label_names(){
 
@@ -57,7 +60,7 @@ function set_label_names(){
  }
 
  function map_properties(){
- 	var map_styles = new Object();
+ 	
  	map_styles = [{
               "featureType": "administrative.country",
               "stylers": [
@@ -116,7 +119,7 @@ var colors = ['#00FFFF', '#00FF00', '#0000FF', '#FFFF00' , '#FF00FF' , '#ADD8E6'
  function initialize() {
 
 
-      var mapOptions = {
+       mapOptions = {
           center: new google.maps.LatLng(11.289703, -81.464677),
           zoom: 2,
           disableDefaultUI: true,
@@ -137,23 +140,9 @@ var colors = ['#00FFFF', '#00FF00', '#0000FF', '#FFFF00' , '#FF00FF' , '#ADD8E6'
        
 		// set the map to the specified div
         window.map  = new google.maps.Map(document.getElementById("googleMap"),mapOptions);
-        map.setOptions({styles: mapStyle});
-     //   set_label_names();
-        //draw outline on north america and setMap for that  
-     //  regionNorthAmerica.setMap(map); 
-       /* regionSouthAmerica.setMap(map);
-        regionEurope.setMap(map);
-        regionAfrica.setMap(map);
-        regionAustralia.setMap(map);
-        regionMiddleEast.setMap(map);
-        regionIndiaSubContinent.setMap(map);
-        regionFarEast.setMap(map);
-        */
-     //   region_event_listeners();
-     //    a=new Field("test");
-      //    a.setValue(region_layer_array);
 
-        //a.setValue(region_layer_array);
+        map.setOptions({styles: mapStyle});
+        set_label_names();
        
       geocoder = new google.maps.Geocoder();
 	  
@@ -162,23 +151,23 @@ var colors = ['#00FFFF', '#00FF00', '#0000FF', '#FFFF00' , '#FF00FF' , '#ADD8E6'
 	 // click  event function for zooming in   
      google.maps.event.addListener(map, 'click', function(e) {  
 
+       
+      if(zval.getZoomValue() > 2){
 
-      $('.region_labels').remove();
-       var zoomToNumber = window.map.getZoom() + 1;
-			 getClickedPostion = e.latLng
-       // make a function call to decide which region is being clicked on
-       console.log(getClickedPostion);
-			 window.map.setCenter(getClickedPostion);
-			 window.map.setZoom(zoomToNumber);
-
-  		var map_style = [{
-              "featureType": "administrative.country",
-              "stylers": [
-                { "visibility": "on" }
-              ]
-              }]; 
-			window.map.setOptions({styles: map_style}); 
-
+       getClickedPostion = e.latLng
+ 
+     //  console.log(getClickedPostion);
+       window.map.setCenter(getClickedPostion);
+       window.map.setZoom(2);
+       zval.setZoomValue(2);
+ 
+      
+      window.map.setOptions({styles: map_styles}); 
+      set_label_names();
+      $('body').css("cursor","default");    
+      }
+        
+     
     // getCountry(getClickedPostion);
      
 			
@@ -186,6 +175,12 @@ var colors = ['#00FFFF', '#00FF00', '#0000FF', '#FFFF00' , '#FF00FF' , '#ADD8E6'
 
 //preventing cursor to change when hovering over region label text
       google.maps.event.addListener(map, 'mouseover', function(event) {
+     
+        if(zval.getZoomValue() > 2){
+          $("body").css("cursor","-moz-zoom-out");
+          $("body").css("cursor","-webkit-zoom-out");        
+        }
+
           $('body').css("cursor","default");
         });
 
@@ -260,138 +255,40 @@ function drawRegions(geometries,region_name){
       //      draw_countries(newCoordinates,region_name);
             
 }
-/*
-function draw_countries(newCoordinates,region_name,color_name){
-  var randomnumber = Math.floor(Math.random() * 4);
-   country = new google.maps.Polygon({
-              paths: newCoordinates,
-              strokeColor: color_name,
-              strokeOpacity: 0,
-              strokeWeight: 1,
-              fillColor: color_name,
-              fillOpacity: 0.8
-            });
-          //  console.log(region_name);
-           google.maps.event.addListener(country, 'mouseover', function() {
-              this.setOptions({fillOpacity: 1});
-            });
 
-        /*   google.maps.event.addListener(country, 'click', function(e) {
-              test(e,country,region_name)
-              send_data_to_get_port_coordinates(region_name)
-              });
-            
-            google.maps.event.addListener(country, 'mouseout', function() {
-              this.setOptions({fillOpacity: 0.3});
-            });
-           country.setMap(map);
-           
-}*/
+
 function event_listeners(country,region_name)
 {
   google.maps.event.addListener(country, 'mouseover', function() {
               //  this.setOptions({fillOpacity: 1});
+              $('body').css("cursor","-moz-zoom-in");
+              $('body').css("cursor","-webkit-zoom-in");
+             
             });
 
   google.maps.event.addListener(country, 'click', function(e) {
               
-              send_data_to_get_port_coordinates(region_name)
-              test(e,country,region_name)
+          $('.region_labels').remove();
+       send_data_to_get_port_coordinates(region_name);
+       var zoomToNumber = window.map.getZoom() + 2;
+       getClickedPostion = e.latLng
+       // make a function call to decide which region is being clicked on
+       console.log(zoomToNumber);
+       window.map.setCenter(getClickedPostion);
+       window.map.setZoom(zoomToNumber);
+
+       zval.setZoomValue(zoomToNumber);
+       console.log(zval.getZoomValue());
+             test(e,country,region_name);
               
               });
             
   google.maps.event.addListener(country, 'mouseout', function() {
-              var z = window.map.getZoom();
-              if(z!=2){
-              $("body").css("cursor","-moz-zoom-out");
-              $("body").css("cursor","-webkit-zoom-out");
+              $('body').css("cursor","-moz-zoom-out");
+              $('body').css("cursor","-webkit-zoom-out");
               
-              }
-              else{
-              $("body").css("cursor","default");  
-              }
-
               //this.setOptions({fillOpacity: 0.3});
             });
-}
-/*function region_event_listeners(){
-/*
-  google.maps.event.addDomListener(regionEurope, 'click', function(e){
-
-      test(e,regionEuropeCoords,"Europe")
-  });
-    google.maps.event.addDomListener(regionEurope, 'mouseover', handleMouseOverEurope);
-    google.maps.event.addDomListener(regionEurope, 'mouseout', handleMouseOutEurope);
-
-  google.maps.event.addDomListener(regionNorthAmerica, 'click', function(e){
-
-      test(e,regionNorthAmericaCoords,"North America")
-      send_data_to_get_port_coordinates("North America")
-  });
-}
-  google.maps.event.addDomListener(regionNorthAmerica, 'mouseover', handleMouseOverNorthAmerica);
-  google.maps.event.addDomListener(regionNorthAmerica, 'mouseout', handleMouseOutNorthAmerica);
-
-  google.maps.event.addDomListener(regionSouthAmerica, 'click', function(e){
-      send_data_to_get_port_coordinates("South America" )
-      test(e,regionSouthAmericaCoords,"South America")
-  });
-  google.maps.event.addDomListener(regionSouthAmerica, 'mouseover', handleMouseOverSouthAmerica);
-   google.maps.event.addDomListener(regionSouthAmerica, 'mouseout', handleMouseOutSouthAmerica);
-
-  google.maps.event.addDomListener(regionAfrica, 'click',function(e){
-      send_data_to_get_port_coordinates("Africa" )
-      test(e,regionAfricaCoords,"Africa")
-  });
-  google.maps.event.addDomListener(regionAfrica, 'mouseover', handleMouseOverAfrica);
-  google.maps.event.addDomListener(regionAfrica, 'mouseout', handleMouseOutAfrica);
-
-  google.maps.event.addDomListener(regionMiddleEast, 'click', function(e){
-      send_data_to_get_port_coordinates("Middle East" )
-      test(e,regionMiddleEastCoords,"Middle East")
-  });
-  google.maps.event.addDomListener(regionMiddleEast, 'mouseover', handleMouseOverMiddleEast);
-  google.maps.event.addDomListener(regionMiddleEast, 'mouseout', handleMouseOutMiddleEast);
-
-  google.maps.event.addDomListener(regionAustralia, 'click', function(e){
-
-      test(e,regionAustraliaCoords,"Australia")
-      send_data_to_get_port_coordinates("Australia" )
-  });
-  google.maps.event.addDomListener(regionAustralia, 'mouseover', handleMouseOverAustralia);
-  google.maps.event.addDomListener(regionAustralia, 'mouseout', handleMouseOutAustralia);
-
-
-google.maps.event.addDomListener(regionIndiaSubContinent, 'click', function(e){
-    send_data_to_get_port_coordinates("India" )
-    test(e,regionIndiaSubContinentCoords,"India")
-  });
-google.maps.event.addDomListener(regionIndiaSubContinent, 'mouseover', handleMouseOverIndia);
-  google.maps.event.addDomListener(regionIndiaSubContinent, 'mouseout', handleMouseOutIndia);
-
-
-
-google.maps.event.addDomListener(regionFarEast, 'click', function(e){
-
-      test(e,regionKoreaJapanRussiaCoords,"Mid to North China")
-    send_data_to_get_port_coordinates("Mid to North China" )
-  });
-
-google.maps.event.addDomListener(regionFarEast, 'mouseover', handleMouseOverFarEast);
-  google.maps.event.addDomListener(regionFarEast, 'mouseout', handleMouseOutFarEast);
-
-
-}
-*/
-
-function setZoom(){
-  var z = window.map.getZoom();
-              if(z!=6){
-                z++;
-                window.map.setZoom(z);
-                $("body").css("cursor","-moz-zoom-in");
-                $("body").css("cursor","-webkit-zoom-in");
-              }
 }
 
 // identify a country based on mouse click
@@ -423,4 +320,20 @@ function region_name_on_country(country_name){
     {console.log('reached in Australia');}
   else
     console.log('not selected');
+}
+
+function zoom_value(){
+
+    var zoom = 2;
+
+    this.getZoomValue = function(){
+        return zoom;
+    }
+
+
+    this.setZoomValue = function(par_zoom_val){
+        zoom = par_zoom_val;
+        return this;
+    }
+
 }
