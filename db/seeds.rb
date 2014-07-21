@@ -31,7 +31,7 @@ open("db/data/ship_db.txt") do |ships|
                 temp = 5
         end
 
-        unless(deadweight.to_i == 0)
+    unless(deadweight.to_i == 0)
         case deadweight.to_i
             when 100000..10000000000
                 category_name = 7
@@ -48,7 +48,7 @@ open("db/data/ship_db.txt") do |ships|
             when 1..18000
                 category_name = 1
         end
-        else
+    else
         case deadweight_cargo_capacity.to_i
           when 100000..10000000000
             category_name = 7
@@ -65,7 +65,8 @@ open("db/data/ship_db.txt") do |ships|
           when 1..18000
             category_name = 1
         end
-
+    end
+        
         begin
             Ship.create!(name: name, vessel_type: temp, deadweight: deadweight.to_i, deadweight_cargo_capacity: deadweight_cargo_capacity.to_i,
                           vessel_category: category_name)
