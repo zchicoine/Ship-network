@@ -13,7 +13,7 @@ open("db/data/ship_db.txt") do |ships|
         name, vessel_type, deadweight, deadweight_cargo_capacity, draft, built, tons_per_centimeter, flag, classification_society,
             length_over_all, beam, holds, hatches,gross_registered_tonnage, net_registered_tonnage,total_cubic_meters_GR,total_cubic_meters_BL,
             total_cubic_feet_GR,total_cubic_feet_BL,intermediate_fuel_oil_180,intermediate_fuel_oil_380,marine_diesel_oil,marine_gasoline_oil,
-            laden,ballast,economic,consumption_at_sea_L,consumption_at_sea_B,eco_consumption_L,marine_gasoline_oil_at_sea,consumption_in_port_Working,
+            laden,ballast,economic,consumption_at_sea_L,consumption_at_sea_B,eco_consumption_L,marine_diesel_oil_at_sea,marine_gasoline_oil_at_sea,consumption_in_port_Working,
             consumption_in_port_Idle,marine_diesel_in_port,marine_gasoline_oil_in_port,number_of_cranes,crane_capacity,combined_crane_capacity,
             aussie_holds_ladders, co_system_on_board,twenty_foot_equivalent_unit,lakes_fitted,ice_classed,log_fitted,grabber,gearless,double_hull,
             imo_fitted,appendix_B_fitted,box_shaped_holds,cement_holes_fitted= ship.chomp.split(";")
@@ -66,13 +66,26 @@ open("db/data/ship_db.txt") do |ships|
             category_name = 1
         end
     end
-        
+
         begin
             Ship.create!(name: name, vessel_type: temp, deadweight: deadweight.to_i, deadweight_cargo_capacity: deadweight_cargo_capacity.to_i,
                           vessel_category: category_name)
         rescue => e
             puts e.message + " for  vessel: " + name
         end
+           Ship.find_by_name(name).ship_detail.create(draft: draft.to_f, built: built.to_i, tons_per_centimeter: tons_per_centimeter.to_f,
+              flag: flag, classification_society: classification_society, length_over_all: length_over_all.to_f, beam: beam.to_f, holds: holds.to_i,
+              hatches: hatches.to_i, gross_registered_tonnage: gross_registered_tonnage, net_registered_tonnage: net_registered_tonnage, total_cubic_meters_GR: total_cubic_meters_GR,
+              total_cubic_meters_BL: total_cubic_meters_BL,total_cubic_feet_GR:total_cubic_feet_GR, total_cubic_feet_BL: total_cubic_feet_BL, intermediate_fuel_oil_180?: intermediate_fuel_oil_180,
+              intermediate_fuel_oil_380?: intermediate_fuel_oil_380,marine_diesel_oil?: marine_diesel_oil,laden: laden, ballast: ballast, economic: economic,
+              consumption_at_sea_L: consumption_at_sea_L, consumption_at_sea_B: consumption_at_sea_B, eco_consumption_L: eco_consumption_L,
+              marine_diesel_oil_at_sea: marine_diesel_oil_at_sea, marine_gasoline_oil_at_sea: marine_gasoline_oil_at_sea, consumption_in_port_Working: consumption_in_port_Working,
+              consumption_in_port_Idle: consumption_in_port_Idle, marine_diesel_in_port: marine_diesel_in_port, marine_gasoline_oil_in_port: marine_gasoline_oil_in_port,
+              number_of_cranes: number_of_cranes, crane_capacity: crane_capacity, combined_crane_capacity: combined_crane_capacity,aussie_holds_ladders: aussie_holds_ladders,
+              CO2_system_on_board?: co_system_on_board, twenty_foot_equivalent_unit?: twenty_foot_equivalent_unit,lakes_fitted?: lakes_fitted,
+              log_fitted?: log_fitted, grabber?: grabber,gearless?: gearless, double_hull?: double_hull,imo_fitted?: imo_fitted, appendix_B_fitted?: appendix_B_fitted,
+              box_shaped_holds?: box_shaped_holds, cement_holes_fitted?: cement_holes_fitted,marine_gasoline_oil?: marine_gasoline_oil, ice_classed?: ice_classed)
+
     end
 end
 
