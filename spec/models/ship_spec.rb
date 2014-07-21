@@ -34,7 +34,7 @@ describe Ship do
     describe "when ship name is already stored" do
         before do
           #which creates a duplicate ship with the same attributes
-          ship_with_same_name = @ship_instance
+          ship_with_same_name = @ship_instance.dup
           ship_with_same_name.name = @ship_instance.name.upcase
           ship_with_same_name.save
         end
@@ -48,26 +48,30 @@ describe Ship do
 
         let(:found_ship){Ship.find_by(name: @ship_instance.name)}
         describe "with invalid built year" do
-          let(:ship_for_invalid_built_year) { found_ship.built = 2017 }
-          it { should_not eq ship_for_invalid_built_year }
+          before { found_ship.built = 2017 }
 
-          #it {expect(user_for_invalid_password).to be_falsey }
-          specify { expect(ship_for_invalid_built_year).to be_falsey }
+
+          it { expect(found_ship).to_not be_valid  }
 
         end
         describe "with invalid deadweight " do
-            before{ found_ship.deadweight = -1 }
+            before{
+                found_ship.deadweight = - 1
+                found_ship.save
+            }
 
             #it {expect(user_for_invalid_password).to be_falsey }
-            it { expect(found_ship).to validate_numericality_of(:deadweight)}
+            it { expect(found_ship).to_not be_valid }
 
         end
 
         describe "with invalid vessel type " do
-            before{ found_ship.vessel_type = Ship.vessel_types[17] }
+            before{
+                found_ship.vessel_type = Ship.vessel_types[17]
+                found_ship.save
+            }
 
-            #it {expect(user_for_invalid_password).to be_falsey }
-            it { expect(found_ship).to be_valid}
+            it { expect(found_ship).to_not be_valid}
 
         end
     end
@@ -81,40 +85,51 @@ describe Ship do
 
             specify "deadweight greater than 100000" do
                 found_ship.deadweight = 200000
-                found_ship.save
-                expect(found_ship.vessel_category).to eq Ship.vessel_categories[:Capesize]
+               if found_ship.save
+                    expect(found_ship.vessel_category).to eq 'Capesize'
+                end
             end
             specify "deadweight between 80000..100000" do
                 found_ship.deadweight = 85000
-                found_ship.save
-                expect(found_ship.vessel_category).to eq Ship.vessel_categories[:PostPanamax]
+               if found_ship.save
+                    expect(found_ship.vessel_category).to eq 'PostPanamax'
+                end
             end
 
             specify "deadweight between 65000..80000" do
                 found_ship.deadweight = 65050
-                found_ship.save
-                expect(found_ship.vessel_category).to eq Ship.vessel_categories[:Panamax]
+                if found_ship.save
+                expect(found_ship.vessel_category).to eq 'Panamax'
+                end
             end
 
             specify "deadweight between 50000..65000" do
                 found_ship.deadweight = 53000
-                found_ship.save
-                expect(found_ship.vessel_category).to eq Ship.vessel_categories[:Supramax]
+                if found_ship.save
+                    expect(found_ship.vessel_category).to eq 'Supramax'
+
+                end
+
             end
             specify "deadweight between 38000..50000" do
                 found_ship.deadweight = 43000
-                found_ship.save
-                expect(found_ship.vessel_category).to eq Ship.vessel_categories[:Handymax]
+                if found_ship.save
+                    expect(found_ship.vessel_category).to eq 'Handymax'
+                end
             end
             specify "deadweight between 18000..38000" do
                 found_ship.deadweight = 33000
-                found_ship.save
-                expect(found_ship.vessel_category).to eq Ship.vessel_categories[:Supramax]
+                if found_ship.save
+                    expect(found_ship.vessel_category).to eq 'Supramax'
+                end
+
             end
-            specify "deadweight between 1000..18000" do
+            specify "deadweight between 1..18000" do
                 found_ship.deadweight = 2000
-                found_ship.save
-                expect(found_ship.vessel_category).to eq Ship.vessel_categories[:Minibulker]
+               if found_ship.save
+                   expect(found_ship.vessel_category).to eq 'Minibulker'
+               end
+
             end
 
 
