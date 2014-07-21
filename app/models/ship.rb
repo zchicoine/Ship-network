@@ -7,10 +7,13 @@ class Ship < ActiveRecord::Base
     validates :built, numericality: {less_than_or_equal_to: Time.now.year}
     validate  :vessel_type_validates?
 
+  enum vessel_type: [:notype, :sdbc, :ohbs , :mpp, :tween, :roro]
+  enum vessel_category: [:No_Type, :MiniBulker, :Handysize, :Handymax , :Supramax, :Panamax, :PostPanamax, :Capesize]
 
-    enum vessel_type: [:notype, :sdbc, :ohbs, :mpp, :tween, :roro]
-    enum vessel_category: [:No_Type, :MiniBulker, :Handysize, :Handymax, :Supramax, :Panamax, :PostPanamax, :Capesize]
+	has_many :shipments
+	has_many :ports, :through => :shipments, :dependent => :destroy
 
+  has_one :ship_detail
     has_many :shipments
     has_many :ports, :through => :shipments, :dependent => :destroy
 

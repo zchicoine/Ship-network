@@ -10,7 +10,13 @@ open("db/data/ship_db.txt") do |ships|
     ships.read.each_line do |ship|
         # .encode to fix UTF-8-encoded text (or it will not split the string in the next line) 
         ship.encode!('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '')
-        name, built, draft, deadweight, beam, loa, vessel_type, vessel_category = ship.chomp.split(";")
+        name, vessel_type, deadweight, deadweight_cargo_capacity, draft, built, tons_per_centimeter, flag, classification_society,
+            length_over_all, beam, holds, hatches,gross_registered_tonnage, net_registered_tonnage,total_cubic_meters_GR,total_cubic_meters_BL,
+            total_cubic_feet_GR,total_cubic_feet_BL,intermediate_fuel_oil_180,intermediate_fuel_oil_380,marine_diesel_oil,marine_gasoline_oil,
+            laden,ballast,economic,consumption_at_sea_L,consumption_at_sea_B,eco_consumption_L,marine_gasoline_oil_at_sea,consumption_in_port_Working,
+            consumption_in_port_Idle,marine_diesel_in_port,marine_gasoline_oil_in_port,number_of_cranes,crane_capacity,combined_crane_capacity,
+            aussie_holds_ladders, co_system_on_board,twenty_foot_equivalent_unit,lakes_fitted,ice_classed,log_fitted,grabber,gearless,double_hull,
+            imo_fitted,appendix_B_fitted,box_shaped_holds,cement_holes_fitted= ship.chomp.split(";")
 
         case vessel_type.strip
             when "SDBC"
@@ -25,6 +31,7 @@ open("db/data/ship_db.txt") do |ships|
                 temp = 5
         end
 
+    unless(deadweight.to_i == 0)
         case deadweight.to_i
             when 100000..10000000000
                 category_name = 7
@@ -38,13 +45,31 @@ open("db/data/ship_db.txt") do |ships|
                 category_name = 3
             when 18000..38000
                 category_name = 2
-            when 1000..18000
+            when 1..18000
                 category_name = 1
         end
-
+    else
+        case deadweight_cargo_capacity.to_i
+          when 100000..10000000000
+            category_name = 7
+          when 80000..100000
+            category_name = 6
+          when 65000..80000
+            category_name = 5
+          when 50000..65000
+            category_name = 4
+          when 38000..50000
+            category_name = 3
+          when 18000..38000
+            category_name = 2
+          when 1..18000
+            category_name = 1
+        end
+    end
+        
         begin
-            Ship.create!(name: name, built: built.to_i, draft: draft.to_d, deadweight: deadweight.to_i, beam: beam.to_i,
-                         loa: loa.to_i, vessel_type: temp, vessel_class: category_name)
+            Ship.create!(name: name, vessel_type: temp, deadweight: deadweight.to_i, deadweight_cargo_capacity: deadweight_cargo_capacity.to_i,
+                          vessel_category: category_name)
         rescue => e
             puts e.message + " for  vessel: " + name
         end
