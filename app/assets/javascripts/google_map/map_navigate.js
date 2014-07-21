@@ -86,12 +86,16 @@ $(window).load(function(){
 	});
 
  	$(".zoom_out").click(function(){  
-      //alert("The paragraph was clicked.");
-   	//	set_label_names();   
+ 
    		initialize();
    		setMarkers(null,markerArray);
    		window.map.setZoom(2);
+
+   		// setting the global zoom value back to 2 so that the right navigation button will be set to act on 
+   		// region layer
    		zval.setZoomValue(2);
+
+   		// changing the cursor back to default
    		$("body").css("cursor","default");
    	});
 		
@@ -99,7 +103,11 @@ $(window).load(function(){
 
 });
 
+/*
 
+this is a function to set and get global values for arrays used 
+to scroll in different ports on a region when zoomed in
+*/
 function Field(val){
     var value = val;
    
