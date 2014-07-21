@@ -43,7 +43,7 @@ $(window).load(function(){
 
  	$(".zoom_out").click(function(){  
       //alert("The paragraph was clicked.");
-   		set_label_names();   
+   	//	set_label_names();   
    		initialize();
    		setMarkers(null,markerArray);
    		window.map.setZoom(2);

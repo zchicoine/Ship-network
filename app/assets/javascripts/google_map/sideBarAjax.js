@@ -1,5 +1,6 @@
         function send_data_to_side_bar(regionName){
 
+            console.log('In send_data_to_side_bar');
         var data_json = { "region_info": { "name": regionName, "coordinates": "123 Carol" } };
 
 //        // ajax parameters

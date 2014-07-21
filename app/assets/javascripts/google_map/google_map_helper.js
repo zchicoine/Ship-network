@@ -19,12 +19,12 @@ function send_data_to_get_port_coordinates(regionName){
         success: function(result) {
 
             display_ports( result.coordinates , result.name)
-          //  alert(result.coordinates);
+            console.log('hello i amin json')
 
         },
         error: function(r){
 
-            alert(r);
+             alert(r.message);
         }
     });
 
@@ -67,7 +67,7 @@ function send_data_to_get_ship_side_bar(port_name ){
 
 
 function display_ports( port , port_name){
-    
+     console.log(port);
     var iconDefault = {
         url: 'assets/google_map/but_default_24.png',
         // This marker is 20 pixels wide by 32 pixels tall.
@@ -115,7 +115,7 @@ function display_ports( port , port_name){
             return function() {
                 // it allow clicking twice
                 if(marker.icon != iconClick) {
-                    marker.setIcon(iconDefault);
+                marker.setIcon(iconDefault);
                 }
             }
 
@@ -140,5 +140,6 @@ function setMarkers(value,markerArray){
     var v = value;
     for(var i = 0; i < markerArray.length; ++i){
                 markerArray[i].setMap(v);
+                console.log('Setting markers');
             }
 }
