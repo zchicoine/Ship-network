@@ -10,8 +10,7 @@ class Ship < ActiveRecord::Base
   enum vessel_type: [:notype, :sdbc, :ohbs , :mpp, :tween, :roro]
   enum vessel_category: [:No_Type, :MiniBulker, :Handysize, :Handymax , :Supramax, :Panamax, :PostPanamax, :Capesize]
 
-	has_many :shipments
-	has_many :ports, :through => :shipments, :dependent => :destroy
+
 
   has_one :ship_detail
     has_many :shipments
