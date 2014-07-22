@@ -29,7 +29,7 @@ $(window).load(function(){
 	
 		}
 		
-		else if(this.id=='right-img-responsive' && (zval.getZoomValue()) >=6 ){
+		else if(this.id=='right-img-responsive' && (zval.getZoomValue()) >=5 ){
 	
 			if(global_region_name.getZoomValue()=="Europe"){
 				a = new Field("test");
@@ -84,6 +84,7 @@ $(window).load(function(){
            window.map.panBy(-150,0);    	
 			
 	});
+
 
  	$(".zoom_out").click(function(){  
  
