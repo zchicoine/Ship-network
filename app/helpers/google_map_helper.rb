@@ -100,6 +100,12 @@ module GoogleMapHelper
       @name_of_ports_per_region = Port.select(:name, :latitude, :longitude).where(region: region_name)
     end
 
+    # the format return
+    #["region name", latitude,longitude ]=>shipNumber
+    def get_nameAndCoordinatesOfPorts_and_shipNumber_perRegion region_name = "null"
+        @name_of_ports_per_region = Port.joins(:shipments).where(region: region_name).group(:name, :latitude, :longitude).size
+    end
+
 end
 
 
