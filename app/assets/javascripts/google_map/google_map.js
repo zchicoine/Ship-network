@@ -142,7 +142,6 @@ var colors = ['#00FFFF', '#00FF00', '#0000FF', '#FFFF00' , '#FF00FF' , '#ADD8E6'
         window.map  = new google.maps.Map(document.getElementById("googleMap"),mapOptions);
 
         map.setOptions({styles: mapStyle});
-        set_label_names();
        
       geocoder = new google.maps.Geocoder();
 	  
@@ -151,7 +150,6 @@ var colors = ['#00FFFF', '#00FF00', '#0000FF', '#FFFF00' , '#FF00FF' , '#ADD8E6'
 	 // click  event function for zooming in   
      google.maps.event.addListener(map, 'click', function(e) {  
 
-       
       if(zval.getZoomValue() > 2){
 
        getClickedPostion = e.latLng
@@ -175,13 +173,16 @@ var colors = ['#00FFFF', '#00FF00', '#0000FF', '#FFFF00' , '#FF00FF' , '#ADD8E6'
 
 //preventing cursor to change when hovering over region label text
       google.maps.event.addListener(map, 'mouseover', function(event) {
-     
+        
+        $('body').css("cursor","default");
         if(zval.getZoomValue() > 2){
           $("body").css("cursor","-moz-zoom-out");
           $("body").css("cursor","-webkit-zoom-out");        
         }
-
+        else{
           $('body').css("cursor","default");
+        }
+          
         });
 
  //zoom out function     
@@ -294,8 +295,16 @@ function event_listeners(country,region_name)
               });
             
   google.maps.event.addListener(country, 'mouseout', function() {
-              $('body').css("cursor","-moz-zoom-out");
-              $('body').css("cursor","-webkit-zoom-out");
+
+     if(zval.getZoomValue() > 2){
+          $("body").css("cursor","-moz-zoom-out");
+          $("body").css("cursor","-webkit-zoom-out");        
+        }
+        else if (zval.getZoomValue() = 2){
+          $("body").css("cursor","default");
+
+        }
+              // $('body').css("cursor","-webkit-zoom-out");
               
               //this.setOptions({fillOpacity: 0.3});
             });

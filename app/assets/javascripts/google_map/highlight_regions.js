@@ -29,7 +29,7 @@
               strokeOpacity: 0,
               strokeWeight: 1,
               fillColor: "#B2FFFF",
-              fillOpacity: 0.8
+              fillOpacity: 0.4
             });
           //  console.log(region_name);
             event_listeners(country,region_name);
@@ -63,7 +63,7 @@
               strokeOpacity: 0,
               strokeWeight: 1,
               fillColor: "#EB99D6",
-              fillOpacity: 0.8
+              fillOpacity: 0.4
             });
           //  console.log(region_name);
                  event_listeners(country,region_name);
@@ -99,7 +99,7 @@
               strokeOpacity: 0,
               strokeWeight: 1,
               fillColor: "#FFAD99",
-              fillOpacity: 0.8
+              fillOpacity: 0.4
             });
           //  console.log(region_name);
                  event_listeners(country,region_name);
@@ -136,7 +136,7 @@
               strokeOpacity: 0,
               strokeWeight: 1,
               fillColor: "#FFFFB2",
-              fillOpacity: 0.8
+              fillOpacity: 0.4
             });
           //  console.log(region_name);
                  event_listeners(country,region_name);
@@ -182,7 +182,7 @@
               strokeOpacity: 0,
               strokeWeight: 1,
               fillColor: "#D1D1E0",
-              fillOpacity: 0.8
+              fillOpacity: 0.4
             });
           //  console.log(region_name);
                  event_listeners(country,region_name);
@@ -226,7 +226,7 @@
               strokeOpacity: 0,
               strokeWeight: 1,
               fillColor: colors[0],
-              fillOpacity: 0.8
+              fillOpacity: 0.4
             });
           //  console.log(region_name);
            event_listeners(country,region_name);
@@ -268,7 +268,7 @@
               strokeOpacity: 0,
               strokeWeight: 1,
               fillColor: colors[0],
-              fillOpacity: 0.8
+              fillOpacity: 0.4
             });
           //  console.log(region_name);
            event_listeners(country,region_name);
@@ -300,19 +300,25 @@
             }
       
       var randomnumber = Math.floor(Math.random() * 4);
-              country = new google.maps.Polygon({
+              fillRegion(newCoordinates);
+          //  console.log(region_name);
+           event_listeners(country,region_name);
+         //  country.setMap(map);
+
+          }
+    
+}
+}
+
+
+function fillRegion(newCoordinates){
+  country = new google.maps.Polygon({
               paths: newCoordinates,
               strokeColor: colors[0],
               strokeOpacity: 0,
               strokeWeight: 1,
               fillColor: colors[0],
-              fillOpacity: 0.8
+              fillOpacity: 0.4
             });
-          //  console.log(region_name);
-           event_listeners(country,region_name);
-           country.setMap(map);
-
-          }
-    
-}
+  country.setMap(map);
 }
