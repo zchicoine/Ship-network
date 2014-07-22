@@ -1,6 +1,6 @@
 
-
 var regionClick;
+var a = new Field("test");
 
 function setClickedPosition(getClickedPostion){
 
@@ -15,26 +15,42 @@ return regionClick;
 function click(getClickedPostion){
 	$('.region_labels').remove();
  	window.map.setCenter(getClickedPostion);
-  window.map.setZoom(4);
 }
 
+
+/*
+this function sets the global variable "global_region_name" to the value dependent on 
+region clicked on
+*/
 function test ( event, region_name_coords, region_name) {
-   if(region_name != undefined) {
-       _region = new google.maps.Polygon({
-           paths: region_name_coords,
-           strokeColor: "blue",
-           strokeWeight: 0,
-           strokeOpacity: 0,
-           fillOpacity: 0
 
-       });
-       _region.setMap(map);
+       
+       if(region_name=="Europe".toUpperCase()){
+        global_region_name.setZoomValue("Europe");
 
-       getClickedPostion = event.latLng
-       click(getClickedPostion);
-       setClickedPosition(getClickedPostion);
-       send_data_to_side_bar(region_name);
-   }
+       }
+       else if(region_name=="North America".toUpperCase()){
+    
+        global_region_name.setZoomValue("North America");
+       }
+       else if(region_name=="South America".toUpperCase()){
+   
+        global_region_name.setZoomValue("South America");
+       }
+       else if(region_name=="Africa".toUpperCase()){
+   
+        global_region_name.setZoomValue("Africa");
+       }
+       else if(region_name=="India".toUpperCase()){
+   
+        global_region_name.setZoomValue("India");
+       }
+        
+        getClickedPostion = event.latLng
+        click(getClickedPostion);
+        setClickedPosition(getClickedPostion);
+        send_data_to_side_bar(region_name);
+   
 }
 
 

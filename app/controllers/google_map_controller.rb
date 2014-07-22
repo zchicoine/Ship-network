@@ -17,11 +17,12 @@ class GoogleMapController < ApplicationController
     # return ports coordinates array
     def port_coordinates
         parameters = params.require(:region_info).permit(:name)
-        ports_coordinates =  get_name_of_ports_and_coordinates_per_region parameters[:name]
-         ports_coordinates_array = ports_coordinates.all.map { |var| [ var.latitude, var.longitude] }
-        #  ports_coordinates.as_json
-        #   return ports_coordinates_array
-        render :json => {name:ports_coordinates.all.map { |var| var.name }, coordinates: ports_coordinates_array}
+        ports_name_coordinates__shipNumber =  get_nameAndCoordinatesOfPorts_and_shipNumber_perRegion parameters[:name]
+        ports_name_coordinates__shipNumber_array = ports_name_coordinates__shipNumber.to_a
+        array_length = ports_name_coordinates__shipNumber_array.length
+        port_coordinates_array = ports_name_coordinates__shipNumber_array.map {|v| [v[0][1], v[0][2]]  }
+
+        render :json => {name:ports_name_coordinates__shipNumber_array.map {|v| v[0][0]}, coordinates: port_coordinates_array, shipNumber:ports_name_coordinates__shipNumber_array.map {|v| v[1]}}
 
     end
 
