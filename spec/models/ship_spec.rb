@@ -7,20 +7,22 @@ require 'rails_helper'
 
 describe Ship do 
     # before to run any test create a ship object
-    before { @ship_instance = Ship.new(name: "marine prince", category: "SDBC" ,
-                     built: "2012") }
+    before { @ship_instance = Ship.new(
+        name: "marine prince", vessel_type: Ship.vessel_types[:ohbs] ,
+        built: "2012", deadweight: 200000, vessel_category: Ship.vessel_categories[:Capesize],
+        draft:9.568, beam:27, loa:190) }
     # makes @ship_instance the default subject of the test example so we don't use
     # expect(@ship_instance)
     subject { @ship_instance }
     
     it { should respond_to(:name) }
-    it { should respond_to(:category) }
+    it { should respond_to(:vessel_type) }
     it { should respond_to(:built) }
-    # it { should respond_to(:built) }
-    # it { should respond_to(:built) }
-    # it { should respond_to(:built) }
-    # it { should respond_to(:built) }
-    # it { should respond_to(:built) }
+    it { should respond_to(:vessel_category) }
+    it { should respond_to(:deadweight) }
+    it { should respond_to(:draft) }
+    it { should respond_to(:beam) }
+    it { should respond_to(:loa) }
 
     it  { should be_valid }
     
@@ -32,7 +34,7 @@ describe Ship do
     describe "when ship name is already stored" do
         before do
           #which creates a duplicate ship with the same attributes
-          ship_with_same_name = @ship_instance
+          ship_with_same_name = @ship_instance.dup
           ship_with_same_name.name = @ship_instance.name.upcase
           ship_with_same_name.save
         end
@@ -46,24 +48,103 @@ describe Ship do
 
         let(:found_ship){Ship.find_by(name: @ship_instance.name)}
         describe "with invalid built year" do
-          let(:ship_for_invalid_built_year) { found_ship.built = 2014 }
-          it { should_not eq ship_for_invalid_built_year }
+          before { found_ship.built = 2017 }
 
-          #it {expect(user_for_invalid_password).to be_falsey }
-          specify { expect(ship_for_invalid_built_year).to be_falsey }
+
+          it { expect(found_ship).to_not be_valid  }
+
+        end
+        describe "with invalid deadweight " do
+            before{
+                found_ship.deadweight = - 1
+                found_ship.save
+            }
+
+            #it {expect(user_for_invalid_password).to be_falsey }
+            it { expect(found_ship).to_not be_valid }
+
+        end
+
+        describe "with invalid vessel type " do
+            before{
+                found_ship.vessel_type = Ship.vessel_types[17]
+                found_ship.save
+            }
+
+            it { expect(found_ship).to_not be_valid}
 
         end
     end
+    describe "validate requirements" do
+        before {
+            @ship_instance.save
+        }
 
+        let(:found_ship){Ship.find_by(name: @ship_instance.name)}
+       describe "match vessel category with deadweight" do
+
+            specify "deadweight greater than 100000" do
+                found_ship.deadweight = 200000
+               if found_ship.save
+                    expect(found_ship.vessel_category).to eq 'Capesize'
+                end
+            end
+            specify "deadweight between 80000..100000" do
+                found_ship.deadweight = 85000
+               if found_ship.save
+                    expect(found_ship.vessel_category).to eq 'PostPanamax'
+                end
+            end
+
+            specify "deadweight between 65000..80000" do
+                found_ship.deadweight = 65050
+                if found_ship.save
+                expect(found_ship.vessel_category).to eq 'Panamax'
+                end
+            end
+
+            specify "deadweight between 50000..65000" do
+                found_ship.deadweight = 53000
+                if found_ship.save
+                    expect(found_ship.vessel_category).to eq 'Supramax'
+
+                end
+
+            end
+            specify "deadweight between 38000..50000" do
+                found_ship.deadweight = 43000
+                if found_ship.save
+                    expect(found_ship.vessel_category).to eq 'Handymax'
+                end
+            end
+            specify "deadweight between 18000..38000" do
+                found_ship.deadweight = 33000
+                if found_ship.save
+                    expect(found_ship.vessel_category).to eq 'Supramax'
+                end
+
+            end
+            specify "deadweight between 1..18000" do
+                found_ship.deadweight = 2000
+               if found_ship.save
+                   expect(found_ship.vessel_category).to eq 'Minibulker'
+               end
+
+            end
+
+
+       end
+
+    end
     describe "relationship with other tables," do
         before {
           # here should create the relationship
           @ship_instance.save
           @ports_array = [
 
-              Port.create!(name: 'Ronne', latitude_coordinate: 55.08333333, longitude_coordinate: 14.68333333),
-              Port.create!(name: 'Djibouti', latitude_coordinate: 11.6, longitude_coordinate: 43.13333333),
-              Port.create!(name: 'Portsmouth', latitude_coordinate: 15.56666667, longitude_coordinate: -61.46666667)
+              Port.create!(name: 'Ronne', latitude: 55.08333333, longitude: 14.68333333),
+              Port.create!(name: 'Djibouti', latitude: 11.6, longitude: 43.13333333),
+              Port.create!(name: 'Portsmouth', latitude: 15.56666667, longitude: -61.46666667)
 
           ]
           @shipments_array = [
@@ -105,6 +186,15 @@ describe Ship do
                  expect(@ship_instance.shipments.first.update(open_start_date: Time.new(2014,2,2))).to be_falsey
 
             end
+
+
+        end
+        describe "check for ship details relationship" do
+            before {
+
+            }
+
+
 
 
         end
