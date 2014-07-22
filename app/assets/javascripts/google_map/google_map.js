@@ -2,8 +2,8 @@
 var map_value,region_name,z;
 var markerArray = [] , rows =[];
 var getClickedPostion;
-var country_array = [];
-var geocoder, newCoordinates, country, geometries,mapOptions;
+var country_array = [] , newCoordinates = [];
+var geocoder, country, geometries,mapOptions;
 var zval = new zoom_value();
 var global_region_name = new zoom_value();
 var map_styles = new Object();
@@ -161,8 +161,8 @@ var colors = ['#00FFFF', '#00FF00', '#0000FF', '#FFFF00' , '#FF00FF' , '#ADD8E6'
  
       
       window.map.setOptions({styles: map_styles}); 
-      set_label_names();
-      $('body').css("cursor","default");    
+   //   set_label_names();
+      $("body").css("cursor","default");    
       }
         
      
@@ -174,15 +174,15 @@ var colors = ['#00FFFF', '#00FF00', '#0000FF', '#FFFF00' , '#FF00FF' , '#ADD8E6'
 //preventing cursor to change when hovering over region label text
       google.maps.event.addListener(map, 'mouseover', function(event) {
         
-        $('body').css("cursor","default");
+        $("body").css("cursor","default");
         if(zval.getZoomValue() > 2){
           $("body").css("cursor","-moz-zoom-out");
           $("body").css("cursor","-webkit-zoom-out");        
         }
         else{
-          $('body').css("cursor","default");
+          $("body").css("cursor","default");
         }
-          
+     //   fillRegion(newCoordinates);
         });
 
  //zoom out function     
@@ -265,8 +265,8 @@ function event_listeners(country,region_name)
 {
   google.maps.event.addListener(country, 'mouseover', function() {
               //  this.setOptions({fillOpacity: 1});
-              $('body').css("cursor","-moz-zoom-in");
-              $('body').css("cursor","-webkit-zoom-in");
+              $("body").css("cursor","-moz-zoom-in");
+           //   $('#googleMap').css("cursor","-webkit-zoom-in");
              
             });
 
@@ -300,7 +300,7 @@ function event_listeners(country,region_name)
           $("body").css("cursor","-moz-zoom-out");
           $("body").css("cursor","-webkit-zoom-out");        
         }
-        else if (zval.getZoomValue() = 2){
+        else if (zval.getZoomValue() == 2){
           $("body").css("cursor","default");
 
         }
