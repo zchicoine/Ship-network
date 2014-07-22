@@ -281,7 +281,7 @@ function event_listeners(country,region_name)
               
         $('.region_labels').remove();
        send_data_to_get_port_coordinates(region_name);
-       var zoomToNumber = window.map.getZoom() + 2;
+       var zoomToNumber = window.map.getZoom() + 1;
        getClickedPostion = e.latLng
        // make a function call to decide which region is being clicked on
        console.log(zoomToNumber);
