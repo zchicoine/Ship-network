@@ -30,7 +30,7 @@ module GoogleMapHelper
         Ship.all.size
     end
     def get_number_of_ships_per_class category_name
-      @ships_per_class = Ship.select(:vessel_class).where(vessel_class: category_name).size
+      @ships_per_class = Ship.select(:vessel_category).where(vessel_category: category_name).size
     end
 
     def get_number_of_ships_per_region region_name
@@ -46,7 +46,7 @@ module GoogleMapHelper
         @ships_per_region = Port.includes(:ships).where(region: region_name)
         @ship_count = 0
         @ships_per_region.each do |port|
-            @ship_count += port.ships.where(vessel_class: category_name).size
+            @ship_count += port.ships.where(vessel_category: category_name).size
         end
         @ship_count
     end
