@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140721180408) do
+ActiveRecord::Schema.define(version: 20140722201134) do
 
   create_table "ports", force: true do |t|
     t.string   "name"
@@ -72,7 +72,10 @@ ActiveRecord::Schema.define(version: 20140721180408) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "marine_gasoline_oil?"
+    t.integer  "ship_id"
   end
+
+  add_index "ship_details", ["ship_id"], name: "index_ship_details_on_ship_id"
 
   create_table "shipments", force: true do |t|
     t.integer  "port_id"
