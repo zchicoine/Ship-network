@@ -18,7 +18,7 @@ function send_data_to_get_port_coordinates(regionName ){
         },
         success: function(result) {
 
-            display_ports( result.coordinates , result.name)
+            display_ports( result.coordinates , result.name, result.shipNumber)
           //  alert(result.coordinates);
 
         },
@@ -65,7 +65,8 @@ function send_data_to_get_ship_side_bar(port_name ){
 }
 
 
-function display_ports( port , port_name){
+function display_ports( port , port_name , ship_number){
+   // alert(port[0]);
     var iconDefault = {
         url: 'assets/google_map/but_default_24.png'
         // This marker is 20 pixels wide by 32 pixels tall.
@@ -89,15 +90,16 @@ function display_ports( port , port_name){
     };
 
 
-    for(var i=0;i<port.length;i++){
-      //  console.log(port[i][0]);
+    for(var i=0;i < port.length;i++){
+      //  console.log( "length: " + port.length);
         var position = new google.maps.LatLng(port[i][0],port[i][1]);
           new google.maps.Size(20, 34),
             marker = new google.maps.Marker({
+                id: port_name[i],
                 position: position,
                 map: map,
                 icon: iconDefault,
-                title: port_name[i]
+                title: port_name[i] +" has " + ship_number[i] + " ship(s)"
 
             });
 
@@ -119,7 +121,8 @@ function display_ports( port , port_name){
         })(marker, "  "));
         google.maps.event.addListener(marker, 'click', (function( marker,title) {
             return function() {
-                send_data_to_get_ship_side_bar(marker.getTitle());
+
+                send_data_to_get_ship_side_bar( marker.id);
                 marker.setIcon(iconClick);
             }
 
