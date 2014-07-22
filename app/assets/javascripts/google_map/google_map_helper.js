@@ -19,7 +19,7 @@ function send_data_to_get_port_coordinates(regionName ){
         success: function(result) {
 
             display_ports( result.coordinates , result.name, result.shipNumber)
-          //  alert(result.coordinates);
+            //  alert(result.coordinates);
 
         },
         error: function(r){
@@ -53,7 +53,7 @@ function send_data_to_get_ship_side_bar(port_name ){
             closed_table_side_bar()
 
             //display_ports( result.coordinates)
-              //alert( result.number_ships);
+            //alert( result.number_ships);
 
         },
         error: function(r){
@@ -66,7 +66,7 @@ function send_data_to_get_ship_side_bar(port_name ){
 
 
 function display_ports( port , port_name , ship_number){
-   // alert(port[0]);
+    // alert(port[0]);
     var iconDefault = {
         url: 'assets/google_map/but_default_24.png'
         // This marker is 20 pixels wide by 32 pixels tall.
@@ -91,9 +91,9 @@ function display_ports( port , port_name , ship_number){
 
 
     for(var i=0;i < port.length;i++){
-      //  console.log( "length: " + port.length);
+        //  console.log( "length: " + port.length);
         var position = new google.maps.LatLng(port[i][0],port[i][1]);
-          new google.maps.Size(20, 34),
+        new google.maps.Size(20, 34),
             marker = new google.maps.Marker({
                 id: port_name[i],
                 position: position,
@@ -122,14 +122,25 @@ function display_ports( port , port_name , ship_number){
         google.maps.event.addListener(marker, 'click', (function( marker,title) {
             return function() {
 
+              
                 send_data_to_get_ship_side_bar( marker.id);
                 marker.setIcon(iconClick);
             }
 
         })(marker, "  "));
 
-
-        marker.setMap(map);
+        //marker.setMap(map);
+       setMarkers(map,markerArray);
 
     }
+
+
+}
+
+function setMarkers(value,markerArray){
+    var v = value;
+    for(var i = 0; i < markerArray.length; ++i){
+                markerArray[i].setMap(v);
+                console.log('Setting markers');
+            }
 }
