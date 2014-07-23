@@ -192,7 +192,7 @@ DEPENDENCIES
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   selenium-webdriver (~> 2.42.0)
-  shoulda
+  shoulda (~> 3.5.0)
   sqlite3
   turbolinks
   tzinfo-data

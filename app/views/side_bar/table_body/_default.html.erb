@@ -10,10 +10,11 @@
         </th>
       </tr>
       </thead>
-        <% vessel_classes.each do |_class| %>
+        <% ship_category_size = get_number_of_ships_for_all_class
+           vessel_classes.each do |_name| %>
           <tr class="text-left">
-            <td><%=" #{_class}:" %></td>
-            <td><%= get_number_of_ships_per_class _class%></td>
+            <td><%=" #{_name}:" %></td>
+            <td><%= ship_category_size[_name] || 0 %></td>
           </tr>
         <% end %>
 
@@ -27,8 +28,12 @@
       <tbody >
       <%
          count = 0
-         get_all_regions.each do |_region|
-               temp = get_number_of_ships_per_region(_region).to_i
+         regions =  get_number_of_ships_for_all_regions
+         region_hash_array =[]
+         get_all_regions.each do |_name|
+
+               temp = regions[_name.downcase] || 0
+               region_hash_array.insert(0,{name:_name, count: temp })
                  count = count + temp
          end
       %>
@@ -38,14 +43,11 @@
             <td><%= count%></td>
         </tr>
 
-        <% get_all_regions.each do |_region| %>
+        <% region_hash_array.each do |_region| %>
 
                 <tr class="text-left " >
-                        <td><%= _region %></td>
-                    <%
-                       temp = get_number_of_ships_per_region(_region).to_i
-                     %>
-                        <td><%= temp%></td>
+                        <td><%= _region[:name] %></td>
+                        <td><%= _region[:count]%></td>
                 </tr>
 
         <% end %>

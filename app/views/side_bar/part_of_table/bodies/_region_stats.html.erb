@@ -10,9 +10,12 @@
     <td>Total Ships:</td>
     <td><%=  get_number_of_ships_per_region @side_info[:region_name]%></td>
 </tr>
-<% vessel_classes.each do |_class| %>
+<%
+   ship_category_size = get_number_of_ships_per_region_for_all_class @side_info[:region_name]
+   vessel_classes.each do |_class|
+%>
     <tr >
         <td class="text-left"><%=" #{_class}:" %></td>
-        <td class="text-right"><%= get_number_of_ships_per_region_per_class @side_info[:region_name], _class%></td>
+        <td class="text-right"><%= ship_category_size[_class]  || 0%></td>
     </tr>
 <% end %>
