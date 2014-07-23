@@ -174,13 +174,13 @@ var colors = ['#00FFFF', '#00FF00', '#0000FF', '#FFFF00' , '#FF00FF' , '#ADD8E6'
 //preventing cursor to change when hovering over region label text
       google.maps.event.addListener(map, 'mouseover', function(event) {
         
-        $('body').css("cursor","default");
+        $("body").css("cursor","default");
         if(zval.getZoomValue() > 2){
           $("body").css("cursor","-moz-zoom-out");
           $("body").css("cursor","-webkit-zoom-out");        
         }
         else{
-          $('body').css("cursor","default");
+          $("body").css("cursor","default");
         }
           
         });
@@ -264,10 +264,10 @@ attaching event listeners to every layer drawn onto the map for every country
 function event_listeners(country,region_name)
 {
   google.maps.event.addListener(country, 'mouseover', function() {
-              //  this.setOptions({fillOpacity: 1});
-              $('body').css("cursor","-moz-zoom-in");
-              $('body').css("cursor","-webkit-zoom-in");
-             
+              this.setOptions({fillOpacity: 1});
+             /* $("body").css("cursor","-moz-zoom-in");
+              $("body").css("cursor","-webkit-zoom-in");
+             */
             });
 
   /*
@@ -300,7 +300,7 @@ function event_listeners(country,region_name)
           $("body").css("cursor","-moz-zoom-out");
           $("body").css("cursor","-webkit-zoom-out");        
         }
-        else if (zval.getZoomValue() = 2){
+        else if (zval.getZoomValue() == 2){
           $("body").css("cursor","default");
 
         }
