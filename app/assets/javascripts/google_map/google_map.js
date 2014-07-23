@@ -263,8 +263,14 @@ attaching event listeners to every layer drawn onto the map for every country
 */
 function event_listeners(country,region_name)
 {
-  google.maps.event.addListener(country, 'mouseover', function() {
-              this.setOptions({fillOpacity: 1});
+  google.maps.event.addListener(country, 'mouseover', function(e) {
+             this.setOptions({
+                fillColor: "blue",
+                fillOpacity: 1});
+        //      var t = e.latLng;
+
+    //         getCountry(t);
+
              /* $("body").css("cursor","-moz-zoom-in");
               $("body").css("cursor","-webkit-zoom-in");
              */
@@ -304,9 +310,10 @@ function event_listeners(country,region_name)
           $("body").css("cursor","default");
 
         }
-              // $('body').css("cursor","-webkit-zoom-out");
-              
-              //this.setOptions({fillOpacity: 0.3});
+
+        this.setOptions({
+                fillColor: 'transparent',
+                fillOpacity: 0.9});
             });
 }
 
@@ -335,8 +342,24 @@ function getCountry(latLng) {
 
 function region_name_on_country(country_name){
 
-  if(country_name=="Australia")
-    {console.log('reached in Australia');}
+  if(country_name=="Canada" || "Mexico"||
+                "Greenland"||"Guatemala" ||"Belize"||"El Salvador"||
+                "Honduras" ||"Nicaragua" ||"Costa Rica"||"Panama"||
+                "Cuba" ||"Haiti" ||"Dominican Republic"||"Jamaica"||
+                "Bahamas" ||"Bermuda" ||"United States"){
+    //window.alert(region_north_america);
+    var r = new google.maps.Polygon({
+              paths: region_north_america,
+              strokeColor: colors[0],
+              strokeOpacity: 0,
+              strokeWeight: 1,
+              fillColor: "blue",
+              fillOpacity: 0.9
+            });
+  //r.setMap(map);
+
+  }
+    
   else
     console.log('not selected');
 }
