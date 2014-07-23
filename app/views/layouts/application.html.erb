@@ -12,23 +12,23 @@
 <body>
 
 
-    <%= render 'main_pages/entry_banner' %>
-    <div id="transparent_div" class="transparent">
+    <% render 'main_pages/entry_banner' %>
+    <div id="transparent_div" class="transparent__d">
 
-        <!-- header -->
-        <%= render 'layouts/share/header' %>
-        <!-- end of header -->
-        <!-- container -->
-        <div class="container">
-            <div class="starter-template">
-                <%= yield %>
-            </div>
-            <!-- end of container -->
-
+    <!-- header -->
+    <%= render 'layouts/share/header' %>
+    <!-- end of header -->
+    <!-- container -->
+    <div class="container">
+        <div class="starter-template">
+            <%= yield %>
         </div>
-        <!-- footer -->
-        <%# render 'layouts/share/footer' %>
-        <!-- end of footer -->
+        <!-- end of container -->
+
+    </div>
+    <!-- footer -->
+    <%# render 'layouts/share/footer' %>
+    <!-- end of footer -->
     </div>
 </body>
 </html>
