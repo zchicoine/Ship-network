@@ -290,7 +290,7 @@
             
             //alert(geometries);
             if (geometries) {
-              
+              console.log('hello');
               for (var j in geometries) {
                 newCoordinates.push(constructNewCoordinates(geometries[j]));
                 
@@ -300,25 +300,20 @@
             }
       
       var randomnumber = Math.floor(Math.random() * 4);
-          fillRegion(newCoordinates);
+              fillRegion(newCoordinates);
           //  console.log(region_name);
            event_listeners(country,region_name);
          //  country.setMap(map);
 
           }
     
-    }
+}
 }
 
-function callfill(){
-  window.alert('hello');
-  fillRegion(newCoordinates);
-}
 
 function fillRegion(newCoordinates){
-  
   country = new google.maps.Polygon({
-            paths: newCoordinates,
+              paths: newCoordinates,
               strokeColor: colors[0],
               strokeOpacity: 0,
               strokeWeight: 1,
