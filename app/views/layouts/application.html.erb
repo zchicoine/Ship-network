@@ -1,34 +1,37 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>ShipNetwork</title>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-    <!-- load required libraries in order -->
-    <%= render 'layouts/share/javascript_tags' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-    <%= csrf_meta_tags %>
+    <head>
+        <title>ShipNetwork</title>
+        <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+        <!-- load required libraries in order -->
+        <%= render 'layouts/share/javascript_tags' %>
+        <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+        <%= csrf_meta_tags %>
 
-</head>
-<body>
+    </head>
+    <body>
+
+        <% unless sign_in? %>
+            <%= render 'main_pages/entry_banner' %>
+            <div id="transparent_div" class="transparent">
+        <% end %>
 
 
-    <% render 'main_pages/entry_banner' %>
-    <div id="transparent_div" class="transparent__d">
+        <!-- header -->
+        <%= render 'layouts/share/header' %>
+        <!-- end of header -->
+        <!-- container -->
+        <div class="container">
+            <div class="starter-template">
+                <%= yield %>
+            </div>
+            <!-- end of container -->
 
-    <!-- header -->
-    <%= render 'layouts/share/header' %>
-    <!-- end of header -->
-    <!-- container -->
-    <div class="container">
-        <div class="starter-template">
-            <%= yield %>
         </div>
-        <!-- end of container -->
+        <!-- footer -->
+        <%# render 'layouts/share/footer' %>
+        <!-- end of footer -->
 
-    </div>
-    <!-- footer -->
-    <%# render 'layouts/share/footer' %>
-    <!-- end of footer -->
-    </div>
-</body>
+        </div>
+    </body>
 </html>

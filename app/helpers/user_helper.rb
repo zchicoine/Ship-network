@@ -6,9 +6,11 @@ module UserHelper
         if(!session[:user].nil?)
 
             true
+        else
+            false
         end
 
-        false
+
     end
 end
 
