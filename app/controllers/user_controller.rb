@@ -16,6 +16,12 @@ class UserController < ApplicationController
 
     end
 
+    def sign_out
+        session[:user] = nil
+        redirect_to "/"
+
+    end
+
 
     private
 
