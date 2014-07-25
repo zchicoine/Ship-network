@@ -18,7 +18,7 @@ class UserController < ApplicationController
 
     def sign_out
         session[:user] = nil
-        redirect_to "/"
+        redirect_to root_path
 
     end
 

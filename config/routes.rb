@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     post  'google_map/display_ship_on_side_bar' => 'google_map#display_ship_on_side_bar'
     post 'user/sign_in' => 'user#sign_in'
     post 'user/sign_out' => 'user#sign_out'
-
+    post 'link_list_back_history/refresh' => 'link_list_back_history#refresh'
     get 'main_pages/loginpage'
   # You can have the root of your site routed with "root"
  

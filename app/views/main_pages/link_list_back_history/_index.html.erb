@@ -1,0 +1,9 @@
+<div class="link_list_back_history">
+
+
+    <% for linklist in @linklist_back_history do  %>
+
+        <%= link_to @linklist_back_history[:name] , @linklist_back_history[:url], class:"link_list_back_history" , method: :get %> <<
+    <% end %>
+
+</div>

@@ -1,6 +1,7 @@
 class SideBarController < ApplicationController
     include SideBarHelper
     include GoogleMapHelper
+    include LinkListBackHistoryHelper
 
 
 
@@ -9,10 +10,9 @@ class SideBarController < ApplicationController
         parameters = params.require(:region_info).permit(:name, :coordinates)
         @side_info = {region_name: parameters[:name]}
         session[:region_name] = @side_info[:region_name]
-      # @ports_info =   ports_at_region @region_info[:name], @region_info[:coordinates]
 
-
-    #  @region_info = { name:region_info[:name]}
+        #add to history
+       # push_to_history @side_info[:region_name]
 
         #redirect_to root_path
         render :partial =>  'side_bar/table_body/region'
@@ -46,6 +46,7 @@ class SideBarController < ApplicationController
         @side_info[:port_coordinates] = parameters[:port_coordinates]
        @ships_at_port =  get_all_ships_at_specific_port [0,0], @side_info[:port_name]
 
+        push_to_history @side_info[:port_name]
         respond_to do |format|
             format.html {render :partial =>  'side_bar/table_body/port'}
             format.js {render 'side_bar/table_body/js/port'}
