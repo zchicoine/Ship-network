@@ -3,10 +3,10 @@
 =end
 
 class MainPagesController < ApplicationController
-    include LinkListBackHistoryHelper
+    include LinkListBackHistoryHelperC
 
     def index
-     create_history
+   create_history
 
     end
     def loginpage
