@@ -18,10 +18,10 @@ refresh_link_list_back_history = function (string_name) {
             success: function (result) {
 
                  $('.link_list_back_history').html(result);
-                alert("S: " +result)
+              //  alert("S: " +result)
             },
             error: function (r) {
-                alert("E:" + r.message);
+                alert("E:" + r);
             }
         });
     }else {

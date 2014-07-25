@@ -4,7 +4,7 @@ module LinkListBackHistoryHelper
     def create_history
         session[:link_list_back_history] = nil
         session[:link_list_back_history] = {}
-        session[:link_list_back_history][:name] = ['Global']
+        session[:link_list_back_history]['name'] = ['Global']
         session[:link_list_back_history][:url] = root_path
 
         assign_seesion_to_the_variable

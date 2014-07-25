@@ -1,9 +1,19 @@
 <div class="link_list_back_history">
 
 
-    <% for linklist in @linklist_back_history do  %>
+    <% first = true
+       @linklist_back_history['name'].each do |value| %>
 
-        <%= link_to @linklist_back_history[:name] , @linklist_back_history[:url], class:"link_list_back_history" , method: :get %> <<
+        <% if first %>
+          <%= link_to " #{value}"  , "#" , method: :get %>
+        <%
+           first = false
+           else
+        %>
+            >> <%= link_to "#{value}"  , "#" , method: :post %>
+          <% end %>
+
+
     <% end %>
 
 </div>
