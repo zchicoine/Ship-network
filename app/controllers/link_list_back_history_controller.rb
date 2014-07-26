@@ -1,5 +1,5 @@
 class LinkListBackHistoryController <ApplicationController
-    include LinkListBackHistoryHelperC
+    include  LinkListBackHistoryHelperC
 
 
     def refresh
@@ -9,30 +9,10 @@ class LinkListBackHistoryController <ApplicationController
         unless level.nil? and !level.is_a? Integer
             remove_history_after_include_level level
         end
-        push_to_history_with_level parameters[:name], parameters[:level]
+        push_to_history_with_level parameters[:name], level
         render :partial =>  'main_pages/link_list_back_history/index'
     end
 
-    def back_to_level
-        parameters = params
-        level = parameters[:level].to_i
-        unless level.nil? and !level.is_a? Integer
-            remove_history_after_level level
-        end
-        @displayed_name_on_link_list_back_history = params[:name]
-
-        respond_to do |format|
-            case level
-                when 1
-                    format.js {render 'js/region_view'
-                    }
-                when 2
-                    format.js {render 'js/region_view'
-                    }
-            end
-
-        end
-    end
 
 
 

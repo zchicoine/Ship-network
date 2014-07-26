@@ -24,7 +24,7 @@ After the user click the region on the map this side will appear.
 
                     <tr >
                         <td>
-                            <%= link_to port[:name], side_bar_port_path(port_info: {port_name: port[:name], port_coordinates:"a"}),:remote => true, method: :post
+                            <%= link_to port[:name], main_pages_port_path(port_info: {port_name: port[:name], port_coordinates:"a"}),:remote => true, method: :post
                             %>
                         </td>
                     </tr>

@@ -34,7 +34,7 @@ module LinkListBackHistoryHelperC
         temp_array_length = temp_array.length
         if level < temp_array_length
             indices = level..temp_array_length - 1
-            indices.each do |index|
+            indices.reverse_each do |index|
                 temp_array.delete_at index
             end
             assign_the_variable_to_session
@@ -78,10 +78,7 @@ module LinkListBackHistoryHelperC
          session[:link_list_back_history] = @linklist_back_history
     end
     def level_to_url name = "nil",level = 0
-        if level.to_i != 0
-            link_list_back_history_back_to_level_path(name:name,level: level.to_i)
-        else
-                root_path
-        end
+        root_path
+
     end
 end

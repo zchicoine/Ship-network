@@ -7,13 +7,13 @@ Rails.application.routes.draw do
     post 'side_bar/ship' => 'side_bar#ship'
     post 'side_bar/default' => 'side_bar#default'
     post 'side_bar/port' => 'side_bar#port'
+    post 'side_bar/index' => 'side_bar#index'
     post  'google_map/port_coordinates' => 'google_map#port_coordinates'
     post  'google_map/display_ship_on_side_bar' => 'google_map#display_ship_on_side_bar'
     post 'user/sign_in' => 'user#sign_in'
     post 'user/sign_out' => 'user#sign_out'
     post 'link_list_back_history/refresh' => 'link_list_back_history#refresh'
-    post 'link_list_back_history/back_to_level' => "link_list_back_history#back_to_level"
-
+    post 'main_pages/port' => "main_pages#port"
     get 'main_pages/loginpage'
   # You can have the root of your site routed with "root"
  
