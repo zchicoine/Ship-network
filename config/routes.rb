@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     post 'user/sign_in' => 'user#sign_in'
     post 'user/sign_out' => 'user#sign_out'
     post 'link_list_back_history/refresh' => 'link_list_back_history#refresh'
+    post 'link_list_back_history/back_to_level' => "link_list_back_history#back_to_level"
+
     get 'main_pages/loginpage'
   # You can have the root of your site routed with "root"
  

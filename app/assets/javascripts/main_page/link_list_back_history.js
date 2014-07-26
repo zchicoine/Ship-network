@@ -1,8 +1,13 @@
-refresh_link_list_back_history = function (string_name) {
-    console.log("R:" + string_name)
-    if(string_name.match(/[a-z]*/i) ) {
+// this function to add to link list history
+// it accept string_name: name that will display (required)
+//           url: the url that will be displayed when it clicks on a name (option)
+//          level: Global, region, area, port, ship (required)
 
-        var data = { "name": string_name};
+refresh_link_list_back_history = function (string_name, url, level) {
+    console.log("R:" + string_name)
+    if(string_name.match(/[a-z]*/i) &&  url.match(/[a-z]*/i)) {
+
+        var data = { "name": string_name, "url": url, "level":level };
         $.ajax({
             url: 'link_list_back_history/refresh',
             beforeSend: function () {

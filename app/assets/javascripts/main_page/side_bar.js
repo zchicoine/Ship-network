@@ -8,7 +8,7 @@ go_to_region = function (coordinates , regionName){
 
 
     send_data_to_side_bar(regionName);
-    refresh_link_list_back_history(regionName);
+    refresh_link_list_back_history(regionName,"side_bar/region",1);
 }
 
 closed_table_side_bar = function () {
