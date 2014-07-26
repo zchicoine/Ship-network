@@ -1,5 +1,5 @@
 module LinkListBackHistoryHelperC
-
+    include LevelDefine
 
     def create_history
         session[:link_list_back_history] = nil
@@ -78,7 +78,17 @@ module LinkListBackHistoryHelperC
          session[:link_list_back_history] = @linklist_back_history
     end
     def level_to_url name = "nil",level = 0
-        root_path
+        _level = level.to_i
+        case _level
+            when GLOBAL_LEVEL
+                root_path
+            when REGION_LEVEL
+                main_pages_region_path(:region_info => {name:name})
+            when PORT_LEVEL
+                main_pages_port_path(:port_info => {port_name:name})
+
+        end
+
 
     end
 end

@@ -12,58 +12,6 @@ go_to_region = function (coordinates , regionName){
 }
 
 
-// send_data_to_side_bar = function(name, level){
-//
-//     console.log(name + "   " + level)
-//     var data_json = { "region_info": { "name": name} };
-//     var url = 'side_bar/region';
-//     var html_class = '.aside_ship_details_table_body';
-//    if(! isNaN(level) && name.match(/[a-z]/i) )
-//
-//    {
-//        console.log(name + " 1:  " + level)
-//        switch(level) {
-//            case 0:
-//                break;
-//            case 1:
-//                 data_json = { "region_info": { "name": name} };
-//                 url = 'side_bar/region';
-//                 html_class = '.aside_ship_details_table_body';
-//                console.log(name + " 2:  " + level)
-//                break;
-//            case 2:
-//                data_json = { "port_info": { "port_name": name} };
-//                url = 'side_bar/port';
-//                html_class = '.aside_ship_details_table_body';
-//                break;
-//
-//
-//        }
-//        $.ajax({
-//            url:url,
-//            beforeSend: function(){
-//                // Handle the beforeSend event
-//            },
-//            type: 'POST',
-//            data:data_json,
-//            complete: function(r){
-//                // Handle the complete event
-//                // alert(r);
-//
-//            },
-//            success: function(result) {
-//
-//                $(html_class).html(result);
-//            },
-//            error: function(r){
-//                alert(r.message);
-//            }
-//        });
-//        console.log(name + " 3:  " + level)
-//
-//    }
-//
-//
 
 send_data_to_side_bar = function(name, level){
 

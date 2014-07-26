@@ -13,9 +13,6 @@ class LinkListBackHistoryController <ApplicationController
         render :partial =>  'main_pages/link_list_back_history/index'
     end
 
-
-
-
     private
 
     def remove_history_after_level level = 0
