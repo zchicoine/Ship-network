@@ -154,7 +154,6 @@ var colors = ['#00FFFF', '#00FF00', '#0000FF', '#FFFF00' , '#FF00FF' , '#ADD8E6'
 
        getClickedPostion = e.latLng
  
-     //  console.log(getClickedPostion);
        window.map.setCenter(getClickedPostion);
        window.map.setZoom(2);
        zval.setZoomValue(2);
@@ -217,10 +216,6 @@ var colors = ['#00FFFF', '#00FF00', '#0000FF', '#FFFF00' , '#FF00FF' , '#ADD8E6'
 
 google.maps.event.addDomListener(window, 'load', initialize);
 
-
-
-     
-
 function constructNewCoordinates(polygon) {
         var newCoordinates = [];
         var coordinates = polygon['coordinates'][0];
@@ -231,7 +226,6 @@ function constructNewCoordinates(polygon) {
         return newCoordinates;
       }
 
-//google.maps.event.addDomListener(window, 'load', initialize2);
 
 function drawRegions(geometries,region_name){
             
@@ -356,7 +350,7 @@ function region_name_on_country(country_name){
               fillColor: "blue",
               fillOpacity: 0.9
             });
-  //r.setMap(map);
+  
 
   }
     

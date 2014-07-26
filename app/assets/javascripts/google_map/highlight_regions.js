@@ -207,7 +207,8 @@ function drawMap(data) {
                 ||rows[i][0] == "Ukraine" ||rows[i][0] == "Georgia" ||rows[i][0] == "Norway"||rows[i][0] == "Sweden"
                 ||rows[i][0] == "Denmark" ||rows[i][0] == "Finland"||rows[i][0] =="French Southern and Antarctic Lands"
                 ||rows[i][0] =="Belarus"||rows[i][0] =="Poland"||rows[i][0] =="Lithuania"||rows[i][0] =="Latvia"
-                ||rows[i][0] =="Estonia"||rows[i][0] =="Slovakia"||rows[i][0] =="Hungary")){
+                ||rows[i][0] =="Estonia"||rows[i][0] =="Slovakia"||rows[i][0] =="Hungary"
+                ||rows[i][0] =="Russia")){
 
            var  geometries = rows[i][1]['geometries'];
           region_name = "EUROPE";
