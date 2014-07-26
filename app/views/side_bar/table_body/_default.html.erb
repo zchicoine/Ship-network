@@ -32,7 +32,7 @@
          region_hash_array =[]
          get_all_regions.each do |_name|
 
-               temp = regions[_name]
+               temp = regions[_name.downcase] || 0
                region_hash_array.insert(0,{name:_name, count: temp })
                  count = count + temp
          end

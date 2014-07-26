@@ -1,4 +1,4 @@
-function send_data_to_get_port_coordinates(regionName){
+function send_data_to_get_port_coordinates(regionName ){
 
     var data_json = { "region_info": { "name": regionName, "coordinates": "123 Carol" } };
 
@@ -18,18 +18,17 @@ function send_data_to_get_port_coordinates(regionName){
         },
         success: function(result) {
 
-            display_ports( result.coordinates , result.name)
-            console.log('hello i amin json')
+            display_ports( result.coordinates , result.name, result.shipNumber)
+            //  alert(result.coordinates);
 
         },
         error: function(r){
 
-             alert(r.message);
+            alert(r);
         }
     });
 
 }
-
 function send_data_to_get_ship_side_bar(port_name ){
 
     var data_json = { "port_info": { "port_name": port_name } };
@@ -54,7 +53,7 @@ function send_data_to_get_ship_side_bar(port_name ){
             closed_table_side_bar()
 
             //display_ports( result.coordinates)
-              //alert( result.number_ships);
+            //alert( result.number_ships);
 
         },
         error: function(r){
@@ -66,14 +65,13 @@ function send_data_to_get_ship_side_bar(port_name ){
 }
 
 
-function display_ports( port , port_name){
-     console.log(port);
+function display_ports( port , port_name , ship_number){
+    // alert(port[0]);
     var iconDefault = {
-        url: 'assets/google_map/but_default_24.png',
+        url: 'assets/google_map/but_default_24.png'
         // This marker is 20 pixels wide by 32 pixels tall.
-         size: new google.maps.Size(10, 30)
-    // The origin for this image is 0,0.
-         
+
+        // The origin for this image is 0,0.
 
     };
     var iconHover = {
@@ -90,20 +88,21 @@ function display_ports( port , port_name){
         // The origin for this image is 0,0.
 
     };
-    
-     for(var i=0;i<port.length;i++){
-      //  console.log(port[i][0]);
+
+
+    for(var i=0;i < port.length;i++){
+        //  console.log( "length: " + port.length);
         var position = new google.maps.LatLng(port[i][0],port[i][1]);
-               
+        new google.maps.Size(20, 34),
             marker = new google.maps.Marker({
+                id: port_name[i],
                 position: position,
                 map: map,
                 icon: iconDefault,
-                title: port_name[i]
+                title: port_name[i] +" has " + ship_number[i] + " ship(s)"
 
-            });    
+            });
 
-            markerArray.push(marker);
         google.maps.event.addListener(marker, 'mouseover', (function( marker,title) {
             return function() {
                 marker.setIcon(iconHover);
@@ -115,20 +114,22 @@ function display_ports( port , port_name){
             return function() {
                 // it allow clicking twice
                 if(marker.icon != iconClick) {
-                marker.setIcon(iconDefault);
+                    marker.setIcon(iconDefault);
                 }
             }
 
         })(marker, "  "));
         google.maps.event.addListener(marker, 'click', (function( marker,title) {
             return function() {
-                send_data_to_get_ship_side_bar(marker.getTitle());
+
+              
+                send_data_to_get_ship_side_bar( marker.id);
                 marker.setIcon(iconClick);
             }
 
         })(marker, "  "));
 
-
+        //marker.setMap(map);
        setMarkers(map,markerArray);
 
     }

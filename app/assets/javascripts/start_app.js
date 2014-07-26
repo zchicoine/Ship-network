@@ -1,14 +1,16 @@
 
 // jquery to make the banner disappear and enter the website
 $(document).ready(function(){
+   // $('*').tooltip({template :'<div class="tooltip " role="tooltip"><div class="tooltip-arrow ship-blue-background-color"></div><div class="tooltip-inner "></div></div>'
 
 
     $("#free_tour").click(function(e){
 
-         $("#transparent_div").removeClass('transparent');
+        $("#transparent_div").removeClass('transparent');
 
         //jquery to fadeOut the banner
         $("#main_banner").fadeOut("slow",function(){});
+
         
     });
 
