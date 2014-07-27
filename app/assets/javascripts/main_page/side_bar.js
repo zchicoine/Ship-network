@@ -102,14 +102,43 @@ closed_table_side_bar = function () {
     });
 
 
-addClass = function(tag){
+highlight_on_a_list = function(tag){
     $('.scroll_inside_table table tr').children().removeClass('highlight-clicked-row');
     $(tag).closest('tr').children().addClass('highlight-clicked-row');
 }
 
 
+$(document).on('dblclick',".one", function(e){
+    console.log("class: " + this.id);
 
-//$(document).on('click',".tested", function(e){
+    var data_json =  { "name": this.id } ;
+    $.ajax({
+        url:'ship_details/show',
+        beforeSend: function(){
+            // Handle the beforeSend event
+        },
+        type: 'POST',
+        dataType: 'html',
+        data:data_json,
+        complete: function(r){
+            // Handle the complete event
+            // alert(r);
+
+        },
+        success: function(result) {
+
+            $("#outer-map").html(result);
+        },
+        error: function(r){
+            alert(r + "works");
+        }
+    });
+
+});
+
+
+
+//$(document).on('click',".one", function(e){
 //    console.log("URL: " + this.href);
 //    $.getScript(this.href);
 //
