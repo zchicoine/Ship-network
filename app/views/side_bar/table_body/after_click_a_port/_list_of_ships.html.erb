@@ -1,0 +1,37 @@
+<thead class="table_after_clicking_on_a_port text-left">
+<tr>
+    <th colspan="<%= 2%>">
+        <%= image_tag("greentriangle_down.png", size: "16", class:"triangle_image")%>
+        List of ships
+    </th>
+</tr>
+</thead>
+
+
+<tbody class="ship-list">
+<tr >
+    <td colspan="<%= 2%>">
+        <div class="scroll_inside_table">
+            <table class="table table-hover text-left">
+                <% @ships_at_port.each do |ship|%>
+                    <tr >
+                        <td>
+                            <%= link_to ship[:name] ,side_bar_ship_path( ship_info: { ship_name: ship[:name]}),:onclick => 'addClass(this)',:remote => true, method: :post
+                            %>
+                        </td>
+                        <td>
+                            <%= ship.vessel_type
+                            %>
+                        </td>
+                    </tr>
+                <%end%>
+
+            </table>
+        </div>
+    </td>
+</tr>
+</tbody>
+<tbody id="ship-details-section">
+
+
+</tbody>

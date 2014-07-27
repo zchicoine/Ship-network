@@ -1,0 +1,37 @@
+
+<thead class="side_bar_default_table text-left">
+<tr>
+    <th colspan="<%= 2 %>" id="shipsByRegion">
+        <%= render 'side_bar/parts_used_in_table/accessories/green_triangle_image'%>
+        # of Ships by Region:
+    </th>
+</tr>
+</thead>
+<tbody >
+<%
+   count = 0
+   regions =  get_number_of_ships_for_all_regions
+   region_hash_array =[]
+   get_all_regions.each do |_name|
+
+       temp = regions[_name.downcase] || 0
+       region_hash_array.insert(0,{name:_name, count: temp })
+       count = count + temp
+   end
+%>
+
+<tr class="text-left thick_horizontal_line" >
+    <td>Total Ship</td>
+    <td><%= count%></td>
+</tr>
+
+<% region_hash_array.each do |_region| %>
+
+    <tr class="text-left " >
+        <td><%= _region[:name] %></td>
+        <td><%= _region[:count]%></td>
+    </tr>
+
+<% end %>
+
+</tbody>
