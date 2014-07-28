@@ -100,6 +100,11 @@ module GoogleMapHelper
         @name_of_ports_per_region = Port.joins(:shipments).where(region: region_name).group(:name, :latitude, :longitude).size
     end
 
+    def get_ship_details ship_name = "null"
+        @ship_id = Ship.find_by_name(ship_name).id
+        @return_ship_details = ShipDetail.find_by(ship_id: @ship_id)
+    end
+
 end
 
 
