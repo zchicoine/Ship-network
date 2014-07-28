@@ -2,7 +2,7 @@ var region_north_america = [];
   
 function drawMap(data) {
         rows = data['rows'];
-        console.log(rows);
+       // console.log(rows);
         for (var i in rows) {
           
           if (rows[i][0] != 'Antarctica' && (rows[i][0] == "Australia" || rows[i][0] == "New Zealand"
@@ -14,7 +14,7 @@ function drawMap(data) {
             
             //alert(geometries);
             if (geometries) {
-              console.log('hello');
+             // console.log('hello');
               for (var j in geometries) {
                 newCoordinates.push(constructNewCoordinates(geometries[j]));
                 
@@ -49,7 +49,7 @@ function drawMap(data) {
             
             //alert(geometries);
             if (geometries) {
-              console.log('hello');
+            //  console.log('hello');
               for (var j in geometries) {
                 newCoordinates.push(constructNewCoordinates(geometries[j]));
                 
@@ -86,7 +86,7 @@ function drawMap(data) {
             
             //alert(geometries);
             if (geometries) {
-              console.log('hello');
+           //   console.log('hello');
               for (var j in geometries) {
                 newCoordinates.push(constructNewCoordinates(geometries[j]));
                 
@@ -124,7 +124,7 @@ function drawMap(data) {
             
             //alert(geometries);
             if (geometries) {
-              console.log('hello');
+             // console.log('hello');
               for (var j in geometries) {
                 newCoordinates.push(constructNewCoordinates(geometries[j]));
                 
@@ -172,7 +172,7 @@ function drawMap(data) {
             
             //alert(geometries);
             if (geometries) {
-              console.log('hello');
+             // console.log('hello');
               for (var j in geometries) {
                 newCoordinates.push(constructNewCoordinates(geometries[j]));
                 
@@ -260,7 +260,7 @@ function drawMap(data) {
             
             //alert(geometries);
             if (geometries) {
-              console.log('hello');
+             // console.log('hello');
               for (var j in geometries) {
                 newCoordinates.push(constructNewCoordinates(geometries[j]));
                 
@@ -298,7 +298,7 @@ function drawMap(data) {
             
             //alert(geometries);
             if (geometries) {
-              console.log('hello');
+             // console.log('hello');
               for (var j in geometries) {
                 newCoordinates.push(constructNewCoordinates(geometries[j]));
                 
@@ -309,7 +309,7 @@ function drawMap(data) {
 
             //region_north_america = newCoordinates;
             Array.prototype.push.apply(region_north_america,newCoordinates);
-            console.log("NORTH AMERICA"+region_north_america);
+            //console.log("NORTH AMERICA"+region_north_america);
 
             
        

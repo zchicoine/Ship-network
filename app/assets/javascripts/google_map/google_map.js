@@ -236,7 +236,7 @@ function drawRegions(geometries,region_name){
             
             //alert(geometries);
             if (geometries) {
-              console.log('hello');
+             // console.log('hello');
               for (var j in geometries) {
                 newCoordinates.push(constructNewCoordinates(geometries[j]));
                 
@@ -285,7 +285,7 @@ function event_listeners(country,region_name)
        var zoomToNumber = window.map.getZoom() + 1;
        getClickedPostion = e.latLng
        // make a function call to decide which region is being clicked on
-       console.log(zoomToNumber);
+      // console.log(zoomToNumber);
        window.map.setCenter(getClickedPostion);
        window.map.setZoom(zoomToNumber);
 
