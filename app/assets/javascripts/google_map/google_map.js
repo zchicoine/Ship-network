@@ -350,8 +350,6 @@ function region_name_on_country(country_name){
               fillColor: "blue",
               fillOpacity: 0.9
             });
-  
-
   }
     
   else
