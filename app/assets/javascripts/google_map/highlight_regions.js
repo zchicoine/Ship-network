@@ -1,4 +1,6 @@
-  function drawMap(data) {
+var region_north_america = [];
+  
+function drawMap(data) {
         rows = data['rows'];
         console.log(rows);
         for (var i in rows) {
@@ -22,18 +24,20 @@
             } else {
               newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
             }
-              var randomnumber = Math.floor(Math.random() * 4);
+            fillRegion(newCoordinates);
+            
+            /*  var randomnumber = Math.floor(Math.random() * 4);
               country = new google.maps.Polygon({
               paths: newCoordinates,
               strokeColor: "#B2FFFF",
               strokeOpacity: 0,
               strokeWeight: 1,
               fillColor: "#B2FFFF",
-              fillOpacity: 0.8
+              fillOpacity: 0.4
             });
-          //  console.log(region_name);
+          //  console.log(region_name);*/
             event_listeners(country,region_name);
-           country.setMap(map);
+          // country.setMap(map);
             
           } 
             else if(rows[i][0] != 'Antarctica' && (rows[i][0] == "China" ||rows[i][0] == "Taiwan" ||rows[i][0] == "S. Korea" ||rows[i][0] == "N. Korea"
@@ -55,19 +59,20 @@
             } else {
               newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
             }
+            fillRegion(newCoordinates);
       
-      var randomnumber = Math.floor(Math.random() * 4);
+      /*var randomnumber = Math.floor(Math.random() * 4);
               country = new google.maps.Polygon({
               paths: newCoordinates,
               strokeColor: "#EB99D6",
               strokeOpacity: 0,
               strokeWeight: 1,
               fillColor: "#EB99D6",
-              fillOpacity: 0.8
+              fillOpacity: 0.4
             });
-          //  console.log(region_name);
+          //  console.log(region_name);*/
                  event_listeners(country,region_name);
-           country.setMap(map);
+          // country.setMap(map);
           }
             else if(rows[i][0] != 'Antarctica' && (rows[i][0] == "India" ||rows[i][0] == "Sri Lanka" ||rows[i][0] == "Bangladesh"
               ||rows[i][0] == "Myanmar" ||rows[i][0] == "Thailand" ||rows[i][0] == "Malaysia"
@@ -92,18 +97,19 @@
               newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
             }
       
+      fillRegion(newCoordinates);
       var randomnumber = Math.floor(Math.random() * 4);
-              country = new google.maps.Polygon({
+         /*     country = new google.maps.Polygon({
               paths: newCoordinates,
               strokeColor: "#FFAD99",
               strokeOpacity: 0,
               strokeWeight: 1,
               fillColor: "#FFAD99",
-              fillOpacity: 0.8
+              fillOpacity: 0.4
             });
-          //  console.log(region_name);
+          //  console.log(region_name);*/
                  event_listeners(country,region_name);
-           country.setMap(map);
+     //      country.setMap(map);
 
           }
           else if (rows[i][0] != 'Antarctica' && (rows[i][0] =="Jordan" ||rows[i][0] == "Yemen" || rows[i][0] == "Oman" 
@@ -128,20 +134,20 @@
             } else {
               newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
             }
-      
+      fillRegion(newCoordinates);
       var randomnumber = Math.floor(Math.random() * 4);
-              country = new google.maps.Polygon({
+              /*country = new google.maps.Polygon({
               paths: newCoordinates,
               strokeColor: "#FFFFB2",
               strokeOpacity: 0,
               strokeWeight: 1,
               fillColor: "#FFFFB2",
-              fillOpacity: 0.8
+              fillOpacity: 0.4
             });
-          //  console.log(region_name);
+          //  console.log(region_name);*/
                  event_listeners(country,region_name);
 
-           country.setMap(map);
+    //       country.setMap(map);
 
           }
      //     Egypt, Libya, Tunisia, Algeria, Morocco, Western Sahara, Mauritania, Senegal, Gambia, Guinea-Bissau, Guinea, 
@@ -174,19 +180,19 @@
             } else {
               newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
             }
-      
-      var randomnumber = Math.floor(Math.random() * 4);
+      fillRegion(newCoordinates);
+     /*
               country = new google.maps.Polygon({
               paths: newCoordinates,
               strokeColor: "#D1D1E0",
               strokeOpacity: 0,
               strokeWeight: 1,
               fillColor: "#D1D1E0",
-              fillOpacity: 0.8
+              fillOpacity: 0.4
             });
-          //  console.log(region_name);
+       */   //  console.log(region_name);
                  event_listeners(country,region_name);
-           country.setMap(map);
+        //   country.setMap(map);
 
           }
           //UK, Ireland, Iceland, Germany, Netherlands, Belgium, France, Spain, Portugal, Italy, Slovenia, Croatia, Serbia & Montenegro, 
@@ -201,7 +207,8 @@
                 ||rows[i][0] == "Ukraine" ||rows[i][0] == "Georgia" ||rows[i][0] == "Norway"||rows[i][0] == "Sweden"
                 ||rows[i][0] == "Denmark" ||rows[i][0] == "Finland"||rows[i][0] =="French Southern and Antarctic Lands"
                 ||rows[i][0] =="Belarus"||rows[i][0] =="Poland"||rows[i][0] =="Lithuania"||rows[i][0] =="Latvia"
-                ||rows[i][0] =="Estonia"||rows[i][0] =="Slovakia"||rows[i][0] =="Hungary")){
+                ||rows[i][0] =="Estonia"||rows[i][0] =="Slovakia"||rows[i][0] =="Hungary"
+                ||rows[i][0] =="Russia")){
 
            var  geometries = rows[i][1]['geometries'];
           region_name = "EUROPE";
@@ -219,18 +226,19 @@
               newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
             }
       
-      var randomnumber = Math.floor(Math.random() * 4);
-              country = new google.maps.Polygon({
+            fillRegion(newCoordinates);
+    
+    /*          country = new google.maps.Polygon({
               paths: newCoordinates,
               strokeColor: colors[0],
               strokeOpacity: 0,
               strokeWeight: 1,
               fillColor: colors[0],
-              fillOpacity: 0.8
+              fillOpacity: 0.4
             });
-          //  console.log(region_name);
+          //  console.log(region_name);*/
            event_listeners(country,region_name);
-           country.setMap(map);
+           //country.setMap(map);
 
           }
           //"Colombia", "Venezuela", "Guyana", "Suriname", "French Guiana", "Trindad and Tobago", "Barbados", 
@@ -261,18 +269,18 @@
               newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
             }
       
-      var randomnumber = Math.floor(Math.random() * 4);
-              country = new google.maps.Polygon({
+              fillRegion(newCoordinates);
+     /*         country = new google.maps.Polygon({
               paths: newCoordinates,
               strokeColor: colors[0],
               strokeOpacity: 0,
               strokeWeight: 1,
               fillColor: colors[0],
-              fillOpacity: 0.8
+              fillOpacity: 0.4
             });
-          //  console.log(region_name);
+          //  console.log(region_name);*/
            event_listeners(country,region_name);
-           country.setMap(map);
+          // country.setMap(map);
 
           }
           //Canada, USA, Mexico, Greenland, Guatemala, Belize, El Salvador, 
@@ -298,21 +306,32 @@
             } else {
               newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
             }
-      
+
+            //region_north_america = newCoordinates;
+            Array.prototype.push.apply(region_north_america,newCoordinates);
+            console.log("NORTH AMERICA"+region_north_america);
+
+            
+       
       var randomnumber = Math.floor(Math.random() * 4);
-              country = new google.maps.Polygon({
-              paths: newCoordinates,
-              strokeColor: colors[0],
-              strokeOpacity: 0,
-              strokeWeight: 1,
-              fillColor: colors[0],
-              fillOpacity: 0.8
-            });
+             fillRegion(newCoordinates);
           //  console.log(region_name);
            event_listeners(country,region_name);
-           country.setMap(map);
+         //  country.setMap(map);
 
           }
     
 }
+}
+      
+function fillRegion(newCoordinates){
+  country = new google.maps.Polygon({
+              paths: newCoordinates,
+              strokeColor: colors[0],
+              strokeOpacity: 0,
+              strokeWeight: 1,
+              fillColor: 'transparent',
+              fillOpacity: 0.9
+            });
+  country.setMap(map);
 }

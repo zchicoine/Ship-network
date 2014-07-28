@@ -1,16 +1,17 @@
 
+<!-- <style="cursor:default">  -->
 <div id="outer-map">
-  <img src="/left_default.png" alt="#" id="left-img-responsive" data-placement="top"  data-toggle="tooltip" title="worked" >
-  <img src="/right_default.png" alt="#" id="right-img-responsive">
+  <img src="/left_default.png" alt="#" id="left-img-responsive" onmouseover="cursor:default">
+  <img src="/right_default.png" alt="#" id="right-img-responsive" onmouseover="cursor:default">
 
     <div class="" >
-    <%= image_tag("zoom_out.png", size: "32", class:"zoom_out")%>
-  <%= image_tag("zoom_in.png", size: "32", class:"zoom_in")%>
+    <%= image_tag("zoom_out.png", size: "32", class:"zoom_out", mouseover:"cursor:default")%>
+  <%= image_tag("zoom_in.png", size: "32", class:"zoom_in" ,mouseover:"cursor:default")%>
         </div>
 
-	  <div id="googleMap" align="center">
+	  <div id="googleMap" align="center" >
+	  	<style="cursor:default">
 	
 	</div>
 </div>
 <!--</body>-->
-
