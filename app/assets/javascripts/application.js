@@ -16,26 +16,6 @@
 //= require bootstrap
 //= require_tree .
 
-function check(form)/*function to check userid & password*/
-{
-/*the following code checkes whether the entered userid and password are matching*/
-if(form.userid.value == "Zack" && form.password.value == "ship")
-{
-//jquery to set opacity to zero
-    $("#transparent_div").removeClass('transparent');
-
-    //jquery to fadeOut the banner
-    $("#main_banner").fadeOut("slow",function(){});
-}
-else
-{
-alert("Wrong Username or Password")/*displays error message*/
-}
-}
-
-
-
-
 
 
 

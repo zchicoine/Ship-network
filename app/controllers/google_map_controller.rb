@@ -9,7 +9,7 @@ class GoogleMapController < ApplicationController
       session[:port_name] = @side_info[:port_name]
       @side_info[:port_coordinates] = parameters[:port_coordinates]
       @ships_at_port =  get_all_ships_at_specific_port [0,0], @side_info[:port_name]
-        port_page =  render_to_string(:partial => 'side_bar/table_body/port')
+        port_page =  render_to_string(:partial => 'side_bar/table_body/after_click_a_port/index')
          render :json => { partial_page: port_page  , number_ships: @ships_at_port.size }
 
   end

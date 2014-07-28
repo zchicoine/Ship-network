@@ -7,28 +7,33 @@
     <%= render 'layouts/share/javascript_tags' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
-
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 </head>
 <body>
 
-
+<% unless sign_in? %>
     <%= render 'main_pages/entry_banner' %>
     <div id="transparent_div" class="transparent">
+<% end %>
 
-        <!-- header -->
-        <%= render 'layouts/share/header' %>
-        <!-- end of header -->
-        <!-- container -->
-        <div class="container">
-            <div class="starter-template">
-                <%= yield %>
-            </div>
-            <!-- end of container -->
 
-        </div>
-        <!-- footer -->
-        <%# render 'layouts/share/footer' %>
-        <!-- end of footer -->
+<!-- header -->
+<%= render 'layouts/share/header' %>
+<!-- end of header -->
+<!-- container -->
+<div class="container">
+    <div class="starter-template">
+        <%= yield %>
     </div>
+    <!-- end of container -->
+
+</div>
+<!-- footer -->
+<%# render 'layouts/share/footer' %>
+<!-- end of footer -->
+
+</div>
 </body>
 </html>

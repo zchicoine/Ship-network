@@ -80,20 +80,14 @@ module GoogleMapHelper
 
     def get_ship_information ship_name = "null", port_name = "null"
         @port_id_info = Port.find_by_name(port_name).id
-        @ship_info = Ship.find_by_name(ship_name)
+        @ship_info = Ship.includes(:shipments).find_by_name(ship_name)
         @ship_id_info = @ship_info.id
-        @ship_verification_uniqueness = Ship.where(name: ship_name)
 
-    if (@ship_verification_uniqueness.size == 0)
-      "No such ship"
-    else if (@ship_verification_uniqueness.size == 1)
-           @ship_info_array = [@ship_info.vessel_class, @ship_info.deadweight, port_name,
-                               @open_date_info = [@ship_info.shipments.find_by(port_id: @port_id_info).open_start_date,
-                                                  @ship_info.shipments.find_by(port_id: @port_id_info).open_end_date]]
-         else
-           "More than one ship with this name"
-         end
-    end
+           @ship_info_array = [@ship_info.vessel_category, @ship_info[:deadweight], port_name]
+                              # @open_date_info = [@ship_info.shipments.find_by(port_id: @port_id_info).open_start_date,
+                                               #   @ship_info.shipments.find_by(port_id: @port_id_info).open_end_date]
+
+
     end
 
     def get_name_of_ports_and_coordinates_per_region region_name = "null"
@@ -104,6 +98,11 @@ module GoogleMapHelper
     #["region name", latitude,longitude ]=>shipNumber
     def get_nameAndCoordinatesOfPorts_and_shipNumber_perRegion region_name = "null"
         @name_of_ports_per_region = Port.joins(:shipments).where(region: region_name).group(:name, :latitude, :longitude).size
+    end
+
+    def get_ship_details ship_name = "null"
+        @ship_id = Ship.find_by_name(ship_name).id
+        @return_ship_details = ShipDetail.find_by(ship_id: @ship_id)
     end
 
 end
