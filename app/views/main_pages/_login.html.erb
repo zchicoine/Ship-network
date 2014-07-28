@@ -1,38 +1,62 @@
 <form name="login" class="form-horizontal " role="form">
 
-  <h3 class="text-left textStyle">Log In:</h3>
+<div class="container">
 
-  <div class="row textStyle">
-    <div class="col-md-6">
-      <label class="col-md-2 control-label ">
-        Username:
-      </label>
-      <input class="form-control labels" type="text" name="userid"/>
-    </div>
-    <div class="col-md-6">
-      <label class="col-md-2 control-label">
-        Password:
-      </label>
-      <input class="form-control labels" type="password" name="password"/>
-    </div>
-  </div>
+  <h3 class="entry_banner-title">Log In:</h3>
+
   <div class="row">
-    <div class="clearfix"></div>
-    <div class="col-md-2">
-      <label>
-        <input type="checkbox" onClick=""> Remember me
-      </label>
+
+
+    <div class="row">
+
+      <div class="col-md-6">
+        <span class="col-md-1 control-label entry_banner-medium">
+          Username:
+        </span>
+       </div>
+
+      <div class="col-md-6">
+        <span class="col-md-1 control-label entry_banner-medium">
+          Password:
+        </span>
+      </div>
     </div>
-    <div class="clearfix"></div>
-    <div class="col-md-2 passColor">
-      <a href="" class="passColor"> Forgot your password? </a>
+
+    <div class="row"> 
+
+      <div class="col-md-6">
+        <input class="form-control labels" type="text" name="userid" placeholder="Username"/>
+      </div>
+
+      <div class="col-md-6">
+        <input class="form-control labels" type="password" name="password" placeholder="Password"/>
+      </div>
     </div>
-    <div class="clearfix"></div>
-    <div class="clearfix"></div>
-    <div class="col-md-2">
-      <input class="form_button" type="button" onclick="check(this.form)" value="Log In"/>
+
+
+  <div class="row">
+    <div class="col-md-6">
+      <span class="col-md-4 control labels entry_banner-small">
+        <input type="checkbox" onClick=""/> Remember me
+      </span>
     </div>
   </div>
+
+  <div class="row">
+    <div class="col-md-6 passColor">
+      <span class="col-md-5 entry_banner-small">
+      <a href="" class="passColor" >Forgot your password? </a>
+    </span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2">
+      <input class="basic_button" type="button" onclick="check(this.form)" value="Log In"/>
+    </div>
+  </div>
+
+</div>
 </form>
 
 
