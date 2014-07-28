@@ -19,6 +19,7 @@ send_data_to_side_bar = function(name, level){
     var data_json = { "side_info": { "name": name , "level": level} };
     var url = 'side_bar/index';
     var html_class = '.aside_ship_details_table_body';
+
     if(! isNaN(level) && name.match(/[a-z]/i) )
 
     {
@@ -30,17 +31,21 @@ send_data_to_side_bar = function(name, level){
             },
             type: 'POST',
             data:data_json,
+            dataType: 'html',
             complete: function(r){
                 // Handle the complete event
                 // alert(r);
 
             },
             success: function(result) {
-
+                if(level == SHIP_LEVEL){
+                    html_class = "#ship-details-section";
+                }
                 $(html_class).html(result);
+
             },
             error: function(r){
-                alert(r + "works");
+                alert(r + " works");
             }
         });
 
@@ -107,11 +112,50 @@ highlight_on_a_list = function(tag){
     $(tag).closest('tr').children().addClass('highlight-clicked-row');
 }
 
+// initial code take from
+// http://stackoverflow.com/questions/6330431/jquery-bind-double-click-and-single-click-separately
+var DELAY = 700, clicks = 0, timer = null;
 
-$(document).on('dblclick',".one", function(e){
-    console.log("class: " + this.id);
+$(document).on('click',".ship_name_on_side_bar", function(e){
 
-    var data_json =  { "name": this.id } ;
+       var ship_name =  this.id;
+       clicks++;  //count clicks
+
+
+    if(clicks === 1) {
+
+        timer = setTimeout(function() {
+
+             //perform single-click action
+            update_ship_view(ship_name);
+
+            clicks = 0;             //after action performed, reset counter
+
+        }, DELAY);
+
+    } else {
+
+        clearTimeout(timer);    //prevent single-click action
+        //perform double-click action
+        update_ship_view(ship_name);
+        ship_details(ship_name);
+
+
+        clicks = 0;             //after action performed, reset counter
+    }
+
+
+
+
+});
+
+$(document).on("dblclick", function(e){
+    e.preventDefault();  //cancel system double-click event
+});
+
+ship_details = function(ship_name){
+
+    var data_json =  { "name": ship_name } ;
     $.ajax({
         url:'ship_details/show',
         beforeSend: function(){
@@ -134,8 +178,7 @@ $(document).on('dblclick',".one", function(e){
         }
     });
 
-});
-
+}
 
 
 //$(document).on('click',".one", function(e){

@@ -35,4 +35,15 @@ class MainPagesController < ApplicationController
         end
 
     end
+
+    def ship
+        parameters = params.require(:ship_info).permit(:ship_name)
+        @saved_name = parameters[:ship_name]
+
+        respond_to do |format|
+            format.js {render 'js/ship_view'
+            }
+        end
+
+    end
 end

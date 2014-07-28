@@ -86,6 +86,8 @@ module LinkListBackHistoryHelperC
                 main_pages_region_path(:region_info => {name:name})
             when PORT_LEVEL
                 main_pages_port_path(:port_info => {port_name:name})
+            when SHIP_LEVEL
+                main_pages_ship_path(:ship_info => {ship_name:name})
 
         end
 

@@ -16,9 +16,11 @@
                 <% @ships_at_port.each do |ship|%>
                     <tr >
                         <td>
-                            <%= link_to ship[:name] ,side_bar_ship_path( ship_info: { ship_name: ship[:name]}),class:"one", id:ship[:name],
-                                        :onclick => 'highlight_on_a_list(this)',:remote => true, method: :post
-                            %>
+
+                            <li class="ship_name_on_side_bar btn btn-link" id="<%= ship[:name]  %>" onclick="highlight_on_a_list(this)">
+                                <%= ship[:name] %>
+                            </li>
+
                         </td>
                         <td>
                             <%= ship.vessel_type

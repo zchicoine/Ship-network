@@ -18,7 +18,20 @@ class SideBarController < ApplicationController
                 session[:port_name] = @side_info[:port_name]
                # @side_info[:port_coordinates] = parameters[:port_coordinates]
                 @ships_at_port =  get_all_ships_at_specific_port [0,0], @side_info[:port_name]
-               return render :partial =>  'side_bar/table_body/after_click_a_port/index'
+                respond_to do |format|
+                    format.html {render :partial =>  'side_bar/table_body/after_click_a_port/index'}
+                    format.js {render 'side_bar/table_body/after_click_a_port/js/index'}
+                end
+            when SHIP_LEVEL
+
+                @side_info = {region_name: session[:region_name] || "No region selected" }
+                @side_info[:ship_name] = parameters[:name]
+                @side_info[:port_name] = session[:port_name]
+                @ship_info =  get_ship_information @side_info[:ship_name], @side_info[:port_name]
+                respond_to do |format|
+                    format.html {render :partial =>  'side_bar/table_body/after_click_a_ship/index'}
+                    format.js {render 'side_bar/table_body/after_click_a_ship/js/index'}
+                end
         end
     end
 
