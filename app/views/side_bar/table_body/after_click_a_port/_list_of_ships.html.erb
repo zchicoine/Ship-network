@@ -1,0 +1,40 @@
+<thead class="table_after_clicking_on_a_port text-left">
+<tr>
+    <th colspan="<%= 2%>">
+        <%= image_tag("greentriangle_down.png", size: "16", class:"triangle_image")%>
+        List of ships
+    </th>
+</tr>
+</thead>
+
+
+<tbody class="ship-list">
+<tr >
+    <td colspan="<%= 2%>">
+        <div class="scroll_inside_table">
+            <table class="table table-hover text-left">
+                <% @ships_at_port.each do |ship|%>
+                    <tr >
+                        <td>
+
+                            <li class="ship_name_on_side_bar btn btn-link" id="<%= ship[:name]  %>" onclick="highlight_on_a_list(this)">
+                                <%= ship[:name] %>
+                            </li>
+
+                        </td>
+                        <td>
+                            <%= ship.vessel_type
+                            %>
+                        </td>
+                    </tr>
+                <%end%>
+
+            </table>
+        </div>
+    </td>
+</tr>
+</tbody>
+<tbody id="ship-details-section">
+
+
+</tbody>
