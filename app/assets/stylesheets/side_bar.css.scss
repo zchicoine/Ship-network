@@ -3,6 +3,7 @@
 
   //margin-top: 20px;
   width: 30%;
+  font-weight:400;
     font-family: roboto !important;
     // outer table
     table{
@@ -15,15 +16,17 @@
   }
     // inner tables
     table table{
-        border: solid white 2px;
+        
         tbody tr td:first-child{
             // from bootstrap
 
             text-align: left;
+            font-weight:400;
 
         }
         tbody tr td:nth-child(2){
             text-align: right;
+            font-weight:400;
 
         }
 
@@ -68,14 +71,18 @@
 }
 
 .dropdown-menu-custom{
+    font-weight:400;
     width: 100%;
-    background-color: #f0f1f1;
+    background-color: #d6de23;
 }
 /* --- end the general format ---  */
 /* table head */
 
 .aside_ship_details_table_head {
     //  margin-top: -15px;
+    box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.1);
     border: solid #ffffff 0px !important;
 
 
@@ -87,7 +94,8 @@
 
 .map_controller_go_to_region{
 
-    background-color: #f0f1f1;
+    background-color: #d6de23;
+    font-weight:400;
     li{
         height: 25px;
         cursor: pointer;
@@ -95,7 +103,7 @@
 
     }
     li:hover{
-        color: #cb9007;
+        background-color: #E8E82A;
     }
 }
 
@@ -110,7 +118,11 @@
 
 }
 
-
+.dropshadow_sidebar{
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+}
 
 /*  -----   default table ----- */
 .side_bar_default_table {
@@ -132,6 +144,7 @@
     border: solid #ffffff 0px !important;
     th{
        color: #D6de23;
+       font-weight:600;
     }
 
 
@@ -143,7 +156,7 @@
 
 
 .thick_horizontal_line{
-    border-bottom: solid 3px !important;
+    border-bottom: solid 2px !important;
 
 }
 
