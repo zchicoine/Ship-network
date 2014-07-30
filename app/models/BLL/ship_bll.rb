@@ -1,5 +1,6 @@
 
 class ShipBLL < Ship
+
     include CustomQuery
 
     # return hash {value: result/0 and error: nil/message}
@@ -179,7 +180,7 @@ class ShipBLL < Ship
 
     # in this section, we will define methods that only return rails query
     # begin of query section
-    def slef.query_ships_at_a_port port_name
+    def self.query_ships_at_a_port port_name
         Ship.joins(:ports).where("ports.name" => port_name)
     end
 

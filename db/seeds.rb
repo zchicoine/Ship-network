@@ -3,8 +3,7 @@ Ship.destroy_all
 Port.destroy_all
 ShipDetail.destroy_all
 
-regions = ["North America","South America" , "Africa" ,"Persian Gulf" ,
-           "Australia"  ,"Europe"  , "India","Mid to North China" , "South East Asia" ]
+regions = Region::all
 
 #Read .txt file of ship data and add it to database
 open("db/data/ship_db.txt") do |ships|
