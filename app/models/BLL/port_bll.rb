@@ -1,6 +1,6 @@
 
     class PortBLL < Port
-
+        include CustomQuery
         # return hash {value: result/0 and error: nil/message}
         def retrieve_port_by_name port_name = ""
             port_name
@@ -54,34 +54,6 @@
 
         # in this section, we will define methods that only return ActiveRecord relation query
         # begin of query section
-        def self.query_at_a_region region
-            region = region.downcase
-            where(region: region)
-        end
-
-        # pass arguments to select function
-        # [:key1,:key2]
-        def self.query_select_parameters array_params = []
-            p "1"
-            unless array_params.blank?
-                p "2"
-                   return select(array_params)
-            else
-                p "3"
-                return select("*")
-            end
-
-        end
-
-        def self.execute_query limit = -1
-            if limit == -1
-                all
-            else
-                take(limit)[0]
-            end
-
-
-        end
 
         # end of query section
 

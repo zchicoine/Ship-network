@@ -1,6 +1,6 @@
 
 class ShipBLL < Ship
-
+    include CustomQuery
 
     # return hash {value: result/0 and error: nil/message}
     def retrieve_a_ship ship_name = ""
@@ -21,6 +21,7 @@ class ShipBLL < Ship
 
     end
 
+
     # return hash {value: result/0 and error: nil/message}
     def get_number_of_ships_for_all_categories
 
@@ -29,6 +30,18 @@ class ShipBLL < Ship
             return {value: result, error: nil}
         else
             return {value: {}, error: "Error: calculate the number of ships for all categories."}
+        end
+
+    end
+
+    # return hash {value: result/0 and error: nil/message}
+    def get_number_of_ships_for_all_regions
+
+        result =Port.joins(:ships).group(:region).count
+        unless result.nil?
+            return {value: result, error: nil}
+        else
+            return {value: {}, error: "Error: calculate the number of ships for all regions."}
         end
 
     end
@@ -91,6 +104,19 @@ class ShipBLL < Ship
 
     end
 
+    def get_number_of_ships_per_region_for_all_category region_name = ""
+
+        result = Port.joins(:ships).query_at_a_region(region_name).group(:vessel_category).count
+
+        unless result.nil? and result <= 0
+            return {value: number, error: nil}
+
+        else
+            return {value: 0, error: "Error: either #{region_name } has no ships or it does not support by the system"}
+        end
+
+
+    end
 
     # return hash {value: result/0 and error: nil/message}
     def get_all_ships_at_specific_port port_name = ""

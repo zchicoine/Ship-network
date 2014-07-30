@@ -102,11 +102,14 @@ open("db/data/port_db.txt") do |ports|
         name, latitude, longitude = port.chomp.split(";")
 
         begin
+           # _shipment = Shipment.new(open_start_date: Time.now,open_end_date:  Time.new.advance({days:6}))
             #   Geocoder.search("#{latitude},#{longitude}").last.data["address_components"].first["long_name"]
 
             #  sleep(1.0/2)
-            Port.create!(name: name, latitude: latitude.to_f, longitude: longitude.to_f, region: regions.sample, ships: [all_ships.sample,
-                                                                                                                         all_ships.sample,all_ships.sample,all_ships.sample,all_ships.sample,all_ships.sample,all_ships.sample,all_ships.sample,all_ships.sample,all_ships.sample])
+            Port.create!(name: name, latitude: latitude.to_f, longitude: longitude.to_f, region: regions.sample,
+                         ships: [all_ships.sample, all_ships.sample,all_ships.sample,all_ships.sample,all_ships.sample,all_ships.sample,all_ships.sample,all_ships.sample,all_ships.sample,all_ships.sample]
+
+            )
         rescue => e
             puts e.message + " for  port: " + name
         end
