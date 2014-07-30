@@ -30,7 +30,7 @@ function test ( event, region_name_coords, region_name) {
 
        }
        else if(region_name=="North America".toUpperCase()){
-    
+        window.alert(region_name);
         global_region_name.setZoomValue("North America");
        }
        else if(region_name=="South America".toUpperCase()){
@@ -49,7 +49,7 @@ function test ( event, region_name_coords, region_name) {
         getClickedPostion = event.latLng
         click(getClickedPostion);
         setClickedPosition(getClickedPostion);
-        send_data_to_side_bar(region_name);
+        update_region_view(region_name);
    
 }
 
