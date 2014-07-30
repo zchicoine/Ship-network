@@ -9,7 +9,7 @@ class SideBarController < ApplicationController
 
         case _level
             when REGION_LEVEL
-                @side_info = {region_name: parameters[:name].downcase}
+                @side_info = {region_name: parameters[:name]}
                 session[:region_name] = @side_info[:region_name]
                 render :partial =>  'side_bar/table_body/after_click_a_region/index'
             when PORT_LEVEL
@@ -17,7 +17,10 @@ class SideBarController < ApplicationController
                 @side_info[:port_name] = parameters[:name]
                 session[:port_name] = @side_info[:port_name]
                # @side_info[:port_coordinates] = parameters[:port_coordinates]
-                @ships_at_port =  get_all_ships_at_specific_port [0,0], @side_info[:port_name]
+                result =  UnitOfWork.instance.ship.get_all_ships_at_specific_port @side_info[:port_name]
+                if result[:error].nil?
+                    @ships_at_port = result[:value]
+                end
                 respond_to do |format|
                     format.html {render :partial =>  'side_bar/table_body/after_click_a_port/index'}
                     format.js {render 'side_bar/table_body/after_click_a_port/js/index'}

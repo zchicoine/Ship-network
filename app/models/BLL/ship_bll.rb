@@ -126,7 +126,7 @@ class ShipBLL < Ship
             result = query_ships_at_a_port port_name
 
             unless result.blank?
-                return {value: number, error: nil}
+                return {value: result, error: nil}
             else
                 return {value: 0, error: "Error: #{port_name} has no ships"}
             end
@@ -145,7 +145,7 @@ class ShipBLL < Ship
             result = query_ships_at_a_port(port_name).count
 
             if result > 0
-                return {value: number, error: nil}
+                return {value: result, error: nil}
             else
                 return {value: 0, error: "Error: #{port_name} has no ships"}
             end
@@ -164,7 +164,7 @@ class ShipBLL < Ship
             unless category_id.blank?
                 result = Ship.joins(:ports).where("ports.region" => region_name.downcase, vessel_category:category_id).count
                 if result > 0
-                    return {value: number, error: nil}
+                    return {value: result, error: nil}
                 else
                     return {value: 0, error: "Error: no ship at #{region_name} with #{category_name} category exist"}
                 end
@@ -180,11 +180,11 @@ class ShipBLL < Ship
 
     # in this section, we will define methods that only return rails query
     # begin of query section
-    def self.query_ships_at_a_port port_name
+    def query_ships_at_a_port port_name
         Ship.joins(:ports).where("ports.name" => port_name)
     end
 
-    def self.query_ship_joins_ports
+    def query_ship_joins_ports
         Ship.joins(:ports)
     end
     # end of query section
