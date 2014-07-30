@@ -35,7 +35,7 @@ $("#left-img-responsive").hover(function(){
 	
 		}
 		
-		else if(this.id=='right-img-responsive' && (zval.getZoomValue()) >=5 ){
+		else if(this.id=='right-img-responsive' && (zval.getZoomValue()) >=10 ){
 	
 			if(global_region_name.getZoomValue()=="Europe"){
 				a = new Field("test");
@@ -105,7 +105,7 @@ $("#left-img-responsive").hover(function(){
 	
 		}
 		
-		else if(this.id=='left-img-responsive' && (zval.getZoomValue()) >=5 ){
+		else if(this.id=='left-img-responsive' && (zval.getZoomValue()) >=10 ){
 	
 			if(global_region_name.getZoomValue()=="Europe"){
 				a = new Field("test");

@@ -17,7 +17,7 @@ class GoogleMapController < ApplicationController
     # return ports coordinates array
     def port_coordinates
         parameters = params.require(:region_info).permit(:name)
-        ports_name_coordinates__shipNumber =  get_nameAndCoordinatesOfPorts_and_shipNumber_perRegion parameters[:name]
+        ports_name_coordinates__shipNumber =  get_nameAndCoordinatesOfPorts_and_shipNumber_perRegion parameters[:name].downcase
         ports_name_coordinates__shipNumber_array = ports_name_coordinates__shipNumber.to_a
         array_length = ports_name_coordinates__shipNumber_array.length
         port_coordinates_array = ports_name_coordinates__shipNumber_array.map {|v| [v[0][1], v[0][2]]  }
