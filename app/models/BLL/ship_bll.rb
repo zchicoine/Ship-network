@@ -2,7 +2,24 @@
 class ShipBLL < Ship
 
 
+    # return hash {value: result/0 and error: nil/message}
+    def retrieve_a_ship ship_name = ""
 
+        unless ship_name.blank?
+            # take method return an array with one object only
+            result =  Ship.where(name: ship_name).take(1)[0]
+            unless result.blank?
+                return {value: result, error: nil}
+            else
+                return {value: 0, error: "Error: ship name #{ship_name} does not exist"}
+            end
+        else
+            return {value: 0, error: "Error:  the parameters invalid"}
+        end
+
+
+
+    end
 
     # return hash {value: result/0 and error: nil/message}
     def get_number_of_ships_for_all_categories
@@ -43,17 +60,16 @@ class ShipBLL < Ship
     # return hash {value: result/0 and error: nil/message}
     def get_number_of_ships_per_category category_name = ""
 
-        result = Ship.vessel_categories[category_name]
-        number = 0
+        number = Ship.vessel_categories[category_name]
 
-        unless result.nil?
-            number = Ship.where(vessel_category: result).count
+        unless number.blank?
+            result = Ship.where(vessel_category: number).count
         else
             return {value: 0, error: "#{category_name } does not exist in the system"}
         end
 
         unless number.nonzero?.nil?
-            return {value: number, error: nil}
+            return {value: result, error: nil}
         else
             return {value: 0, error: "Error: There is no ship has category '#{category_name }'in the database."}
         end
@@ -113,12 +129,36 @@ class ShipBLL < Ship
         end
     end
 
-    private
+    # return hash {value: result/0 and error: nil/message}
+    def get_number_of_ships_per_region_per_category region_name = "" , category_name = ""
+
+        unless region_name.blank? and category_name.blank?
+            category_id = Ship.vessel_categories[category_name]
+            unless category_id.blank?
+                result = Ship.joins(:ports).where("ports.region" => region_name.downcase, vessel_category:category_id).count
+                if result > 0
+                    return {value: number, error: nil}
+                else
+                    return {value: 0, error: "Error: no ship at #{region_name} with #{category_name} category exist"}
+                end
+            else
+                return {value: 0, error: "Error: There is no ship has category '#{category_name }'in the database."}
+
+            end
+        end
+
+    end
+
+
+
     # in this section, we will define methods that only return rails query
     # begin of query section
-    def query_ships_at_a_port port_name
+    def slef.query_ships_at_a_port port_name
         Ship.joins(:ports).where("ports.name" => port_name)
     end
 
+    def self.query_ship_joins_ports
+        Ship.joins(:ports)
+    end
     # end of query section
 end
