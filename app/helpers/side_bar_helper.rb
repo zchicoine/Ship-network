@@ -11,9 +11,11 @@ module SideBarHelper
     end
 
 
-    # return ship number by classes
-    def ships_at_region_based_on_vessel_classes region_name, region_coordinates
-
+    def get_number_of_ships_per_region region_name
+        result =   UnitOfWork.instance.ship.get_number_of_ships_per_region region_name
+        if result[:error].nil?
+            return result[:value]
+        end
     end
     # return
     def get_number_of_ships_for_all_category
@@ -32,14 +34,23 @@ module SideBarHelper
 
     end
 
-    def get_number_of_ships_per_region_for_all_class region_name
-
+    def get_number_of_ships_per_region_for_all_category region_name
+        result =  UnitOfWork.instance.ship.get_number_of_ships_per_region_for_all_category region_name
+        if result[:error].nil?
+            return result[:value]
+        end
     end
     def get_total_deadweight_for_total_ships
         result =  UnitOfWork.instance.ship.get_total_deadwieght_of_ships
         if result[:error].nil?
             return result[:value]
         end
+    end
+
+
+    #not query methods
+    def get_vessel_category_number name
+        Ship.vessel_categories[name]
     end
 
 end

@@ -1,6 +1,6 @@
 class UnitOfWork
     include Singleton
-    attr_accessor :_ship
+    attr_accessor :_ship,:_port
 
     def ship
         if _ship.nil?
@@ -8,7 +8,11 @@ class UnitOfWork
         end
          _ship
     end
-
-
+    def port
+        if _port.nil?
+            return _port =  PortBLL.new
+        end
+        _port
+    end
 
 end

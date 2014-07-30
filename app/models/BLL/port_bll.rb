@@ -1,6 +1,8 @@
 
     class PortBLL < Port
-        include CustomQuery
+
+        extend CustomQuery
+
         # return hash {value: result/0 and error: nil/message}
         def retrieve_port_by_name port_name = ""
             port_name
@@ -14,7 +16,7 @@
 
         # return hash {value: result/0 and error: nil/message}
         def retrieve_ports_at_a_region region = ""
-           result =  PortBLL.query_port_at_a_region region
+           result =  PortBLL.query_at_a_region region
             unless result.blank?
                 return {value: result, error: nil}
             else
@@ -25,13 +27,15 @@
 
         # return hash {value: result/0 and error: nil/message}
         def retrieve_name_and_coordinates_of_ports_per_region region_name = "null"
-            result = PortBLL.query_port_at_a_region(region_name).query_select_parameters([:name, :latitude, :longitude]).execute_query
+            result = PortBLL.query_at_a_region(region_name).query_select_parameters([:name, :latitude, :longitude]).execute_query
             unless result.blank?
                 return {value: result, error: nil}
             else
                 return {value: 0, error: "Error: either #{region_name } has no ports or it does not support by the system"}
             end
         end
+
+
 
         # return hash {value: result/0 and error: nil/message}
         def get_number_of_ports_per_region region_name = ""

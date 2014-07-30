@@ -6,6 +6,13 @@
 module GoogleMapHelper
 
 
+    def get_name_of_ports_and_coordinates_per_region region_name = "null"
+        result =  UnitOfWork.instance.port.retrieve_name_and_coordinates_of_ports_per_region region_name
+        if result[:error].nil?
+            return result[:value]
+        end
+    end
+
     def get_ship_information ship_name = "null", port_name = "null"
 
     end
