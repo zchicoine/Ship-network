@@ -8,7 +8,7 @@ $(window).load(function(){
 
 $("#right-img-responsive").hover(function(){
 	$("body").css("cursor","default");
-	$('.tag-tooltip').tooltip();
+	//$('.tag-tooltip').tooltip();
 });
 
 $("#left-img-responsive").hover(function(){
