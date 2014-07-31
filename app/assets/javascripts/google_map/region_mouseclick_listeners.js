@@ -25,31 +25,31 @@ region clicked on
 function test ( event, region_name_coords, region_name) {
 
        
-       if(region_name=="Europe".toUpperCase()){
-        global_region_name.setZoomValue("Europe");
+       if(region_name=="Europe"){
+        global_region_name.setZoomValue(region_name);
 
        }
-       else if(region_name=="North America".toUpperCase()){
-    
-        global_region_name.setZoomValue("North America");
+       else if(region_name=="North America"){
+       // window.alert(region_name);
+        global_region_name.setZoomValue(region_name);
        }
-       else if(region_name=="South America".toUpperCase()){
+       else if(region_name=="South America"){
    
-        global_region_name.setZoomValue("South America");
+        global_region_name.setZoomValue(region_name);
        }
-       else if(region_name=="Africa".toUpperCase()){
+       else if(region_name=="Africa"){
    
-        global_region_name.setZoomValue("Africa");
+        global_region_name.setZoomValue(region_name);
        }
-       else if(region_name=="India".toUpperCase()){
+       else if(region_name=="India"){
    
-        global_region_name.setZoomValue("India");
+        global_region_name.setZoomValue(region_name);
        }
         
         getClickedPostion = event.latLng
         click(getClickedPostion);
         setClickedPosition(getClickedPostion);
-        send_data_to_side_bar(region_name);
+        update_region_view(region_name);
    
 }
 

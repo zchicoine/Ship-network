@@ -8,7 +8,9 @@ $(window).load(function(){
 
 $("#right-img-responsive").hover(function(){
 	$("body").css("cursor","default");
+	//$('.tag-tooltip').tooltip();
 });
+
 $("#left-img-responsive").hover(function(){
 	$("body").css("cursor","default");
 });
@@ -35,7 +37,7 @@ $("#left-img-responsive").hover(function(){
 	
 		}
 		
-		else if(this.id=='right-img-responsive' && (zval.getZoomValue()) >=5 ){
+		else if(this.id=='right-img-responsive' && (zval.getZoomValue()) >=10 ){
 	
 			if(global_region_name.getZoomValue()=="Europe"){
 				a = new Field("test");
@@ -105,7 +107,7 @@ $("#left-img-responsive").hover(function(){
 	
 		}
 		
-		else if(this.id=='left-img-responsive' && (zval.getZoomValue()) >=5 ){
+		else if(this.id=='left-img-responsive' && (zval.getZoomValue()) >=10 ){
 	
 			if(global_region_name.getZoomValue()=="Europe"){
 				a = new Field("test");

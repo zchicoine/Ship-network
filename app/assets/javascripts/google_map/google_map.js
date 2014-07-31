@@ -150,7 +150,7 @@ var colors = ['#00FFFF', '#00FF00', '#0000FF', '#FFFF00' , '#FF00FF' , '#ADD8E6'
 	 // click  event function for zooming in   
      google.maps.event.addListener(map, 'click', function(e) {  
 
-      if(zval.getZoomValue() > 2){
+      if(zval.getZoomValue() > 10){
 
        getClickedPostion = e.latLng
  
@@ -160,8 +160,14 @@ var colors = ['#00FFFF', '#00FF00', '#0000FF', '#FFFF00' , '#FF00FF' , '#ADD8E6'
  
       
       window.map.setOptions({styles: map_styles}); 
-      set_label_names();
+     // set_label_names();
       $('body').css("cursor","default");    
+      }
+      else{
+        $('body').css("cursor","default");
+        var zoomToNumber = window.map.getZoom() + 2;
+        window.map.setZoom(zoomToNumber);
+       zval.setZoomValue(zoomToNumber);
       }
         
      
@@ -175,8 +181,9 @@ var colors = ['#00FFFF', '#00FF00', '#0000FF', '#FFFF00' , '#FF00FF' , '#ADD8E6'
         
         $("body").css("cursor","default");
         if(zval.getZoomValue() > 2){
-          $("body").css("cursor","-moz-zoom-out");
-          $("body").css("cursor","-webkit-zoom-out");        
+          $('body').css("cursor","default");
+          /*$("body").css("cursor","-moz-zoom-out");
+          $("body").css("cursor","-webkit-zoom-out");        */
         }
         else{
           $("body").css("cursor","default");
@@ -191,7 +198,7 @@ var colors = ['#00FFFF', '#00FF00', '#0000FF', '#FFFF00' , '#FF00FF' , '#ADD8E6'
           
           setMarkers(null,markerArray);
           window.map.setCenter(getClickedPostion);
-           
+           $('body').css("cursor","default");
            // region_event_listeners();
             //set_label_names();
         });
@@ -282,7 +289,7 @@ function event_listeners(country,region_name)
               
         $('.region_labels').remove();
        send_data_to_get_port_coordinates(region_name);
-       var zoomToNumber = window.map.getZoom() + 1;
+       var zoomToNumber = window.map.getZoom() + 2;
        getClickedPostion = e.latLng
        // make a function call to decide which region is being clicked on
       // console.log(zoomToNumber);
@@ -350,8 +357,6 @@ function region_name_on_country(country_name){
               fillColor: "blue",
               fillOpacity: 0.9
             });
-  
-
   }
     
   else

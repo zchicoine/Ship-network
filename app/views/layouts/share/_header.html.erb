@@ -1,21 +1,22 @@
 <div class="navbar navbar- navbar-fixed-top ship-blue-background-color" role="navigation">
-	<div class="container header-text">
-		
-		<div class="navbar-header"> 
-			  <%= link_to project_name, root_path, class:"navbar-brand" , method: :get%>
-	   </div>
-	   
-	   <!--navcollapse -->
-	   <div class="collapse navbar-collapse ">
-	   
-		   <ul class="nav  navbar-nav navbar-right">
-               <% if sign_in?  %>
-                   <%= content_tag :li do %>
+    <div class="container header-text">
+
+        <div class="navbar-header">
+            <%= link_to project_name, root_path, class:"navbar-brand" , method: :get%>
+        </div>
+
+        <!--navcollapse -->
+        <div class="collapse navbar-collapse ">
+
+            <ul class="nav  navbar-nav navbar-right">
+                <% if sign_in?  %>
+                    <li><a href="">Welcome, Zack</a></li>
+                    <%= content_tag :li do %>
                         <%= link_to "Log out" , user_sign_out_path, method: :post %>
                     <% end %>
-               <% end  %>
-			</ul>
-		</div>
-		<!-- end of nav-collapse -->
-	</div>
+                <% end  %>
+            </ul>
+        </div>
+        <!-- end of nav-collapse -->
+    </div>
 </div>
