@@ -15,7 +15,7 @@
 
 <% unless sign_in? %>
     <%= render 'main_pages/entry_banner' %>
-    <div id="transparent_div" class="transparent">
+    <div id="transparent_div" class="transparent" mouseover:"cursor:default">
 <% end %>
 
 
@@ -24,7 +24,7 @@
 <!-- end of header -->
 <!-- container -->
 <div class="container">
-    <div class="starter-template">
+    <div class="starter-template" mouseover:"cursor:default">
         <%= yield %>
     </div>
     <!-- end of container -->

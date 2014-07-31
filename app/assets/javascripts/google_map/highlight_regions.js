@@ -8,7 +8,7 @@ function drawMap(data) {
           if (rows[i][0] != 'Antarctica' && (rows[i][0] == "Australia" || rows[i][0] == "New Zealand"
           || rows[i][0] == "Papua New Guinea") ){
                var  geometries = rows[i][1]['geometries'];
-            region_name = "AUSTRALIA";
+            region_name = "Australia";
             newCoordinates = [];
             //console.log('Rows in drawRegions' + rows);
             
@@ -43,7 +43,7 @@ function drawMap(data) {
             else if(rows[i][0] != 'Antarctica' && (rows[i][0] == "China" ||rows[i][0] == "Taiwan" ||rows[i][0] == "S. Korea" ||rows[i][0] == "N. Korea"
             ||rows[i][0] == "Japan")){
            var  geometries = rows[i][1]['geometries'];
-          region_name = "FAR EAST";
+          region_name = "Far East";
              newCoordinates = [];
             //console.log('Rows in drawRegions' + rows);
             
@@ -80,7 +80,7 @@ function drawMap(data) {
               ||rows[i][0] == "Cambodia" ||rows[i][0] == "Vietnam" ||rows[i][0] == "Philippines" )){
 
            var  geometries = rows[i][1]['geometries'];
-          region_name = "INDIA & SE ASIA";
+          region_name = "India & SE Asia";
              newCoordinates = [];
             //console.log('Rows in drawRegions' + rows);
             
@@ -118,7 +118,7 @@ function drawMap(data) {
              || rows[i][0] == "Afghanistan"|| rows[i][0] == "Uzbekistan"|| rows[i][0] == "Pakistan"||rows[i][0] =="Kazakhstan"
             ) ){
             var  geometries = rows[i][1]['geometries'];
-          region_name = "ARABIA & PG";
+          region_name = "Arabia & PG";
              newCoordinates = [];
             //console.log('Rows in drawRegions' + rows);
             
@@ -166,7 +166,7 @@ function drawMap(data) {
                 ||rows[i][0] == "Niger")){
 
            var  geometries = rows[i][1]['geometries'];
-          region_name = "AFRICA";
+          region_name = "Africa";
              newCoordinates = [];
             //console.log('Rows in drawRegions' + rows);
             
@@ -211,7 +211,7 @@ function drawMap(data) {
                 ||rows[i][0] =="Russia")){
 
            var  geometries = rows[i][1]['geometries'];
-          region_name = "EUROPE";
+          region_name = "Europe";
              newCoordinates = [];
             //console.log('Rows in drawRegions' + rows);
             
