@@ -5,8 +5,9 @@ class UserController < ApplicationController
 
         if authentication_user? params[:username], params[:password]
             session[:user] = params[:username]
+
             respond_to do |format|
-                #format.html
+                format.html {'/'}
                 format.js {render 'main_pages/js/sign_in'}
             end
         else

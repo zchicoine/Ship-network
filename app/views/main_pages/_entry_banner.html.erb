@@ -1,19 +1,24 @@
 <section id="main_banner" >
 
-  <div class="banner_background" mouseover:"cursor:default">
-    <div class="banner1" mouseover:"cursor:default">
-      <h1> Welcome to The Ship Network</h1>
-      <h5> A place to organize and locate ships and their respective ports with ease.</h5>
-       <%# link_to 'Login' , main_pages_loginpage_path, class:"basic_button", :remote => true%>
-        <%= button_tag(type:'button', class:"basic_button") do
-               link_to "Login" , main_pages_loginpage_path ,class:"" , :remote => true
-            end
-        %>
-      <!--<button class="basic_button" type="button" clickable>Log in</button>-->
-        <%= button_tag( "Sign Up", type: 'button', class:"basic_button") %>
-        <%= button_tag( "Free Tour", type: 'button', class:"basic_button") %>
+  <div class="banner_background">
+    <div class="banner1">
+      <h1 class="less_margin"> Welcome to The Ship Network</h1>
+      <h5 class="less_margin"> A place to organize and locate ships and their respective ports with ease.</h5>
+
+        <div class="banner1_buttons">
+        
+    <%=
+        link_to  main_pages_loginpage_path , :remote => true do
+            button_tag("Login" , type:'button', class:"basic_button")
+        end
+
+      %>
+        <%# button_tag( "Sign Up", type: 'button', class:"basic_button") %>
+        <%# button_tag( "Free Tour", type: 'button', class:"basic_button") %>
 
 
+        
+      </div>
     </div>
   </div>
 

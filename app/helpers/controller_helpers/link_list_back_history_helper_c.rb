@@ -71,9 +71,8 @@ module LinkListBackHistoryHelperC
     private
     def assign_session_to_the_variable
         @linklist_back_history = session[:link_list_back_history]
-        a = @linklist_back_history
-
     end
+
     def assign_the_variable_to_session
          session[:link_list_back_history] = @linklist_back_history
     end

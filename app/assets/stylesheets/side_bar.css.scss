@@ -2,7 +2,8 @@
 .aside_ship_details {
 
   //margin-top: 20px;
-  width: 30%;
+ // width: 30%;
+  font-weight:400;
     font-family: roboto !important;
     // outer table
     table{
@@ -15,15 +16,17 @@
   }
     // inner tables
     table table{
-        border: solid white 2px;
+        
         tbody tr td:first-child{
             // from bootstrap
 
             text-align: left;
+            font-weight:400;
 
         }
         tbody tr td:nth-child(2){
             text-align: right;
+            font-weight:400;
 
         }
 
@@ -68,14 +71,18 @@
 }
 
 .dropdown-menu-custom{
+    font-weight:400;
     width: 100%;
-    background-color: #f0f1f1;
+    background-color: #d6de23;
 }
 /* --- end the general format ---  */
 /* table head */
 
 .aside_ship_details_table_head {
     //  margin-top: -15px;
+    box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.1);
     border: solid #ffffff 0px !important;
 
 
@@ -87,7 +94,8 @@
 
 .map_controller_go_to_region{
 
-    background-color: #f0f1f1;
+    background-color: #d6de23;
+    font-weight:400;
     li{
         height: 25px;
         cursor: pointer;
@@ -95,7 +103,7 @@
 
     }
     li:hover{
-        color: #cb9007;
+        background-color: #E8E82A;
     }
 }
 
@@ -110,7 +118,11 @@
 
 }
 
-
+.dropshadow_sidebar{
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+}
 
 /*  -----   default table ----- */
 .side_bar_default_table {
@@ -132,6 +144,7 @@
     border: solid #ffffff 0px !important;
     th{
        color: #D6de23;
+       font-weight:600;
     }
 
 
@@ -143,7 +156,7 @@
 
 
 .thick_horizontal_line{
-    border-bottom: solid 3px !important;
+    border-bottom: solid 2px !important;
 
 }
 
@@ -192,19 +205,163 @@ div.scroll_inside_table {
     background-color: rgba(0, 0, 0, 0.64);
 }
 
-/*end scroll*/
-/* end after a region has been clicked */
-/* ship */
+/*-------------------------------------------------------------------------------*/
 
-/**/
+.ship_details{
+  top:10%;
+  left:10%;
+  position:absolute;
+  background-color: white;
+  height:650px;
+  width:950px;
+  border-radius: 8px;
+}
 
+.ship_details-header{
+  vertical-align:middle;
+  color:white;
+  top:0%;
+  width:100%;
+  height:40px;
+  background-color:#0A94CB;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  -webkit-border-top-left-radius: 8px;
+  -webkit-border-top-right-radius: 8px;
+}
 
+.ship_details-geninfo{
 
+  position:relative;
+  top:30px;
+  left:30px;
+  width:400px;
+  float:left;
+  position:relative;
+}
 
+/*TABLE HORIZONTAL*/
 
+div.ship_details-geninfo table{
+  max-width:380px;
+  font-size:18px;
+  text-align:left;
+  border-spacing:2px;
+  border-collapse:collapse;
+  color:grey;
+  height:50px;
+  font-weight:300;
+  background-color: #F0F1F1;
+}
 
+div.ship_details td{
+  padding-left:20px;
+  padding-right:30px;
+  height:25px;
+}
 
+div.ship_details th{
+  height:40px;
+  padding-left:20px;
+  background-color:#0A94CB;
+  border-right: 1px solid #027FA5;
+  font-weight:400;
+  color:white;
+}
 
+div.ship_details tr:nth-child(odd) {
+  background-color: #E5E6E7;
+}
 
+div.ship_details-geninfo tr:hover{
+  background-color: #D3D3D3;
+}
 
+/*TABLE VERTICAL*/
 
+.ship_details-portcall{
+  background-color:blue;
+  max-width:400px;
+  position:absolute;
+  top:70px;
+  left:500px;
+  float:left;
+}
+
+div.ship_details-portcall table{
+  max-width:380px;
+  font-size:18px;
+  text-align:left;
+  border-spacing:2px;
+  border-collapse:collapse;
+  color:grey;
+  height:50px;
+  font-weight:300;
+  background-color: #F0F1F1;
+}
+
+div.ship_details-portcall tr:hover{
+  background-color: #D3D3D3;
+}
+
+div.ship_details-portcall td{
+  padding-left:20px;
+  padding-right:30px;
+  height:25px;
+}
+
+div.ship_details-portcall th{
+  height:40px;
+  padding-left:20px;
+  font-weight:400;
+  color:white;
+}
+
+div.ship_details-portcall tr:nth-child(odd) {
+  background-color: #E5E6E7;
+}
+div.ship_details-portcall tr:nth-child(odd):hover {
+  background-color: #D3D3D3;
+}
+
+div.ship_details-portcall tr td:first-child{
+  background-color: #0A94CB;
+  color:white;
+  border-bottom:1px solid #027FA5;
+  height:30px;
+}
+
+#login {
+
+  width: 175px;
+  height: 60px;
+  margin-right: 173px;
+  margin-top: 65px;
+  box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.5);
+  color: white;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 300;
+  background-color: #D6DE23;
+  border-color: #D6DE23;
+  line-height: 45px;
+
+}
+
+#login:hover{
+  border-color:transparent;
+  background-color: #E8E82A;
+
+}
+
+#login:active{
+  background-color: #D6DE23;
+  box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.5);
+  -webkit-transform: translateY(3px);
+  transform: translateY(3px);
+}

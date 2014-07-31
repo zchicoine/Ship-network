@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>ShipNetwork</title>
+    <title>The Ship Network</title>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
     <!-- load required libraries in order -->
     <%= render 'layouts/share/javascript_tags' %>
@@ -15,7 +15,7 @@
 
 <% unless sign_in? %>
     <%= render 'main_pages/entry_banner' %>
-    <div id="transparent_div" class="transparent" mouseover:"cursor:default">
+    <div id="transparent_div" class="transparent">
 <% end %>
 
 
@@ -24,7 +24,7 @@
 <!-- end of header -->
 <!-- container -->
 <div class="container">
-    <div class="starter-template" mouseover:"cursor:default">
+    <div >
         <%= yield %>
     </div>
     <!-- end of container -->

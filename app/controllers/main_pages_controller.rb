@@ -6,6 +6,7 @@ class MainPagesController < ApplicationController
     include LinkListBackHistoryHelperC
 
     def index
+        
    create_history
 
     end
