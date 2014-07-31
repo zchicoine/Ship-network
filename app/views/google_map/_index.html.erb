@@ -3,11 +3,12 @@
 <div id="outer-map">
 
    
-   <%= image_tag("left_default.png", height: "auto", width: "25", class:"",id:"left-img-responsive", mouseover:"cursor:default")%>
-  <%= image_tag("right_default.png", height: "auto", width: "25", class:"",id:"right-img-responsive" ,mouseover:"cursor:default")%>
-      
-<!--<img src="/assets/left_default.png" height="auto" width="20px" id="left-img-responsive" onmouseover="url(left_hover.png)" onmousedown="url(left_down.png)">
-<input type="image" src="/assets/left_default.png" id="left-img-responsive" onmouseover="SetImage('/assets/left_hover.png')"  onmousedown="SetImage('/assets/left_down.png')">-->
+   <%= image_tag "left_default.png", height: "auto", width: "25", class:"",id:"left-img-responsive", :onmouseover => "this.src = 'assets/left_hover.png'", :onmouseout => "this.src = 'assets/left_default.png'", :onclick => "this.src = 'assets/left_down.png'" %>
+    <%= image_tag "right_default.png", height: "auto", width: "25", class:"",id:"right-img-responsive", :onmouseover => "this.src = 'assets/right_hover.png'", :onmouseout => "this.src = 'assets/right_default.png'", :onclick => "this.src = 'assets/right_down.png'" %>
+ 
+ <!--     
+<img src="/assets/left_default.png" height="auto" width="20px" id="left-img-responsive" onmouseover="left_hover.png)" onmousedown="url(left_down.png)">
+<input type="image" src="/assets/left_default.png" id="left-img-responsive" onmouseover="SetImage('/assets/left_hover.png')"  onmousedown="SetImage('/assets/left_down.png')">--> 
 
 	  <div id="googleMap" align="center" >
 	  	<style="cursor:default">
