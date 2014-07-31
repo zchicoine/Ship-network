@@ -15,7 +15,6 @@ class SideBarController < ApplicationController
             when PORT_LEVEL
                 @side_info = {region_name: session[:region_name] || "No region selected" }
                 @side_info[:port_name] = parameters[:name]
-                session[:port_name] =  nil
                 session[:port_name] = @side_info[:port_name]
                # @side_info[:port_coordinates] = parameters[:port_coordinates]
                 result =  UnitOfWork.instance.ship.get_all_ships_at_specific_port @side_info[:port_name]
@@ -64,15 +63,15 @@ class SideBarController < ApplicationController
     end
 
     def ship
-        parameters = params.require(:ship_info).permit(:ship_name )
-        @side_info = {region_name: session[:region_name] || "No region selected" }
-        @side_info[:ship_name] = parameters[:ship_name]
-        @side_info[:port_name] = session[:port_name]
-       @ship_info =  get_ship_information @side_info[:ship_name], @side_info[:port_name]
-        respond_to do |format|
-            format.html {render :partial =>  'side_bar/table_body/after_click_a_ship/index'}
-            format.js {render 'side_bar/table_body/after_click_a_ship/js/index'}
-        end
+       #  parameters = params.require(:ship_info).permit(:ship_name )
+       #  @side_info = {region_name: session[:region_name] || "No region selected" }
+       #  @side_info[:ship_name] = parameters[:ship_name]
+       #  @side_info[:port_name] = session[:port_name]
+       # @ship_info =  get_ship_information @side_info[:ship_name], @side_info[:port_name]
+       #  respond_to do |format|
+       #      format.html {render :partial =>  'side_bar/table_body/after_click_a_ship/index'}
+       #      format.js {render 'side_bar/table_body/after_click_a_ship/js/index'}
+       #  end
 
     end
 

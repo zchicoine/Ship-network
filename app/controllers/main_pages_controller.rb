@@ -6,9 +6,9 @@ class MainPagesController < ApplicationController
     include LinkListBackHistoryHelperC
 
     def index
+        
    create_history
-    # a = PortBLL.new
-    #     @hi = a.retrieve_ports_coordinate_at_a_region "North America"
+
     end
 
     def loginpage
