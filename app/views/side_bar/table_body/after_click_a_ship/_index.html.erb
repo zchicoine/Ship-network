@@ -5,7 +5,7 @@
         Category:
     </td>
     <td>
-        <%= @ship_info[0] %>
+        <%= get_vessel_category_name @ship_info[:vessel_category] %>
     </td>
 </tr>
 <tr class="text-left">
@@ -13,7 +13,7 @@
         Open Port:
     </td>
     <td>
-        <%= @ship_info[2] %>
+        <%= @ship_info[:port_name] %>
     </td>
 </tr>
 <tr class="text-left">
@@ -29,7 +29,7 @@
         Deadweight:
     </td>
     <td>
-        <%= @ship_info[1] %>
+        <%= @ship_info[:deadweight] %>
     </td>
 </tr>
 <tr class="text-left">

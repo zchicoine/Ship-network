@@ -53,4 +53,9 @@ module SideBarHelper
         Ship.vessel_categories[name]
     end
 
+    def get_vessel_category_name number
+        Ship.vessel_categories.keys[number]
+    end
+
+
 end

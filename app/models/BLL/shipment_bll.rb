@@ -4,14 +4,18 @@ class ShipmentBLL < Shipment
 
 
 
-
+        #  return {value: result/0, error: nil/message}
     def get_ship_category_deadweight_open_start_and_end_date ship_name = "", port_name = ""
         result = ShipBLL.joins(:shipments,:ports).select(
                                 "shipments.open_start_date","shipments.open_end_date",:deadweight,:vessel_category).where(
-                                                    "ports.name" => port_name,name:ship_name).execute_query
+                                                    "ports.name" => port_name,name:ship_name).execute_query 1
 
         unless result.blank?
-            return {value: result, error: nil}
+                coverted_to_ruby_hash = {deadweight: result[:deadweight],open_start_date: result[:open_start_date],
+                                         open_end_date:  result[:open_end_date], vessel_category: result[:vessel_category],
+                                         ship_name:  ship_name ,  port_name:  port_name
+                                        }
+            return {value: coverted_to_ruby_hash, error: nil}
         else
             return {value: 0, error: "Error:  #{ship_name }  and  #{port_name} has no relationship "}
         end
