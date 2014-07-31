@@ -1,16 +1,42 @@
+var region_center_coordinates =  [[48.2893, -99.3594], [-10.4893, -59.3594],[17.6493, 11.5994],
+                   [33.1376, 47.6367], [-25.8000, 133.2422],[53.1289, 45.1102],
+                   [24.4471,85.1660] ,[35.8178, 118.0371],[-4.0396, 121.2891]];
+
+
 go_to_region = function (coordinates , regionName){
 
    // console.log(coordinates);
-   _latLng =  new google.maps.LatLng(coordinates[0], coordinates[1]);
+  // _latLng =  new google.maps.LatLng(coordinates[0], coordinates[1]);
    // console.log(_latLng);
-    window.map.setCenter(_latLng);
-    window.map.setZoom(4);
+   
+    center_in_region(regionName);
 
-
-    update_region_view(regionName);
+    
 
 }
 
+
+function center_in_region(regionName){
+    if(regionName=="North America"){
+    change_region_view(regionName,region_center_coordinates[0]);
+    }
+    else if(region_name=="South America"){
+    change_region_view(regionName,region_center_coordinates[1]);
+    }
+       else if(region_name=="Africa"){
+    change_region_view(regionName,region_center_coordinates[2]);
+    }
+       else if(region_name=="India"){
+    change_region_view(regionName,region_center_coordinates[6]);
+    }
+    
+}
+
+function change_region_view(regionName,lat_lang){
+    window.map.setCenter(lat_lang);
+    window.map.setZoom(4);
+    update_region_view(regionName);
+}
 
 
 send_data_to_side_bar = function(name, level){
