@@ -106,10 +106,9 @@
     position:relative;
 }
 
-.baisc_button:hover{
+.basic_button:hover{
     border-color:transparent;
     background-color: #E8E82A;
-
 }
 
 .basic_button:active{
@@ -158,8 +157,12 @@ h1{
     text-align:left;
 }
 
-div.container a:hover {color:pink;}
-div.container a:active {color:pink;}
+div.banner1 a:link {color:white;text-decoration:none;}
+div.banner1 a:visited {color:white;text-decoration:none;}
+div.banner1 a:hover {color:white;text-decoration:none;}
+div.banner1 a:active {color:white;text-decoration:none;}
+
+
 
 
 
