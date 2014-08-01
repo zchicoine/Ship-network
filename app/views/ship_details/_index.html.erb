@@ -7,80 +7,33 @@
     </div>
     <div class="ship_details-geninfo">
       <table>
-        <% @ship_details = get_ship_details @name_test %>
-        <% unless  @ship_details[:draft] == 0 %>
+        <% @ship_details = get_ship_details_first_table @name_test %>
+        <% #@table_one = @ship_details[0] %>
+        <% @ship_details.as_json.each do |k, v| %>
+        <% unless v.blank? || v == 0 %>
         <tr>
-          <th>Draft</th>
-          <th><%=  @ship_details[:draft] %></th>
+          <th> <%= k.humanize.capitalize %> </th>
+          <th> <%= v %> </th>
         </tr>
         <% end %>
-        <% unless  @ship_details[:built] == 0 %>
-        <tr>
-          <td>Built</td>
-          <td><%=  @ship_details[:built] %></td>
-        </tr>
-        <% end %>
-        <% unless  @ship_details[:tons_per_centimeter] == 0 %>
-        <tr>
-          <td>Tons Per Centimeter</td>
-          <td><%=  @ship_details[:tons_per_centimeter] %></td>
-        </tr>
-        <% end %>
-        <% unless  @ship_details[:flag] == blank? %>
-        <tr>
-          <td>Flag</td>
-          <td><%=  @ship_details[:flag] %></td>
-        </tr>
-        <% end %>
-        <% unless  @ship_details[:classification_society] == blank? %>
-        <tr>
-          <td>Classification Society</td>
-          <td><%=  @ship_details[:classification_society] %></td>
-        </tr>
-        <% end %>
-        <% unless  @ship_details[:length_over_all] == 0 %>
-        <tr>
-          <td>Length Over All</td>
-          <td><%=  @ship_details[:length_over_all] %></td>
-        </tr>
-        <% end %>
-        <% unless  @ship_details[:beam] == 0 %>
-        <tr>
-          <td>Beam</td>
-          <td><%=  @ship_details[:beam] %></td>
-        </tr>
         <% end %>
       </table>
-    </div>
+     </div>
 
-    <div class="ship_details-portcall">
-      <table>
-        <tr>
-          <td>Open Port</td>
-          <td>Test Results</td>
-        </tr>
-        <tr>
-          <td>Google nexus 7</td>
-          <td>Perfect Functionality</td>
-        </tr>
-        <tr>
-          <td>Dongle</td>
-          <td>Perfect Functionality for TV</td>
-        </tr>
-        <tr>
-          <td>Minix Newo G4</td>
-          <td>Excellent Functionality</td>
-        </tr>
-        <tr>
-          <td>B13</td>
-          <td>Perfect Functionality</td>
-        </tr>
-        <tr>
-          <td>TronSmart</td>
-          <td>Good Functionality</td>
-        </tr>
-      </table>
-    </div>
+      <div class="ship_details-portcall">
+        <table>
+          <% @ship_details = get_ship_details_second_table @name_test %>
+          <% #@table_one = @ship_details[0] %>
+          <% @ship_details.as_json.each do |k, v| %>
+              <% unless v.blank? || v == 0 %>
+                  <tr>
+                    <th> <%= k.humanize.capitalize %> </th>
+                    <th> <%= v %> </th>
+                  </tr>
+              <% end %>
+          <% end %>
+        </table>
+       </div>
 
   </div>
-</div>
+ </div>
