@@ -212,7 +212,7 @@ div.scroll_inside_table {
   left:10%;
   position:absolute;
   background-color: white;
-  height:650px;
+  height:800px;
   width:800px;
   border-radius: 8px;
 }
@@ -232,12 +232,11 @@ div.scroll_inside_table {
 
 .ship_details-geninfo{
 
-  //position:relative;
+  position:relative;
   top:30px;
-  //left:30px;
+  left:30px;
   width:400px;
-  float:left;
-  //position:relative;
+  //float:left;
 }
 
 /*TABLE HORIZONTAL*/
@@ -263,8 +262,8 @@ div.ship_details td{
 div.ship_details th{
   height:40px;
   padding-left:20px;
-  background-color:#0A94CB;
-  border-right: 1px solid #027FA5;
+  background-color:#D3D3D3;
+  border-right: 1px solid #D3D3D3;
   font-weight:400;
   color:white;
 }
@@ -286,10 +285,12 @@ div.ship_details-geninfo tr:hover{
   top:70px;
   left:500px;
   float:left;
+  margin-right: 20px;
 }
 
 div.ship_details-portcall table{
   max-width:380px;
+  right:30px;
   font-size:18px;
   text-align:left;
   border-spacing:2px;
@@ -330,7 +331,21 @@ div.ship_details-portcall tr td:first-child{
   border-bottom:1px solid #027FA5;
   height:30px;
 }
-
+.ship_details-portcall_two {
+  margin-top:80px;
+  margin-left: 30px;
+}
+div.ship_details-portcall_two table{
+  max-width:380px;
+  font-size:18px;
+  text-align:left;
+  border-spacing:2px;
+  border-collapse:collapse;
+  color:grey;
+  height:50px;
+  font-weight:300;
+  background-color: #F0F1F1;
+}
 #login {
 
   width: 175px;
