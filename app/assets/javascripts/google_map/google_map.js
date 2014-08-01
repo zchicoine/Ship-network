@@ -114,7 +114,7 @@ function set_label_names(){
  	return map_styles;
  }
 
-var colors = ['#00FFFF', '#00FF00', '#0000FF', '#FFFF00' , '#FF00FF' , '#ADD8E6' , '#C0C0C0'];
+
 
  function initialize() {
 
@@ -266,8 +266,9 @@ function event_listeners(country,region_name)
 {
   google.maps.event.addListener(country, 'mouseover', function(e) {
              this.setOptions({
-                fillColor: "blue",
-                fillOpacity: 1});
+                
+                fillOpacity: 0.4
+              });
         //      var t = e.latLng;
 
     //         getCountry(t);
@@ -313,8 +314,9 @@ function event_listeners(country,region_name)
         }
 
         this.setOptions({
-                fillColor: 'transparent',
-                fillOpacity: 0.9});
+               
+                fillOpacity: 0.2
+              });
             });
 }
 

@@ -15,7 +15,9 @@ $("#left-img-responsive").hover(function(){
 	$("body").css("cursor","default");
 });
 	$("#right-img-responsive").click(function(){	
+		window.map.panby(150,0);
 
+/*
 		if(this.id=='right-img-responsive' && (zval.getZoomValue()) == 2){
 
 		var a = new Field("test");
@@ -78,7 +80,7 @@ $("#left-img-responsive").hover(function(){
 				
 			}
 			
-		}
+		}*/
 	});
 
 

@@ -1,4 +1,6 @@
 var region_north_america = [];
+
+var colors = ['#0055FF', '#0080FF', '#00FFEC', '#00B4FF' , '#64BDFF' , '#A8ff00' , '#20FF00' , '#0CE825'];
   
 function drawMap(data) {
         rows = data['rows'];
@@ -24,7 +26,7 @@ function drawMap(data) {
             } else {
               newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
             }
-            fillRegion(newCoordinates);
+            fillRegion(newCoordinates,colors[0]);
             
             /*  var randomnumber = Math.floor(Math.random() * 4);
               country = new google.maps.Polygon({
@@ -59,7 +61,7 @@ function drawMap(data) {
             } else {
               newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
             }
-            fillRegion(newCoordinates);
+            fillRegion(newCoordinates,colors[6]);
       
       /*var randomnumber = Math.floor(Math.random() * 4);
               country = new google.maps.Polygon({
@@ -97,7 +99,7 @@ function drawMap(data) {
               newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
             }
       
-      fillRegion(newCoordinates);
+      fillRegion(newCoordinates,colors[2]);
       var randomnumber = Math.floor(Math.random() * 4);
          /*     country = new google.maps.Polygon({
               paths: newCoordinates,
@@ -134,7 +136,7 @@ function drawMap(data) {
             } else {
               newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
             }
-      fillRegion(newCoordinates);
+      fillRegion(newCoordinates,colors[5]);
       var randomnumber = Math.floor(Math.random() * 4);
               /*country = new google.maps.Polygon({
               paths: newCoordinates,
@@ -180,7 +182,7 @@ function drawMap(data) {
             } else {
               newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
             }
-      fillRegion(newCoordinates);
+      fillRegion(newCoordinates,colors[4]);
      /*
               country = new google.maps.Polygon({
               paths: newCoordinates,
@@ -226,7 +228,7 @@ function drawMap(data) {
               newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
             }
       
-            fillRegion(newCoordinates);
+            fillRegion(newCoordinates,colors[3]);
     
     /*          country = new google.maps.Polygon({
               paths: newCoordinates,
@@ -269,7 +271,7 @@ function drawMap(data) {
               newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
             }
       
-              fillRegion(newCoordinates);
+              fillRegion(newCoordinates,colors[7]);
      /*         country = new google.maps.Polygon({
               paths: newCoordinates,
               strokeColor: colors[0],
@@ -314,7 +316,7 @@ function drawMap(data) {
             
        
       var randomnumber = Math.floor(Math.random() * 4);
-             fillRegion(newCoordinates);
+             fillRegion(newCoordinates,colors[1]);
           //  console.log(region_name);
            event_listeners(country,region_name);
          //  country.setMap(map);
@@ -324,14 +326,14 @@ function drawMap(data) {
 }
 }
       
-function fillRegion(newCoordinates){
+function fillRegion(newCoordinates,color){
   country = new google.maps.Polygon({
               paths: newCoordinates,
-              strokeColor: colors[0],
+              strokeColor: color,
               strokeOpacity: 0,
               strokeWeight: 1,
-              fillColor: 'transparent',
-              fillOpacity: 0.9
+              fillColor: color,
+              fillOpacity: 0.2
             });
   country.setMap(map);
 }
