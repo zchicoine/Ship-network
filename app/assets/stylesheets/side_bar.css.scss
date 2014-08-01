@@ -208,22 +208,22 @@ div.scroll_inside_table {
 /*-------------------------------------------------------------------------------*/
 
 .ship_details{
-  top:10%;
+  top:15%;
   left:10%;
   position:absolute;
   background-color: white;
   height:650px;
-  width:950px;
+  width:800px;
   border-radius: 8px;
 }
 
-.ship_details-header{
+.ship_detail-header{
   vertical-align:middle;
   color:white;
   top:0%;
   width:100%;
   height:40px;
-  background-color:#0A94CB;
+  background-color: #0A94CB;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   -webkit-border-top-left-radius: 8px;
@@ -232,12 +232,12 @@ div.scroll_inside_table {
 
 .ship_details-geninfo{
 
-  position:relative;
+  //position:relative;
   top:30px;
-  left:30px;
+  //left:30px;
   width:400px;
   float:left;
-  position:relative;
+  //position:relative;
 }
 
 /*TABLE HORIZONTAL*/

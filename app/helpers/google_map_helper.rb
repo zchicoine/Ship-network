@@ -29,6 +29,16 @@ module GoogleMapHelper
                          :total_cubic_meters_BL, :total_cubic_feet_GR, :total_cubic_feet_BL, :intermediate_fuel_oil_180?, :intermediate_fuel_oil_380?).find_by(ship_id: @ship_id)
     end
 
+    def get_ship_details_third_table ship_name = "null"
+      @ship_id_two = Ship.find_by_name(ship_name).id
+      @return_ship_details_two = ShipDetail.select(:marine_diesel_oil?, :laden, :ballast, :economic,
+                                :consumption_at_sea_L, :consumption_at_sea_B, :eco_consumption_L, :marine_diesel_oil_at_sea, :marine_gasoline_oil_at_sea,
+                                :consumption_in_port_Working, :consumption_in_port_Idle, :marine_diesel_in_port, :marine_gasoline_oil_in_port, :number_of_cranes,
+                                :crane_capacity, :combined_crane_capacity, :marine_gasoline_oil?, :aussie_holds_ladders?, :CO2_system_on_board?, :twenty_foot_equivalent_unit?, :lakes_fitted?,
+                                :ice_classed?, :log_fitted?, :grabber?, :gearless?, :double_hull?, :imo_fitted?, :appendix_B_fitted?, :box_shaped_holds?, :cement_holes_fitted?,
+                                ).find_by(ship_id: @ship_id)
+    end
+
     # To make just one query to the database
 
     #def get_ship_details_first_table ship_name = "null"

@@ -1,8 +1,8 @@
 <!--TABLE-->
 <div class="tb">
   <div class="ship_details">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <div class="modal-header ship_detail-header">
+      <button type="button" class="close close-color" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
       <h4 class="modal-title">Ship Details</h4>
     </div>
     <div class="ship_details-geninfo">
@@ -34,6 +34,21 @@
           <% end %>
         </table>
        </div>
+
+    <div class="ship_details-portcall">
+      <table>
+        <% @ship_details = get_ship_details_third_table @name_test %>
+        <% #@table_one = @ship_details[0] %>
+        <% @ship_details.as_json.each do |k, v| %>
+            <% unless v.blank? || v == 0 %>
+                <tr>
+                  <th> <%= k.humanize.capitalize %> </th>
+                  <th> <%= v %> </th>
+                </tr>
+            <% end %>
+        <% end %>
+      </table>
+    </div>
 
   </div>
  </div>
