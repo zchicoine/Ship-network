@@ -5,7 +5,11 @@ $grayMediumLight: #0A94CB;
 body {
   padding-top: 50px;
   background-color: #f0f1f1;
+   background:url(
+data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAICAYAAADA+m62AAAAPklEQVQYV2NkQAOHDh2StLOze44uzogsAFOETTFcIbokOh+sEJd1yOKMuBTBnASTR3EjugeQFROlEKSBaIUATZImaLpyaPwAAAAASUVORK5CYII=
+   ) repeat;
 }
+
 
 .starter-template {
   padding: 40px 15px;
@@ -17,6 +21,18 @@ body {
         color: #ffffff;
     }
 }
+
+.header_decoration{
+
+   box-shadow: 0px 3px 0px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0px 3px 0px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+/*div.navbar-collapse a:link {color:white;text-decoration:none;}
+div.navbar-collapse a:visited {color:white;text-decoration:none;}
+div.navbar-collapse a:hover {background-color:pink;text-decoration:none;}
+div.navbar-collapse a:active {color:white;text-decoration:none;}*/
 
 footer {
   margin-top: 45px;
@@ -60,4 +76,22 @@ footer {
 
 .textStyle {
   font-family: roboto !important;
+}
+
+h1{
+    margin-top: 60px;
+    font-family: roboto;
+    font-weight: 100;
+    color: white;
+    font-size: 80px;
+    text-align: center;
+}
+
+h5{
+  margin-top: 35px;
+    font-family: roboto;
+    font-weight: 100;
+    color: white;
+    font-size: 28px;
+    text-align: center;
 }

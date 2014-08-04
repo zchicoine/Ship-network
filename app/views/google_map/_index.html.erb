@@ -1,15 +1,15 @@
 
+<!-- <style="cursor:default">  -->
 <div id="outer-map">
-  <img src="/left_default.png" alt="#" id="left-img-responsive">
-  <img src="/right_default.png" alt="#" id="right-img-responsive">
 
-    <div class="" >
-    <%= image_tag("zoom_out.png", size: "32", class:"zoom_out")%>
-  <%= image_tag("zoom_in.png", size: "32", class:"zoom_in")%>
-        </div>
+    <%= image_tag "left_default.png", height: "auto", width: "25", class:"",id:"left-img-responsive", data_toggle:"tooltip" ,data_placement:"top",title:"Tooltip on right" ,:onmouseover => "this.src = 'assets/left_hover.png'", :onmouseout => "this.src = 'assets/left_default.png'", :onclick => "this.src = 'assets/left_down.png'" %>
+    <%= image_tag "right_default.png", height: "auto", width: "25", class:"",id:"right-img-responsive", data_toggle:"tooltip" ,data_placement:"top",title:"Tooltip on left",:onmouseover => "this.src = 'assets/right_hover.png'", :onmouseout => "this.src = 'assets/right_default.png'", :onclick => "this.src = 'assets/right_down.png'" %>
 
-	  <div id="googleMap" align="center">
-	
+
+	  <div id="googleMap" align="center" >
+	  	
 	</div>
 </div>
+
+
 <!--</body>-->

@@ -1,0 +1,41 @@
+
+
+<tr class="text-left">
+    <td>
+        Category:
+    </td>
+    <td>
+        <%= get_vessel_category_name @ship_info[:vessel_category] %>
+    </td>
+</tr>
+<tr class="text-left">
+    <td>
+        Open Port:
+    </td>
+    <td>
+        <%= @ship_info[:port_name] %>
+    </td>
+</tr>
+<tr class="text-left">
+    <td>
+        Open Date:
+    </td>
+    <td>
+        July 20 - 25
+    </td>
+</tr>
+<tr class="text-left">
+    <td>
+        Deadweight:
+    </td>
+    <td>
+        <%= @ship_info[:deadweight] %>
+    </td>
+</tr>
+<tr class="text-left">
+    <td colspan=<%= 2 %>>
+        <%= link_to "View more information", ship_details_show_path(name:"name") ,class:"", remote: true , method: :post%>
+    </td>
+
+</tr>
+

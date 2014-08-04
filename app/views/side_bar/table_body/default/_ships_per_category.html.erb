@@ -1,0 +1,20 @@
+<thead class="side_bar_default_table text-left">
+<tr >
+    <th colspan="<%= 2 %>">
+        <%= render 'side_bar/parts_used_in_table/accessories/green_triangle_image'%>
+        Total # of Ships
+    </th>
+</tr>
+
+</thead>
+<tbody>
+
+
+<% ship_category_size = get_number_of_ships_for_all_category
+   vessel_classes.each do |_name| %>
+    <tr class="text-left">
+        <td><%=" #{_name}:" %></td>
+        <td><%= ship_category_size[Ship.vessel_categories[_name]] || 0 %></td>
+    </tr>
+<% end %>
+</tbody>

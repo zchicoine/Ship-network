@@ -16,24 +16,28 @@ $image_height: 50px;
   float: right;
   height:$image_height;
   @include  vertical_align;
+  margin-left:10px;
 }
 
 #left-img-responsive{
+
  position:relative;
  float: left;
  height:$image_height;
  @include  vertical_align;
+ margin-right:10px;
 
 }
 .zoom_out{
     position: relative;
     float: right;
+    cursor: default;
 
 
 }
 .zoom_in{
     position: relative;
     float: right;
-
+    cursor: default;
 
 }

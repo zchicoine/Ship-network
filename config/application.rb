@@ -17,7 +17,11 @@ module ShipNetwork
     # config.time_zone = 'Central Time (US & Canada)'
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
-    # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    # config.i18n.default_locale = :de
+     #config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
+      config.autoload_paths += Dir[Rails.root.join('app', 'models', '*.{**/}').to_s]
+      config.autoload_paths += Dir[Rails.root.join('app', 'models', '{**}')]
+      config.autoload_paths += Dir[Rails.root.join('app', 'helpers', '*.{**/}').to_s]
+      config.autoload_paths += Dir[Rails.root.join('app', 'helpers', '{**}')]
+      # config.i18n.default_locale = :de
   end
 end
