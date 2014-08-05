@@ -27,6 +27,14 @@ Rails.application.configure do
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
+=begin
+  # According to this StackOverflow question about the same issue,
+  # heroku actually adds an identifier to all your image names to optimize cashing,
+  # so the CSS can’t find an image with that exact name.
+
+  #config.assets.compile = true
+=end
+
   config.assets.compile = false
 
   # Generate digests for assets URLs.
