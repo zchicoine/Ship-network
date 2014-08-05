@@ -7,7 +7,7 @@ class UserController < ApplicationController
             session[:user] = params[:username]
 
             respond_to do |format|
-                format.html {'/'}
+                format.html { redirect_to root_path}
                 format.js {render 'main_pages/js/sign_in'}
             end
         else
