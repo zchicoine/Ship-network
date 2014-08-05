@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140730192323) do
+ActiveRecord::Schema.define(version: 20140805003821) do
 
   create_table "ports", force: true do |t|
     t.string   "name"
@@ -92,11 +92,11 @@ ActiveRecord::Schema.define(version: 20140730192323) do
   create_table "ships", force: true do |t|
     t.string   "name"
     t.integer  "deadweight"
-    t.integer  "vessel_type",               limit: 255
-    t.integer  "vessel_category",           limit: 255, default: 0
+    t.integer  "deadweight_cargo_capacity"
+    t.integer  "vessel_type"
+    t.integer  "vessel_category"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "deadweight_cargo_capacity"
   end
 
 end
