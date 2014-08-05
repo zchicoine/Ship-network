@@ -21,7 +21,9 @@ test:
   database: db/test.sqlite3
 
 production:
-
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
   username: cusnynkjkmeerv
   password: 3QQ7rf2su4Ew41qf_LCAphOoCQ
   database: d2s046gfidr7tl
