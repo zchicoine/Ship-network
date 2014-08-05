@@ -21,5 +21,7 @@ test:
   database: db/test.sqlite3
 
 production:
-  <<: *default
+
+  username: cusnynkjkmeerv
+  password: 3QQ7rf2su4Ew41qf_LCAphOoCQ
   database: d2s046gfidr7tl
