@@ -13,9 +13,12 @@
 </head>
 <body>
 
-<% unless sign_in? %>
+<% unless broker_signed_in? %>
+
     <%= render 'main_pages/entry_banner' %>
     <div id="transparent_div" class="transparent">
+<% else %>
+
 <% end %>
 
 

@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
     root 'main_pages#index'
 
-    devise_for :brokers, controllers: { sessions: "borkers/sessions" }
+    devise_for :brokers, controllers: { sessions: "brokers/sessions" }
+
     #--------------
     post 'side_bar/index' => 'side_bar#index'
     #--------------
@@ -21,7 +22,7 @@ Rails.application.routes.draw do
     post 'main_pages/region' => "main_pages#region"
     post 'main_pages/port' => "main_pages#port"
     post 'main_pages/ship' => "main_pages#ship"
-    get 'main_pages/loginpage'
+
 
 
   # You can have the root of your site routed with "root"
