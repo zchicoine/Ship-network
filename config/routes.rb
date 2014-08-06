@@ -1,13 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :brokers
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
     root 'main_pages#index'
 
-    post 'side_bar/region' => 'side_bar#region'
-    post 'side_bar/ship' => 'side_bar#ship'
-    post 'side_bar/default' => 'side_bar#default'
-    post 'side_bar/port' => 'side_bar#port'
+    devise_for :brokers, controllers: { sessions: "borkers/sessions" }
+    #--------------
     post 'side_bar/index' => 'side_bar#index'
     #--------------
     post  'google_map/port_coordinates' => 'google_map#port_coordinates'
