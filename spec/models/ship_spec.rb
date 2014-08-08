@@ -139,9 +139,9 @@ describe Ship do
           ]
           @shipments_array = [
 
-              Shipment.create!(open_start_date: Time.now, open_end_date: 55.08333333),
-              Shipment.create!(open_start_date: 'Djibouti', open_end_date: 11.6),
-              Shipment.create!(open_start_date: 'Portsmouth', open_end_date: 15.56666667)
+              Shipment.new(open_start_date: Time.now, open_end_date: 55.08333333, port: @ports_array[0]),
+              Shipment.new(open_start_date: 'Djibouti', open_end_date: 11.6,  port: @ports_array[1]),
+              Shipment.new(open_start_date: 'Portsmouth', open_end_date: 15.56666667, port: @ports_array[2])
 
           ]
         }
@@ -169,13 +169,13 @@ describe Ship do
 
           }
 
-          specify{ expect(@ship_instance.shipments).to_not eq @shipments_array}
+          specify{ expect(@ship_instance.shipments).to eq @shipments_array}
 
-            it "should not be able to update shipments attributes unless it goes through ports " do
-
-                 expect(@ship_instance.shipments.first.update(open_start_date: Time.new(2014,2,2))).to be_falsey
-
-            end
+            # it "should not be able to update shipments attributes unless it goes through ports " do
+            #
+            #    #  expect(@ship_instance.shipments.first.update(open_start_date: Time.new(2014,2,2))).to be_falsey
+            #
+            # end
 
 
         end

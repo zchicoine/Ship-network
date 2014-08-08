@@ -16,7 +16,7 @@ describe Port do
     it { should respond_to(:name) }
     it { should respond_to(:latitude) }
     it { should respond_to(:longitude) }
-    # it { should respond_to(:regin) }
+     it { should respond_to(:region) }
     it { should be_valid }
 
     describe "when name is not present" do

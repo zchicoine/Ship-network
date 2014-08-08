@@ -6,6 +6,8 @@ class Broker < ActiveRecord::Base
 
 
     #  customization
-
+    # validation
+  validates_presence_of :username
+  # relationship
   has_and_belongs_to_many :shipments
 end
