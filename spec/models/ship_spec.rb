@@ -8,21 +8,16 @@ require 'rails_helper'
 describe Ship do 
     # before to run any test create a ship object
     before { @ship_instance = Ship.new(
-        name: "marine prince", vessel_type: Ship.vessel_types[:ohbs] ,
-        built: "2012", deadweight: 200000, vessel_category: Ship.vessel_categories[:Capesize],
-        draft:9.568, beam:27, loa:190) }
+        name: "marine prince", vessel_type: Ship.vessel_types[:ohbs] , deadweight: 200000, vessel_category: Ship.vessel_categories[:Capesize]) }
     # makes @ship_instance the default subject of the test example so we don't use
     # expect(@ship_instance)
     subject { @ship_instance }
     
     it { should respond_to(:name) }
     it { should respond_to(:vessel_type) }
-    it { should respond_to(:built) }
     it { should respond_to(:vessel_category) }
     it { should respond_to(:deadweight) }
-    it { should respond_to(:draft) }
-    it { should respond_to(:beam) }
-    it { should respond_to(:loa) }
+
 
     it  { should be_valid }
     
@@ -34,6 +29,7 @@ describe Ship do
     describe "when ship name is already stored" do
         before do
           #which creates a duplicate ship with the same attributes
+
           ship_with_same_name = @ship_instance.dup
           ship_with_same_name.name = @ship_instance.name.upcase
           ship_with_same_name.save
@@ -47,13 +43,7 @@ describe Ship do
         }
 
         let(:found_ship){Ship.find_by(name: @ship_instance.name)}
-        describe "with invalid built year" do
-          before { found_ship.built = 2017 }
 
-
-          it { expect(found_ship).to_not be_valid  }
-
-        end
         describe "with invalid deadweight " do
             before{
                 found_ship.deadweight = - 1
@@ -142,9 +132,9 @@ describe Ship do
           @ship_instance.save
           @ports_array = [
 
-              Port.create!(name: 'Ronne', latitude: 55.08333333, longitude: 14.68333333),
-              Port.create!(name: 'Djibouti', latitude: 11.6, longitude: 43.13333333),
-              Port.create!(name: 'Portsmouth', latitude: 15.56666667, longitude: -61.46666667)
+              Port.create!(name: 'Ronne', latitude: 55.08333333, longitude: 14.68333333, region: "North America"),
+              Port.create!(name: 'Djibouti', latitude: 11.6, longitude: 43.13333333 , region: "Europe"),
+              Port.create!(name: 'Portsmouth', latitude: 15.56666667, longitude: -61.46666667 , region: "South America")
 
           ]
           @shipments_array = [

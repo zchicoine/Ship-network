@@ -26,4 +26,19 @@ describe ShipDetail do
     it { should respond_to(:marine_gasoline_oil?) }
 
     it  { should be_valid }
+
+    describe "validate requirements" do
+        before {
+            @ship_details_instance.save
+        }
+
+        let(:found_ship_details){ShipDetail.find_by_flag("Canada")}
+        describe "with invalid built year" do
+            before { found_ship_details.built = 2017 }
+
+            it { expect(found_ship_details).to_not be_valid  }
+
+        end
+    end
+
 end

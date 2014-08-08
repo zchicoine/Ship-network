@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140808122843) do
+ActiveRecord::Schema.define(version: 20140808130625) do
 
   create_table "brokers", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -46,6 +46,8 @@ ActiveRecord::Schema.define(version: 20140808122843) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "ports", ["name"], name: "index_ports_on_name", unique: true
 
   create_table "ship_details", force: true do |t|
     t.float    "draft"
@@ -123,5 +125,7 @@ ActiveRecord::Schema.define(version: 20140808122843) do
     t.datetime "updated_at"
     t.integer  "deadweight_cargo_capacity"
   end
+
+  add_index "ships", ["name"], name: "index_ships_on_name", unique: true
 
 end
