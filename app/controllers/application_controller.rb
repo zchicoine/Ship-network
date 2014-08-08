@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 
   def devise_parameter_sanitizer
       if resource_class == Broker
-          Broker::ParameterSanitizer.new(Broker, :broker, params)
+          ParameterSanitizer.new(Broker, :broker, params)
       else
           super # Use the default one
       end

@@ -1,5 +1,5 @@
 
-    class Broker::ParameterSanitizer < Devise::ParameterSanitizer
+    class ParameterSanitizer < Devise::ParameterSanitizer
 
         def sign_in
             default_params.permit(:username)
