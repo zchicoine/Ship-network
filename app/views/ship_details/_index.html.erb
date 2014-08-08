@@ -5,50 +5,89 @@
       <button type="button" class="close close-color" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
       <h4 class="modal-title">Ship Details</h4>
     </div>
-    <div class="ship_details-geninfo">
-      <table>
-        <% @ship_details = get_ship_details_first_table @name_test %>
+  
+
+<div class="container scroll_inside_table scroll_size_shipdetails">
+
+<div class="row">
+  <div class="col-md-6">
+    <img alt="Greentriangle down" class="triangle_image" height="16" src="/assets/greentriangle_down.png" width="16">
+    <span>General Information</span>
+  </div>
+
+  <div class="col-md-6">
+    <img alt="Greentriangle down" class="triangle_image" height="16" src="/assets/greentriangle_down.png" width="16">
+    <span>Capacity</span>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-md-6 ship_details-portcall">
+    <table>
+      <% @ship_details = get_ship_details_first_table @name_test %>
+      <% #@table_one = @ship_details[0] %>
+      <% @ship_details.as_json.each do |k, v| %>
+      <% unless v.blank? || v == 0 %>
+        <tr>
+          <td><%= k.humanize.capitalize %></td>
+          <td> <%= v %></td>
+        </tr>
+
+      <% end %>
+      <% end %>
+
+    </table>
+  </div>
+
+ <div class="col-md-6 ship_details-portcall" >
+    <table>
+        <% @ship_details = get_ship_details_second_table @name_test %>
         <% #@table_one = @ship_details[0] %>
         <% @ship_details.as_json.each do |k, v| %>
         <% unless v.blank? || v == 0 %>
+          <tr>
+            <td> <%= k.humanize.capitalize %> </td>
+            <td> <%= v %> </td>
+          </tr>
+
+        <% end %>
+        <% end %>
+
+    </table>
+ </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <img alt="Greentriangle down" class="triangle_image" height="16" src="/assets/greentriangle_down.png" width="16">
+    <span>Fuel</span>
+  </div>
+
+  <div class="col-md-6">
+    <img alt="Greentriangle down" class="triangle_image" height="16" src="/assets/greentriangle_down.png" width="16">
+    <span>Dimensions</span>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 ship_details-portcall">
+    <table>
+      <% @ship_details = get_ship_details_third_table @name_test %>
+      <% #@table_one = @ship_details[0] %>
+      <% @ship_details.as_json.each do |k, v| %>
+      <% unless v.blank? || v == 0 %>
         <tr>
-          <th> <%= k.humanize.capitalize %> </th>
-          <th> <%= v %> </th>
-        </tr>
-        <% end %>
-        <% end %>
-      </table>
-     </div>
+           <td> <%= k.humanize.capitalize %> </td>
+           <td> <%= v %> </td>
+         </tr>
+      <% end %>
+      <% end %>
+    </table>
+  </div>
+</div>
 
-      <div class="ship_details-portcall">
-        <table>
-          <% @ship_details = get_ship_details_second_table @name_test %>
-          <% #@table_one = @ship_details[0] %>
-          <% @ship_details.as_json.each do |k, v| %>
-              <% unless v.blank? || v == 0 %>
-                  <tr>
-                    <th> <%= k.humanize.capitalize %> </th>
-                    <th> <%= v %> </th>
-                  </tr>
-              <% end %>
-          <% end %>
-        </table>
-       </div>
-
-    <div class="ship_details-portcall_two">
-      <table>
-        <% @ship_details = get_ship_details_third_table @name_test %>
-        <% #@table_one = @ship_details[0] %>
-        <% @ship_details.as_json.each do |k, v| %>
-            <% unless v.blank? || v == 0 %>
-                <tr>
-                  <th> <%= k.humanize.capitalize %> </th>
-                  <th> <%= v %> </th>
-                </tr>
-            <% end %>
-        <% end %>
-      </table>
-    </div>
+</div>
 
   </div>
  </div>
