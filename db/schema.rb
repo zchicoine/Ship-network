@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140806145937) do
+ActiveRecord::Schema.define(version: 20140808122843) do
 
   create_table "brokers", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -32,6 +32,11 @@ ActiveRecord::Schema.define(version: 20140806145937) do
   add_index "brokers", ["email"], name: "index_brokers_on_email", unique: true
   add_index "brokers", ["reset_password_token"], name: "index_brokers_on_reset_password_token", unique: true
   add_index "brokers", ["username"], name: "index_brokers_on_username", unique: true
+
+  create_table "brokers_shipments", id: false, force: true do |t|
+    t.integer "shipment_id"
+    t.integer "broker_id"
+  end
 
   create_table "ports", force: true do |t|
     t.string   "name"
@@ -112,7 +117,7 @@ ActiveRecord::Schema.define(version: 20140806145937) do
   create_table "ships", force: true do |t|
     t.string   "name"
     t.integer  "deadweight"
-    t.integer  "vessel_type",               limit: 255
+    t.integer  "vessel_type",               limit: 255, default: 0
     t.integer  "vessel_category",           limit: 255, default: 0
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -114,13 +114,13 @@ open("db/data/port_db.txt") do |ports|
         end
     end
 end
-
+all_shipments = Shipment.all
 begin
-    Broker.create!(username: "Zack", password: "shipment", email: "hah_m14@yahoo.com")
+    Broker.create!(username: "Zack", password: "shipment", email: "hah_m14@yahoo.com", shipments:all_shipments)
 
 rescue => e
     puts e.message
 end
 p "Created #{Port.count} ports and #{Ship.count} ships and #{Broker.count} broker"
 
-
+# here some rails query that would be helpful for the developer later on
