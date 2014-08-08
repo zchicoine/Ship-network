@@ -119,7 +119,7 @@ ActiveRecord::Schema.define(version: 20140808130625) do
   create_table "ships", force: true do |t|
     t.string   "name"
     t.integer  "deadweight"
-    t.integer  "vessel_type",               limit: 255, default: 0
+    t.integer  "vessel_type",               limit: 255
     t.integer  "vessel_category",           limit: 255, default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
