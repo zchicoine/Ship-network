@@ -11,7 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140730192323) do
+ActiveRecord::Schema.define(version: 20140808130625) do
+
+  create_table "brokers", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "username"
+  end
+
+  add_index "brokers", ["email"], name: "index_brokers_on_email", unique: true
+  add_index "brokers", ["reset_password_token"], name: "index_brokers_on_reset_password_token", unique: true
+  add_index "brokers", ["username"], name: "index_brokers_on_username", unique: true
+
+  create_table "brokers_shipments", id: false, force: true do |t|
+    t.integer "shipment_id"
+    t.integer "broker_id"
+  end
 
   create_table "ports", force: true do |t|
     t.string   "name"
@@ -21,6 +46,8 @@ ActiveRecord::Schema.define(version: 20140730192323) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "ports", ["name"], name: "index_ports_on_name", unique: true
 
   create_table "ship_details", force: true do |t|
     t.float    "draft"
@@ -92,11 +119,13 @@ ActiveRecord::Schema.define(version: 20140730192323) do
   create_table "ships", force: true do |t|
     t.string   "name"
     t.integer  "deadweight"
-    t.integer  "vessel_type",               limit: 255
+    t.integer  "vessel_type",               limit: 255, default: 0
     t.integer  "vessel_category",           limit: 255, default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "deadweight_cargo_capacity"
   end
+
+  add_index "ships", ["name"], name: "index_ships_on_name", unique: true
 
 end
