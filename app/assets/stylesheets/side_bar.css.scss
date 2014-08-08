@@ -161,13 +161,17 @@
 }
 
 /* scroll */
-div.scroll_inside_table {
-    overflow: auto;
-    min-height: 90px;
-    max-height: 150px;
-    padding: 4px;
-    background-color: #eaeaea;
-    table {
+
+div.scroll_size_shipdetails{ /* defines max height of scroll in ship details module window */
+    max-height: 800px;
+}
+
+div.scroll_size_sidebar{ /* defines max/min height of sidebar list of ships and ports as well as color */
+  min-height: 90px;
+  max-height: 150px;
+  background-color: #eaeaea;
+
+  table {
         background-color: #eaeaea;
         border: #eaeaea !important;
     }
@@ -177,6 +181,15 @@ div.scroll_inside_table {
         text-align: left;
         border-top: solid #ffffff 0px !important;
     }
+
+}
+
+div.scroll_inside_table {
+    overflow: auto;
+
+    padding: 4px;
+    
+    
 }
 .scroll_inside_table::-webkit-scrollbar{
     -moz-webkit-appearance: none;
@@ -207,17 +220,18 @@ div.scroll_inside_table {
 
 /*-------------------------------------------------------------------------------*/
 
-div.ship_details span{
+div.ship_details span{ /*used to customize the 'headers' for the tables*/
   font-size:18px;
   font-weight:100;
 }
 
-div.ship_details .col-md-4{
+div.ship_details .col-md-6{ /*puts space between the columns*/
  padding:10px;
 
   }
 
-.ship_details{
+
+.ship_details{ /*main size, positioning and etc for module window*/
   z-index:1;
   top:12%;
   left:5%;
@@ -232,9 +246,15 @@ div.ship_details .col-md-4{
   -webkit-box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
 }
 
+div.ship_details .container{ /*used for the bootstrap grid system. do not delete*/
+  overflow-y: auto;
+  overflow-x: hidden;
+  width:800px;
+  height:730px;
+  padding-left:25px;
+}
 
-
-.ship_detail-header{
+.ship_detail-header{ /*used to customize the header for the module window*/
   z-index:3;
   color:white;
   font-weight:200; 
@@ -247,14 +267,14 @@ div.ship_details .col-md-4{
   -webkit-border-top-right-radius: 8px;
 }
 
-.ship_details-portcall{
+.ship_details-portcall{ /*vertical table type*/
   z-index:4;
   max-width:400px;
   position:relative;
   float:left;
 }
 
-div.ship_details-portcall table{
+div.ship_details-portcall table{ 
 max-width:380px;
 font-size:18px;
 text-align:left;
@@ -265,32 +285,31 @@ height:50px;
 font-weight:300;
 background-color: #F0F1F1;
 }
-
-div.ship_details-portcall tr:hover{
-  background-color: #D3D3D3;
-}
-
+ 
 div.ship_details-portcall td{
   padding-left:20px;
   padding-right:30px;
   height:25px;
 }
 
-div.ship_details-portcall th{
+div.ship_details-portcall th{ 
   height:40px;
   padding-left:20px;
   font-weight:400;
   color:white;
 }
 
-div.ship_details-portcall tr:nth-child(odd) {
+div.ship_details-portcall tr:nth-child(odd) { /*makes the row colors alternate between light and dark grey*/
 background-color: #E5E6E7;
 }
-div.ship_details-portcall tr:nth-child(odd):hover {
-background-color: #D3D3D3;
+div.ship_details-portcall tr:nth-child(odd):hover { /*hover functionallity*/
 }
 
-div.ship_details-portcall tr td:first-child{
+div.ship_details-portcall tr:hover{ /*hover functionallity*/
+  background-color: #D3D3D3;
+}
+
+div.ship_details-portcall tr td:first-child{ /*makes the first column blue*/
 background-color: #0A94CB;
 color:white;
 border-bottom:1px solid #027FA5;
@@ -301,7 +320,7 @@ width:200px;
 
 /*-------------------------------------------------------------------------------*/
 
-#login {
+#login { /*button*/
 
   width: 175px;
   height: 60px;

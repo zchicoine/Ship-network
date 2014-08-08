@@ -7,23 +7,23 @@
     </div>
   
 
-<div class="container">
+<div class="container scroll_inside_table scroll_size_shipdetails">
 
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-6">
     <img alt="Greentriangle down" class="triangle_image" height="16" src="/assets/greentriangle_down.png" width="16">
     <span>General Information</span>
   </div>
 
-  <div class="col-md-4">
+  <div class="col-md-6">
     <img alt="Greentriangle down" class="triangle_image" height="16" src="/assets/greentriangle_down.png" width="16">
-    <span>Dimensions</span>
+    <span>Capacity</span>
   </div>
 </div>
 
 
 <div class="row">
-  <div class="col-md-4 ship_details-portcall">
+  <div class="col-md-6 ship_details-portcall">
     <table>
       <% @ship_details = get_ship_details_first_table @name_test %>
       <% #@table_one = @ship_details[0] %>
@@ -40,7 +40,7 @@
     </table>
   </div>
 
- <div class="col-md-4 ship_details-portcall" >
+ <div class="col-md-6 ship_details-portcall" >
     <table>
         <% @ship_details = get_ship_details_second_table @name_test %>
         <% #@table_one = @ship_details[0] %>
@@ -59,19 +59,19 @@
 </div>
 
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-6">
     <img alt="Greentriangle down" class="triangle_image" height="16" src="/assets/greentriangle_down.png" width="16">
-    <span>General Information</span>
+    <span>Fuel</span>
   </div>
 
-  <div class="col-md-4">
+  <div class="col-md-6">
     <img alt="Greentriangle down" class="triangle_image" height="16" src="/assets/greentriangle_down.png" width="16">
     <span>Dimensions</span>
   </div>
 </div>
 
 <div class="row">
-  <div class="col-md-4 ship_details-portcall">
+  <div class="col-md-6 ship_details-portcall">
     <table>
       <% @ship_details = get_ship_details_third_table @name_test %>
       <% #@table_one = @ship_details[0] %>
