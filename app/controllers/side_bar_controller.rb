@@ -1,7 +1,4 @@
 class SideBarController < ApplicationController
-    include SideBarHelper
-    include GoogleMapHelper
-    
 
     def index
         parameters = params.require(:side_info).permit(:name, :level)
@@ -19,13 +16,24 @@ class SideBarController < ApplicationController
     end
 
 
+
+
+
+
     private
 
     def region region_name
 
-        @side_info ={region_name: region_name}
-        cookies[:region_name] = @side_info[:region_name]
-        render :partial =>  'side_bar/table_body/after_click_a_region/index'
+        if region_name.is_a? String
+            _region_name = region_name
+        end
+        cookies[:region_name] = _region_name
+        respond_to do |format|
+             format.html { render :partial =>  'side_bar/table_body/after_click_a_region/index' , :locals => { region: _region_name }  }
+
+
+        end
+
 
     end
     def default
