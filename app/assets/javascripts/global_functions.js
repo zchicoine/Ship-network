@@ -33,4 +33,14 @@ update_ship_view = function(ship_name){
 }
 
 
+load_popover_with_id = function(load, content_id){
+    id = "#" + content_id;
+    var inText = $(id).html();
+    $(load).popover( {
+        // trigger: 'focus',
+        html: true,
+        content: inText
+    });
+
+}
 
