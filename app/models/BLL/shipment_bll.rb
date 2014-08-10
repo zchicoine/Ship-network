@@ -2,16 +2,16 @@ class ShipmentBLL < Shipment
     extend CustomQuery
     # this class will have special query that involved shipment table
 
-
+    #get_shipCategory_deadweight_brokerName_openStartDate_and_endDate
 
         #  return {value: result/0, error: nil/message}
-    def get_ship_category_deadweight_open_start_and_end_date ship_name = "", port_name = ""
-        result = ShipBLL.joins(:shipments,:ports).select(
+    def get_shipCategory_deadweight_brokerName_openStartDate_and_endDate ship_name = "", port_name = ""
+        result = ShipBLL.joins(:ports, :shipments => [:brokers]).select("brokers.*",
                                 "shipments.open_start_date","shipments.open_end_date",:deadweight,:vessel_category).where(
                                                     "ports.name" => port_name,name:ship_name).execute_query 1
 
         unless result.blank?
-                coverted_to_ruby_hash = {deadweight: result[:deadweight],open_start_date: result[:open_start_date],
+                coverted_to_ruby_hash = {broker_name: result[:username], broker_email: result[:email],deadweight: result[:deadweight],open_start_date: result[:open_start_date],
                                          open_end_date:  result[:open_end_date], vessel_category: result[:vessel_category],
                                          ship_name:  ship_name ,  port_name:  port_name
                                         }

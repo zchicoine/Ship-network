@@ -61,7 +61,7 @@ class SideBarController < ApplicationController
         @side_info = {region_name: cookies[:region_name] || "No region selected" }
         @side_info[:ship_name] =  ship_name
         @side_info[:port_name] = cookies[:port_name]
-        result =  UnitOfWork.instance.shipment.get_ship_category_deadweight_open_start_and_end_date @side_info[:ship_name], @side_info[:port_name]
+        result =  UnitOfWork.instance.shipment.get_shipCategory_deadweight_brokerName_openStartDate_and_endDate @side_info[:ship_name], @side_info[:port_name]
         if result[:error].nil?
             @ship_info = result[:value]
         end
