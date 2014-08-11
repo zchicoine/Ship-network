@@ -28,7 +28,7 @@ class ShipmentBLL < Shipment
     #result = ["region name", latitude,longitude ]=>shipNumber
     def get_name_And_coordinates_of_Ports_and_number_of_ship_per_Region region_name = "null"
 
-        result =  Port.joins(:shipments).query_at_a_region(region_name).group(:name, :latitude, :longitude).count
+        result =  PortBLL.joins(:shipments).query_at_a_region(region_name).group(:name, :latitude, :longitude).count
 
          unless result.blank?
              return {value: result, error: nil}
