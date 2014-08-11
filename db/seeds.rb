@@ -94,6 +94,7 @@ end
 
 all_ships = Ship.all
 #Read .txt file of port data and add it to database
+output = File.new("db/data/newfile.txt",  "w")
 open("db/data/port_db.txt") do |ports|
     ports.read.each_line do |port|
         # .encode to fix UTF-8-encoded text (or it will not split the string in the next line)
@@ -101,10 +102,11 @@ open("db/data/port_db.txt") do |ports|
         name, latitude, longitude = port.chomp.split(";")
 
         begin
-            # _shipment = Shipment.new(open_start_date: Time.now,open_end_date:  Time.new.advance({days:6}))
-            #   Geocoder.search("#{latitude},#{longitude}").last.data["address_components"].first["long_name"]
-
-            #  sleep(1.0/2)
+            # # _shipment = Shipment.new(open_start_date: Time.now,open_end_date:  Time.new.advance({days:6}))
+            # country =    Geocoder.search("#{latitude},#{longitude}").last.data["address_components"].first["long_name"]
+            # region =     Region.get_region country
+            # output.write(" #{region}; \n")
+            #   sleep(1.0/3)
             Port.create!(name: name, latitude: latitude.to_f, longitude: longitude.to_f, region: regions.sample,
                          ships: [all_ships.sample, all_ships.sample,all_ships.sample,all_ships.sample,all_ships.sample,all_ships.sample,all_ships.sample,all_ships.sample,all_ships.sample,all_ships.sample]
 
