@@ -34,3 +34,6 @@ update_ship_view = function(ship_name){
 
 
 
+
+
+

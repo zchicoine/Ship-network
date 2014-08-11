@@ -2,8 +2,8 @@
 $(window).load(function(){
 
 	$("#outer-map").click(function(e){
-	   e.preventDefault();
-	   e.stopImmediatePropagation();
+	   //e.preventDefault();
+	   //e.stopImmediatePropagation();
 	});
 
 $("#right-img-responsive").hover(function(){
