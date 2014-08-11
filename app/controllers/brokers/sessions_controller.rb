@@ -20,7 +20,7 @@ class Brokers::SessionsController < Devise::SessionsController
             yield resource if block_given?
            # respond_with resource, location: after_sign_in_path_for(resource)
             respond_with(resource) do |format|
-                format.html {'/'}
+                format.html {root_path}
                 format.js {render 'main_pages/js/sign_in'}
             end
 
