@@ -60,7 +60,8 @@ send_data_to_side_bar = function(name, level){
 
             },
             error: function(r){
-                alert(r + " works");
+               // alert(r + " works");
+                error_message_display("error when refreshing sidebar table")
             }
         });
 
@@ -189,7 +190,7 @@ ship_details = function(ship_name){
             $("#outer-map").html(result);
         },
         error: function(r){
-            alert(r + "works");
+            error_message_display("display ship details.");
         }
     });
 
