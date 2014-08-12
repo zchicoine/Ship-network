@@ -35,7 +35,8 @@ module LinkListBackHistoryHelperC
         if level < temp_array_length
             indices = level..temp_array_length - 1
             indices.reverse_each do |index|
-                temp_array.delete_at index
+                @linklist_back_history['name'].delete_at index
+                @linklist_back_history['url'].delete_at index
             end
             assign_the_variable_to_session
         end
@@ -46,12 +47,14 @@ module LinkListBackHistoryHelperC
     def remove_from_history_not_include_level level = 0
         assign_session_to_the_variable
         temp_array = @linklist_back_history['name']
+
         temp_array_length = temp_array.length
         temp_level = level + 1
         if temp_level < temp_array_length
             indices = temp_level..temp_array_length - 1
             indices.each do |index|
-                temp_array.delete_at index
+                @linklist_back_history['name'].delete_at index
+                @linklist_back_history['url'].delete_at index
             end
             assign_the_variable_to_session
         end
@@ -74,6 +77,8 @@ module LinkListBackHistoryHelperC
     end
 
     def assign_the_variable_to_session
+         session[:link_list_back_history] = nil
+         session[:link_list_back_history] = {}
          session[:link_list_back_history] = @linklist_back_history
     end
     def level_to_url name = "nil",level = 0
