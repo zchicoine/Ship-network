@@ -24,6 +24,13 @@ describe ShipDetail do
     it { should respond_to(:intermediate_fuel_oil_180?) }
     it { should respond_to(:marine_diesel_in_port) }
     it { should respond_to(:marine_gasoline_oil?) }
+    it { should respond_to(:aussie_holds_ladders?) }
+    it { should respond_to(:CO2_system_on_board?) }
+    it { should respond_to(:log_fitted?) }
+    it { should respond_to(:cement_holes_fitted?) }
+    it { should respond_to(:grabber?) }
+    it { should respond_to(:lakes_fitted?) }
+
 
     it  { should be_valid }
 

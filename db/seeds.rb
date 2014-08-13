@@ -19,6 +19,7 @@ open("db/data/ship_db.txt") do |ships|
             imo_fitted,appendix_B_fitted,box_shaped_holds,cement_holes_fitted= ship.chomp.split(";")
 
         case vessel_type.strip
+
             when "SDBC"
                 temp = 1
             when "OHBS"
@@ -29,6 +30,8 @@ open("db/data/ship_db.txt") do |ships|
                 temp = 4
             when "RORO"
                 temp = 5
+            else
+                temp = 0
         end
 
         unless(deadweight.to_i == 0)
