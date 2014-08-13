@@ -34,12 +34,17 @@ update_ship_view = function(ship_name){
 
 
 load_popover_with_id = function(load, content_id){
+    console.log(content_id);
     id = "#" + content_id;
     var inText = $(id).html();
+    console.log(inText);
     $(load).popover( {
         // trigger: 'focus',
         html: true,
-        content: inText
+        template:"<div class='popover_ana popover' role='tooltip'><div class='arrow'></div><h3 class='popover-title_ana popover-title'></h3><div class='popover-content ship_details-portcall'></div></div",
+        content: inText,
+        title:"Broker details:"
+        
     });
 
 }
