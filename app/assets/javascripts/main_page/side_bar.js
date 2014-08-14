@@ -17,7 +17,6 @@ function center_in_region(regionName){
        else if(region_name=="India"){
     change_region_view(regionName,region_center_coordinates[6]);
     }
-    
 }
 
 function change_region_view(regionName,lat_lang){
@@ -88,16 +87,7 @@ closed_table_side_bar = function () {
                 closest('tr').children('td').wrapInner('<div />').
                 animate({padding: 'toggle', opacity: 'toggle'}, 1);
         }
-
-
-
-
-
 }
-
-
-
-
 
     $(document).on('click','.triangle_image',function () {
         var image = this;
@@ -118,7 +108,6 @@ closed_table_side_bar = function () {
             animate({padding: 'toggle', opacity: 'toggle'} , 150);
 
 
-
     });
 
 
@@ -136,32 +125,27 @@ $(document).on('click',".ship_name_on_side_bar", function(e){
        var ship_name =  this.id;
        clicks++;  //count clicks
 
+    console.log(clicks + "\n");
+    timer = setTimeout(function () {
+        //perform single-click action
 
+        clicks = 0;      //after action performed, reset counter
+    }, DELAY);
     if(clicks === 1) {
-
-        timer = setTimeout(function() {
-
-             //perform single-click action
-            update_ship_view(ship_name);
-
-            clicks = 0;             //after action performed, reset counter
-
-        }, DELAY);
-
-    } else {
+                 //perform single-click action
+                 update_ship_view(ship_name);
+                     if ($(".ship_details").length) {
+                         ship_details(ship_name);
+                     }
+    }else {
 
         clearTimeout(timer);    //prevent single-click action
         //perform double-click action
         update_ship_view(ship_name);
         ship_details(ship_name);
 
-
         clicks = 0;             //after action performed, reset counter
     }
-
-
-
-
 });
 
 $(document).on("dblclick", function(e){

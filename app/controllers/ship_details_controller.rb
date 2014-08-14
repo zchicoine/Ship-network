@@ -2,7 +2,7 @@ class ShipDetailsController < ApplicationController
 
 
     def show
-        @name_test = params[:name]
+        @name_of_ship = params[:name]
 
         respond_to do |format|
             format.html {render :partial =>  'ship_details/index'}

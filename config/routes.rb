@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     #--------------
     post  'google_map/port_coordinates' => 'google_map#port_coordinates'
     post  'google_map/display_ship_on_side_bar' => 'google_map#display_ship_on_side_bar'
+    post  'google_map/close' => 'google_map#close'
     #--------------
     post 'user/sign_in' => 'user#sign_in'
     post 'user/sign_out' => 'user#sign_out'

@@ -44,7 +44,7 @@
 </tr>
 <tr class="text-left">
     <td colspan=<%= 2 %>>
-        <%= link_to "View more information", ship_details_show_path(name:"name") ,class:"", remote: true , method: :post%>
+        <%= link_to "View more information", ship_details_show_path(name: @ship_info[:ship_name]),remote: true , method: :post%>
     </td>
 
 </tr>
