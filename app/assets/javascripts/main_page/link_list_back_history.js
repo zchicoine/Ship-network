@@ -17,7 +17,7 @@ refresh_link_list_back_history = function (string_name, level) {
             data: data,
             complete: function (r) {
                 // Handle the complete event
-                // alert(r);
+
 
             },
             success: function (result) {
@@ -25,8 +25,9 @@ refresh_link_list_back_history = function (string_name, level) {
                  $('.link_list_back_history').html(result);
               //  alert("S: " +result)
             },
-            error: function (r) {
-                alert("E:" + r);
+            error: function (xhr, ajaxOptions, thrownError) {
+                error_message_display("Add element to link history")
+                //alert(xhr.responseText);
             }
         });
     }else {
