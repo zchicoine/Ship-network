@@ -17,7 +17,6 @@ function center_in_region(regionName){
        else if(region_name=="India"){
     change_region_view(regionName,region_center_coordinates[6]);
     }
-    
 }
 
 function change_region_view(regionName,lat_lang){
