@@ -33,15 +33,22 @@
     </td>
 </tr>
 
-<tr class="text-left broker_info" data-toggle="popover" type="button" data-placement="left"  onmouseover="load_popover_with_id(this,'short_broker_info')" >
-    <td>
+<tr class="text-left broker_info"    >
+
+    <td >
+
         Broker Name:
     </td>
     <td>
         <%= render 'side_bar/table_body/after_click_a_ship/broker_information' %>
-          <%= @ship_info[:broker_name]%>
+
+        <button type="button" class="btn btn-link btn-xs popover_blur_for_tr_element" onmouseover="load_popover_with_id('.broker_info','short_broker_info', 'left')" >
+            <%= @ship_info[:broker_name]%>
+        </button>
+
     </td>
 </tr>
+</button>
 <tr class="text-left">
     <td colspan=<%= 2 %>>
         <%= link_to "View more information", ship_details_show_path(name:"name") ,class:"", remote: true , method: :post%>
