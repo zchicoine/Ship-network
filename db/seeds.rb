@@ -119,7 +119,7 @@ open("db/data/port_db.txt") do |ports|
 end
 all_shipments = Shipment.all
 begin
-    Broker.create!(username: "Zack", password: "shipment", email: "z.chicoine@gmail.com", shipments:all_shipments)
+    Broker.create!(username: "Zack", password: "shipment",company:"Sterling Ocean Transport", email: "z.chicoine@gmail.com", shipments:all_shipments)
 
 rescue => e
     puts e.message
