@@ -23,22 +23,19 @@
 
             <div class="row">
                 <div class="col-md-6">
-                    <%= f.text_field :username, class: "form-control labels col-md-5 login-error", placeholder:"Username" %>
+                    <%= f.text_field :username, class: "form-control labels col-md-5 login_error", placeholder:"Username" %>
                 </div>
-                <div class="col-md-6">
-                    <%= f.password_field :password, class:"form-control labels col-md-5", placeholder:"Password" %>
-                  <div class="tooltip" role="tooltip"><div class="tooltip-arrow">
-                  </div>
-                    <div class="tooltip-inner">The tooltip text
-                    </div>
-                  </div>
+               <div class="col-md-6">
+                  <%= f.password_field :password, class:"form-control labels col-md-5 login_error", placeholder:"Password" %>
+
+             <a class="col-md-5 login_error" id="loginError" href="#" data-taggle="tooltip" title="Username/Password is incorrect" data-placement="bottom">
+                       </a>
+
                 </div>
             </div>
-          <div class="toolti" role="toolti"><div class="tooltip-arrow">
-          </div>
-            <div class="tooltip-inner">The tooltip text
-            </div>
-          </div>
+
+
+
             <div class="row">
                 <div class="col-md-6">
                     <% if devise_mapping.rememberable? -%>
