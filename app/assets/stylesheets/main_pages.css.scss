@@ -16,7 +16,10 @@ data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAICAYAAADA+m62AAAAPklEQVQYV2
   text-align: center;
 }
 
-a.hover_change_color:hover,a.hover_change_color:active {color:#20ff00; font-size:150%; background-color: #0A94CB;}
+.nav > li > a.hover_change_color:hover,.nav > li > a.hover_change_color:active {
+  color:#20ff00;
+  background-color: #0A94CB;
+}
 
 .navbar{
    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
@@ -98,4 +101,14 @@ h5{
     color: white;
     font-size: 28px;
     text-align: center;
+}
+
+.form-control.labels.col-md-5.login_error {
+  border-style:solid;
+  border-width:3px;
+  border-color:#20ff00;
+}
+
+.glyphicon-remove-circle {
+  color: red;
 }
