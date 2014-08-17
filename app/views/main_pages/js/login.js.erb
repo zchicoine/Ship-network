@@ -8,8 +8,8 @@ $('document').ready(function(){
     $('#loginError').tooltip('show');
 
 });
-$('#broker_username').parent().addClass("has-error has-feedback")
-$('#broker_username').parent().append("<span class='glyphicon glyphicon-remove form-control-feedback'></span>")
-$('#broker_password').parent().addClass("has-error has-feedback")
-$('#broker_password').parent().append("<span class='glyphicon glyphicon-remove form-control-feedback'></span>")
+$('#broker_username , #broker_password').parent().addClass("has-error has-feedback")
+$('#broker_username , #broker_password').addClass("login_error")
+$('#broker_username , #broker_password').parent().append("<span class='glyphicon glyphicon-remove form-control-feedback'></span>")
+
 <% end %>
