@@ -34,11 +34,17 @@
               
               }
 
-              td.whatever{
-               @extend .link_appearance ;
-               &:hover{
-                @extend .link_appearance:hover;
-               }
+              td a.link_appearance_name {
+
+                      @extend .link_appearance ;
+                      &:hover{
+                          @extend .link_appearance:hover;
+                      }
+                      &:focus{
+                          outline: 0px;
+                      }
+
+
                
             }
           }
@@ -65,7 +71,8 @@
 .link_appearance{
           color:#d6de23;
           font-weight:500;
-          
+
+
 
           &:hover{
             color:#d6de23;
