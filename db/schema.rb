@@ -11,22 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140808130625) do
+ActiveRecord::Schema.define(version: 20140808122843) do
 
   create_table "brokers", force: true do |t|
     t.string   "email",                  default: "", null: false
+    t.string   "username"
     t.string   "encrypted_password",     default: "", null: false
+    t.string   "company"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "username"
   end
 
   add_index "brokers", ["email"], name: "index_brokers_on_email", unique: true
@@ -96,10 +92,10 @@ ActiveRecord::Schema.define(version: 20140808130625) do
     t.boolean  "appendix_B_fitted?"
     t.boolean  "box_shaped_holds?"
     t.boolean  "cement_holes_fitted?"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.boolean  "marine_gasoline_oil?"
     t.integer  "ship_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "ship_details", ["ship_id"], name: "index_ship_details_on_ship_id"
@@ -119,11 +115,11 @@ ActiveRecord::Schema.define(version: 20140808130625) do
   create_table "ships", force: true do |t|
     t.string   "name"
     t.integer  "deadweight"
-    t.integer  "vessel_type",               limit: 255
-    t.integer  "vessel_category",           limit: 255, default: 0
+    t.integer  "deadweight_cargo_capacity"
+    t.integer  "vessel_type",               default: 0
+    t.integer  "vessel_category",           default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "deadweight_cargo_capacity"
   end
 
   add_index "ships", ["name"], name: "index_ships_on_name", unique: true

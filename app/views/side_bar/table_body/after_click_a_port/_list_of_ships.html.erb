@@ -23,9 +23,10 @@
 
                         </td>
                         <td>
-                            <%= ship.vessel_type
-                            %>
-                        </td>
+                            <% if ship[:vessel_type].nonzero? %>
+                              <%= ship.vessel_type%>
+                            <% end  %>
+                         </td>
                     </tr>
                 <%end%>
 
