@@ -1,2 +1,12 @@
 // from the main banner log in button
 $('.banner1').html("<%= escape_javascript( render 'main_pages/login' )%>")
+
+
+
+ $('document').ready(function(){
+    $('#loginError').tooltip('show');
+
+});
+
+
+

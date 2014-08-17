@@ -7,13 +7,13 @@
 
             <div class="row">
 
-                <div class="col-md-5">
+                <div class="col-md-6">
                     <span class="col-md-1 control-label entry_banner-medium">
                       Username:
                     </span>
                 </div>
 
-                <div class="col-md-5">
+                <div class="col-md-6">
                     <span class="col-md-1 control-label entry_banner-medium">
                       Password:
                     </span>
@@ -22,11 +22,15 @@
 
 
             <div class="row">
-                <div class="col-md-5">
-                    <%= f.text_field :username, class: "form-control labels col-md-5", placeholder:"Username" %>
+                <div class="col-md-6">
+                    <%= f.text_field :username, class: "form-control labels col-md-5 login_error", placeholder:"Username" %>
                 </div>
-                <div class="col-md-5">
-                    <%= f.password_field :password, class:"form-control labels col-md-5", placeholder:"Password" %>
+               <div class="col-md-6">
+                  <%= f.password_field :password, class:"form-control labels col-md-5 login_error", placeholder:"Password" %>
+
+             <a class="col-md-5 login_error" id="loginError" href="#" data-taggle="tooltip" title="Username/Password is incorrect" data-placement="bottom">
+                       </a>
+
                 </div>
             </div>
 

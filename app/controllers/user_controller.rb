@@ -1,7 +1,9 @@
 class UserController < ApplicationController
 
 
+=begin
     def sign_in
+=end
 
         if authentication_user? params[:username], params[:password]
             session[:user] = params[:username]
