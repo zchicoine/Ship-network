@@ -54,12 +54,20 @@ send_data_to_side_bar = function(name, level){
             success: function(result) {
                 if(level == SHIP_LEVEL){
                     html_class = "#ship-details-section";
+
                 }
-                $(html_class).html(result);
+
+                    $(html_class).html(result);
+                if(level == SHIP_LEVEL || level == PORT_LEVEL){
+                    $('.region_stats .triangle_image').addClass('closed_table');
+                    closed_table_side_bar();
+                }
+
 
             },
             error: function(r){
-                alert(r + " works");
+               // alert(r + " works");
+                error_message_display("error when refreshing sidebar table")
             }
         });
 
@@ -80,27 +88,32 @@ closed_table_side_bar = function () {
         console.log("works");
         if ($(image).hasClass("closed_table")) {
               image += ".closed_table";
-            console.log(image);
-            $(image).attr("src", "/assets/greentriangle_closed.png");
-            $(image).addClass("this_class_only_to_change_image");
-            $(image).parent().parent().parent().next().children('tr').
-                closest('tr').children('td').wrapInner('<div />').
-                animate({padding: 'toggle', opacity: 'toggle'}, 1);
+            if ( ! $(image).hasClass("this_class_only_to_change_image") ){
+                console.log(image);
+                $(image).attr("src", "/assets/greentriangle_closed.png");
+                $(image).addClass("this_class_only_to_change_image");
+                $(image).parent().parent().parent().next().children('tr').
+                    closest('tr').children('td').wrapInner('<div />').
+                    animate({padding: 'toggle', opacity: 'toggle'}, 1);
+            }
+
         }
 }
 
+
+// this code to see if any block is closed or not, if the block is closed then open and vice versa
     $(document).on('click','.triangle_image',function () {
         var image = this;
-
-        if (! $(image).hasClass("this_class_only_to_change_image") ) {
-
-            $(image).attr("src", "assets/greentriangle_closed.png");
-            $(image).addClass("this_class_only_to_change_image");
-        }
-        else {
+        // if the following class present that means a block is closed
+        if ( $(image).hasClass("this_class_only_to_change_image") ) {
 
             $(image).attr("src", "assets/greentriangle_down.png");
             $(image).removeClass("this_class_only_to_change_image");
+        }
+        else {
+            $(image).attr("src", "assets/greentriangle_closed.png");
+            $(image).addClass("this_class_only_to_change_image");
+
         }
 
         $(image).parent().parent().parent().next().children('tr').
@@ -116,6 +129,8 @@ highlight_on_a_list = function(tag){
     $(tag).closest('tr').children().addClass('highlight-clicked-row');
 }
 
+
+// to enable both single and dbouble clicked worked on same element.
 // initial code take from
 // http://stackoverflow.com/questions/6330431/jquery-bind-double-click-and-single-click-separately
 var DELAY = 700, clicks = 0, timer = null;
@@ -125,7 +140,7 @@ $(document).on('click',".ship_name_on_side_bar", function(e){
        var ship_name =  this.id;
        clicks++;  //count clicks
 
-    console.log(clicks + "\n");
+
     timer = setTimeout(function () {
         //perform single-click action
 
@@ -148,9 +163,12 @@ $(document).on('click',".ship_name_on_side_bar", function(e){
     }
 });
 
-$(document).on("dblclick", function(e){
-    e.preventDefault();  //cancel system double-click event
+$(document).on("dblclick",".ship_name_on_side_bar", function(e){
+    e.preventDefault();  //cancel system double-click event in particle class
 });
+
+
+// ----//
 
 ship_details = function(ship_name){
 
@@ -173,7 +191,7 @@ ship_details = function(ship_name){
             $("#outer-map").html(result);
         },
         error: function(r){
-            alert(r + "works");
+            error_message_display("display ship details.");
         }
     });
 
