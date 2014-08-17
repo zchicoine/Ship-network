@@ -8,5 +8,6 @@ class CreatePorts < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :ports, :name, :unique => true
   end
 end
