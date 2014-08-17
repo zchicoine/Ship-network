@@ -44,33 +44,34 @@ var popover_show = false;
 var popover_called_once = undefined; // to initialize the popover only once
 
 
-load_popover_with_id = function(element,popover_load, content_id, placement) {
+load_popover_with_id = function(element,popover_load_class, content_id, title_id, placement) {
 
     if (!  element.isSameNode(popover_called_once) ) {
 
         popover_called_once = element;
 
-        id = "#" + content_id;
+        conent_id_with_right_syntax = "#" + content_id;
+        title_id_with_right_syntax = "#" + title_id;
+        popover_load_class_with_right_syntax = "." + popover_load_class;
 
-        var content = $(id).html();
+        var content = $(conent_id_with_right_syntax).html();
+        var title = $(title_id_with_right_syntax).html();
 
-        console.log("load_popover");
-        $(popover_load).popover({
+        $(popover_load_class_with_right_syntax).popover({
             trigger: 'manual',
-            template:"<div class='popover_ana popover' role='tooltip'><div class='arrow'></div><h3 class='popover-title_ana popover-title'></h3><div class='popover-content ship_details-portcall'></div></div",
+            template:"<div class='popover_ana popover' role='tooltip'><div class='arrow'></div><h3 class='popover-title_ana popover-title'></h3><div class='popover-content ship_details-portcall'></div></div>",
             html: true,
             placement: placement,
             content: content,
-            title:"Broker details:"
+            title:title
             
         });
 
         // on blur
             $(element).blur(function () {
-            console.log("hidden popover blur" );
 
             if( popover_show){
-                $(popover_load).popover('hide');
+                $(popover_load_class_with_right_syntax).popover('hide');
                 $(element).trigger('click');
             }
 
@@ -80,67 +81,29 @@ load_popover_with_id = function(element,popover_load, content_id, placement) {
 
             console.log("show popover " + "click 1");
             if(! popover_show){
-                $(popover_load).popover('show');
+                $(popover_load_class_with_right_syntax).popover('show');
 
             }
 
         },function (be) {
             console.log("hidden popover " + "click 2");
             if(popover_show){
-                $(popover_load).popover('hide');
+                $(popover_load_class_with_right_syntax).popover('hide');
             }
 
         } );
 
     }
-    $(popover_load).on('show.bs.popover', function () {
+    $(popover_load_class_with_right_syntax).on('show.bs.popover', function () {
 
         popover_show = true;
     });
-    $(popover_load).on('hide.bs.popover', function () {
+    $(popover_load_class_with_right_syntax).on('hide.bs.popover', function () {
 
         popover_show = false;
     });
 
 }
-
-
-
-
-
-//    $(element).on('shown.bs.popover', function () {
-//
-//
-//        popover_show = true;
-//    });
-//    $(element).on('hidden.bs.popover', function () {
-//         console.log("hidden popover");
-//        popover_show = false;
-//    });
-
-//    $(element).click( function () {
-//
-//        console.log(element.className +   " click - " + popover_show);
-//        if(popover_show ){
-//            $(popover_load).popover('hide');
-//        }else{
-//
-//        }
-//
-//    });
-
-
-
-
-//
-//    $(document).on('focus',".popover_focus_for_tr_element", function () {
-//
-//        console.log("popover_focus_for_tr_element blur");
-//
-//        // $('*').popover('hide');
-//    });
-//
-
 
 
 
