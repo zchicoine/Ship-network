@@ -42,9 +42,9 @@
     <td class="pointer whatever">
         <%= render 'side_bar/table_body/after_click_a_ship/broker_information' %>
 
-        <button type="button" class="btn btn-link btn-xs popover_blur_for_tr_element" onmouseover="load_popover_with_id('.broker_info','short_broker_info', 'left')" >
+        <a tabindex="0" class=" "  onmouseover="load_popover_with_id(this,'.broker_info','short_broker_info', 'left')" >
             <%= @ship_info[:broker_name]%>
-        </button>
+        </a>
 
     </td>
 </tr>

@@ -33,21 +33,113 @@ update_ship_view = function(ship_name){
 }
 
 
-load_popover_with_id = function(load, content_id){
-    console.log(content_id);
-    id = "#" + content_id;
-    var inText = $(id).html();
-    console.log(inText);
-    $(load).popover( {
-        // trigger: 'focus',
-        html: true,
-        template:"<div class='popover_ana popover' role='tooltip'><div class='arrow'></div><h3 class='popover-title_ana popover-title'></h3><div class='popover-content ship_details-portcall'></div></div",
-        content: inText,
-        title:"Broker details:"
-        
+
+
+
+
+
+// fix the focus and click of bootstrap by the following code
+
+var popover_show = false;
+var popover_called_once = undefined; // to initialize the popover only once
+
+
+load_popover_with_id = function(element,popover_load, content_id, placement) {
+
+    if (!  element.isSameNode(popover_called_once) ) {
+
+        popover_called_once = element;
+
+        id = "#" + content_id;
+
+        var content = $(id).html();
+
+        console.log("load_popover");
+        $(popover_load).popover({
+            trigger: 'manual',
+            template:"<div class='popover_ana popover' role='tooltip'><div class='arrow'></div><h3 class='popover-title_ana popover-title'></h3><div class='popover-content ship_details-portcall'></div></div",
+            html: true,
+            placement: placement,
+            content: content,
+            title:"Broker details:"
+            
+        });
+
+        // on blur
+            $(element).blur(function () {
+            console.log("hidden popover blur" );
+
+            if( popover_show){
+                $(popover_load).popover('hide');
+                $(element).trigger('click');
+            }
+
+        });
+        // on click
+        $(element).clickToggle(function () {
+
+            console.log("show popover " + "click 1");
+            if(! popover_show){
+                $(popover_load).popover('show');
+
+            }
+
+        },function (be) {
+            console.log("hidden popover " + "click 2");
+            if(popover_show){
+                $(popover_load).popover('hide');
+            }
+
+        } );
+
+    }
+    $(popover_load).on('show.bs.popover', function () {
+
+        popover_show = true;
+    });
+    $(popover_load).on('hide.bs.popover', function () {
+
+        popover_show = false;
     });
 
 }
+
+
+
+
+
+//    $(element).on('shown.bs.popover', function () {
+//
+//
+//        popover_show = true;
+//    });
+//    $(element).on('hidden.bs.popover', function () {
+//         console.log("hidden popover");
+//        popover_show = false;
+//    });
+
+//    $(element).click( function () {
+//
+//        console.log(element.className +   " click - " + popover_show);
+//        if(popover_show ){
+//            $(popover_load).popover('hide');
+//        }else{
+//
+//        }
+//
+//    });
+
+
+
+
+//
+//    $(document).on('focus',".popover_focus_for_tr_element", function () {
+//
+//        console.log("popover_focus_for_tr_element blur");
+//
+//        // $('*').popover('hide');
+//    });
+//
 
 
 
