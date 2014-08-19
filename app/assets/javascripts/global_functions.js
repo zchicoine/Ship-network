@@ -105,5 +105,7 @@ load_popover_with_id = function(element,popover_load_class, content_id, title_id
 
 }
 
-
+remove_white_space = function(name){
+   return name.replace(/\s+/g, '');
+}
 

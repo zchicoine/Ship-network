@@ -59,10 +59,10 @@ class ShipBLL < Ship
     end
 
     # return hash {value: result/0 and error: nil/message}
-    def get_total_deadwieght_of_ships
+    def get_total_deadweight_of_ships
 
         result =   Ship.sum(:deadweight)
-        unless result.nil? and result > 0
+        unless result.nil? or result <= 0
             return {value: result, error: nil}
         else
             return {value:0, error: "Error: calculate the total deadwieght."}
@@ -89,7 +89,18 @@ class ShipBLL < Ship
         end
     end
 
+    # return hash {value: result/0 and error: nil/message}
+    def get_deadweight_of_ships_per_region region_name = ""
 
+        result = PortBLL.joins(:ships).query_at_a_region(region_name).sum(:deadweight)
+
+        unless result.nil? or result <= 0
+            return {value: result, error: nil}
+
+        else
+            return {value: 0, error: "Error: either #{region_name } has no ships or it does not support by the system"}
+        end
+    end
     # return hash {value: result/0 and error: nil/message}
     def get_number_of_ships_per_region region_name = ""
 

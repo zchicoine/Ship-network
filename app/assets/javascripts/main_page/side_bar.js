@@ -208,7 +208,29 @@ ship_details = function(ship_name){
 var content_header = "";
 short_region_info_show = function(region_name){
 
+    var data_json =  { 'region':{ "name": region_name} } ;
+    $.ajax({
+        url:'side_bar/region_short_info',
+        beforeSend: function(){
+            // Handle the beforeSend event
+        },
+        type: 'POST',
+        dataType: 'json',
+        data:data_json,
+        complete: function(r){
+            // Handle the complete event
+            // alert(r);
 
+        },
+        success: function(result) {
+
+            $(".region_short_info tr:first td:nth-child(2)").html(result.deadweight);
+           $(".region_short_info tr:nth-child(2) td:nth-child(2)").html($("#number_of_ship_in_"+ remove_white_space(region_name)).html())
+        },
+        error: function(xhr, ajaxOptions, thrownError){
+            error_message_display($.parseJSON(xhr.responseText).errors);
+        }
+    });
 
         content_header = $('.side_bar_header').html();
         $('.side_bar_header').html(region_name);

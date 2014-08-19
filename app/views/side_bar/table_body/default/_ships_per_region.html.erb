@@ -28,8 +28,8 @@
 <% region_hash_array.each do |_region| %>
 
     <tr class="text-left " >
-        <td><%= _region[:name] %></td>
-        <td><%= _region[:count]%></td>
+        <td ><%= _region[:name] %></td>
+        <td id="number_of_ship_in_<%= remove_white_space _region[:name] %>"> <%= _region[:count]%></td>
     </tr>
 
 <% end %>
