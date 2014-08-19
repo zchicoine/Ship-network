@@ -16,18 +16,18 @@ $(document).ready(function(){
 
 
 
-    $('.show_hover').clickToggle( function() {
-
-
-    short_region_info_show("Australia");
-
-
-
-
-    },function() {
-
-        short_region_info_hide();
-   });
+//    $('.show_hover').clickToggle( function() {
+//
+//
+//    short_region_info_show("Australia");
+//
+//
+//
+//
+//    },function() {
+//
+//        short_region_info_hide();
+//   });
 
 
 
@@ -35,11 +35,6 @@ $(document).ready(function(){
 
 });
 
-function_callback = function(){
-
-
-
-}
 
 main_banner = function (page){
     $.ajax({
