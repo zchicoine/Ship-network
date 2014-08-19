@@ -12,7 +12,7 @@
 
                 <% if broker_signed_in?  %>
                   <li>
-                    <a class="hover_change_color" href="">Welcome, <%= current_broker.username %>
+                    <a class="hover_change_color" href="">Welcome, <span class="username_header"><%= current_broker.username %></span>
                     </a>
                   </li>
                     <%= content_tag :li do %>
