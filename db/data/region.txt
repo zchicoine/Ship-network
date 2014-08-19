@@ -11,7 +11,7 @@
  North America;Puerto Plata;	19.8166666666666; 	-70.7; 
  North America;Rio Haina;	18.4166666666666; 	-70; 
  North America;San Pedro de Macoris;	18.4333333333333; 	-69.3; 
- '292. Sokak (69. Sk.)'  is not a country in the system;Santo Domingo;	18.469,	-69.883; ; 
+ '292. Sokak (69. Sk.)'  is not a country in the system;Santo Domingo;	18.469,	-69.883;
  South America;Esmeraldas;	1; 	-79.63333333; 
  South America;Guayaquil;	-2.26666666666666; 	-79.9; 
  South America;La Libertad;	-2.2; 	-80.91666667; 
@@ -646,19 +646,3 @@
  Arabia and Persian Gulf;Hodeidah;	14.8; 	42.91666667; 
  Arabia and Persian Gulf;Mokha;	13.35; 	43.2; 
  Arabia and Persian Gulf;Mukalla;	14.5166666666666; 	49.11666667; 
-
-
-
-
-
-
-
-
-
-
-
-
-
-// port not found for some reason
-
-undefined method `data' for nil:NilClass for port: Funafuti
