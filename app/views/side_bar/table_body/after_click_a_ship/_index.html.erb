@@ -25,12 +25,21 @@
     </td>
 </tr>
 <tr class="text-left">
+  <% unless @ship_info[:deadweight] == 0 %>
     <td>
         Deadweight:
     </td>
     <td>
         <%= @ship_info[:deadweight] %>
     </td>
+  <% else %>
+      <td>
+        Deadweight Cargo Capacity:
+      </td>
+      <td>
+        <%= @ship_info[:deadweight_cargo_capacity] %>
+      </td>
+  <% end %>
 </tr>
 
 <tr class="text-left broker_info_popover"   >
