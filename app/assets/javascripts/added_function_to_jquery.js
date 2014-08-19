@@ -4,8 +4,7 @@
 (function($) {
     $.fn.clickToggle = function(func1, func2) {
         var funcs = [func1, func2];
-        console.log(func1 );
-        console.log(func2 )
+
         this.data('toggleclicked', 0);
         this.click(function() {
             var data = $(this).data();

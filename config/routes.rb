@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
     #--------------
     post 'side_bar/index' => 'side_bar#index'
+    post 'side_bar/region_short_info' => 'side_bar#region_short_info'
     #--------------
     post  'google_map/port_coordinates' => 'google_map#port_coordinates'
     post  'google_map/display_ship_on_side_bar' => 'google_map#display_ship_on_side_bar'
