@@ -18,7 +18,7 @@ module GoogleMapHelper
     end
 
     def get_ship_details_first_table ship_name = "null"
-        @ship_details_first_table = Ship.joins(:ship_detail).select(:deadweight,:vessel_type,:deadweight_cargo_capacity,
+        @ship_details_first_table = Ship.joins(:ship_detail).select(:deadweight,:vessel_type,:deadweight_cargo_capacity,:vessel_category,
                         'ship_details.draft', 'ship_details.built', 'ship_details.combined_crane_capacity', 'ship_details.crane_capacity',
                         'ship_details.number_of_cranes', 'ship_details.laden').where(name: ship_name).take
 
