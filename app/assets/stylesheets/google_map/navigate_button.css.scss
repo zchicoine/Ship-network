@@ -17,6 +17,7 @@ $image_height: 50px;
   height:$image_height;
   @include  vertical_align;
   margin-left:10px;
+  max-width:35px;
 }
 
 #left-img-responsive{
@@ -42,6 +43,8 @@ $image_height: 50px;
 
 }
 
+/*---TOOLTIP NEXT AND BACK--------------------------------------------------*/
+
 .tooltip_decoration{
 
   bottom: 0;
@@ -53,8 +56,6 @@ $image_height: 50px;
   border-color: transparent;
   border-style: solid;
   position: absolute;
-
-  
 }
 
 .tooltip.top .tooltip-inner {

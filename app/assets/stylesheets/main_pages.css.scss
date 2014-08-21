@@ -45,9 +45,32 @@ data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAICAYAAADA+m62AAAAPklEQVQYV2
     }
 }
 
-/*---------------------------------------------------------------------*/
+/*-----CURRENT VIEW----------------------------------------------------------------*/
 
+.current_view_decoration{ /*changes color and positioning of current view*/
+  color:#0A94CB;
+  text-align:center;
 
+h5{
+      margin-top: -10px;
+      font-family: roboto;
+      font-weight: 400;
+      text-align: center;
+      color:#0A94CB;
+      font-size:22px !important;
+
+  }
+
+h6{
+      margin-top: 0px;
+      font-family: roboto;
+      font-weight: 100;
+      font-size:16px !important;
+  }
+
+}
+
+/*-----CURRENT VIEW----------------------------------------------------------------*/
 /*footer {
   margin-top: 45px;
   padding-top: 5px;
@@ -101,14 +124,6 @@ h1{
     text-align: center;
 }
 
-h5{
-  margin-top: 35px;
-    font-family: roboto;
-    font-weight: 100;
-    color: white;
-    font-size: 28px;
-    text-align: center;
-}
 .form-control.labels.col-md-5.login_error { /*customizes the login error feedback*/
   border-style:solid;
   border-width:2.5px;

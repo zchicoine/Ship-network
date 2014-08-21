@@ -2,7 +2,14 @@
 
 <div id="outer-map">
 
+	<div class="current_view_container current_view_decoration">
+  		<h6 class="italic">Current View:</h6>
+ 		<h5 class="current_view">Global</h5>
+	</div>
+
     <%= image_tag "left_default.png", height: "auto", width: "25", class:"pointer",id:"left-img-responsive", data_toggle:"tooltip" ,data_placement:"top",title:"Tooltip on right" ,:onmouseover => "this.src = 'assets/left_hover.png'", :onmouseout => "this.src = 'assets/left_default.png'", :onclick => "this.src = 'assets/left_down.png'" %>
+	
+
     <%= image_tag "right_default.png", height: "auto", width: "25", class:"pointer",id:"right-img-responsive", data_toggle:"tooltip" ,data_placement:"top",title:"Tooltip on left",:onmouseover => "this.src = 'assets/right_hover.png'", :onmouseout => "this.src = 'assets/right_default.png'", :onclick => "this.src = 'assets/right_down.png'" %>
 
 
