@@ -5,6 +5,7 @@ var region_center_coordinates =  [[48.2893, -99.3594], [-10.4893, -59.3594],[17.
 
 
 function center_in_region(regionName){
+    setSelectRegion(regionName);
     if(regionName=="North America"){
     change_region_view(regionName,region_center_coordinates[0]);
     }
@@ -25,7 +26,14 @@ function change_region_view(regionName,lat_lang){
     update_region_view(regionName);
 }
 
+// this function for map controller on sidebar, when a user select a region then that region will be displayed and highlighted.
+setSelectRegion = function(region_name){
 
+    $("#dropdownGoToRegion_lable").html(region_name);
+
+    $('.dropdown-menu.map_controller_go_to_region').children().removeClass('highlight-clicked-row');
+    $("#" + remove_white_space(region_name) + "_inside_dropdown_main").addClass('highlight-clicked-row');
+}
 
 send_data_to_side_bar = function(name, level){
 
