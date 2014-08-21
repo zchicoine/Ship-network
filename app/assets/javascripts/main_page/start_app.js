@@ -14,7 +14,27 @@ $(document).ready(function(){
     });
 
 
+
+
+//    $('.show_hover').clickToggle( function() {
+//
+//
+//    short_region_info_show("Australia");
+//
+//
+//
+//
+//    },function() {
+//
+//        short_region_info_hide();
+//   });
+
+
+
+
+
 });
+
 
 main_banner = function (page){
     $.ajax({

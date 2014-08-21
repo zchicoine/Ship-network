@@ -59,8 +59,8 @@ send_data_to_side_bar = function(name, level){
 
                     $(html_class).html(result);
                 if(level == SHIP_LEVEL || level == PORT_LEVEL){
-                    $('.region_stats .triangle_image').addClass('closed_table');
-                    closed_table_side_bar();
+                    $('.region_stats .triangle_image').addClass('want_to_close_table');
+                    closed_table_side_bar(30);
                 }
 
 
@@ -80,24 +80,43 @@ send_data_to_side_bar = function(name, level){
 
 }
 
-closed_table_side_bar = function () {
-
-
+closed_table_side_bar = function (speed) {
 
         var image = '.triangle_image';
-        console.log("works");
-        if ($(image).hasClass("closed_table")) {
-              image += ".closed_table";
+        if ($(image).hasClass("want_to_close_table")) {
+              image += ".want_to_close_table";
+
             if ( ! $(image).hasClass("this_class_only_to_change_image") ){
-                console.log(image);
                 $(image).attr("src", "/assets/greentriangle_closed.png");
                 $(image).addClass("this_class_only_to_change_image");
+
                 $(image).parent().parent().parent().next().children('tr').
                     closest('tr').children('td').wrapInner('<div />').
-                    animate({padding: 'toggle', opacity: 'toggle'}, 1);
+                    animate({padding: 'toggle', opacity: 'toggle'}, speed);
+
+
             }
 
         }
+}
+open_table_side_bar = function (speed){
+    var image = '.triangle_image';
+
+    if ($(image).hasClass("want_to_open_table")) {
+        image += ".want_to_open_table";
+
+        if (  $(image).hasClass("this_class_only_to_change_image") ){
+            $(image).attr("src", "assets/greentriangle_down.png");
+            $(image).removeClass("this_class_only_to_change_image");
+
+            $(image).parent().parent().parent().next().children('tr').
+                closest('tr').children('td').wrapInner('<div />').
+                animate({padding: 'toggle', opacity: 'toggle'}, speed);
+
+
+        }
+
+    }
 }
 
 
@@ -198,6 +217,50 @@ ship_details = function(ship_name){
 }
 
 
+var content_header = "";
+short_region_info_show = function(region_name){
+
+    var data_json =  { 'region':{ "name": region_name} } ;
+    $.ajax({
+        url:'side_bar/region_short_info',
+        beforeSend: function(){
+            // Handle the beforeSend event
+        },
+        type: 'POST',
+        dataType: 'json',
+        data:data_json,
+        complete: function(r){
+            // Handle the complete event
+            // alert(r);
+
+        },
+        success: function(result) {
+
+            $(".region_short_info tr:first td:nth-child(2)").html(result.deadweight);
+           $(".region_short_info tr:nth-child(2) td:nth-child(2)").html($("#number_of_ship_in_"+ remove_white_space(region_name)).html())
+        },
+        error: function(xhr, ajaxOptions, thrownError){
+            error_message_display($.parseJSON(xhr.responseText).errors);
+        }
+    });
+
+        content_header = $('.side_bar_header').html();
+        $('.side_bar_header').html(region_name);
+        $('.region_short_info').show('550');
+        $('.triangle_image').addClass('want_to_close_table');
+        closed_table_side_bar(30);
+
+
+
+}
+
+short_region_info_hide = function(default_name){
+
+    $('.side_bar_header').html(content_header);
+    $('.region_short_info').hide();
+    $('.triangle_image').addClass('want_to_open_table');
+    open_table_side_bar(200);
+}
 //$(document).on('click',".one", function(e){
 //    console.log("URL: " + this.href);
 //    $.getScript(this.href);

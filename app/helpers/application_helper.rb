@@ -4,5 +4,9 @@ module ApplicationHelper
     def project_name
         "The Ship Network"
     end 
-    
+
+    def remove_white_space name = ""
+
+        name.delete(' ')
+    end
 end

@@ -2,6 +2,7 @@
     class Port < ActiveRecord::Base
         before_save{
             self.region = region.downcase
+            self.region = region.strip!
         }
       validates_presence_of :name
       validates_presence_of :region

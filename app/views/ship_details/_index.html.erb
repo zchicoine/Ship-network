@@ -3,7 +3,7 @@
   <div class="ship_details">
     <div class="modal-header ship_detail-header">
       <%= link_to "&times;".html_safe ,google_map_close_path, class:"close", remote: true , method: :post %>
-      <h4 class="modal-title">Ship Details</h4>
+      <h4 class="modal-title">Ship Details: <%= @name_of_ship %></h4>
     </div>
 
     <div class="container scroll_inside_table scroll_size_shipdetails">
@@ -11,14 +11,10 @@
       <div class="row">
         <div class="col-md-6 ship_details-portcall">
           <% @ship_details = get_ship_details_first_table @name_of_ship %>
-          <% unless @ship_details[1] %>
               <img alt="Greentriangle down" class="triangle_image" height="16" src="/assets/greentriangle_down.png" width="16">
               <span>General Information</span>
-          <% end %>
           <table>
-
-            <% #@table_one = @ship_details[0] %>
-            <% @ship_details[0].as_json.each do |k, v| %>
+            <% @ship_details.as_json.each do |k, v| %>
                 <% unless v.blank? || v == 0 %>
                     <tr>
                       <td><%= k.humanize.capitalize %></td>

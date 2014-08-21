@@ -25,12 +25,21 @@
     </td>
 </tr>
 <tr class="text-left">
+  <% unless @ship_info[:deadweight] == 0 %>
     <td>
         Deadweight:
     </td>
     <td>
         <%= @ship_info[:deadweight] %>
     </td>
+  <% else %>
+      <td>
+        Deadweight Cargo Capacity:
+      </td>
+      <td>
+        <%= @ship_info[:deadweight_cargo_capacity] %>
+      </td>
+  <% end %>
 </tr>
 
 <tr class="text-left broker_info_popover"   >
@@ -43,7 +52,7 @@
         <%= render 'side_bar/table_body/after_click_a_ship/broker_information' %>
 
         <a tabindex="0" class="link_appearance_name pointer"  onmouseover="load_popover_with_id(this,'broker_info_popover','short_broker_info_content','short_broker_info_title', 'left')" >
-            <%= @ship_info[:broker_name]%>
+            <%= @ship_info[:broker_company]%>
         </a>
 
     </td>

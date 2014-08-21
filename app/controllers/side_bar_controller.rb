@@ -15,7 +15,24 @@ class SideBarController < ApplicationController
 
     end
 
+    def region_short_info
+        parameters = params.require(:region).permit(:name)
+        result =  UnitOfWork.instance.ship.get_deadweight_of_ships_per_region parameters[:name]
+        if result[:error].nil?
+            deadweight = result[:value]
+            respond_to do |format|
+                format.html {render :partial =>  'side_bar/table_body/when_hover_over_a_region/index' , :locals => { deadweight: deadweight }}
+                format.json{ render :json => { deadweight: deadweight }}
+            end
+        else
+            respond_to do |format|
+                format.json{  render :json => { :errors => result[:error] }, :status => 422}
+            end
 
+        end
+
+
+    end
 
 
 
