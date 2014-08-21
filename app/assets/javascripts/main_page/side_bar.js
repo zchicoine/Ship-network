@@ -14,7 +14,7 @@ function center_in_region(regionName){
        else if(region_name=="Africa"){
     change_region_view(regionName,region_center_coordinates[2]);
     }
-       else if(region_name=="India"){
+       else if(region_name=="India and South East Asia"){
     change_region_view(regionName,region_center_coordinates[6]);
     }
 }

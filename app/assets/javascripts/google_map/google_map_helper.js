@@ -123,7 +123,7 @@ function display_ports( port , port_name , ship_number){
             return function() {
 
               
-                send_data_to_get_ship_side_bar( marker.id);
+                update_port_view(marker.id);
                 marker.setIcon(iconClick);
             }
 

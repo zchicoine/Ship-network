@@ -1,13 +1,138 @@
 
 var map_value,region_name,z;
-var markerArray = [] , rows =[];
+var markerArray = [] , rows =[] , scroll_array = [];
 var getClickedPostion;
 var country_array = [];
 var geocoder, newCoordinates, country, geometries,mapOptions;
 var zval = new zoom_value();
+var region_clicked_boolean = new zoom_value();
 var global_region_name = new zoom_value();
 var map_styles = new Object();
+/*
 
+region layer port coordinates to pre define scrolling through the globe 
+when in the region layer
+*/
+
+var scroll_array = {'region_layer' : [
+new google.maps.LatLng(29.95,-90.06667),
+//south america
+new google.maps.LatLng(-12.05,-77.16667),
+//africa..douala
+new google.maps.LatLng(4.05000,9.700000),
+//PG
+new google.maps.LatLng(-30.559482,22.937506),
+//europe
+new google.maps.LatLng(52.3666,4.8999),
+//sea
+new google.maps.LatLng(17.686816,83.218482),
+//aus
+new google.maps.LatLng(-32.926689,151.778921),
+//busan
+new google.maps.LatLng(35.179554,129.075642)],
+
+'europe' : [
+new google.maps.LatLng(52.3666,4.8999),
+//Recalada
+new google.maps.LatLng(41.016666,28.983),
+//lagos
+new google.maps.LatLng(38.11666,13.33333)
+],
+
+'north_america' : [
+new google.maps.LatLng(29.95,-90.06667),
+//Recalada
+new google.maps.LatLng(40.71667,-74)
+]
+
+
+
+};
+var region_layer_array = [
+//north america
+new google.maps.LatLng(29.95,-90.06667),
+//south america
+new google.maps.LatLng(-12.05,-77.16667),
+//africa..douala
+new google.maps.LatLng(4.05000,9.700000),
+//PG
+new google.maps.LatLng(-30.559482,22.937506),
+//europe
+new google.maps.LatLng(52.3666,4.8999),
+//sea
+new google.maps.LatLng(17.686816,83.218482),
+//aus
+new google.maps.LatLng(-32.926689,151.778921),
+//busan
+new google.maps.LatLng(35.179554,129.075642)
+];
+var i=0;
+
+/*
+
+region specific array to set the port coordiantes to pre define the 
+scrolling in a region when at a certain zoom level
+
+*/
+
+var europe_port_array = [
+new google.maps.LatLng(52.3666,4.8999),
+//Recalada
+new google.maps.LatLng(41.016666,28.983),
+//lagos
+new google.maps.LatLng(38.11666,13.33333)
+];
+
+var north_america_port_array = [
+new google.maps.LatLng(29.95,-90.06667),
+//Recalada
+new google.maps.LatLng(40.71667,-74)
+];
+
+var south_america_port_array = [
+new google.maps.LatLng(-12.05,-77.16667),
+//Recalada
+new google.maps.LatLng(6.81667,-58.16667)
+];
+
+var africa_port_array = [
+//douala
+new google.maps.LatLng(4.05000,9.700000),
+//Durban
+new google.maps.LatLng(-29.858680,31.021840),
+//
+new google.maps.LatLng(11.825138,42.590275)
+];
+
+var persianGulf_port_array = [
+//sur
+new google.maps.LatLng(-30.559482,22.937506),
+//bandar
+new google.maps.LatLng(26.371015,31.847656),
+//
+new google.maps.LatLng(32.634765,51.340669)
+];
+
+var sea_port_array = [
+//vishakapatnam
+new google.maps.LatLng(17.686816,83.218482),
+//singapore
+new google.maps.LatLng(1.352083,103.819836)
+];
+
+var australia_port_array = [
+//new castle
+new google.maps.LatLng(-32.926689,151.778921),
+//danpier
+new google.maps.LatLng(-20.663799,116.708460)
+];
+
+var farEast_port_array = [
+//busan
+new google.maps.LatLng(35.179554,129.075642),
+//hong kong
+new google.maps.LatLng(22.396428,114.109497)
+];
 function set_label_names(){
 
   var mapLabel_North_America = new Label({
@@ -26,7 +151,7 @@ function set_label_names(){
            map: window.map,
            });
   var mapLabel_Persian_Gulf = new Label({
-           text: 'PERSIAN GULF',
+           text: 'ARABIA & PERSIAN GULF',
            position: new google.maps.LatLng(33.1376, 47.6367),
            map: window.map,
            });
@@ -42,13 +167,8 @@ function set_label_names(){
            map: window.map,
            });
    var mapLabel_IMB = new Label({
-           text: 'INDIAN SUBCONTINENT',
+           text: 'INDIA AND SOUTH EAST ASIA',
            position: new google.maps.LatLng(24.4471,85.1660),
-           map: window.map,
-          });
-   var mapLabel_JPN = new Label({
-           text: 'MID NORTH CHINA',
-           position: new google.maps.LatLng(35.8178, 118.0371),
            map: window.map,
           });
    var mapLabel_PHPLNS = new Label({
@@ -64,7 +184,7 @@ function set_label_names(){
  	map_styles = [{
               "featureType": "administrative.country",
               "stylers": [
-                { "visibility": "off" }
+                { "visibility": "on" }
               ]
               },{
 							"featureType": "administrative.province",
@@ -110,7 +230,14 @@ function set_label_names(){
 							"stylers": [
 							  { "visibility": "off" }
 							]
-						  }];
+						  },{
+              "featureType": "water",
+              "elementType": "labels",
+          
+              "stylers": [
+                { "visibility": "off" }
+              ]
+              }];
  	return map_styles;
  }
 
@@ -120,7 +247,7 @@ function set_label_names(){
 
 
        mapOptions = {
-          center: new google.maps.LatLng(11.289703, -81.464677),
+          center: new google.maps.LatLng(4.05000,9.700000),
           zoom: 2,
           disableDefaultUI: true,
         	panControl: false,
@@ -128,51 +255,48 @@ function set_label_names(){
           setScrollable: false,
     		  zoomControl: false,
     	    disableDoubleClickZoom: true,
-          draggable: false,
+          draggable: true,
           keyboardShortcuts: false,
           // never change the minimum zoom level from 1 to anything else
-          minZoom:2
+          minZoom:3
           
         };
 
    // setting up custom map properties 
         var mapStyle = map_properties();
-       
+      // a.setValue(region_layer_array);
 		// set the map to the specified div
         window.map  = new google.maps.Map(document.getElementById("googleMap"),mapOptions);
 
         map.setOptions({styles: mapStyle});
-       
-      geocoder = new google.maps.Geocoder();
-	  
-	  //setting up ports on the map
-
+     
 	 // click  event function for zooming in   
      google.maps.event.addListener(map, 'click', function(e) {  
 
-      if(zval.getZoomValue() > 10){
+      set_label_names();
+      /*if(zval.get() > 10){
 
        getClickedPostion = e.latLng
  
        window.map.setCenter(getClickedPostion);
-       window.map.setZoom(2);
-       zval.setZoomValue(2);
+       window.map.setZoom(3);
+       zval.set(3);
  
       
       window.map.setOptions({styles: map_styles}); 
-     // set_label_names();
+      
       $('body').css("cursor","default");    
       }
       else{
         $('body').css("cursor","default");
-        var zoomToNumber = window.map.getZoom() + 2;
+        var zoomToNumber = window.map.getZoom() + 1;
         window.map.setZoom(zoomToNumber);
-       zval.setZoomValue(zoomToNumber);
+       zval.set(zoomToNumber);
       }
         
      
     // getCountry(getClickedPostion);
-     
+     */
 			
     });
 
@@ -180,7 +304,7 @@ function set_label_names(){
       google.maps.event.addListener(map, 'mouseover', function(event) {
         
         $("body").css("cursor","default");
-        if(zval.getZoomValue() > 2){
+        if(zval.get() > 3){
           $('body').css("cursor","default");
           /*$("body").css("cursor","-moz-zoom-out");
           $("body").css("cursor","-webkit-zoom-out");        */
@@ -193,14 +317,20 @@ function set_label_names(){
 
  //zoom out function     
      google.maps.event.addListener(map, 'rightclick', function(e) {
-            window.map.setZoom(2);
+            
+            initialize();
+/*
+            //set map back to default zoom level
+            window.map.setZoom(3);
+            //update the global zom value variable to 3
+            zval.set(3);
             window.map.setOptions({styles: mapStyle});
           
           setMarkers(null,markerArray);
           window.map.setCenter(getClickedPostion);
            $('body').css("cursor","default");
            // region_event_listeners();
-            //set_label_names();
+            //set_label_names();*/
         });
  
    
@@ -289,30 +419,32 @@ function event_listeners(country,region_name)
   google.maps.event.addListener(country, 'click', function(e) {
               
         $('.region_labels').remove();
-       send_data_to_get_port_coordinates(region_name);
-       var zoomToNumber = window.map.getZoom() + 2;
+       
+      // var zoomToNumber = window.map.getZoom() + 2;
        getClickedPostion = e.latLng
+       zval.set(3);
        // make a function call to decide which region is being clicked on
       // console.log(zoomToNumber);
-       window.map.setCenter(getClickedPostion);
-       window.map.setZoom(zoomToNumber);
+      set_map_center(getClickedPostion,region_name,e);
+       
+      // window.map.setZoom(zoomToNumber);
 
-       zval.setZoomValue(zoomToNumber);
-       test(e,country,region_name);
+      // zval.set(zoomToNumber);
+      // 
               
               });
             
   google.maps.event.addListener(country, 'mouseout', function() {
 
-     if(zval.getZoomValue() > 2){
+    /* if(zval.get() > 3){
           $("body").css("cursor","-moz-zoom-out");
           $("body").css("cursor","-webkit-zoom-out");        
         }
-        else if (zval.getZoomValue() == 2){
+        else if (zval.get() == 3){
           $("body").css("cursor","default");
 
         }
-
+*/
         this.setOptions({
                
                 fillOpacity: 0.2
@@ -320,6 +452,30 @@ function event_listeners(country,region_name)
             });
 }
 
+
+function set_map_center(getClickedPostion,region_name,e){
+
+  if(zval.get() == 3 && region_clicked_boolean.get() != 1){
+
+    window.map.setCenter(getClickedPostion);
+    //console.log("Clicked on th region"+region_name);
+    update_region_view(region_name);
+    region_clicked_boolean.set(1);
+    set_label_names();
+    //console.log("i am here");
+  }
+  else{
+    region_clicked_boolean.set(0);
+    window.map.setZoom(4);
+    zval.set(4);
+    //console.log("Clicked twice in"+region_name);
+    send_data_to_get_port_coordinates(region_name);
+    test(e,country,region_name);
+    $('.region_labels').remove();
+    //window.alert(region_clicked_boolean.get());
+  }
+  
+}
 // identify a country based on mouse click
 function getCountry(latLng) {
     geocoder.geocode( {'latLng': latLng},
@@ -373,14 +529,14 @@ typically a string or number
 */
 function zoom_value(){
 
-    var zoom = 2;
+    var zoom = 3;
 
-    this.getZoomValue = function(){
+    this.get = function(){
         return zoom;
     }
 
 
-    this.setZoomValue = function(par_zoom_val){
+    this.set = function(par_zoom_val){
         zoom = par_zoom_val;
         return this;
     }

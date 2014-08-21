@@ -7,6 +7,8 @@ $(window).load(function(){
 	});
 
 $("#right-img-responsive").hover(function(){
+
+	
 	$("body").css("cursor","default");
 	//$('.tag-tooltip').tooltip();
 });
@@ -14,14 +16,19 @@ $("#right-img-responsive").hover(function(){
 $("#left-img-responsive").hover(function(){
 	$("body").css("cursor","default");
 });
-	$("#right-img-responsive").click(function(){	
-		window.map.panby(150,0);
 
-/*
-		if(this.id=='right-img-responsive' && (zval.getZoomValue()) == 2){
 
+
+$("#right-img-responsive").click(function(){	
+//		window.map.panby(150,0);
+
+		$("#right-img-responsive").attr('data-original-title','pratik');
+		if(this.id=='right-img-responsive' && (zval.get()) < 4 ){
+		//console.log("right clicked ");
+		//console.log( zval.get());
 		var a = new Field("test");
 		a.setValue(region_layer_array);
+		//console.log(a);
 		var temp = a.getValue();
 		if(i!=(temp.length-1)){
 					window.map.setCenter(temp[i]);
@@ -39,27 +46,41 @@ $("#left-img-responsive").hover(function(){
 	
 		}
 		
-		else if(this.id=='right-img-responsive' && (zval.getZoomValue()) >=10 ){
-	
-			if(global_region_name.getZoomValue()=="Europe"){
-				a = new Field("test");
+		else if(this.id=='right-img-responsive' && (zval.get()) == 4 ){
+			//console.log(zval.get());
+			if(global_region_name.get()=="Europe"){
+				var a = new Field("test");
         		a.setValue(europe_port_array);
 			}
-			else if(global_region_name.getZoomValue()=="North America"){
+			else if(global_region_name.get()=="North America"){
 				a = new Field("test");
         		a.setValue(north_america_port_array);
 			}
-			else if(global_region_name.getZoomValue()=="South America"){
+			else if(global_region_name.get()=="South America"){
 				a = new Field("test");
         		a.setValue(south_america_port_array);
 			}
-			else if(global_region_name.getZoomValue()=="Africa"){
+			else if(global_region_name.get()=="Africa"){
 				a = new Field("test");
         		a.setValue(africa_port_array);
 			}
-			else if(global_region_name.getZoomValue()=="India"){
+			else if(global_region_name.get()=="India and South East Asia"){
 				a = new Field("test");
         		a.setValue(sea_port_array);
+			}
+			else if(global_region_name.get()=="Arabia and Persian Gulf"){
+				a = new Field("test");
+        		a.setValue(persianGulf_port_array);
+			}
+			else if(global_region_name.get()=="Far East"){
+				a = new Field("test");
+        		a.setValue(farEast_port_array);
+			}
+			else if(global_region_name.get()=="Australia"){
+
+				a = new Field("test");
+        		a.setValue(australia_port_array);
+        		
 			}
 			
 			var temp = a.getValue();
@@ -80,7 +101,7 @@ $("#left-img-responsive").hover(function(){
 				
 			}
 			
-		}*/
+		}
 	});
 
 
@@ -88,7 +109,7 @@ $("#left-img-responsive").hover(function(){
 			//alert("The paragraph was clicked.");
       //     window.map.panBy(-150,0);    	
 
-           if(this.id=='left-img-responsive' && (zval.getZoomValue()) == 2){
+           if(this.id=='left-img-responsive' && (zval.get()) < 4){
 
 		var a = new Field("test");
 		a.setValue(region_layer_array);
@@ -109,27 +130,40 @@ $("#left-img-responsive").hover(function(){
 	
 		}
 		
-		else if(this.id=='left-img-responsive' && (zval.getZoomValue()) >=10 ){
-	
-			if(global_region_name.getZoomValue()=="Europe"){
+		else if(this.id=='left-img-responsive' && (zval.get()) == 4 ){
+			
+			if(global_region_name.get()=="Europe"){
 				a = new Field("test");
+
         		a.setValue(europe_port_array);
 			}
-			else if(global_region_name.getZoomValue()=="North America"){
+			else if(global_region_name.get()=="North America"){
 				a = new Field("test");
         		a.setValue(north_america_port_array);
 			}
-			else if(global_region_name.getZoomValue()=="South America"){
+			else if(global_region_name.get()=="South America"){
 				a = new Field("test");
         		a.setValue(south_america_port_array);
 			}
-			else if(global_region_name.getZoomValue()=="Africa"){
+			else if(global_region_name.get()=="Africa"){
 				a = new Field("test");
         		a.setValue(africa_port_array);
 			}
-			else if(global_region_name.getZoomValue()=="India"){
+			else if(global_region_name.get()=="India and South East Asia"){
 				a = new Field("test");
         		a.setValue(sea_port_array);
+			}
+			else if(global_region_name.get()=="Arabia and Persian Gulf"){
+				a = new Field("test");
+        		a.setValue(persianGulf_port_array);
+			}
+			else if(global_region_name.get()=="Far East"){
+				a = new Field("test");
+        		a.setValue(farEast_port_array);
+			}
+			else if(global_region_name.get()=="Australia"){
+				a = new Field("test");
+        		a.setValue(australia_port_array);
 			}
 			
 			var temp = a.getValue();
@@ -159,11 +193,11 @@ $("#left-img-responsive").hover(function(){
  
    		initialize();
    		setMarkers(null,markerArray);
-   		window.map.setZoom(2);
+   		window.map.setZoom(3);
 
    		// setting the global zoom value back to 2 so that the right navigation button will be set to act on 
    		// region layer
-   		zval.setZoomValue(2);
+   		zval.set(3);
 
    		// changing the cursor back to default
    		$("body").css("cursor","default");
@@ -187,5 +221,6 @@ function Field(val){
    
     this.setValue = function(val){
         value = val;
+        console.log(value);
     };
 }
