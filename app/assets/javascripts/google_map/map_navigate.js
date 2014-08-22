@@ -79,7 +79,7 @@ $("#right-img-responsive").click(function(){
            if(this.id=='left-img-responsive' && (zval.get()) < 4){
 
 		var a = new Field("test");
-		a.setValue(region_layer_array);
+		a.setValue(return_object_region(current_region()).layer_array);
 		var temp = a.getValue();
 
 		if(i!=(temp.length-1)){
@@ -145,35 +145,35 @@ $("#right-img-responsive").click(function(){
 function select_scroll_array(){
 
 
-	if(global_region_name.get()=="Europe"){
+	if(current_region()=="Europe"){
 				a = new Field("test");
         		a.setValue(europe_port_array);
 			}
-			else if(global_region_name.get()=="North America"){
+			else if(current_region()=="North America"){
 				a = new Field("test");
         		a.setValue(north_america_port_array);
 			}
-			else if(global_region_name.get()=="South America"){
+			else if(current_region()=="South America"){
 				a = new Field("test");
         		a.setValue(south_america_port_array);
 			}
-			else if(global_region_name.get()=="Africa"){
+			else if(current_region()=="Africa"){
 				a = new Field("test");
         		a.setValue(africa_port_array);
 			}
-			else if(global_region_name.get()=="India and South East Asia"){
+			else if(current_region()=="India and South East Asia"){
 				a = new Field("test");
         		a.setValue(sea_port_array);
 			}
-			else if(global_region_name.get()=="Arabia and Persian Gulf"){
+			else if(current_region()=="Arabia and Persian Gulf"){
 				a = new Field("test");
         		a.setValue(persianGulf_port_array);
 			}
-			else if(global_region_name.get()=="Far East"){
+			else if(current_region()=="Far East"){
 				a = new Field("test");
         		a.setValue(farEast_port_array);
 			}
-			else if(global_region_name.get()=="Australia"){
+			else if(current_region()=="Australia"){
 
 				a = new Field("test");
         		a.setValue(australia_port_array);

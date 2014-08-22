@@ -8,7 +8,12 @@ Australia_class = function () {
     Region_class.call(this);
     this.name = "Australia";
     this.lat_lang = new google.maps.LatLng(-32.926689,151.778921);
-
+    this.layer_array = [
+        //new castle
+        new google.maps.LatLng(-32.926689,151.778921),
+        //danpier
+        new google.maps.LatLng(-20.663799,116.708460)
+    ];
 
 
 };

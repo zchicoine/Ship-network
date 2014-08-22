@@ -8,7 +8,11 @@ South_America_class = function () {
     Region_class.call(this);
     this.name = 'South America';
     this.lat_lang = new google.maps.LatLng(-12.05,-77.16667);
-
+    this.layer_array = [
+        new google.maps.LatLng(-12.05,-77.16667),
+        //Recalada
+        new google.maps.LatLng(6.81667,-58.16667)
+    ];
 };
 South_America_class.prototype = createObject(Region_class.prototype);
 // Set the "constructor" property to refer to South_America_class

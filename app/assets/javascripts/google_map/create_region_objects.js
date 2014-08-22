@@ -22,7 +22,7 @@ function return_object_region(region_name) {
         return new Europe_class();
     }
 
-    return null;
+    return new Region_class();
 
 }
 

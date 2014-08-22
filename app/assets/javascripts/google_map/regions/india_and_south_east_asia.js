@@ -8,7 +8,12 @@ India_and_South_East_Asia_class = function () {
     Region_class.call(this);
     this.name = 'India and South East Asia';
     this.lat_lang = new google.maps.LatLng(17.686816,83.218482);
-
+    this.layer_array = [
+//vishakapatnam
+        new google.maps.LatLng(17.686816,83.218482),
+//singapore
+        new google.maps.LatLng(1.352083,103.819836)
+    ];
 
 };
 India_and_South_East_Asia_class.prototype = createObject(Region_class.prototype);
