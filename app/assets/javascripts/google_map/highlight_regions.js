@@ -11,21 +11,8 @@ function drawMap(data) {
     var sa = new South_America_class();
 
 
-    // region_json = {'region_name': {countries:[],'coordinates:[],'color': '#fffff'}}
-    var region_json = { };
-
-        region_json[africa.name] = africa;
-        region_json[australia.name] = australia;
-        region_json[far_east.name] = far_east;
-        region_json[na.name] = na;
-        region_json[arabia_and_pg.name] = arabia_and_pg;
-        region_json[europe.name] =europe;
-        region_json[sa.name] = sa;
-        region_json[india_and_sea.name] = india_and_sea;
-
     rows = data['rows'];
 
-    var region_name_now = "";
     for (var i in rows) {
 
 
@@ -40,33 +27,19 @@ function drawMap(data) {
 
 
 
- }
-
-    for(var _region in region_json){
-       // console.log(_region);
-        country = new google.maps.Polygon({
-            paths: region_json[_region].fusiontables_properties['coordinates'],
-            strokeColor: "#20FF00",
-            strokeOpacity: 0,
-            strokeWeight: 1,
-            fillColor:"#20FF00" ,
-            fillOpacity: 0.2
-        });
-        country.setMap(map);
-
-        event_listeners(country,_region);
     }
+    africa.fornow();
+    arabia_and_pg.fornow();
+    india_and_sea.fornow();
+    sa.fornow();
+    europe.fornow();
+    na.fornow();
+    far_east.fornow();
+    australia.fornow();
 
-    //console.log(region_json["Australia"]['coordinates']);
+
+
 
 }
 
-function constructNewCoordinates(polygon) {
-    var newCoordinates = [];
-    var coordinates = polygon['coordinates'][0];
-    for (var i in coordinates) {
-        newCoordinates.push(
-            new google.maps.LatLng(coordinates[i][1], coordinates[i][0]));
-    }
-    return newCoordinates;
-}
+

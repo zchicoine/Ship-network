@@ -82,7 +82,40 @@ Region_class.prototype.highlight_the_region = function (country_name,country_coo
     }
 
 
+
+
 }
+
+Region_class.prototype.fornow = function (){
+
+
+    country = new google.maps.Polygon({
+        paths: this.fusiontables_properties['coordinates'],
+        strokeColor: "#20FF00",
+        strokeOpacity: 0,
+        strokeWeight: 1,
+        fillColor:"#20FF00" ,
+        fillOpacity: 0.2
+    });
+    country.setMap(map);
+
+    event_listeners(country,this.name);
+
+
+
+
+}
+
 
 // end of Region class //
 
+
+function constructNewCoordinates(polygon) {
+    var newCoordinates = [];
+    var coordinates = polygon['coordinates'][0];
+    for (var i in coordinates) {
+        newCoordinates.push(
+            new google.maps.LatLng(coordinates[i][1], coordinates[i][0]));
+    }
+    return newCoordinates;
+}
