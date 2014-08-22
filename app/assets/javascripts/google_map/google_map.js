@@ -167,8 +167,6 @@ function constructNewCoordinates(polygon) {
       }
 
 
-
-
 /*
 
 attaching event listeners to every layer drawn onto the map for every country
@@ -199,7 +197,7 @@ function event_listeners(country,region_name)
        
        // make a function call to decide which region is being clicked on
       // console.log(zoomToNumber);
-      set_map_center(getClickedPostion,region_name,e);
+     MAP.google_controller_methods.set_region_center(getClickedPostion,region_name,e);
        
               
               });
@@ -214,73 +212,8 @@ function event_listeners(country,region_name)
 }
 
 
-function set_map_center(getClickedPostion,region_name,e){
 
-  if(zval.get() == 3 && region_clicked_boolean.get() != 1){
 
-    window.map.setCenter(getClickedPostion);
-    //console.log("Clicked on th region"+region_name);
-    update_region_view(region_name);
-    region_clicked_boolean.set(1);
-    //set_label_names();
-    //console.log("i am here");
-  }
-  else{
-    region_clicked_boolean.set(0);
-    window.map.setZoom(4);
-    zval.set(4);
-    //console.log("Clicked twice in"+region_name);
-    send_data_to_get_port_coordinates(region_name);
-    test(e,country,region_name);
-    $('.region_labels').remove();
-    //window.alert(region_clicked_boolean.get());
-  }
-  
-}
-// identify a country based on mouse click
-function getCountry(latLng) {
-    geocoder.geocode( {'latLng': latLng},
-      function(results, status) {
-        if(status == google.maps.GeocoderStatus.OK) {
-          if(results[0]) {
-            for(var i = 0; i < results[0].address_components.length; i++) {
-              if(results[0].address_components[i].types[0] == "country") {
-               region_name_on_country(results[0].address_components[i].long_name);
-              }
-            }
-          }
-          else {
-            alert("No results");
-          }
-        }
-        else {
-          alert("Status: " + status);
-        }
-      }
-    );
-  }
-
-function region_name_on_country(country_name){
-
-  if(country_name=="Canada" || "Mexico"||
-                "Greenland"||"Guatemala" ||"Belize"||"El Salvador"||
-                "Honduras" ||"Nicaragua" ||"Costa Rica"||"Panama"||
-                "Cuba" ||"Haiti" ||"Dominican Republic"||"Jamaica"||
-                "Bahamas" ||"Bermuda" ||"United States"){
-    //window.alert(region_north_america);
-    var r = new google.maps.Polygon({
-              paths: region_north_america,
-              strokeColor: colors[0],
-              strokeOpacity: 0,
-              strokeWeight: 1,
-              fillColor: "blue",
-              fillOpacity: 0.9
-            });
-  }
-    
-  else
-    console.log('not selected');
-}
 
 
 /*
