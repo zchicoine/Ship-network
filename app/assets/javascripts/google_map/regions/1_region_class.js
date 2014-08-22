@@ -31,7 +31,7 @@ Region_class.prototype.change_region_view = function () {
     MAP.google_common_methods.set_cneter(this.lat_lang);
     update_region_view(this.name);
 };
-
+var i=0;
 Region_class.prototype.scroll_between_specific_areas = function (){
 
     var a = new Field("test");

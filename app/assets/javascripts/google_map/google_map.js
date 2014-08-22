@@ -6,99 +6,8 @@ var country_array = [];
 var geocoder, newCoordinates, country, geometries,mapOptions;
 var zval = new global_values();
 var region_clicked_boolean = new global_values();
-var global_region_name = new global_values();
 var next_region_name = new global_values();
-/*
 
-region layer port coordinates to pre define scrolling through the globe 
-when in the region layer
-*/
-
-var region_layer_array = [
-//north america
-new google.maps.LatLng(29.95,-90.06667),
-//south america
-new google.maps.LatLng(-12.05,-77.16667),
-//africa..douala
-new google.maps.LatLng(4.05000,9.700000),
-//PG
-new google.maps.LatLng(-30.559482,22.937506),
-//europe
-new google.maps.LatLng(52.3666,4.8999),
-//sea
-new google.maps.LatLng(17.686816,83.218482),
-//aus
-new google.maps.LatLng(-32.926689,151.778921),
-//busan
-new google.maps.LatLng(35.179554,129.075642)
-];
-var i=0;
-
-/*
-
-region specific array to set the port coordiantes to pre define the 
-scrolling in a region when at a certain zoom level
-
-*/
-
-var europe_port_array = [
-new google.maps.LatLng(52.3666,4.8999),
-//Recalada
-new google.maps.LatLng(41.016666,28.983),
-//lagos
-new google.maps.LatLng(38.11666,13.33333)
-];
-
-var north_america_port_array = [
-new google.maps.LatLng(29.95,-90.06667),
-//Recalada
-new google.maps.LatLng(40.71667,-74)
-];
-
-var south_america_port_array = [
-new google.maps.LatLng(-12.05,-77.16667),
-//Recalada
-new google.maps.LatLng(6.81667,-58.16667)
-];
-
-var africa_port_array = [
-//douala
-new google.maps.LatLng(4.05000,9.700000),
-//Durban
-new google.maps.LatLng(-29.858680,31.021840),
-//
-new google.maps.LatLng(11.825138,42.590275)
-];
-
-var persianGulf_port_array = [
-//sur
-new google.maps.LatLng(-30.559482,22.937506),
-//bandar
-new google.maps.LatLng(26.371015,31.847656),
-//
-new google.maps.LatLng(32.634765,51.340669)
-];
-
-var sea_port_array = [
-//vishakapatnam
-new google.maps.LatLng(17.686816,83.218482),
-//singapore
-new google.maps.LatLng(1.352083,103.819836)
-];
-
-var australia_port_array = [
-//new castle
-new google.maps.LatLng(-32.926689,151.778921),
-//danpier
-new google.maps.LatLng(-20.663799,116.708460)
-];
-
-var farEast_port_array = [
-//busan
-new google.maps.LatLng(35.179554,129.075642),
-//hong kong
-new google.maps.LatLng(22.396428,114.109497)
-];
 function set_label_names(){
 
   var mapLabel_North_America = new Label({
@@ -210,8 +119,6 @@ function event_listeners(country,region_name)
               });
             });
 }
-
-
 
 
 

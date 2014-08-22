@@ -180,7 +180,6 @@ MAP.google_controller_methods = {
                 region_clicked_boolean.set(0);
                 MAP.google_common_methods.set_zoom(4);
                 send_data_to_get_port_coordinates(region_name);
-                test(e,country,region_name);
                 $('.region_labels').remove();
 
             }
