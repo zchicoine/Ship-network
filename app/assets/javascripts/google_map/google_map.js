@@ -65,15 +65,6 @@ function set_label_names(){
 
 google.maps.event.addDomListener(window, 'load', initialize);
 
-function constructNewCoordinates(polygon) {
-        var newCoordinates = [];
-        var coordinates = polygon['coordinates'][0];
-        for (var i in coordinates) {
-          newCoordinates.push(
-              new google.maps.LatLng(coordinates[i][1], coordinates[i][0]));
-        }
-        return newCoordinates;
-      }
 
 
 /*

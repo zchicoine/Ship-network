@@ -16,7 +16,7 @@ Europe_class = function () {
         new google.maps.LatLng(38.11666,13.33333)
     ];
 
-    this.list_of_countries = ['Antarctica' , "United Kingdom" , "Ireland"
+    this.list_of_countries = [ "United Kingdom" , "Ireland"
         , "Iceland" , "Germany" , "Netherlands" , "Belgium", "France" , "Spain" , "Portugal" , "Italy"
         , "Slovenia" , "Croatia" , "Serbia" , "Albania", "Greece" , "Turkey" , "Cyprus" , "Bulgaria"
         , "Syria" , "Israel" , "Lebanon" , "Romania", "Ukraine" , "Georgia" , "Norway" , "Sweden"
@@ -30,6 +30,12 @@ Europe_class = function () {
         'lable':"REGION",
         'lable_position':this.lat_lang
     };
+
+    this.fusiontables_properties = {
+        "countries": this.list_of_countries,
+        'coordinates':[],
+        'color':this.map_properties['color']
+    }
 };
 Europe_class.prototype = createObject(Region_class.prototype);
 // Set the "constructor" property to refer to Europe_class

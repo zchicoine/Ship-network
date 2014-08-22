@@ -18,7 +18,7 @@ Arabia_and_Persian_Gulf_Class = function () {
     ];
 
 
-    this.list_of_countries = [ 'Antarctica' , "Jordan" , "Yemen" , "Oman" , "United Arab Emirates" , "Qatar" , "Bahrain" , "Turkmenistan"
+    this.list_of_countries = [  "Jordan" , "Yemen" , "Oman" , "United Arab Emirates" , "Qatar" , "Bahrain" , "Turkmenistan"
         , "Kuwait" , "Iraq" , "Iran" , "Saudi Arabia", "Afghanistan" , "Uzbekistan" , "Pakistan" , "Kazakhstan"
         , "Azerbaijan" , "Tajikistan" , "Kyrgyzstan" , "N. Cyprus"
     ];
@@ -28,6 +28,12 @@ Arabia_and_Persian_Gulf_Class = function () {
         'lable':"REGION",
         'lable_position':this.lat_lang
     };
+
+    this.fusiontables_properties = {
+        "countries": this.list_of_countries,
+        'coordinates':[],
+        'color':this.map_properties['color']
+    }
 };
 Arabia_and_Persian_Gulf_Class.prototype = createObject(Region_class.prototype);
 // Set the "constructor" property to refer to Arabia_and_Persian_Gulf_Class

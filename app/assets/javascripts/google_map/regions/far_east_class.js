@@ -15,13 +15,19 @@ Far_East_class = function () {
         new google.maps.LatLng(22.396428,114.109497)
     ];
 
-    this.list_of_countries = [ 'Antarctica' , "China" , "Taiwan" , "S. Korea" , "N. Korea" , "Japan" , "Mongolia"];
+    this.list_of_countries = [ "China" , "Taiwan" , "S. Korea" , "N. Korea" , "Japan" , "Mongolia"];
 
     this.map_properties = {
         'color': "#20FF00",
         'lable':"REGION",
         'lable_position':this.lat_lang
     };
+
+    this.fusiontables_properties = {
+        "countries": this.list_of_countries,
+        'coordinates':[],
+        'color':this.map_properties['color']
+    }
 };
 Far_East_class.prototype = createObject(Region_class.prototype);
 // Set the "constructor" property to refer to Far_East_class

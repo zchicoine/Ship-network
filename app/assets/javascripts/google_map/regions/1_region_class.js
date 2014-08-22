@@ -26,9 +26,14 @@ Region_class = function () {
 
     this.list_of_countries = [];
     this.map_properties = {
-        'color': "#fffff",
+        'color': "#20FF00",
         'lable':"REGION",
         'lable_position':this.lat_lang
+    };
+    this.fusiontables_properties = {
+        "countries": this.list_of_countries,
+        'coordinates':[],
+        'color':this.map_properties['color']
     };
 };
 
@@ -57,6 +62,26 @@ Region_class.prototype.scroll_between_specific_areas = function (){
         i = 0;
 
     }
+}
+
+Region_class.prototype.highlight_the_region = function (country_name,country_coordinates){
+
+
+    if( this.fusiontables_properties["countries"].indexOf(country_name) > -1 ){
+        if (country_coordinates['geometries']) {
+            for (var j in country_coordinates['geometries']) {
+                this.fusiontables_properties['coordinates'].push(constructNewCoordinates(country_coordinates['geometries'][j]));
+
+            }
+
+        } else {
+            this.fusiontables_properties['coordinates'].push(constructNewCoordinates(country_coordinates['geometry']));
+
+        }
+
+    }
+
+
 }
 
 // end of Region class //

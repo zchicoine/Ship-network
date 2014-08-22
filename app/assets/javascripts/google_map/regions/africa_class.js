@@ -17,7 +17,7 @@ Africa_class = function () {
 //
         new google.maps.LatLng(11.825138,42.590275)
     ];
-    this.list_of_countries = ['Antarctica', "Egypt", "Libya" ,"Botswana" , "Tunisia", "Algeria" , "Morocco" , "Senegal" , "Chad"
+    this.list_of_countries = [ "Egypt", "Libya" ,"Botswana" , "Tunisia", "Algeria" , "Morocco" , "Senegal" , "Chad"
         , "Gambia" , "Guinea-Bissau" , "Guinea" , "Sierra Leone", "Liberia" , "Cote d'Ivoire" , "Ghana" ,"Togo",
        "Benin" , "Nigeria", "Cameroon", "Equatorial Guinea", "Gabon" , "Democratic Republic of the Congo" , "Angola" ,"Namibia"
         , "South Africa" , "Mozambique" , "Madagascar" , "Tanzania", "Kenya" , "Somalia" , "Djibouti" , "Eritrea"
@@ -31,7 +31,11 @@ Africa_class = function () {
         'lable_position':this.lat_lang
     };
 
-
+    this.fusiontables_properties = {
+        "countries": this.list_of_countries,
+        'coordinates':[],
+        'color':this.map_properties['color']
+    };
 
 
 };

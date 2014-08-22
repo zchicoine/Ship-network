@@ -15,16 +15,20 @@ India_and_South_East_Asia_class = function () {
         new google.maps.LatLng(1.352083,103.819836)
     ];
 
-    this.list_of_countries = [ 'Antarctica' , "India" , "Sri Lanka" , "Bangladesh"
-        , "Myanmar" , "Thailand" , "Malaysia"
-        , "Brunei" , "Indonesia" , "Laos" , "Nepal" , "Bhutan"
-        , "Cambodia" , "Vietnam" , "Philippines" ];
+    this.list_of_countries = [  "India" , "Sri Lanka" , "Bangladesh", "Myanmar" , "Thailand" , "Malaysia"
+        , "Brunei" , "Indonesia" , "Laos" , "Nepal" , "Bhutan", "Cambodia" , "Vietnam" , "Philippines" ];
+
     this.map_properties = {
         'color': "#20FF00",
         'lable':"REGION",
         'lable_position':this.lat_lang
     };
 
+    this.fusiontables_properties = {
+        "countries": this.list_of_countries,
+        'coordinates':[],
+        'color':this.map_properties['color']
+    }
 };
 India_and_South_East_Asia_class.prototype = createObject(Region_class.prototype);
 // Set the "constructor" property to refer to India_and_South_East_Asia_class
