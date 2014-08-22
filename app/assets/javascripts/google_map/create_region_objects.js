@@ -1,3 +1,4 @@
+// return object
 function return_object_region(region_name) {
 
     if (region_name == "North America") {
@@ -10,11 +11,18 @@ function return_object_region(region_name) {
     }
     else if (region_name == "Australia") {
         return new Australia_class();
+    }else if(region_name =="India and South East Asia"){
+       return new India_and_South_East_Asia_class();
+
+    }else if(region_name =="Arabia and Persian Gulf") {
+        return new Arabia_and_Persian_Gulf_Class();
+    }else if(region_name =="Far East"){
+        return new Far_East_class();
+    }else if(region_name =="Europe"){
+        return new Europe_class();
     }
 
     return null;
-
-
 
 }
 

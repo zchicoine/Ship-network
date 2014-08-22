@@ -1,5 +1,5 @@
 
-// start of Australia class class//
+// start of Australia  class//
 var Australia_class;
 Australia_class = function () {
 
