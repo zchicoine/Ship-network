@@ -16,6 +16,18 @@ Arabia_and_Persian_Gulf_Class = function () {
         //
         new google.maps.LatLng(32.634765,51.340669)
     ];
+
+
+    this.list_of_countries = [ 'Antarctica' , "Jordan" , "Yemen" , "Oman" , "United Arab Emirates" , "Qatar" , "Bahrain" , "Turkmenistan"
+        , "Kuwait" , "Iraq" , "Iran" , "Saudi Arabia", "Afghanistan" , "Uzbekistan" , "Pakistan" , "Kazakhstan"
+        , "Azerbaijan" , "Tajikistan" , "Kyrgyzstan" , "N. Cyprus"
+    ];
+
+    this.map_properties = {
+        'color': "#0080FF",
+        'lable':"REGION",
+        'lable_position':this.lat_lang
+    };
 };
 Arabia_and_Persian_Gulf_Class.prototype = createObject(Region_class.prototype);
 // Set the "constructor" property to refer to Arabia_and_Persian_Gulf_Class

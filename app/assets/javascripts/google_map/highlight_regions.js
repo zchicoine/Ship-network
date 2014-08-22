@@ -1,19 +1,36 @@
 
 
-var colors = ['#0055FF', '#0080FF', '#00FFEC', '#00B4FF' , '#64BDFF' , '#A8ff00' , '#20FF00' , '#0CE825'];
 
 function drawMap(data) {
+    var africa = new Africa_class();
+    var australia = new Australia_class();
+    var far_east = new Far_East_class();
+    var india_and_sea = new India_and_South_East_Asia_class();
+    var arabia_and_pg = new Arabia_and_Persian_Gulf_Class();
+    var na = new North_America_class();
+    var europe = new Europe_class();
+    var sa = new South_America_class();
+
+    var region_json = { };
+        region_json[africa.name] = africa.list_of_countries;
+        region_json[australia.name] = australia.list_of_countries;
+        region_json[far_east.name] = far_east.list_of_countries;
+        region_json[na.name] = na.list_of_countries;
+        region_json[arabia_and_pg.name] = arabia_and_pg.list_of_countries;
+        region_json[europe.name] = europe.list_of_countries;
+        region_json[sa.name] = sa.list_of_countries;
+        region_json[india_and_sea.name] = india_and_sea.list_of_countries;
+
     rows = data['rows'];
-    var region = { 'North_America': [[], colors[1],'North America'], 'South_America': [[], colors[1],'South America'],
-        'Europe': [[], colors[1],'Europe'],'India': [[], colors[1],'India and South East Asia'],
-        'Far_East': [[], colors[1],'Far East'],'Australia': [[], colors[1],'Australia'],
-        'Africa': [[], colors[1],'Africa'],'Persian_Gulf': [[], colors[1],'Arabia and Persian Gulf']};
+    var region = { 'North_America': [[], na.map_properties['color'],'North America'], 'South_America': [[], sa.map_properties['color'],'South America'],
+        'Europe': [[], europe.map_properties['color'],'Europe'],'India': [[], india_and_sea.map_properties['color'],'India and South East Asia'],
+        'Far_East': [[], far_east.map_properties['color'],'Far East'],'Australia': [[], australia.map_properties['color'],'Australia'],
+        'Africa': [[], africa.map_properties['color'],'Africa'],'Persian_Gulf': [[], arabia_and_pg.map_properties['color'],'Arabia and Persian Gulf']};
 
     for (var i in rows) {
 
-        if (rows[i][0] != 'Antarctica' && (rows[i][0] == "Australia" || rows[i][0] == "New Zealand" || rows[i][0] == "East Timor"
-            || rows[i][0] == "Papua New Guinea" || rows[i][0] == "Solomon Is." || rows[i][0] == "Vanuatu"
-            || rows[i][0] == "Fiji" || rows[i][0] == "New Caledonia")) {
+        if (rows[i][0] != 'Antarctica' &&  new Australia_class().list_of_countries.indexOf(rows[i][0]) > -1 ) {
+
             var geometries = rows[i][1]['geometries'];
 
 
@@ -30,8 +47,7 @@ function drawMap(data) {
 
 
         }
-        else if (rows[i][0] != 'Antarctica' && (rows[i][0] == "China" || rows[i][0] == "Taiwan" || rows[i][0] == "S. Korea" || rows[i][0] == "N. Korea"
-            || rows[i][0] == "Japan" || rows[i][0] == "Mongolia")) {
+        else if (rows[i][0] != 'Antarctica' && new Far_East_class().list_of_countries.indexOf(rows[i][0]) > -1) {
             var geometries = rows[i][1]['geometries'];
 
 
@@ -47,10 +63,7 @@ function drawMap(data) {
             }
 
         }
-        else if (rows[i][0] != 'Antarctica' && (rows[i][0] == "India" || rows[i][0] == "Sri Lanka" || rows[i][0] == "Bangladesh"
-            || rows[i][0] == "Myanmar" || rows[i][0] == "Thailand" || rows[i][0] == "Malaysia"
-            || rows[i][0] == "Brunei" || rows[i][0] == "Indonesia" || rows[i][0] == "Laos" || rows[i][0] == "Nepal" || rows[i][0] == "Bhutan"
-            || rows[i][0] == "Cambodia" || rows[i][0] == "Vietnam" || rows[i][0] == "Philippines" )) {
+        else if (rows[i][0] != 'Antarctica' && (new India_and_South_East_Asia_class().list_of_countries.indexOf(rows[i][0]) > -1)) {
 
             var geometries = rows[i][1]['geometries'];
 
@@ -71,12 +84,7 @@ function drawMap(data) {
 
 
         }
-        else if (rows[i][0] != 'Antarctica' && (rows[i][0] == "Jordan" || rows[i][0] == "Yemen" || rows[i][0] == "Oman"
-            || rows[i][0] == "United Arab Emirates" || rows[i][0] == "Qatar" || rows[i][0] == "Bahrain" || rows[i][0] == "Turkmenistan"
-            || rows[i][0] == "Kuwait" || rows[i][0] == "Iraq" || rows[i][0] == "Iran" || rows[i][0] == "Saudi Arabia"
-            || rows[i][0] == "Afghanistan" || rows[i][0] == "Uzbekistan" || rows[i][0] == "Pakistan" || rows[i][0] == "Kazakhstan"
-            || rows[i][0] == "Azerbaijan" || rows[i][0] == "Tajikistan" || rows[i][0] == "Kyrgyzstan" || rows[i][0] == "N. Cyprus"
-            )) {
+        else if (rows[i][0] != 'Antarctica' && (new Arabia_and_Persian_Gulf_Class().list_of_countries.indexOf(rows[i][0]) > -1)) {
             var geometries = rows[i][1]['geometries'];
 
             if (geometries) {
@@ -96,20 +104,7 @@ function drawMap(data) {
         //     Egypt, Libya, Tunisia, Algeria, Morocco, Western Sahara, Mauritania, Senegal, Gambia, Guinea-Bissau, Guinea,
         //Sierra Leone, Liberia, Cote d'ivoire, Ghana, Togo, Benin, Nigeria, Cameroon, Equatorial Guinea, Gabon, Congo,
         //     DR Congo, Angola, Namibia, South Africa, Mozambique, Madagascar, Tanzania, Kenya, Somalia, Djibouti, Eritrea, Sudan,
-        else if (rows[i][0] != 'Antarctica' && (rows[i][0] == "Egypt" || rows[i][0] == "Libya" || rows[i][0] == "Botswana"
-            || rows[i][0] == "Tunisia" || rows[i][0] == "Algeria" || rows[i][0] == "Morocco" || rows[i][0] == "Senegal" || rows[i][0] == "Chad"
-            || rows[i][0] == "Gambia" || rows[i][0] == "Guinea-Bissau" || rows[i][0] == "Guinea" || rows[i][0] == "Sierra Leone"
-            || rows[i][0] == "Liberia" || rows[i][0] == "Cote d'Ivoire" || rows[i][0] == "Ghana" || rows[i][0] == "Togo"
-            || rows[i][0] == "Benin" || rows[i][0] == "Nigeria" || rows[i][0] == "Cameroon" || rows[i][0] == "Equatorial Guinea"
-            || rows[i][0] == "Gabon" || rows[i][0] == "Democratic Republic of the Congo" || rows[i][0] == "Angola" || rows[i][0] == "Namibia"
-            || rows[i][0] == "South Africa" || rows[i][0] == "Mozambique" || rows[i][0] == "Madagascar" || rows[i][0] == "Tanzania"
-            || rows[i][0] == "Kenya" || rows[i][0] == "Somalia" || rows[i][0] == "Djibouti" || rows[i][0] == "Eritrea"
-            || rows[i][0] == "Sudan" || rows[i][0] == "Mauritania" || rows[i][0] == "Ethiopia" || rows[i][0] == "Mali" || rows[i][0] == "Zambia"
-            || rows[i][0] == "Zimbabwe" || rows[i][0] == "S. Sudan" || rows[i][0] == "Central African Rep." || rows[i][0] == "Ivory Coast"
-            || rows[i][0] == "Niger" || rows[i][0] == "Dominican Rep." || rows[i][0] == "Burkina Faso"|| rows[i][0] == "Rwanda"|| rows[i][0] == "Burundi"
-            || rows[i][0] == "Congo (Kinshasa)" || rows[i][0] == "Uganda" || rows[i][0] == "Congo (Brazzaville)"
-            || rows[i][0] == "Malawi" || rows[i][0] == "Somaliland" || rows[i][0] == "W. Sahara" || rows[i][0] == "Swaziland"
-            || rows[i][0] == "Guinea Bissau" || rows[i][0] == "Eq. Guinea" || rows[i][0] == "Lesotho")) {
+        else if (rows[i][0] != 'Antarctica' && (new Africa_class().list_of_countries.indexOf(rows[i][0]) > -1)) {
 
             var geometries = rows[i][1]['geometries'];
 
@@ -127,20 +122,7 @@ function drawMap(data) {
         //UK, Ireland, Iceland, Germany, Netherlands, Belgium, France, Spain, Portugal, Italy, Slovenia, Croatia, Serbia & Montenegro,
         //Albania, Greece, Turkey, Cyprus, Bulgaria,
         //Syria, Israel, Lebanon, Romania, Ukraine, Russian Black Sea, Georgia, Norway, Sweden, Denmark, Finland, Russian Arctic
-        else if (rows[i][0] != 'Antarctica' && (rows[i][0] == "United Kingdom" || rows[i][0] == "Ireland"
-            || rows[i][0] == "Iceland" || rows[i][0] == "Germany" || rows[i][0] == "Netherlands" || rows[i][0] == "Belgium"
-            || rows[i][0] == "France" || rows[i][0] == "Spain" || rows[i][0] == "Portugal" || rows[i][0] == "Italy"
-            || rows[i][0] == "Slovenia" || rows[i][0] == "Croatia" || rows[i][0] == "Serbia" || rows[i][0] == "Albania"
-            || rows[i][0] == "Greece" || rows[i][0] == "Turkey" || rows[i][0] == "Cyprus" || rows[i][0] == "Bulgaria"
-            || rows[i][0] == "Syria" || rows[i][0] == "Israel" || rows[i][0] == "Lebanon" || rows[i][0] == "Romania"
-            || rows[i][0] == "Ukraine" || rows[i][0] == "Georgia" || rows[i][0] == "Norway" || rows[i][0] == "Sweden"
-            || rows[i][0] == "Denmark" || rows[i][0] == "Finland" || rows[i][0] == "French Southern and Antarctic Lands"
-            || rows[i][0] == "Belarus" || rows[i][0] == "Poland" || rows[i][0] == "Lithuania" || rows[i][0] == "Latvia"
-            || rows[i][0] == "Estonia" || rows[i][0] == "Slovakia" || rows[i][0] == "Hungary" || rows[i][0] == "Montenegro"
-            || rows[i][0] == "Russia" || rows[i][0] == "Austria" || rows[i][0] == "Czech Rep." || rows[i][0] == "Moldova"
-            || rows[i][0] == "Bosnia and Herz." || rows[i][0] == "Kosovo" || rows[i][0] == "Armenia"
-            || rows[i][0] == "Macedonia"    || rows[i][0] == "Switzerland"   || rows[i][0] == "Luxembourg"
-            )) {
+        else if (rows[i][0] != 'Antarctica' && (new Europe_class().list_of_countries.indexOf(rows[i][0]) > -1)) {
             var geometries = rows[i][1]['geometries'];
 
 
@@ -161,14 +143,7 @@ function drawMap(data) {
         //"Grenada", "St Vincent and the Grenadines", "St Lucia", "Martinique", "Dominica", "St Kitts and Nevis",
         //"Guadeloupe", "Antigua & Barbuda", "Ecuador", "Peru", "Chile", "Brazil", "Argentina", "Uruguay"
 
-        else if (rows[i][0] != 'Antarctica' && (rows[i][0] == "Colombia" || rows[i][0] == "Venezuela"
-            || rows[i][0] == "Guyana" || rows[i][0] == "Suriname" || rows[i][0] == "French Guiana" || rows[i][0] == "Trindad and Tobago"
-            || rows[i][0] == "Barbados" || rows[i][0] == "Grenada" || rows[i][0] == "St Vincent and the Grenadines" || rows[i][0] == "St Lucia"
-            || rows[i][0] == "Martinique" || rows[i][0] == "Dominica" || rows[i][0] == "St Kitts and Nevis" || rows[i][0] == "Uruguay"
-            || rows[i][0] == "Argentina" || rows[i][0] == "Brazil" || rows[i][0] == "Chile" || rows[i][0] == "Peru"
-            || rows[i][0] == "Ecuador" || rows[i][0] == "Antigua & Barbuda" || rows[i][0] == "Guadeloupe"
-            || rows[i][0] == "Falkland Is."
-            || rows[i][0] == "Trinidad and Tobago" || rows[i][0] == "Bolivia" || rows[i][0] == "Paraguay")) {
+        else if (rows[i][0] != 'Antarctica' && (new South_America_class().list_of_countries.indexOf(rows[i][0]) > -1)) {
 
             var geometries = rows[i][1]['geometries'];
 
@@ -187,12 +162,7 @@ function drawMap(data) {
         }
         //Canada, USA, Mexico, Greenland, Guatemala, Belize, El Salvador,
         //Honduras, Nicaragua, Costa Rica, Panama, Cuba, Haiti, Dominican Republic, Jamaica, Bahamas, Bermuda
-        else if (rows[i][0] != 'Antarctica' && (rows[i][0] == "Canada" || rows[i][0] == "Mexico"
-            || rows[i][0] == "Greenland" || rows[i][0] == "Guatemala" || rows[i][0] == "Belize" || rows[i][0] == "El Salvador"
-            || rows[i][0] == "Honduras" || rows[i][0] == "Nicaragua" || rows[i][0] == "Costa Rica" || rows[i][0] == "Panama"
-            || rows[i][0] == "Cuba" || rows[i][0] == "Haiti" || rows[i][0] == "Dominican Republic" || rows[i][0] == "Jamaica"
-            || rows[i][0] == "Bahamas" || rows[i][0] == "Bermuda" || rows[i][0] == "United States"
-            || rows[i][0] == "Puerto Rico")) {
+        else if (rows[i][0] != 'Antarctica' && (new North_America_class().list_of_countries.indexOf(rows[i][0]) > -1)) {
 
             var geometries = rows[i][1]['geometries'];
 

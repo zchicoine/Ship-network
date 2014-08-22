@@ -13,6 +13,18 @@ South_America_class = function () {
         //Recalada
         new google.maps.LatLng(6.81667,-58.16667)
     ];
+
+    this.list_of_countries = ['Antarctica' , "Colombia" , "Venezuela", "Guyana" , "Suriname" , "French Guiana" , "Trindad and Tobago"
+        , "Barbados" , "Grenada" , "St Vincent and the Grenadines" , "St Lucia", "Martinique" , "Dominica" , "St Kitts and Nevis" , "Uruguay"
+        , "Argentina" , "Brazil" , "Chile" , "Peru", "Ecuador" , "Antigua & Barbuda" , "Guadeloupe"
+        , "Falkland Is.", "Trinidad and Tobago" , "Bolivia" , "Paraguay"];
+
+
+    this.map_properties = {
+        'color': "#20FF00",
+        'lable':"REGION",
+        'lable_position':this.lat_lang
+    };
 };
 South_America_class.prototype = createObject(Region_class.prototype);
 // Set the "constructor" property to refer to South_America_class

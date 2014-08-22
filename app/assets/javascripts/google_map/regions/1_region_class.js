@@ -24,6 +24,12 @@ Region_class = function () {
                     new google.maps.LatLng(35.179554,129.075642)
                 ];
 
+    this.list_of_countries = [];
+    this.map_properties = {
+        'color': "#fffff",
+        'lable':"REGION",
+        'lable_position':this.lat_lang
+    };
 };
 
 Region_class.prototype.change_region_view = function () {

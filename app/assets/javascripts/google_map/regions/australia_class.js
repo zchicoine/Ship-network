@@ -15,6 +15,15 @@ Australia_class = function () {
         new google.maps.LatLng(-20.663799,116.708460)
     ];
 
+    this.list_of_countries = [ 'Antarctica' , "Australia" , "New Zealand" , "East Timor"
+        , "Papua New Guinea" , "Solomon Is." , "Vanuatu", "Fiji" , "New Caledonia"];
+
+    this.map_properties = {
+        'color': "#20FF00",
+        'lable':"REGION",
+        'lable_position':this.lat_lang
+    };
+
 
 };
 Australia_class.prototype = createObject(Region_class.prototype);

@@ -15,6 +15,21 @@ Europe_class = function () {
         //lagos
         new google.maps.LatLng(38.11666,13.33333)
     ];
+
+    this.list_of_countries = ['Antarctica' , "United Kingdom" , "Ireland"
+        , "Iceland" , "Germany" , "Netherlands" , "Belgium", "France" , "Spain" , "Portugal" , "Italy"
+        , "Slovenia" , "Croatia" , "Serbia" , "Albania", "Greece" , "Turkey" , "Cyprus" , "Bulgaria"
+        , "Syria" , "Israel" , "Lebanon" , "Romania", "Ukraine" , "Georgia" , "Norway" , "Sweden"
+        , "Denmark" , "Finland" , "French Southern and Antarctic Lands", "Belarus" , "Poland" , "Lithuania" , "Latvia"
+        , "Estonia" , "Slovakia" , "Hungary" , "Montenegro" , "Russia" , "Austria" , "Czech Rep." , "Moldova"
+        , "Bosnia and Herz." , "Kosovo" , "Armenia", "Macedonia"    , "Switzerland"   , "Luxembourg"];
+
+
+    this.map_properties = {
+        'color': "#20FF00",
+        'lable':"REGION",
+        'lable_position':this.lat_lang
+    };
 };
 Europe_class.prototype = createObject(Region_class.prototype);
 // Set the "constructor" property to refer to Europe_class
