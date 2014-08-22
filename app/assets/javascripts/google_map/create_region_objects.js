@@ -6,10 +6,10 @@ function return_object_region(region_name) {
         return new South_America_class();
     }
     else if (region_name == "Africa") {
-        change_region_view(regionName, region_center_coordinates[2]);
+        return new Africa_class();
     }
-    else if (region_name == "India") {
-        change_region_view(regionName, region_center_coordinates[6]);
+    else if (region_name == "Australia") {
+        return new Australia_class();
     }
 
     return null;
