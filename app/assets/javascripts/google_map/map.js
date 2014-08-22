@@ -170,24 +170,20 @@ MAP.google_common_methods = {
 MAP.google_controller_methods = {
     set_region_center: function (getClickedPostion,region_name,e){
 
-        if(zval.get() == 3 && region_clicked_boolean.get() != 1){
+            if(zval.get() == 3 && region_clicked_boolean.get() != 1){
 
-            MAP.google_common_methods.set_cneter(getClickedPostion);
+                MAP.google_common_methods.set_cneter(getClickedPostion);
+                update_region_view(region_name);
+                region_clicked_boolean.set(1);
 
-            update_region_view(region_name);
-            region_clicked_boolean.set(1);
+            }else{
+                region_clicked_boolean.set(0);
+                MAP.google_common_methods.set_zoom(4);
+                send_data_to_get_port_coordinates(region_name);
+                test(e,country,region_name);
+                $('.region_labels').remove();
 
-        }
-        else{
-            region_clicked_boolean.set(0);
-            MAP.google_common_methods.set_zoom(4);
-
-
-            send_data_to_get_port_coordinates(region_name);
-            test(e,country,region_name);
-            $('.region_labels').remove();
-
-        }
+            }
 
     }
 }

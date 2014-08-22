@@ -10,7 +10,7 @@ Region_class = function () {
 
 Region_class.prototype.change_region_view = function () {
 
-    window.map.setCenter(this.lat_lang);
+    MAP.google_common_methods.set_cneter(this.lat_lang);
     update_region_view(this.name);
 };
 
