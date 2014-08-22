@@ -4,24 +4,37 @@ var region_center_coordinates =  [[48.2893, -99.3594], [-10.4893, -59.3594],[17.
 
 
 
-function center_in_region(regionName){
-    if(regionName=="North America"){
-    change_region_view(regionName,region_center_coordinates[0]);
+function center_in_region(region_name){
+    if(region_name=="North America"){
+    change_region_view(region_name,region_center_coordinates[0]);
     }
     else if(region_name=="South America"){
-    change_region_view(regionName,region_center_coordinates[1]);
+    change_region_view(region_name,region_center_coordinates[1]);
     }
        else if(region_name=="Africa"){
-    change_region_view(regionName,region_center_coordinates[2]);
+    change_region_view(region_name,region_center_coordinates[2]);
     }
        else if(region_name=="India and South East Asia"){
-    change_region_view(regionName,region_center_coordinates[6]);
+    change_region_view(region_name,region_center_coordinates[6]);
+    }
+    else if(region_name=="Arabia and Persian Gulf"){
+    change_region_view(region_name,region_center_coordinates[3]);
+    }
+    else if(region_name=="Australia"){
+    change_region_view(region_name,region_center_coordinates[4]);
+    }
+    else if(region_name=="Far East"){
+    change_region_view(region_name,region_center_coordinates[7]);
+    }
+    else if(region_name=="Europe"){
+    change_region_view(region_name,region_center_coordinates[5]);
     }
 }
 
 function change_region_view(regionName,lat_lang){
-   // window.map.setCenter(lat_lang);
-    window.map.setZoom(4);
+    
+    window.map.setCenter(new google.maps.LatLng(lat_lang[0],lat_lang[1]));
+    //window.map.setZoom(4);
     update_region_view(regionName);
 }
 

@@ -1,5 +1,5 @@
 
-var map_value,region_name,z;
+var region_name,z;
 var markerArray = [] , rows =[] , scroll_array = [];
 var getClickedPostion;
 var country_array = [];
@@ -8,46 +8,13 @@ var zval = new zoom_value();
 var region_clicked_boolean = new zoom_value();
 var global_region_name = new zoom_value();
 var map_styles = new Object();
+var next_region_name = new zoom_value();
 /*
 
 region layer port coordinates to pre define scrolling through the globe 
 when in the region layer
 */
 
-var scroll_array = {'region_layer' : [
-new google.maps.LatLng(29.95,-90.06667),
-//south america
-new google.maps.LatLng(-12.05,-77.16667),
-//africa..douala
-new google.maps.LatLng(4.05000,9.700000),
-//PG
-new google.maps.LatLng(-30.559482,22.937506),
-//europe
-new google.maps.LatLng(52.3666,4.8999),
-//sea
-new google.maps.LatLng(17.686816,83.218482),
-//aus
-new google.maps.LatLng(-32.926689,151.778921),
-//busan
-new google.maps.LatLng(35.179554,129.075642)],
-
-'europe' : [
-new google.maps.LatLng(52.3666,4.8999),
-//Recalada
-new google.maps.LatLng(41.016666,28.983),
-//lagos
-new google.maps.LatLng(38.11666,13.33333)
-],
-
-'north_america' : [
-new google.maps.LatLng(29.95,-90.06667),
-//Recalada
-new google.maps.LatLng(40.71667,-74)
-]
-
-
-
-};
 var region_layer_array = [
 //north america
 new google.maps.LatLng(29.95,-90.06667),
@@ -247,7 +214,7 @@ function set_label_names(){
 
 
        mapOptions = {
-          center: new google.maps.LatLng(4.05000,9.700000),
+          center: new google.maps.LatLng(29.95,-90.06667),
           zoom: 2,
           disableDefaultUI: true,
         	panControl: false,
@@ -272,32 +239,10 @@ function set_label_names(){
      
 	 // click  event function for zooming in   
      google.maps.event.addListener(map, 'click', function(e) {  
-
+      zval.setValue(3);
+      next_region_name.setValue("South America");
       set_label_names();
-      /*if(zval.get() > 10){
-
-       getClickedPostion = e.latLng
- 
-       window.map.setCenter(getClickedPostion);
-       window.map.setZoom(3);
-       zval.set(3);
- 
-      
-      window.map.setOptions({styles: map_styles}); 
-      
-      $('body').css("cursor","default");    
-      }
-      else{
-        $('body').css("cursor","default");
-        var zoomToNumber = window.map.getZoom() + 1;
-        window.map.setZoom(zoomToNumber);
-       zval.set(zoomToNumber);
-      }
-        
-     
-    // getCountry(getClickedPostion);
-     */
-			
+     	
     });
 
 //preventing cursor to change when hovering over region label text
@@ -319,18 +264,6 @@ function set_label_names(){
      google.maps.event.addListener(map, 'rightclick', function(e) {
             
             initialize();
-/*
-            //set map back to default zoom level
-            window.map.setZoom(3);
-            //update the global zom value variable to 3
-            zval.set(3);
-            window.map.setOptions({styles: mapStyle});
-          
-          setMarkers(null,markerArray);
-          window.map.setCenter(getClickedPostion);
-           $('body').css("cursor","default");
-           // region_event_listeners();
-            //set_label_names();*/
         });
  
    
@@ -369,9 +302,6 @@ function drawRegions(geometries,region_name){
             var  geometries = rows[i][1]['geometries'];
           
              newCoordinates = [];
-            //console.log('Rows in drawRegions' + rows);
-            
-            //alert(geometries);
             if (geometries) {
              // console.log('hello');
               for (var j in geometries) {
@@ -384,7 +314,7 @@ function drawRegions(geometries,region_name){
               newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
             }
 
-      //      draw_countries(newCoordinates,region_name);
+     
             
 }
 
@@ -399,14 +329,7 @@ function event_listeners(country,region_name)
                 
                 fillOpacity: 0.4
               });
-        //      var t = e.latLng;
-
-    //         getCountry(t);
-
-             /* $("body").css("cursor","-moz-zoom-in");
-              $("body").css("cursor","-webkit-zoom-in");
-             */
-            });
+        });
 
   /*
     this function zooms in by when yo click on a region
@@ -422,29 +345,16 @@ function event_listeners(country,region_name)
        
       // var zoomToNumber = window.map.getZoom() + 2;
        getClickedPostion = e.latLng
-       zval.set(3);
+       
        // make a function call to decide which region is being clicked on
       // console.log(zoomToNumber);
       set_map_center(getClickedPostion,region_name,e);
        
-      // window.map.setZoom(zoomToNumber);
-
-      // zval.set(zoomToNumber);
-      // 
               
               });
             
   google.maps.event.addListener(country, 'mouseout', function() {
 
-    /* if(zval.get() > 3){
-          $("body").css("cursor","-moz-zoom-out");
-          $("body").css("cursor","-webkit-zoom-out");        
-        }
-        else if (zval.get() == 3){
-          $("body").css("cursor","default");
-
-        }
-*/
         this.setOptions({
                
                 fillOpacity: 0.2
@@ -461,7 +371,7 @@ function set_map_center(getClickedPostion,region_name,e){
     //console.log("Clicked on th region"+region_name);
     update_region_view(region_name);
     region_clicked_boolean.set(1);
-    set_label_names();
+    //set_label_names();
     //console.log("i am here");
   }
   else{
