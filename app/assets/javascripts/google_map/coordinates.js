@@ -208,7 +208,7 @@ function drawMap(data) {
         }
 
         else{
-            console.log(rows[i][0]);
+           // console.log(rows[i][0]);
         }
 
     }
@@ -227,6 +227,28 @@ function drawMap(data) {
 
         event_listeners(country,region[_region][2]);
     }
+
+
+}
+
+
+function drawRegions(geometries,region_name){
+
+    var  geometries = rows[i][1]['geometries'];
+
+    newCoordinates = [];
+    if (geometries) {
+        // console.log('hello');
+        for (var j in geometries) {
+            newCoordinates.push(constructNewCoordinates(geometries[j]));
+
+        }
+
+
+    } else {
+        newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
+    }
+
 
 
 }

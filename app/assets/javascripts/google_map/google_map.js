@@ -4,11 +4,10 @@ var markerArray = [] , rows =[] , scroll_array = [];
 var getClickedPostion;
 var country_array = [];
 var geocoder, newCoordinates, country, geometries,mapOptions;
-var zval = new zoom_value();
-var region_clicked_boolean = new zoom_value();
-var global_region_name = new zoom_value();
-var map_styles = new Object();
-var next_region_name = new zoom_value();
+var zval = new global_values();
+var region_clicked_boolean = new global_values();
+var global_region_name = new global_values();
+var next_region_name = new global_values();
 /*
 
 region layer port coordinates to pre define scrolling through the globe 
@@ -146,140 +145,11 @@ function set_label_names(){
 
  }
 
- function map_properties(){
- 	
- 	map_styles = [{
-              "featureType": "administrative.country",
-              "stylers": [
-                { "visibility": "on" }
-              ]
-              },{
-							"featureType": "administrative.province",
-							"stylers": [
-							  { "visibility": "off" }
-							]
-						  },{
-							"featureType": "administrative.locality",
-							"stylers": [
-							  { "visibility": "off" }
-							]
-						  },{
-							"featureType": "administrative.neighborhood",
-							"stylers": [
-							  { "visibility": "off" }
-							]
-						  },{
-							"featureType": "administrative.land_parcel",
-							"stylers": [
-							  { "visibility": "off" }
-							]
-						  },{
-							"featureType": "landscape",
-							"elementType": "labels",
-							"stylers": [
-							  { "visibility": "off" }
-							]
-						  },{
-							"featureType": "poi",
-							"elementType": "labels",
-							"stylers": [
-							  { "visibility": "off" }
-							]
-						  },{
-							"featureType": "road",
-					
-							"stylers": [
-							  { "visibility": "off" }
-							]
-						  },{
-							"featureType": "transit",
-							
-							"stylers": [
-							  { "visibility": "off" }
-							]
-						  },{
-              "featureType": "water",
-              "elementType": "labels",
-          
-              "stylers": [
-                { "visibility": "off" }
-              ]
-              }];
- 	return map_styles;
- }
-
 
 
  function initialize() {
 
-
-       mapOptions = {
-          center: new google.maps.LatLng(29.95,-90.06667),
-          zoom: 2,
-          disableDefaultUI: true,
-        	panControl: false,
-        	streetViewControl: false,
-          setScrollable: false,
-    		  zoomControl: false,
-    	    disableDoubleClickZoom: true,
-          draggable: true,
-          keyboardShortcuts: false,
-          // never change the minimum zoom level from 1 to anything else
-          minZoom:3
-          
-        };
-
-   // setting up custom map properties 
-        var mapStyle = map_properties();
-      // a.setValue(region_layer_array);
-		// set the map to the specified div
-        window.map  = new google.maps.Map(document.getElementById("googleMap"),mapOptions);
-
-        map.setOptions({styles: mapStyle});
-     
-	 // click  event function for zooming in   
-     google.maps.event.addListener(map, 'click', function(e) {  
-      zval.setValue(3);
-      next_region_name.setValue("South America");
-      set_label_names();
-     	
-    });
-
-//preventing cursor to change when hovering over region label text
-      google.maps.event.addListener(map, 'mouseover', function(event) {
-        
-        $("body").css("cursor","default");
-        if(zval.get() > 3){
-          $('body').css("cursor","default");
-          /*$("body").css("cursor","-moz-zoom-out");
-          $("body").css("cursor","-webkit-zoom-out");        */
-        }
-        else{
-          $("body").css("cursor","default");
-        }
-          
-        });
-
- //zoom out function     
-     google.maps.event.addListener(map, 'rightclick', function(e) {
-            
-            initialize();
-        });
- 
-   
-
-     var script = document.createElement('script');
-        var url = ['https://www.googleapis.com/fusiontables/v1/query?'];
-        url.push('sql=');
-        var query = 'SELECT name, kml_4326 FROM ' +
-            '1foc3xO9DyfSIF6ofvN0kp2bxSfSeKog5FbdWdQ';
-        var encodedQuery = encodeURIComponent(query);
-        url.push(encodedQuery);
-        url.push('&callback=drawMap');
-        url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
-        script.src = url.join('');
-        var body = document.getElementsByTagName('body')[0];
-        body.appendChild(script);
+        MAP.initialize.load_google_map();
 
 
  }
@@ -297,26 +167,7 @@ function constructNewCoordinates(polygon) {
       }
 
 
-function drawRegions(geometries,region_name){
-            
-            var  geometries = rows[i][1]['geometries'];
-          
-             newCoordinates = [];
-            if (geometries) {
-             // console.log('hello');
-              for (var j in geometries) {
-                newCoordinates.push(constructNewCoordinates(geometries[j]));
-                
-              }
 
-              
-            } else {
-              newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
-            }
-
-     
-            
-}
 
 /*
 
@@ -437,17 +288,17 @@ function region_name_on_country(country_name){
 another function used to set and get global values but to a ariable
 typically a string or number
 */
-function zoom_value(){
+function global_values(){
 
-    var zoom = 3;
+    var value = 3;
 
     this.get = function(){
-        return zoom;
+        return value;
     }
 
 
-    this.set = function(par_zoom_val){
-        zoom = par_zoom_val;
+    this.set = function(val){
+        value = val;
         return this;
     }
 

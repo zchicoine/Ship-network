@@ -1,0 +1,147 @@
+var MAP;
+MAP = MAP || {};
+MAP.properties = {
+    options: function() {
+        return {
+            center: new google.maps.LatLng(29.95, -90.06667),
+            zoom: 2,
+            disableDefaultUI: true,
+            panControl: false,
+            streetViewControl: false,
+            setScrollable: false,
+            zoomControl: false,
+            disableDoubleClickZoom: true,
+            draggable: false,
+            keyboardShortcuts: false,
+            // never change the minimum zoom level from 1 to anything else
+            minZoom: 3
+
+
+        }
+    },
+
+    styles: function() {
+
+         style =
+                [{
+                "featureType": "administrative.country",
+                "stylers": [
+                    { "visibility": "off" }
+                ]
+            }, {
+                "featureType": "administrative.province",
+                "stylers": [
+                    { "visibility": "off" }
+                ]
+            }, {
+                "featureType": "administrative.locality",
+                "stylers": [
+                    { "visibility": "off" }
+                ]
+            }, {
+                "featureType": "administrative.neighborhood",
+                "stylers": [
+                    { "visibility": "off" }
+                ]
+            }, {
+                "featureType": "administrative.land_parcel",
+                "stylers": [
+                    { "visibility": "off" }
+                ]
+            }, {
+                "featureType": "landscape",
+                "elementType": "labels",
+                "stylers": [
+                    { "visibility": "off" }
+                ]
+            }, {
+                "featureType": "poi",
+                "elementType": "labels",
+                "stylers": [
+                    { "visibility": "off" }
+                ]
+            }, {
+                "featureType": "road",
+
+                "stylers": [
+                    { "visibility": "off" }
+                ]
+            }, {
+                "featureType": "transit",
+
+                "stylers": [
+                    { "visibility": "off" }
+                ]
+            }, {
+                "featureType": "water",
+                "elementType": "labels",
+
+                "stylers": [
+                    { "visibility": "off" }
+                ]
+            }]
+
+        return style;
+    }
+
+
+
+
+
+};
+
+
+
+MAP.google_fusiontables = {
+
+
+        load: function(){
+            var script = document.createElement('script');
+            var url = ['https://www.googleapis.com/fusiontables/v1/query?'];
+            url.push('sql=');
+            var query = 'SELECT name, kml_4326 FROM ' +
+                '1foc3xO9DyfSIF6ofvN0kp2bxSfSeKog5FbdWdQ';
+            var encodedQuery = encodeURIComponent(query);
+            url.push(encodedQuery);
+            url.push('&callback=drawMap');
+            url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
+            script.src = url.join('');
+            var body = document.getElementsByTagName('body')[0];
+            body.appendChild(script);
+
+    }
+
+
+}
+MAP.initialize = {
+
+
+    load_google_map: function(){
+        // set the map to the specified div
+        window.map  = new google.maps.Map(document.getElementById("googleMap"),MAP.properties.options());
+        // setting up custom map properties
+        map.setOptions({styles: MAP.properties.styles()});
+        MAP.initialize.events.click();
+        MAP.initialize.events.rightclick();
+        MAP.google_fusiontables.load();
+    }
+};
+MAP.initialize.events ={
+
+    rightclick: function(){
+         google.maps.event.addListener(map, 'rightclick', function (e) {
+            // return to default
+            initialize();
+        });
+
+    },
+    click: function(){
+        // click  event function for zooming in
+        google.maps.event.addListener(map, 'click', function(e) {
+            zval.setValue(3);
+            next_region_name.setValue("South America");
+            set_label_names();
+
+        });
+    }
+}
