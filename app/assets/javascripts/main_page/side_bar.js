@@ -4,27 +4,14 @@ var region_center_coordinates =  [[48.2893, -99.3594], [-10.4893, -59.3594],[17.
 
 
 
-function center_in_region(regionName){
-    setSelectRegion(regionName);
-    if(regionName=="North America"){
-    change_region_view(regionName,region_center_coordinates[0]);
-    }
-    else if(region_name=="South America"){
-    change_region_view(regionName,region_center_coordinates[1]);
-    }
-       else if(region_name=="Africa"){
-    change_region_view(regionName,region_center_coordinates[2]);
-    }
-       else if(region_name=="India"){
-    change_region_view(regionName,region_center_coordinates[6]);
-    }
+function center_in_region(region_name){
+    setSelectRegion(region_name);
+
+    return_object_region(region_name).change_region_view();
+
+
 }
 
-function change_region_view(regionName,lat_lang){
-   // window.map.setCenter(lat_lang);
-    window.map.setZoom(4);
-    update_region_view(regionName);
-}
 
 // this function for map controller on sidebar, when a user select a region then that region will be displayed and highlighted.
 setSelectRegion = function(region_name){
