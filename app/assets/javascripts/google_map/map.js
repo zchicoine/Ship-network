@@ -1,13 +1,15 @@
-var MAP_MINZOOM = 3;
+var MAP_DEFAULT_ZOOM = 2;
+var MAP_MINZOOM = 2;
 var   MAP_MAXZOOM = 4;
+var MAP_DEFAULT_CENTER = [33.818667, -43.759049];
 
 var MAP;
 MAP = MAP || {};
 MAP.properties = {
     options: function() {
         return {
-            center: new google.maps.LatLng(29.95, -90.06667),
-            zoom: 2,
+            center: new google.maps.LatLng(MAP_DEFAULT_CENTER[0], MAP_DEFAULT_CENTER[1]),
+            zoom: MAP_DEFAULT_ZOOM,
             disableDefaultUI: true,
             panControl: false,
             streetViewControl: false,
@@ -127,6 +129,7 @@ MAP.initialize = {
         MAP.initialize.events.click();
         MAP.initialize.events.rightclick();
         MAP.google_fusiontables.load();
+        set_label_names();
     }
 };
 MAP.initialize.events ={
@@ -143,7 +146,7 @@ MAP.initialize.events ={
         google.maps.event.addListener(map, 'click', function(e) {
             zval.setValue(3);
             next_region_name.setValue("South America");
-            set_label_names();
+
 
         });
     }
