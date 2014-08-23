@@ -60,9 +60,9 @@ send_data_to_side_bar = function(name, level){
 
 
             },
-            error: function(r){
+            error: function(xhr, ajaxOptions, thrownError){
                // alert(r + " works");
-                error_message_display("error when refreshing sidebar table")
+                error_message_display(thrownError)
             }
         });
 
@@ -215,7 +215,7 @@ ship_details = function(ship_name){
 var content_header = "";
 short_region_info_show = function(region_name){
 
-    var data_json =  { 'region':{ "name": region_name} } ;
+    var data_json =  { 'region':{ "name": "region_name"} } ;
     $.ajax({
         url:'side_bar/region_short_info',
         beforeSend: function(){

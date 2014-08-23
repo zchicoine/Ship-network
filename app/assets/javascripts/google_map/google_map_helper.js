@@ -56,43 +56,53 @@ function display_ports( port , port_name , ship_number){
 
 
     for(var i=0;i < port.length;i++){
-        //  console.log( "length: " + port.length);
+
         var position = new google.maps.LatLng(port[i][0],port[i][1]);
+        var infowindow = new google.maps.InfoWindow( );
+        var content = "<div class='' >"+
+            port_name[i] +' has ' + ship_number[i] + ' ship(s)' +
+       "</div>";
+
         new google.maps.Size(20, 34),
             marker = new google.maps.Marker({
                 id: port_name[i],
                 position: position,
                 map: map,
                 icon: iconDefault,
-                title: port_name[i] +" has " + ship_number[i] + " ship(s)"
+                title: content
 
             });
 
-        google.maps.event.addListener(marker, 'mouseover', (function( marker,title) {
+        google.maps.event.addListener(marker, 'mouseover', (function( marker,content) {
             return function() {
                 marker.setIcon(iconHover);
+                infowindow.setContent(content);
+                infowindow.open(map,marker);
             }
 
-        })(marker, "  "));
+        })(marker,content));
 
-        google.maps.event.addListener(marker, 'mouseout', (function( marker,title) {
+        google.maps.event.addListener(marker, 'mouseout', (function( marker,content) {
             return function() {
                 // it allow clicking twice
                 if(marker.icon != iconClick) {
                     marker.setIcon(iconDefault);
+                    infowindow.close(map,marker);
                 }
             }
 
-        })(marker, "  "));
-        google.maps.event.addListener(marker, 'click', (function( marker,title) {
+        })(marker, ""));
+        google.maps.event.addListener(marker, 'click', (function( marker,content) {
             return function() {
 
               
                 update_port_view(marker.id);
                 marker.setIcon(iconClick);
+
             }
 
-        })(marker, "  "));
+        })(marker, content));
+
 
         //marker.setMap(map);
        setMarkers(map,markerArray);
