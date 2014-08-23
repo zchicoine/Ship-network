@@ -1,64 +1,29 @@
 function send_data_to_get_port_coordinates(regionName ){
 
-    var data_json = { "region_info": { "name": regionName, "coordinates": "123 Carol" } };
+    var data_json = { "region_info": { "name": regionName } };
 
-//        // ajax parameters
+        // ajax parameters
     $.ajax({
         url:'google_map/port_coordinates',
         beforeSend: function(){
 
-            // Handle the beforeSend event
+
         },
         type: 'POST',
         data:data_json,
         complete: function(r){
-            // Handle the complete event
-            // alert(r);
+
 
         },
         success: function(result) {
 
             display_ports( result.coordinates , result.name, result.shipNumber)
-            //  alert(result.coordinates);
+
 
         },
-        error: function(r){
+        error: function(xhr, ajaxOptions, thrownError){
 
-            alert(r);
-        }
-    });
-
-}
-function send_data_to_get_ship_side_bar(port_name ){
-
-    var data_json = { "port_info": { "port_name": port_name } };
-
-//        // ajax parameters
-    $.ajax({
-        url:'google_map/display_ship_on_side_bar',
-        beforeSend: function(){
-
-            // Handle the beforeSend event
-        },
-        type: 'POST',
-        data:data_json,
-        complete: function(r){
-            // Handle the complete event
-            // alert(r);
-
-        },
-        success: function(result) {
-            $('.aside_ship_details_table_body').html(result.partial_page)
-            $('.region_stats .triangle_image').addClass('closed_table')
-            closed_table_side_bar()
-
-            //display_ports( result.coordinates)
-            //alert( result.number_ships);
-
-        },
-        error: function(r){
-
-            alert(r.message);
+            error_message_display($.parseJSON(xhr.responseText).errors);
         }
     });
 
