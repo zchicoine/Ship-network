@@ -43,14 +43,6 @@ Africa_class.prototype = createObject(Region_class.prototype);
 // Set the "constructor" property to refer to South_America_class
 Africa_class.prototype.constructor = Africa_class;
 
-Africa_class.map_properties_label = function(){
-
-    new Label({
-        text: 'AFRICA',
-        position: new google.maps.LatLng(17.6493, 11.5994),
-        map: window.map
-    });
-}
 
 
 

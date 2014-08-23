@@ -1,31 +1,3 @@
-// return object
-function return_object_region(region_name) {
-    var region_objects  = new Regions_Objects();
-    if (region_name == "North America") {
-        return region_objects.North_America();
-    }else if (region_name == "South America") {
-        return region_objects.South_America();
-    }
-    else if (region_name == "Africa") {
-        return region_objects.Africa();
-    }
-    else if (region_name == "Australia") {
-        return region_objects.Australia();
-    }else if(region_name =="India and South East Asia"){
-        return region_objects.India_and_SEA();
-
-    }else if(region_name =="Arabia and Persian Gulf") {
-        return region_objects.Arabia_and_PG();
-    }else if(region_name =="Far East"){
-        return region_objects.Far_East();
-    }else if(region_name =="Europe"){
-        return region_objects.Europe();
-    }
-
-    return new Region_class();
-
-}
-
 var Regions_Objects;
 Regions_Objects = function(){
 
@@ -50,10 +22,10 @@ Regions_Objects = function(){
 
 Regions_Objects.prototype.Africa = function () {
 
-   if (this.africa == undefined){
-      this.africa = new Africa_class();
+    if (this.africa == undefined){
+        this.africa = new Africa_class();
 
-   }
+    }
     return this.africa;
 
 };
@@ -127,13 +99,57 @@ Regions_Objects.prototype.Europe = function () {
     return this.europe;
 
 };
+Regions_Objects.prototype.return_all_regions_objects = function(){
+
+    return [
+        this.Europe(),
+        this.Africa(),
+        this.North_America(),
+        this.South_America(),
+        this.Arabia_and_PG(),
+        this.Far_East(),
+        this.India_and_SEA(),
+        this.Australia()
+    ]
+
+}
+
+
+
+// return object
+Regions_Objects.prototype.return_object_region = function (region_name) {
+
+            if (region_name == "North America") {
+                return this.North_America();
+            }else if (region_name == "South America") {
+                return this.South_America();
+            }
+            else if (region_name == "Africa") {
+                return this.Africa();
+            }
+            else if (region_name == "Australia") {
+                return this.Australia();
+            }else if(region_name =="India and South East Asia"){
+                return this.India_and_SEA();
+
+            }else if(region_name =="Arabia and Persian Gulf") {
+                return this.Arabia_and_PG();
+            }else if(region_name =="Far East"){
+                return this.Far_East();
+            }else if(region_name =="Europe"){
+                return this.Europe();
+            }
+
+            return new Region_class();
+
+}
 
 
 
 
 
-
-
+// this global variable is used to create region objects;
+var REGION_OBJECTS = new Regions_Objects();
 
 // line: On older JavaScript engines without Object.create, one can either use a "polyfill"
 // (aka "shim", see the linked article), or one can use a function that achieves the same result:

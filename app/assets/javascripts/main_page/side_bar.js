@@ -7,7 +7,7 @@ var region_center_coordinates =  [[48.2893, -99.3594], [-10.4893, -59.3594],[17.
 function center_in_region(region_name){
     setSelectRegion(region_name);
 
-    return_object_region(region_name).change_region_view();
+    REGION_OBJECTS.return_object_region(region_name).change_region_view();
 
 
 }

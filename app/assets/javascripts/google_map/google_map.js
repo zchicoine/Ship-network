@@ -7,53 +7,6 @@ var zval = new global_values();
 var region_clicked_boolean = new global_values();
 var next_region_name = new global_values();
 
-function set_label_names(){
-
-   new Label({
-           text: 'NORTH AMERICA',
-           position: new google.maps.LatLng(48.2893, -99.3594),
-           map: window.map
-           });
-  new Label({
-           text: 'SOUTH AMERICA',
-           position: new google.maps.LatLng(-10.4893, -59.3594),
-           map: window.map
-           });
-   new Label({
-           text: 'AFRICA',
-           position: new google.maps.LatLng(17.6493, 11.5994),
-           map: window.map
-           });
-   new Label({
-           text: 'ARABIA & PERSIAN GULF',
-           position: new google.maps.LatLng(33.1376, 47.6367),
-           map: window.map
-           });
-   new Label({
-           text: 'AUSTRALIA',
-           position: new google.maps.LatLng(-25.8000, 133.2422),
-           map: window.map
-           });
-
-    new Label({
-           text: 'EUROPE',
-           position: new google.maps.LatLng(53.1289, 45.1102),
-           map: window.map
-           });
-   new Label({
-           text: 'INDIA AND SOUTH EAST ASIA',
-           position: new google.maps.LatLng(24.4471,85.1660),
-           map: window.map
-          });
-    new Label({
-           text: 'FAR EAST',
-           position: new google.maps.LatLng(-4.0396, 121.2891),
-           map: window.map
-          });
-
- }
-
-
 
  function initialize() {
 

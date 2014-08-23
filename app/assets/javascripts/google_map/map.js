@@ -129,7 +129,9 @@ MAP.initialize = {
         MAP.initialize.events.click();
         MAP.initialize.events.rightclick();
         MAP.google_fusiontables.load();
-        set_label_names();
+        for( var i in  REGION_OBJECTS.return_all_regions_objects()){
+            REGION_OBJECTS.return_all_regions_objects()[i].set_map_label();
+        }
     }
 };
 MAP.initialize.events ={

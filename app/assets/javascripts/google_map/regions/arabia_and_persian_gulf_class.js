@@ -26,7 +26,7 @@ Arabia_and_Persian_Gulf_Class = function () {
     this.map_properties = {
         'color': "#0080FF",
         'lable':"ARABIA & PG",
-        'lable_position':this.lat_lang
+        'lable_position':new google.maps.LatLng(33.1376, 47.6367)
     };
 
     this.fusiontables_properties = {
