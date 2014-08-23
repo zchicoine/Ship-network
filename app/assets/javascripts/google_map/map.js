@@ -87,7 +87,8 @@ MAP.properties = {
             }]
 
         return style;
-    }
+    },
+    markers:[]
 
 
 
@@ -164,6 +165,20 @@ MAP.google_common_methods = {
             window.map.setZoom(val);
             zval.set(val);
         }
+    },
+    set_markers: function(markers) {
+        if (markers != undefined){
+            for (var i = 0; i < markers.length; i++) {
+                markers[i].setMap(map);
+            }
+        }
+    },
+    delete_markder: function(markers){
+        if (markers != undefined){
+            for (var i = 0; i < markers.length; i++) {
+                markers[i].setMap(null);
+            }
+        }
     }
 
 
@@ -186,5 +201,88 @@ MAP.google_controller_methods = {
 
             }
 
+    },
+
+    display_ports: function (port , port_name , ship_number){
+        MAP.google_common_methods.delete_markder( MAP.properties.markers);
+        MAP.properties.markers = [];
+
+        var iconDefault = {
+            url: 'assets/google_map/but_default_24.png'
+            // This marker is 20 pixels wide by 32 pixels tall.
+
+            // The origin for this image is 0,0.
+
+        };
+        var iconHover = {
+            url: 'assets/google_map/but_hover_24.png'
+            // This marker is 20 pixels wide by 32 pixels tall.
+
+            // The origin for this image is 0,0.
+
+        };
+        var iconClick = {
+            url: 'assets/google_map/but_down_24.png'
+            // This marker is 20 pixels wide by 32 pixels tall.
+
+            // The origin for this image is 0,0.
+
+        };
+
+
+        for(var i=0;i < port.length;i++){
+
+            var position = new google.maps.LatLng(port[i][0],port[i][1]);
+            var infowindow = new google.maps.InfoWindow({maxWidth:200} );
+            var content = "<div class='' >"+
+                port_name[i] +' has ' + ship_number[i] + ' ship(s)' +
+                "</div>";
+
+            new google.maps.Size(20, 34),
+                marker = new google.maps.Marker({
+                    id: port_name[i],
+                    position: position,
+                  //  map: map,
+                    icon: iconDefault,
+                    title:  ship_number[i] + ' ship(s)'
+
+                });
+           MAP.properties.markers.push(marker);
+            google.maps.event.addListener(marker, 'mouseover', (function( marker,content) {
+                return function() {
+                    marker.setIcon(iconHover);
+                    infowindow.setContent(content);
+                    infowindow.open(map,marker);
+                }
+
+            })(marker,content));
+
+            google.maps.event.addListener(marker, 'mouseout', (function( marker,content) {
+                return function() {
+                    // it allow clicking twice
+                    if(marker.icon != iconClick) {
+                        marker.setIcon(iconDefault);
+                        infowindow.close(map,marker);
+                    }
+                }
+
+            })(marker, ""));
+            google.maps.event.addListener(marker, 'click', (function( marker,content) {
+                return function() {
+
+
+                    update_port_view(marker.id);
+                    marker.setIcon(iconClick);
+
+                }
+
+            })(marker, content));
+
+
+
+
+        }
+
+        MAP.google_common_methods.set_markers( MAP.properties.markers);
     }
 }

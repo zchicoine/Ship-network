@@ -1,17 +1,15 @@
 //<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 $(window).load(function () {
 
-
-
     $("#right-img-responsive").click(function () {
 
-        return_object_region(current_region()).scroll_between_specific_areas();
+       REGION_OBJECTS.return_object_region(current_region()).scroll_between_specific_areas();
     });
 
 
     $("#left-img-responsive").click(function () {
 
-            return_object_region(current_region()).scroll_between_specific_areas();
+        REGION_OBJECTS.return_object_region(current_region()).scroll_between_specific_areas();
     });
 
 
