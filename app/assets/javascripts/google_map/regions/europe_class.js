@@ -27,8 +27,8 @@ Europe_class = function () {
 
     this.map_properties = {
         'color': "#20FF00",
-        'lable':"REGION",
-        'lable_position':this.lat_lang
+        'lable':"EUROPE",
+        'lable_position':new google.maps.LatLng(53.1289, 45.1102)
     };
 
     this.fusiontables_properties = {

@@ -27,8 +27,8 @@ Africa_class = function () {
 
     this.map_properties = {
         'color': "#0055FF",
-        'lable':"REGION",
-        'lable_position':this.lat_lang
+        'lable':"AFRICA",
+        'lable_position':new google.maps.LatLng(17.6493, 11.5994)
     };
 
     this.fusiontables_properties = {
@@ -42,6 +42,15 @@ Africa_class = function () {
 Africa_class.prototype = createObject(Region_class.prototype);
 // Set the "constructor" property to refer to South_America_class
 Africa_class.prototype.constructor = Africa_class;
+
+Africa_class.map_properties_label = function(){
+
+    new Label({
+        text: 'AFRICA',
+        position: new google.maps.LatLng(17.6493, 11.5994),
+        map: window.map
+    });
+}
 
 
 

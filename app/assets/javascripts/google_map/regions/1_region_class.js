@@ -105,7 +105,14 @@ Region_class.prototype.fornow = function (){
 
 
 }
+Region_class.prototype.set_map_label = function(){
 
+    new Label({
+        text: this.map_properties['lable'],
+        position: this.map_properties['lable_position'],
+        map: window.map
+    });
+}
 
 // end of Region class //
 

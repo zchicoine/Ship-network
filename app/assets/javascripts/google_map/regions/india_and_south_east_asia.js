@@ -20,8 +20,8 @@ India_and_South_East_Asia_class = function () {
 
     this.map_properties = {
         'color': "#20FF00",
-        'lable':"REGION",
-        'lable_position':this.lat_lang
+        'lable':"INDIA AND SEA",
+        'lable_position':new google.maps.LatLng(24.4471,85.1660)
     };
 
     this.fusiontables_properties = {

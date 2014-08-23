@@ -19,8 +19,8 @@ Australia_class = function () {
 
     this.map_properties = {
         'color': "#20FF00",
-        'lable':"REGION",
-        'lable_position':this.lat_lang
+        'lable':"AUSTRALIA",
+        'lable_position':new google.maps.LatLng(-25.8000, 133.2422)
     };
 
     this.fusiontables_properties = {

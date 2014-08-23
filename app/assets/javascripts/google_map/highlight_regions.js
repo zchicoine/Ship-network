@@ -10,11 +10,9 @@ function drawMap(data) {
     var europe = new Europe_class();
     var sa = new South_America_class();
 
-
     rows = data['rows'];
 
     for (var i in rows) {
-
 
         africa.highlight_the_region(rows[i][0],rows[i][1]);
         arabia_and_pg.highlight_the_region(rows[i][0],rows[i][1]);
@@ -25,8 +23,6 @@ function drawMap(data) {
         far_east.highlight_the_region(rows[i][0],rows[i][1]);
         australia.highlight_the_region(rows[i][0],rows[i][1]);
 
-
-
     }
     africa.fornow();
     arabia_and_pg.fornow();
@@ -36,9 +32,6 @@ function drawMap(data) {
     na.fornow();
     far_east.fornow();
     australia.fornow();
-
-
-
 
 }
 
