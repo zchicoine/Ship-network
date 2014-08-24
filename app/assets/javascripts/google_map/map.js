@@ -104,8 +104,18 @@ MAP.properties = {
 
 MAP.google_fusiontables = {
 
+    draw_on_the_map: function (data_from_fusiontable) {
 
-        load: function(){
+        rows = data_from_fusiontable['rows'];
+
+        for (var i in rows) {
+            REGION_OBJECTS.each_object().extract_region_coordinates(rows[i][0],rows[i][1])
+        }
+
+        REGION_OBJECTS.each_object().set_region_highlight_on_the_map(MAP.initialize.google_map());
+
+    },
+    load: function(){
             var script = document.createElement('script');
             var url = ['https://www.googleapis.com/fusiontables/v1/query?'];
             url.push('sql=');
@@ -113,13 +123,14 @@ MAP.google_fusiontables = {
                 '1foc3xO9DyfSIF6ofvN0kp2bxSfSeKog5FbdWdQ';
             var encodedQuery = encodeURIComponent(query);
             url.push(encodedQuery);
-            url.push('&callback=drawMap');
+            url.push('&callback=MAP.google_fusiontables.draw_on_the_map');
             url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
             script.src = url.join('');
             var body = document.getElementsByTagName('body')[0];
             body.appendChild(script);
 
     }
+
 
 
 }
@@ -150,7 +161,7 @@ MAP.helper_methods = {
 
         var google_map = new google.maps.Map(document.getElementById("googleMap"),MAP.properties.options());
         google_map.setOptions({styles: MAP.properties.styles()});
-        console.log(google_map)
+
 
         this.get = function(){
             return google_map;
@@ -163,12 +174,24 @@ MAP.helper_methods = {
 
     }
 
+
 };
 
 MAP.initialize = {
 
     google_map:function(){
         return new MAP.helper_methods.google_map_object().get();
+    },
+    create_polygon: function(paths,stroke_color,fill_color){
+       return new google.maps.Polygon({
+            paths: paths,
+            strokeColor: stroke_color,
+            strokeOpacity: 0,
+            strokeWeight: 1,
+            fillColor:fill_color ,
+            fillOpacity: 0.2,
+            map:MAP.initialize.google_map()
+        });
     }
 
 

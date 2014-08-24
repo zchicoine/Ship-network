@@ -4,21 +4,21 @@
 var Region_Functionality;
 Region_Functionality= function(){
 
-    this.set_map_label = function(){
+    this.set_map_label = function(map){
         REGION_OBJECTS.regions_objects_array().forEach(function(value){
-            value.set_map_label();
+            value.set_map_label(map);
         });
 
     }
-    this.highlight_the_region = function(country_name,country_coordinates){
+    this.extract_region_coordinates = function(country_name,country_coordinates){
         REGION_OBJECTS.regions_objects_array().forEach(function(value){
-            value.highlight_the_region(country_name,country_coordinates);
+            value.extract_region_coordinates(country_name,country_coordinates);
         });
 
     }
-   this.fornow = function(){
+   this.set_region_highlight_on_the_map = function(){
        REGION_OBJECTS.regions_objects_array().forEach(function(value){
-           value.fornow();
+           value.set_region_highlight_on_the_map();
        })
 
    }

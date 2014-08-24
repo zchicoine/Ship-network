@@ -1,40 +1,13 @@
 
-var region_name,z;
+var region_name;
 var rows =[];
-
-    var country, geometries;
-
-
-
-
-/*
-
-attaching event listeners to every layer drawn onto the google_map for every country
-*/
-function event_listeners(country,region_name) {
-    if(MAP.state_information.current_layer() == GLOBAL_LEVEL){
-        MAP.events.mouseover(country,function(){
-            country.setOptions({
-                fillOpacity: 0.4
-            });
-        });
-        MAP.events.mouseout(country,function(){
-            country.setOptions({
-                fillOpacity: 0.2
-            });
-        })
-    }
-
-}
-
-
+var geometries;
 
 
 function initialize_the_map() {
-   MAP.initialize.google_map();
+   var map = MAP.initialize.google_map();
     MAP.google_fusiontables.load();
-
-
+    REGION_OBJECTS.each_object().set_map_label(map);
 
 }
 

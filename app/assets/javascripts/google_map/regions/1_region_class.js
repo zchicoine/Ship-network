@@ -66,8 +66,7 @@ Region_class.prototype.scroll_between_specific_areas = function (){
     }
 }
 
-Region_class.prototype.highlight_the_region = function (country_name,country_coordinates){
-
+Region_class.prototype.extract_region_coordinates = function (country_name,country_coordinates){
 
     if( this.fusiontables_properties["countries"].indexOf(country_name) > -1 ){
         if (country_coordinates['geometries']) {
@@ -83,36 +82,22 @@ Region_class.prototype.highlight_the_region = function (country_name,country_coo
 
     }
 
-
-
-
 }
 
-Region_class.prototype.fornow = function (){
+Region_class.prototype.set_region_highlight_on_the_map = function (){
 
+    var region =  MAP.initialize.create_polygon(this.fusiontables_properties['coordinates'],
+        this.map_properties['color'],this.map_properties['color']);
 
-     country = new google.maps.Polygon({
-        paths: this.fusiontables_properties['coordinates'],
-        strokeColor: "#20FF00",
-        strokeOpacity: 0,
-        strokeWeight: 1,
-        fillColor:"#20FF00" ,
-        fillOpacity: 0.2
-    });
-    country.setMap(MAP.initialize.google_map());
-
-    event_listeners(country,this.name);
-
-
-
+    event_listeners_on_the_map(region,this.name);
 
 }
-Region_class.prototype.set_map_label = function(){
+Region_class.prototype.set_map_label = function(map){
 
     new Label({
         text: this.map_properties['lable'],
         position: this.map_properties['lable_position'],
-        map: window.google_map
+        map: map
     });
 }
 
@@ -127,4 +112,20 @@ function constructNewCoordinates(polygon) {
             new google.maps.LatLng(coordinates[i][1], coordinates[i][0]));
     }
     return newCoordinates;
+}
+
+function event_listeners_on_the_map(country,region_name) {
+    if(MAP.state_information.current_layer() == GLOBAL_LEVEL){
+        MAP.events.mouseover(country,function(){
+            country.setOptions({
+                fillOpacity: 0.4
+            });
+        });
+        MAP.events.mouseout(country,function(){
+            country.setOptions({
+                fillOpacity: 0.2
+            });
+        })
+    }
+
 }
