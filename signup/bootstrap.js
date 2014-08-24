@@ -1729,7 +1729,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
 
     this.$body
       .find(this.selector)
-      .map(function () {
+      .google_map(function () {
         var $el   = $(this)
         var href  = $el.data('target') || $el.attr('href')
         var $href = /^#./.test(href) && $(href)

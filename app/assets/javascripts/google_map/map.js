@@ -5,6 +5,10 @@ var MAP_DEFAULT_CENTER = [33.818667, -43.759049];
 
 var MAP;
 MAP = MAP || {};
+
+
+
+
 MAP.properties = {
     options: function() {
         return {
@@ -119,61 +123,134 @@ MAP.google_fusiontables = {
 
 
 }
-MAP.initialize = {
+MAP.helper_methods = {
+    current_layer: function(){
+
+        if ( arguments.callee._singletonInstance )
+            return arguments.callee._singletonInstance;
+        arguments.callee._singletonInstance = this;
+
+        var layer_level = GLOBAL_LEVEL;
+        this.get =  function(){
+            return   layer_level;
+        }
+        this.set = function(new_layer_level){
+            layer_level = new_layer_level;
+            return this;
+        }
+
+    },
+
+    google_map_object:function(){
+
+        if ( arguments.callee._singletonInstance )
+            return arguments.callee._singletonInstance;
+        arguments.callee._singletonInstance = this;
 
 
-    load_google_map: function(){
-        // set the map to the specified div
-        window.map  = new google.maps.Map(document.getElementById("googleMap"),MAP.properties.options());
-        // setting up custom map properties
-        map.setOptions({styles: MAP.properties.styles()});
-        MAP.initialize.events.click();
-        MAP.initialize.events.rightclick();
-        MAP.google_fusiontables.load();
-        REGION_OBJECTS.each_object().set_map_label();
+        var google_map = new google.maps.Map(document.getElementById("googleMap"),MAP.properties.options());
+        google_map.setOptions({styles: MAP.properties.styles()});
+        console.log(google_map)
+
+        this.get = function(){
+            return google_map;
+        }
+        this.set = function(map){
+            google_map = map;
+            return this;
+        }
 
 
     }
-};
-MAP.initialize.events ={
 
-    rightclick: function(){
-         google.maps.event.addListener(map, 'rightclick', function (e) {
-            // return to default
-            initialize();
+};
+
+MAP.initialize = {
+
+    google_map:function(){
+        return new MAP.helper_methods.google_map_object().get();
+    }
+
+
+
+};
+MAP.events ={
+
+    rightclick: function(object,optional_function){
+         google.maps.event.addListener(object, 'rightclick', function (e) {
+             if(optional_function != undefined &&   typeof(optional_function) === 'function'  ){
+                 function_options();
+             }
         });
 
     },
-    click: function(){
+    click: function(object, optional_function){
         // click  event function for zooming in
-        google.maps.event.addListener(map, 'click', function(e) {
-            zval.setValue(3);
-            next_region_name.setValue("South America");
+        google.maps.event.addListener(object, 'click', function(e) {
+
+           if(optional_function != undefined &&   typeof(optional_function) === 'function'  ){
+               function_options();
+           }
+
+
+        });
+    },
+    mouseover: function(object, optional_function) {
+        // click  event function for zooming in
+        google.maps.event.addListener(object, 'mouseover', function (e) {
+
+            if (optional_function != undefined && typeof(optional_function) === 'function') {
+                optional_function();
+            }
+
+
+        });
+    },
+    mouseout: function(object, optional_function) {
+        // click  event function for zooming in
+        google.maps.event.addListener(object, 'mouseout', function (e) {
+
+            if (optional_function != undefined && typeof(optional_function) === 'function') {
+                optional_function();
+            }
 
 
         });
     }
 };
+
+MAP.state_information = {
+    current_layer: function() {
+        return  new MAP.helper_methods.current_layer().get();
+    },
+
+    get_zoom:function(){
+        return MAP.initialize.google_map.get_zoom()
+    }
+
+}
+
+
 
 MAP.google_common_methods = {
 
-    set_cneter: function(lat_lang){
-        window.map.setCenter(lat_lang);
+    set_center: function(lat_lang){
+        MAP.initialize.google_map.setCenter(lat_lang);
     },
     set_zoom: function(val){
         if(val >= MAP_MINZOOM && val <= MAP_MAXZOOM){
-            window.map.setZoom(val);
-            zval.set(val);
+            MAP.initialize.google_map.setZoom(val);
+
         }
     },
     set_markers: function(markers) {
         if (markers != undefined){
             for (var i = 0; i < markers.length; i++) {
-                markers[i].setMap(map);
+                markers[i].setMap(MAP.initialize.google_map);
             }
         }
     },
-    delete_markder: function(markers){
+    delete_marker: function(markers){
         if (markers != undefined){
             for (var i = 0; i < markers.length; i++) {
                 markers[i].setMap(null);
@@ -187,24 +264,29 @@ MAP.google_common_methods = {
 MAP.google_controller_methods = {
     set_region_center: function (getClickedPostion,region_name,e){
 
-            if(zval.get() == 3 && region_clicked_boolean.get() != 1){
-
-                MAP.google_common_methods.set_cneter(getClickedPostion);
-                update_region_view(region_name);
-                region_clicked_boolean.set(1);
-
-            }else{
-                region_clicked_boolean.set(0);
-                MAP.google_common_methods.set_zoom(4);
-                send_data_to_get_port_coordinates(region_name);
-                $('.region_labels').remove();
-
-            }
+//            if(zval.get() == 3 && region_clicked_boolean.get() != 1){
+//
+//                MAP.google_common_methods.set_center(getClickedPostion);
+//
+//                region_clicked_boolean.set(1);
+//                MAP.google_common_methods.set_zoom(4);
+//
+//                REGION_OBJECTS.return_object_region(region_name).change_region_view();
+//            }else{
+//                region_clicked_boolean.set(0);
+//                MAP.google_common_methods.set_center(getClickedPostion);
+//                MAP.google_common_methods.set_zoom(4);
+//
+//
+//                $('.region_labels').remove();
+//
+//            }
 
     },
 
     display_ports: function (port , port_name , ship_number){
-        MAP.google_common_methods.delete_markder( MAP.properties.markers);
+        // clear marker on the google_map
+        MAP.google_common_methods.delete_marker( MAP.properties.markers);
         MAP.properties.markers = [];
 
         var iconDefault = {
@@ -242,7 +324,7 @@ MAP.google_controller_methods = {
                 marker = new google.maps.Marker({
                     id: port_name[i],
                     position: position,
-                  //  map: map,
+                  //  google_map: google_map,
                     icon: iconDefault,
                     title:  ship_number[i] + ' ship(s)'
 
@@ -252,7 +334,7 @@ MAP.google_controller_methods = {
                 return function() {
                     marker.setIcon(iconHover);
                     infowindow.setContent(content);
-                    infowindow.open(map,marker);
+                    infowindow.open(google_map,marker);
                 }
 
             })(marker,content));
@@ -262,7 +344,7 @@ MAP.google_controller_methods = {
                     // it allow clicking twice
                     if(marker.icon != iconClick) {
                         marker.setIcon(iconDefault);
-                        infowindow.close(map,marker);
+                        infowindow.close(google_map,marker);
                     }
                 }
 
@@ -286,3 +368,4 @@ MAP.google_controller_methods = {
         MAP.google_common_methods.set_markers( MAP.properties.markers);
     }
 }
+

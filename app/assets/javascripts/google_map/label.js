@@ -49,7 +49,7 @@ Label.prototype.onAdd = function() {
 Label.prototype.onRemove = function() {
  this.div_.parentNode.removeChild(this.div_);
 
- // Label is removed from the map, stop updating its position/text.
+ // Label is removed from the google_map, stop updating its position/text.
  for (var i = 0, I = this.listeners_.length; i < I; ++i) {
    google.maps.event.removeListener(this.listeners_[i]);
  }

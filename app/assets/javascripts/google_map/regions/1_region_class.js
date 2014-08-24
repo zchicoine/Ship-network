@@ -39,8 +39,10 @@ Region_class = function () {
 
 Region_class.prototype.change_region_view = function () {
 
-    MAP.google_common_methods.set_cneter(this.lat_lang);
+    MAP.google_common_methods.set_center(this.lat_lang);
     update_region_view(this.name);
+    setSelectRegion_on_sidebar(this.name);
+    send_data_to_get_port_coordinates(this.name);
 };
 var i=0;
 Region_class.prototype.scroll_between_specific_areas = function (){
@@ -50,15 +52,15 @@ Region_class.prototype.scroll_between_specific_areas = function (){
     var temp = a.getValue();
 
     if (i != (temp.length - 1)) {
-        window.map.setCenter(temp[i]);
-        //	window.map.setZoom(5);
+        window.google_map.setCenter(temp[i]);
+        //	window.google_map.setZoom(5);
         i++;
 
     }
     else if (i == (temp.length - 1)) {
         //alert(temp[i]);
-        window.map.setCenter(temp[(temp.length - 1)]);
-        //	window.map.setZoom(5);
+        window.google_map.setCenter(temp[(temp.length - 1)]);
+        //	window.google_map.setZoom(5);
         i = 0;
 
     }
@@ -89,7 +91,7 @@ Region_class.prototype.highlight_the_region = function (country_name,country_coo
 Region_class.prototype.fornow = function (){
 
 
-    country = new google.maps.Polygon({
+     country = new google.maps.Polygon({
         paths: this.fusiontables_properties['coordinates'],
         strokeColor: "#20FF00",
         strokeOpacity: 0,
@@ -97,7 +99,7 @@ Region_class.prototype.fornow = function (){
         fillColor:"#20FF00" ,
         fillOpacity: 0.2
     });
-    country.setMap(map);
+    country.setMap(MAP.initialize.google_map());
 
     event_listeners(country,this.name);
 
@@ -110,7 +112,7 @@ Region_class.prototype.set_map_label = function(){
     new Label({
         text: this.map_properties['lable'],
         position: this.map_properties['lable_position'],
-        map: window.map
+        map: window.google_map
     });
 }
 

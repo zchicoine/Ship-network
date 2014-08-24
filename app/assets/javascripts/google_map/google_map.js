@@ -1,85 +1,42 @@
 
 var region_name,z;
-var markerArray = [] , rows =[];
-var getClickedPostion;
-var country, geometries;
-var zval = new global_values();
-var region_clicked_boolean = new global_values();
-var next_region_name = new global_values();
+var rows =[];
+
+    var country, geometries;
 
 
- function initialize() {
-
-        MAP.initialize.load_google_map();
-
-
- }
-
-google.maps.event.addDomListener(window, 'load', initialize);
 
 
 /*
 
-attaching event listeners to every layer drawn onto the map for every country
+attaching event listeners to every layer drawn onto the google_map for every country
 */
-function event_listeners(country,region_name)
-{
-  google.maps.event.addListener(country, 'mouseover', function(e) {
-             this.setOptions({
-                
+function event_listeners(country,region_name) {
+    if(MAP.state_information.current_layer() == GLOBAL_LEVEL){
+        MAP.events.mouseover(country,function(){
+            country.setOptions({
                 fillOpacity: 0.4
-              });
-        });
-
-  /*
-    this function zooms in by when yo click on a region
-    sets the global zoom value so that right action could be associated to the right navigation button
-    sends data to the side bar
-    removes all the region labels
-
-  */
-
-  google.maps.event.addListener(country, 'click', function(e) {
-              
-        $('.region_labels').remove();
-       
-      // var zoomToNumber = window.map.getZoom() + 2;
-       getClickedPostion = e.latLng
-       
-       // make a function call to decide which region is being clicked on
-      // console.log(zoomToNumber);
-     MAP.google_controller_methods.set_region_center(getClickedPostion,region_name,e);
-       
-              
-              });
-            
-  google.maps.event.addListener(country, 'mouseout', function() {
-
-        this.setOptions({
-               
-                fillOpacity: 0.2
-              });
             });
-}
-
-
-/*
-
-another function used to set and get global values but to a ariable
-typically a string or number
-*/
-function global_values(){
-
-    var value = 3;
-
-    this.get = function(){
-        return value;
-    }
-
-
-    this.set = function(val){
-        value = val;
-        return this;
+        });
+        MAP.events.mouseout(country,function(){
+            country.setOptions({
+                fillOpacity: 0.2
+            });
+        })
     }
 
 }
+
+
+
+
+function initialize_the_map() {
+   MAP.initialize.google_map();
+    MAP.google_fusiontables.load();
+
+
+
+}
+
+google.maps.event.addDomListener(window, 'load', initialize_the_map);
+

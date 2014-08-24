@@ -1,5 +1,5 @@
 =begin
-    This file is to provide functions that Google map API will use.
+    This file is to provide functions that Google google_map API will use.
 
 =end
 

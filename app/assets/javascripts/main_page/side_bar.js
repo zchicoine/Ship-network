@@ -5,7 +5,7 @@ var region_center_coordinates =  [[48.2893, -99.3594], [-10.4893, -59.3594],[17.
 
 
 function center_in_region(region_name){
-    setSelectRegion(region_name);
+
 
     REGION_OBJECTS.return_object_region(region_name).change_region_view();
 
@@ -13,8 +13,8 @@ function center_in_region(region_name){
 }
 
 
-// this function for map controller on sidebar, when a user select a region then that region will be displayed and highlighted.
-setSelectRegion = function(region_name){
+// this function for google_map controller on sidebar, when a user select a region then that region will be displayed and highlighted.
+setSelectRegion_on_sidebar = function(region_name){
 
     $("#dropdownGoToRegion_lable").html(region_name);
 
@@ -215,7 +215,7 @@ ship_details = function(ship_name){
 var content_header = "";
 short_region_info_show = function(region_name){
 
-    var data_json =  { 'region':{ "name": "region_name"} } ;
+    var data_json =  { 'region':{ "name": region_name} } ;
     $.ajax({
         url:'side_bar/region_short_info',
         beforeSend: function(){

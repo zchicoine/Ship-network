@@ -14,7 +14,7 @@ return regionClick;
 
 function click(getClickedPostion){
 	$('.region_labels').remove();
- 	window.map.setCenter(getClickedPostion);
+ 	window.google_map.setCenter(getClickedPostion);
 }
 
 
