@@ -2,6 +2,7 @@ module CustomQuery
 
     def query_at_a_region region
         region = region.downcase
+        region = region.strip
         where(region: region)
     end
 

@@ -3,41 +3,24 @@ var region_center_coordinates =  [[48.2893, -99.3594], [-10.4893, -59.3594],[17.
                    [24.4471,85.1660] ,[35.8178, 118.0371],[-4.0396, 121.2891]];
 
 
-go_to_region = function (regionName){
 
-   // console.log(coordinates);
-  // _latLng =  new google.maps.LatLng(coordinates[0], coordinates[1]);
-    console.log(regionName);
-   
-    center_in_region(regionName);
+function center_in_region(region_name){
+    setSelectRegion(region_name);
 
-    
+    return_object_region(region_name).change_region_view();
+
 
 }
 
 
-function center_in_region(regionName){
-    if(regionName=="North America"){
-    change_region_view(regionName,region_center_coordinates[0]);
-    }
-    else if(region_name=="South America"){
-    change_region_view(regionName,region_center_coordinates[1]);
-    }
-       else if(region_name=="Africa"){
-    change_region_view(regionName,region_center_coordinates[2]);
-    }
-       else if(region_name=="India"){
-    change_region_view(regionName,region_center_coordinates[6]);
-    }
-    
-}
+// this function for map controller on sidebar, when a user select a region then that region will be displayed and highlighted.
+setSelectRegion = function(region_name){
 
-function change_region_view(regionName,lat_lang){
-   // window.map.setCenter(lat_lang);
-    window.map.setZoom(4);
-    update_region_view(regionName);
-}
+    $("#dropdownGoToRegion_lable").html(region_name);
 
+    $('.dropdown-menu.map_controller_go_to_region').children().removeClass('highlight-clicked-row');
+    $("#" + remove_white_space(region_name) + "_inside_dropdown_main").addClass('highlight-clicked-row');
+}
 
 send_data_to_side_bar = function(name, level){
 
@@ -66,12 +49,20 @@ send_data_to_side_bar = function(name, level){
             success: function(result) {
                 if(level == SHIP_LEVEL){
                     html_class = "#ship-details-section";
+
                 }
-                $(html_class).html(result);
+
+                    $(html_class).html(result);
+                if(level == SHIP_LEVEL || level == PORT_LEVEL){
+                    $('.region_stats .triangle_image').addClass('want_to_close_table');
+                    closed_table_side_bar(30);
+                }
+
 
             },
             error: function(r){
-                alert(r + " works");
+               // alert(r + " works");
+                error_message_display("error when refreshing sidebar table")
             }
         });
 
@@ -84,50 +75,64 @@ send_data_to_side_bar = function(name, level){
 
 }
 
-closed_table_side_bar = function () {
-
-
+closed_table_side_bar = function (speed) {
 
         var image = '.triangle_image';
-        console.log("works");
-        if ($(image).hasClass("closed_table")) {
-              image += ".closed_table";
-            console.log(image);
-            $(image).attr("src", "/assets/greentriangle_closed.png");
-            $(image).addClass("this_class_only_to_change_image");
+        if ($(image).hasClass("want_to_close_table")) {
+              image += ".want_to_close_table";
+
+            if ( ! $(image).hasClass("this_class_only_to_change_image") ){
+                $(image).attr("src", "/assets/greentriangle_closed.png");
+                $(image).addClass("this_class_only_to_change_image");
+
+                $(image).parent().parent().parent().next().children('tr').
+                    closest('tr').children('td').wrapInner('<div />').
+                    animate({padding: 'toggle', opacity: 'toggle'}, speed);
+
+
+            }
+
+        }
+}
+open_table_side_bar = function (speed){
+    var image = '.triangle_image';
+
+    if ($(image).hasClass("want_to_open_table")) {
+        image += ".want_to_open_table";
+
+        if (  $(image).hasClass("this_class_only_to_change_image") ){
+            $(image).attr("src", "assets/greentriangle_down.png");
+            $(image).removeClass("this_class_only_to_change_image");
+
             $(image).parent().parent().parent().next().children('tr').
                 closest('tr').children('td').wrapInner('<div />').
-                animate({padding: 'toggle', opacity: 'toggle'}, 1);
+                animate({padding: 'toggle', opacity: 'toggle'}, speed);
+
+
         }
 
-
-
-
-
+    }
 }
 
 
-
-
-
+// this code to see if any block is closed or not, if the block is closed then open and vice versa
     $(document).on('click','.triangle_image',function () {
         var image = this;
-
-        if (! $(image).hasClass("this_class_only_to_change_image") ) {
-
-            $(image).attr("src", "assets/greentriangle_closed.png");
-            $(image).addClass("this_class_only_to_change_image");
-        }
-        else {
+        // if the following class present that means a block is closed
+        if ( $(image).hasClass("this_class_only_to_change_image") ) {
 
             $(image).attr("src", "assets/greentriangle_down.png");
             $(image).removeClass("this_class_only_to_change_image");
+        }
+        else {
+            $(image).attr("src", "assets/greentriangle_closed.png");
+            $(image).addClass("this_class_only_to_change_image");
+
         }
 
         $(image).parent().parent().parent().next().children('tr').
             closest('tr').children('td').wrapInner('<div />').
             animate({padding: 'toggle', opacity: 'toggle'} , 150);
-
 
 
     });
@@ -138,6 +143,8 @@ highlight_on_a_list = function(tag){
     $(tag).closest('tr').children().addClass('highlight-clicked-row');
 }
 
+
+// to enable both single and dbouble clicked worked on same element.
 // initial code take from
 // http://stackoverflow.com/questions/6330431/jquery-bind-double-click-and-single-click-separately
 var DELAY = 700, clicks = 0, timer = null;
@@ -148,36 +155,34 @@ $(document).on('click',".ship_name_on_side_bar", function(e){
        clicks++;  //count clicks
 
 
+    timer = setTimeout(function () {
+        //perform single-click action
+
+        clicks = 0;      //after action performed, reset counter
+    }, DELAY);
     if(clicks === 1) {
-
-        timer = setTimeout(function() {
-
-             //perform single-click action
-            update_ship_view(ship_name);
-
-            clicks = 0;             //after action performed, reset counter
-
-        }, DELAY);
-
-    } else {
+                 //perform single-click action
+                 update_ship_view(ship_name);
+                     if ($(".ship_details").length) {
+                         ship_details(ship_name);
+                     }
+    }else {
 
         clearTimeout(timer);    //prevent single-click action
         //perform double-click action
         update_ship_view(ship_name);
         ship_details(ship_name);
 
-
         clicks = 0;             //after action performed, reset counter
     }
-
-
-
-
 });
 
-$(document).on("dblclick", function(e){
-    e.preventDefault();  //cancel system double-click event
+$(document).on("dblclick",".ship_name_on_side_bar", function(e){
+    e.preventDefault();  //cancel system double-click event in particle class
 });
+
+
+// ----//
 
 ship_details = function(ship_name){
 
@@ -200,13 +205,57 @@ ship_details = function(ship_name){
             $("#outer-map").html(result);
         },
         error: function(r){
-            alert(r + "works");
+            error_message_display("display ship details.");
         }
     });
 
 }
 
 
+var content_header = "";
+short_region_info_show = function(region_name){
+
+    var data_json =  { 'region':{ "name": region_name} } ;
+    $.ajax({
+        url:'side_bar/region_short_info',
+        beforeSend: function(){
+            // Handle the beforeSend event
+        },
+        type: 'POST',
+        dataType: 'json',
+        data:data_json,
+        complete: function(r){
+            // Handle the complete event
+            // alert(r);
+
+        },
+        success: function(result) {
+
+            $(".region_short_info tr:first td:nth-child(2)").html(result.deadweight);
+           $(".region_short_info tr:nth-child(2) td:nth-child(2)").html($("#number_of_ship_in_"+ remove_white_space(region_name)).html())
+        },
+        error: function(xhr, ajaxOptions, thrownError){
+            error_message_display($.parseJSON(xhr.responseText).errors);
+        }
+    });
+
+        content_header = $('.side_bar_header').html();
+        $('.side_bar_header').html(region_name);
+        $('.region_short_info').show('550');
+        $('.triangle_image').addClass('want_to_close_table');
+        closed_table_side_bar(30);
+
+
+
+}
+
+short_region_info_hide = function(default_name){
+
+    $('.side_bar_header').html(content_header);
+    $('.region_short_info').hide();
+    $('.triangle_image').addClass('want_to_open_table');
+    open_table_side_bar(200);
+}
 //$(document).on('click',".one", function(e){
 //    console.log("URL: " + this.href);
 //    $.getScript(this.href);

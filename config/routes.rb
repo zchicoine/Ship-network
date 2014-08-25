@@ -1,16 +1,18 @@
 Rails.application.routes.draw do
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
     root 'main_pages#index'
 
-    post 'side_bar/region' => 'side_bar#region'
-    post 'side_bar/ship' => 'side_bar#ship'
-    post 'side_bar/default' => 'side_bar#default'
-    post 'side_bar/port' => 'side_bar#port'
+    devise_for :brokers, controllers: { sessions: "brokers/sessions" }
+
+    #--------------
     post 'side_bar/index' => 'side_bar#index'
+    post 'side_bar/region_short_info' => 'side_bar#region_short_info'
     #--------------
     post  'google_map/port_coordinates' => 'google_map#port_coordinates'
     post  'google_map/display_ship_on_side_bar' => 'google_map#display_ship_on_side_bar'
+    post  'google_map/close' => 'google_map#close'
     #--------------
     post 'user/sign_in' => 'user#sign_in'
     post 'user/sign_out' => 'user#sign_out'
@@ -22,7 +24,7 @@ Rails.application.routes.draw do
     post 'main_pages/region' => "main_pages#region"
     post 'main_pages/port' => "main_pages#port"
     post 'main_pages/ship' => "main_pages#ship"
-    get 'main_pages/loginpage'
+
 
 
   # You can have the root of your site routed with "root"

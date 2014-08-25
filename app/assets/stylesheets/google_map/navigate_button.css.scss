@@ -17,6 +17,7 @@ $image_height: 50px;
   height:$image_height;
   @include  vertical_align;
   margin-left:10px;
+  max-width:35px;
 }
 
 #left-img-responsive{
@@ -41,3 +42,28 @@ $image_height: 50px;
     cursor: default;
 
 }
+
+/*---TOOLTIP NEXT AND BACK--------------------------------------------------*/
+
+.tooltip_decoration{
+
+  bottom: 0;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px 5px 0;
+  border-top-color: white !important;
+
+  border-color: transparent;
+  border-style: solid;
+  position: absolute;
+}
+
+.tooltip.top .tooltip-inner {
+  background-color:white;
+  color:black;
+
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+  }
+

@@ -1,0 +1,10 @@
+.error_message{
+    position: fixed;
+    background-color: white;
+    left: 50%;
+    margin-left: -250px;
+    z-index: 11;
+    max-width: 35%;
+    min-width: 20%;
+    text-align: center;
+}

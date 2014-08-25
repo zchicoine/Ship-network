@@ -1,7 +1,7 @@
 <thead class="table_after_clicking_on_a_port text-left">
 <tr>
     <th colspan="<%= 2%>">
-        <%= image_tag("greentriangle_down.png", size: "16", class:"triangle_image")%>
+        <%= image_tag("greentriangle_down.png", size: "16", class:"triangle_image pointer" )%>
         List of ships
     </th>
 </tr>
@@ -11,7 +11,7 @@
 <tbody class="ship-list">
 <tr >
     <td colspan="<%= 2%>">
-        <div class="scroll_inside_table">
+        <div class="scroll_inside_table scroll_size_sidebar">
             <table class="table table-hover text-left">
                 <% @ships_at_port.each do |ship|%>
                     <tr >
@@ -23,9 +23,10 @@
 
                         </td>
                         <td>
-                            <%= ship.vessel_type
-                            %>
-                        </td>
+                            <% if ship[:vessel_type].nonzero? %>
+                              <%= ship.vessel_type%>
+                            <% end  %>
+                         </td>
                     </tr>
                 <%end%>
 

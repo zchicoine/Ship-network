@@ -1,7 +1,4 @@
 class SideBarController < ApplicationController
-    include SideBarHelper
-    include GoogleMapHelper
-    
 
     def index
         parameters = params.require(:side_info).permit(:name, :level)
@@ -18,14 +15,42 @@ class SideBarController < ApplicationController
 
     end
 
+    def region_short_info
+        parameters = params.require(:region).permit(:name)
+        result =  UnitOfWork.instance.ship.get_deadweight_of_ships_per_region parameters[:name]
+        if result[:error].nil?
+            deadweight = result[:value]
+            respond_to do |format|
+                format.html {render :partial =>  'side_bar/table_body/when_hover_over_a_region/index' , :locals => { deadweight: deadweight }}
+                format.json{ render :json => { deadweight: deadweight }}
+            end
+        else
+            respond_to do |format|
+                format.json{  render :json => { :errors => result[:error] }, :status => 422}
+            end
+
+        end
+
+
+    end
+
+
+
 
     private
 
     def region region_name
 
-        @side_info ={region_name: region_name}
-        cookies[:region_name] = @side_info[:region_name]
-        render :partial =>  'side_bar/table_body/after_click_a_region/index'
+        if region_name.is_a? String
+            _region_name = region_name
+        end
+        cookies[:region_name] = _region_name
+        respond_to do |format|
+             format.html { render :partial =>  'side_bar/table_body/after_click_a_region/index' , :locals => { region: _region_name }  }
+
+
+        end
+
 
     end
     def default
@@ -53,7 +78,7 @@ class SideBarController < ApplicationController
         @side_info = {region_name: cookies[:region_name] || "No region selected" }
         @side_info[:ship_name] =  ship_name
         @side_info[:port_name] = cookies[:port_name]
-        result =  UnitOfWork.instance.shipment.get_ship_category_deadweight_open_start_and_end_date @side_info[:ship_name], @side_info[:port_name]
+        result =  UnitOfWork.instance.shipment.get_shipCategory_deadweight_brokerName_openStartDate_and_endDate @side_info[:ship_name], @side_info[:port_name]
         if result[:error].nil?
             @ship_info = result[:value]
         end

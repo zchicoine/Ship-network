@@ -41,7 +41,7 @@ module SideBarHelper
         end
     end
     def get_total_deadweight_for_total_ships
-        result =  UnitOfWork.instance.ship.get_total_deadwieght_of_ships
+        result =  UnitOfWork.instance.ship.get_total_deadweight_of_ships
         if result[:error].nil?
             return result[:value]
         end

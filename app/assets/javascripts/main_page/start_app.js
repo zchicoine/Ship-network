@@ -1,7 +1,7 @@
 
 // jquery to make the banner disappear and enter the website
 $(document).ready(function(){
- $('*').tooltip({template :'<div class="tooltip" role="tooltip"><div class="tooltip-arrow ship-blue-background-color"></div><div class="tooltip-inner "></div></div>'});
+ $('*').tooltip({template :'<div class="tooltip" role="tooltip"><div class="tooltip_decoration tooltip-arrow"></div><div class="tooltip-inner "></div></div>'});
 
     $("#free_tour").click(function(e){
 
@@ -14,7 +14,27 @@ $(document).ready(function(){
     });
 
 
+
+
+//    $('.show_hover').clickToggle( function() {
+//
+//
+//    short_region_info_show("Australia");
+//
+//
+//
+//
+//    },function() {
+//
+//        short_region_info_hide();
+//   });
+
+
+
+
+
 });
+
 
 main_banner = function (page){
     $.ajax({

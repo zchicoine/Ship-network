@@ -16,25 +16,62 @@ data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAICAYAAADA+m62AAAAPklEQVQYV2
   text-align: center;
 }
 
+
+/*-------HEADER------------------------------------------------------*/
+
+.username_header{ /*changes color of username in the header*/
+  color:#d6de23;
+}
+
+.hover_change_color:hover{ /*make the main title of the page also work with the hover*/
+ color:white;
+  background-color: #229ed0; 
+}
+
+.nav > li > a.hover_change_color:hover,.nav > li > a.hover_change_color:active { /*changes hover color of navbar buttons*/
+  color:white;
+  background-color: #229ed0;
+}
+
+.navbar{ /*dropshadow for navbar*/
+   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+}
+
 .header-text {
     a{
         color: #ffffff;
     }
 }
 
-.header_decoration{
+/*-----CURRENT VIEW----------------------------------------------------------------*/
 
-   box-shadow: 0px 3px 0px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: 0px 3px 0px rgba(0, 0, 0, 0.1);
-    -webkit-box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+.current_view_decoration{ /*changes color and positioning of current view*/
+  color:#0A94CB;
+  text-align:center;
+
+h5{
+      margin-top: -10px;
+      font-family: roboto;
+      font-weight: 400;
+      text-align: center;
+      color:#0A94CB;
+      font-size:22px !important;
+
+  }
+
+h6{
+      margin-top: 0px;
+      font-family: roboto;
+      font-weight: 100;
+      font-size:16px !important;
+  }
+
 }
 
-/*div.navbar-collapse a:link {color:white;text-decoration:none;}
-div.navbar-collapse a:visited {color:white;text-decoration:none;}
-div.navbar-collapse a:hover {background-color:pink;text-decoration:none;}
-div.navbar-collapse a:active {color:white;text-decoration:none;}*/
-
-footer {
+/*-----CURRENT VIEW----------------------------------------------------------------*/
+/*footer {
   margin-top: 45px;
   padding-top: 5px;
   border-top: 1px solid $grayMediumLight;
@@ -58,7 +95,7 @@ footer {
       margin-left: 10px;
     }
   }
-}
+}*/
 
 .transparent{
   opacity: 0.1;
@@ -87,11 +124,9 @@ h1{
     text-align: center;
 }
 
-h5{
-  margin-top: 35px;
-    font-family: roboto;
-    font-weight: 100;
-    color: white;
-    font-size: 28px;
-    text-align: center;
+.form-control.labels.col-md-5.login_error { /*customizes the login error feedback*/
+  border-style:solid;
+  border-width:2.5px;
+  border-color:#a94442;
 }
+

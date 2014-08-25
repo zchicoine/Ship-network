@@ -13,12 +13,18 @@
 </head>
 <body>
 
-<% unless sign_in? %>
+<%= render 'error_message/index' %>
+
+
+
+<% unless broker_signed_in? %>
+
     <%= render 'main_pages/entry_banner' %>
     <div id="transparent_div" class="transparent">
+<% else %>
+
 <% end %>
-
-
+<!--<button class="show_hover">click me</button>-->
 <!-- header -->
 <%= render 'layouts/share/header' %>
 <!-- end of header -->

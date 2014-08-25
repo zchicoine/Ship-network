@@ -1,2 +1,15 @@
 // from the main banner log in button
-$('.banner1').html("<%= escape_javascript( render 'main_pages/login' )%>")
+
+<% if error.nil? %>
+$('.banner1').html("<%= escape_javascript( render 'main_pages/login', error: nil )%>")
+
+<% else %>
+$('document').ready(function(){
+    $('#loginError').tooltip('show');
+
+});
+$('#broker_username , #broker_password').parent().addClass("has-error has-feedback")
+$('#broker_username , #broker_password').addClass("login_error")
+$('#broker_username , #broker_password').parent().append("<span class='glyphicon glyphicon-remove form-control-feedback'></span>")
+
+<% end %>

@@ -4,8 +4,7 @@ class Ship < ActiveRecord::Base
     validates_uniqueness_of :name, case_sensitive: false
     validates :deadweight, numericality: {greater_than_or_equal_to: 0}, :if => "deadweight_validates?"
     validates :vessel_category,presence: true, if: :vessel_category_validates?
-    #validates :built, numericality: {less_than_or_equal_to: Time.now.year}
-    #validate  :vessel_type_validates?
+    validate  :vessel_type_validates?
 
     enum vessel_type: [:notype, :sdbc, :ohbs , :mpp, :tween, :roro]
     enum vessel_category: [:No_Type, :MiniBulker, :Handysize, :Handymax , :Supramax, :Panamax, :PostPanamax, :Capesize]

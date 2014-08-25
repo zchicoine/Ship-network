@@ -13,15 +13,15 @@
             <td>
                 <div class="dropdown">
                     <div class=" dropdown-menu-custom text-left dropdown-toggle" type="button" id="dropdownGoToRegion" data-toggle="dropdown">
-                        <%= 'Select Region'%>
+                        <span id="dropdownGoToRegion_lable">Select Region</span>
                         <span class="caret"></span>
                     </div>
                     <ul class="dropdown-menu full-width map_controller_go_to_region" role="menu" aria-labelledby="dropdownGoToRegion">
 
                         <% regions_names_coordinates.each do |region|%>
 
-                            <%= content_tag :li, class: "map_controller_go_to_region_li", role:"presentation",
-                                            onclick:"go_to_region('#{region[0]}')" do %>
+                            <%= content_tag :li, id: "#{remove_white_space region[0]}_inside_dropdown_main", class: "map_controller_go_to_region_li", role:"presentation",
+                                            onclick:"center_in_region('#{region[0]}')" do %>
                               <%=region[0]%>
                             <% end %>
                         <% end %>

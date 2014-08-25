@@ -47,8 +47,11 @@ class CreateShipDetails < ActiveRecord::Migration
       t.boolean :appendix_B_fitted?
       t.boolean :box_shaped_holds?
       t.boolean :cement_holes_fitted?
+      t.boolean :marine_gasoline_oil?
 
+      t.integer :ship_id
       t.timestamps
     end
+    add_index :ship_details, :ship_id
   end
 end
