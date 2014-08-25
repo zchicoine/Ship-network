@@ -75,7 +75,7 @@ closed_table_side_bar = function (speed) {
               image += ".want_to_close_table";
 
             if ( ! $(image).hasClass("this_class_only_to_change_image") ){
-                $(image).attr("src", "/assets/greentriangle_closed.png");
+                $(image).attr("src",image_greentriangle_closed());
                 $(image).addClass("this_class_only_to_change_image");
 
                 $(image).parent().parent().parent().next().children('tr').
@@ -94,7 +94,7 @@ open_table_side_bar = function (speed){
         image += ".want_to_open_table";
 
         if (  $(image).hasClass("this_class_only_to_change_image") ){
-            $(image).attr("src", "assets/greentriangle_down.png");
+            $(image).attr("src", image_greentriangle_down());
             $(image).removeClass("this_class_only_to_change_image");
 
             $(image).parent().parent().parent().next().children('tr').
@@ -114,11 +114,11 @@ open_table_side_bar = function (speed){
         // if the following class present that means a block is closed
         if ( $(image).hasClass("this_class_only_to_change_image") ) {
 
-            $(image).attr("src", "assets/greentriangle_down.png");
+            $(image).attr("src", image_greentriangle_down());
             $(image).removeClass("this_class_only_to_change_image");
         }
         else {
-            $(image).attr("src", "assets/greentriangle_closed.png");
+            $(image).attr("src",image_greentriangle_closed());
             $(image).addClass("this_class_only_to_change_image");
 
         }
