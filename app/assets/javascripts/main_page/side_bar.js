@@ -3,7 +3,7 @@
 function center_in_region(region_name){
 
     region_objects_variable.return_object_region(region_name).change_region_view();
-
+    update_region_view(region_name);
 }
 
 

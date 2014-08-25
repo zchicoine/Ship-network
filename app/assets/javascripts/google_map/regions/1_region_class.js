@@ -44,7 +44,6 @@ Region_class.prototype.change_region_view = function () {
     MAP.google_common_methods.set_center(this.lat_lang);
     MAP.google_common_methods.set_zoom(3);
     MAP.google_controller_methods.get_port_coordinates(this.name);
-    update_region_view(this.name);
     MAP.google_common_methods.clear_all_listeners_of_an_object(this.unique_identifier);
 
 };
@@ -146,6 +145,7 @@ function event_listeners_on_the_map(region_object,region_name) {
 
         MAP.events.click(region_object,function(){
             region_objects_variable.return_object_region(region_name).change_region_view();
+            update_region_view(region_name);
 
         })
     }

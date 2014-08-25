@@ -2,10 +2,8 @@
 
 
 
-	<div class="current_view_container current_view_decoration">
-  		<h6 class="italic">Current View:</h6>
- 		<h5 class="current_view">Global</h5>
-	</div>
+
+    <%= render 'main_pages/current_view/index' %>
 
     <%= image_tag "left_default.png", height: "auto", width: "25", class:"pointer",id:"left-img-responsive", data_toggle:"tooltip" ,data_placement:"top",title:"Tooltip on right" ,:onmouseover => "this.src = 'assets/left_hover.png'", :onmouseout => "this.src = 'assets/left_default.png'", :onclick => "this.src = 'assets/left_down.png'" %>
 	
