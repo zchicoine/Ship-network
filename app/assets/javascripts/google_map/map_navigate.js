@@ -3,13 +3,13 @@ $(window).load(function () {
 
     $("#right-img-responsive").click(function () {
 
-       REGION_OBJECTS.return_object_region(current_region()).scroll_between_specific_areas();
+       region_objects_variable.return_object_region(current_region()).scroll_between_specific_areas();
     });
 
 
     $("#left-img-responsive").click(function () {
 
-        REGION_OBJECTS.return_object_region(current_region()).scroll_between_specific_areas();
+        region_objects_variable.return_object_region(current_region()).scroll_between_specific_areas();
     });
 
 

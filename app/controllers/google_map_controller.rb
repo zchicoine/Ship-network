@@ -18,16 +18,7 @@ class GoogleMapController < ApplicationController
 
     end
 
- def close
 
-   respond_to do |format|
-     format.html {render :partial =>  'google_map/index'}
-     format.js { render 'google_map/js/close_button'}
-   end
-
- end
-
-  private
 
 
 end

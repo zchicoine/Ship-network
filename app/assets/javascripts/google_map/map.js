@@ -15,6 +15,7 @@ MAP = {
      },
     generate_ids: 0
 }
+
 MAP.properties = {
     options: function() {
         return {
@@ -24,6 +25,7 @@ MAP.properties = {
             panControl: false,
             streetViewControl: false,
             setScrollable: false,
+            scrollwheel: false,
             zoomControl: false,
             disableDoubleClickZoom: true,
             draggable: false,
@@ -112,13 +114,10 @@ MAP.google_fusiontables = {
 
     draw_on_the_map: function (data_from_fusiontable) {
 
-        rows = data_from_fusiontable['rows'];
+       var data = data_from_fusiontable['rows'];
 
-        for (var i in rows) {
-            REGION_OBJECTS.each_object().extract_region_coordinates(rows[i][0],rows[i][1])
-        }
-
-        REGION_OBJECTS.each_object().set_region_highlight_on_the_map(MAP.initialize.google_map());
+        region_objects_variable.each_object().extract_region_coordinates(data)
+        region_objects_variable.each_object().set_region_highlight_on_the_map();
 
     },
     load: function(){
@@ -158,18 +157,16 @@ MAP.helper_methods = {
             return this;
         }
 
-    },
+    }
 
-    create_google_map_object:function(){
+};
 
-        if ( arguments.callee._singletonInstance )
-            return arguments.callee._singletonInstance;
-        arguments.callee._singletonInstance = this;
+MAP.initialize = {
 
+    google_map:function(){
 
         var google_map = new google.maps.Map(document.getElementById("googleMap"),MAP.properties.options());
         google_map.setOptions({styles: MAP.properties.styles()});
-
 
         this.get = function(){
             return google_map;
@@ -180,15 +177,6 @@ MAP.helper_methods = {
         }
 
 
-    }
-
-
-};
-
-MAP.initialize = {
-
-    google_map:function(){
-        return new MAP.helper_methods.create_google_map_object().get();
     },
     create_polygon: function(paths,stroke_color,fill_color,object_unique_identifier){
 
@@ -200,7 +188,7 @@ MAP.initialize = {
             fillColor:fill_color ,
             fillOpacity: 0.2,
             assigned_id: object_unique_identifier || MAP.generate_ids++,
-            map:MAP.initialize.google_map()
+            map:MAP.google_map()
         });
     },create_marker: function(id,position,default_icon,title,object_unique_identifier){
 
@@ -211,7 +199,7 @@ MAP.initialize = {
             icon: default_icon,
             title:  title,
             assigned_id: object_unique_identifier || MAP.generate_ids++,
-            map:MAP.initialize.google_map()
+            map:MAP.google_map()
         });
         MAP.properties.markers.push(marker);
         return marker;
@@ -279,20 +267,20 @@ MAP.state_information = {
     },
 
     get_zoom:function(){
-        return MAP.initialize.google_map.get_zoom()
+        return MAP.google_map().get_zoom();
     }
 
-}
+};
 
 
 MAP.google_common_methods = {
 
     set_center: function(lat_lang){
-        MAP.initialize.google_map().setCenter(lat_lang);
+        MAP.google_map().setCenter(lat_lang);
     },
     set_zoom: function(val){
         if(val >= MAP_MINZOOM && val <= MAP_MAXZOOM){
-            MAP.initialize.google_map().setZoom(val);
+            MAP.google_map().setZoom(val);
 
         }
     },
@@ -391,7 +379,7 @@ MAP.google_controller_methods = {
                 return function() {
                     marker.setIcon(iconHover);
                     infowindow.setContent(content);
-                    infowindow.open(MAP.initialize.google_map(),marker);
+                    infowindow.open(MAP.google_map(),marker);
                 }
 
             })(marker,content));
@@ -401,7 +389,7 @@ MAP.google_controller_methods = {
                     // it allow clicking twice
                     if(marker.icon != iconClick) {
                         marker.setIcon(iconDefault);
-                        infowindow.close(MAP.initialize.google_map(),marker);
+                        infowindow.close(MAP.google_map(),marker);
                     }
                 }
 
@@ -419,4 +407,15 @@ MAP.google_controller_methods = {
         }
 
     }
+}
+
+// if new_map this function will reinitialize google map
+MAP.google_map = function(new_map){
+    new_map = typeof new_map !== 'undefined' ? new_map : false ;
+    if ( arguments.callee._singletonInstance && !new_map)
+        return arguments.callee._singletonInstance;
+
+        arguments.callee._singletonInstance =  new MAP.initialize.google_map().get();
+    return arguments.callee._singletonInstance;
+
 }

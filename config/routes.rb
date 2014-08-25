@@ -11,11 +11,12 @@ Rails.application.routes.draw do
     post 'side_bar/region_short_info' => 'side_bar#region_short_info'
     #--------------
     post  'google_map/port_coordinates' => 'google_map#port_coordinates'
-    post  'google_map/close' => 'google_map#close'
+
     #--------------
     post 'link_list_back_history/refresh' => 'link_list_back_history#refresh'
     #--------------
     post 'ship_details/show' => 'ship_details#show'
+    post  'ship_details/close' => 'ship_details#close'
     #--------------
     post 'main_pages/region' => "main_pages#region"
     post 'main_pages/port' => "main_pages#port"

@@ -31,6 +31,7 @@ Region_class = function () {
         'lable':"REGION",
         'lable_position':this.lat_lang
     };
+    this.region_polygon = undefined;
     this.fusiontables_properties = {
         "countries": this.list_of_countries,
         'coordinates':[],
@@ -42,7 +43,6 @@ Region_class.prototype.change_region_view = function () {
 
     MAP.google_common_methods.set_center(this.lat_lang);
     MAP.google_common_methods.set_zoom(3);
-    MAP.state_information.current_layer().set(REGION_LEVEL);
     MAP.google_controller_methods.get_port_coordinates(this.name);
     update_region_view(this.name);
     MAP.google_common_methods.clear_all_listeners_of_an_object(this.unique_identifier);
@@ -70,30 +70,40 @@ Region_class.prototype.scroll_between_specific_areas = function (){
     }
 }
 
-Region_class.prototype.extract_region_coordinates = function (country_name,country_coordinates){
+Region_class.prototype.extract_region_coordinates = function (data){
 
-    if( this.fusiontables_properties["countries"].indexOf(country_name) > -1 ){
-        if (country_coordinates['geometries']) {
-            for (var j in country_coordinates['geometries']) {
-                this.fusiontables_properties['coordinates'].push(constructNewCoordinates(country_coordinates['geometries'][j]));
+    if(this.region_polygon == undefined){
+        for (var i in data) {
+            country_name = data[i][0];
+            country_coordinates = data[i][1];
+
+            if( this.fusiontables_properties["countries"].indexOf(country_name) > -1 ){
+                if (country_coordinates['geometries']) {
+                    for (var j in country_coordinates['geometries']) {
+                        this.fusiontables_properties['coordinates'].push(constructNewCoordinates(country_coordinates['geometries'][j]));
+
+                    }
+
+                } else {
+                    this.fusiontables_properties['coordinates'].push(constructNewCoordinates(country_coordinates['geometry']));
+
+                }
 
             }
-
-        } else {
-            this.fusiontables_properties['coordinates'].push(constructNewCoordinates(country_coordinates['geometry']));
-
         }
-
     }
+
+
+
 
 }
 
 Region_class.prototype.set_region_highlight_on_the_map = function (){
 
-    var region_polygon =  MAP.initialize.create_polygon(this.fusiontables_properties['coordinates'],
+     this.region_polygon =  MAP.initialize.create_polygon(this.fusiontables_properties['coordinates'],
         this.map_properties['color'],this.map_properties['color'],this.unique_identifier);
 
-    event_listeners_on_the_map(region_polygon,this.name);
+    event_listeners_on_the_map(this.region_polygon,this.name);
 
 }
 Region_class.prototype.set_map_label = function(map){
@@ -121,6 +131,7 @@ function constructNewCoordinates(polygon) {
 function event_listeners_on_the_map(region_object,region_name) {
 
 
+
     if(MAP.state_information.current_layer().get() == GLOBAL_LEVEL){
         MAP.events.mouseover(region_object,function(){
             region_object.setOptions({
@@ -134,7 +145,7 @@ function event_listeners_on_the_map(region_object,region_name) {
         })
 
         MAP.events.click(region_object,function(){
-            REGION_OBJECTS.return_object_region(region_name).change_region_view();
+            region_objects_variable.return_object_region(region_name).change_region_view();
 
         })
     }

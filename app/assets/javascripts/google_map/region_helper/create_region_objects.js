@@ -1,6 +1,11 @@
 var Regions_Objects;
 Regions_Objects = function(){
 
+    //Singleton pattern
+    if ( arguments.callee._singletonInstance )
+        return arguments.callee._singletonInstance;
+    arguments.callee._singletonInstance = this;
+
     var  africa;
     var australia;
     var far_east;
@@ -80,10 +85,7 @@ Regions_Objects = function(){
     };
 
 
-    //Singleton pattern
-    if ( arguments.callee._singletonInstance )
-        return arguments.callee._singletonInstance;
-    arguments.callee._singletonInstance = this;
+
 
 }
 
@@ -140,7 +142,7 @@ Regions_Objects.prototype.return_object_region = function (region_name) {
 
 
 // this global variable is used to create region objects;
-var REGION_OBJECTS = new Regions_Objects();
+var region_objects_variable = new Regions_Objects();
 
 
 

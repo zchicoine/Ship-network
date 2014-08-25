@@ -11,5 +11,12 @@ class ShipDetailsController < ApplicationController
 
     end
 
+    def close
 
+        respond_to do |format|
+            format.html {render :partial =>  'ship_details/index'}
+            format.js { render 'ship_details/js/close_button'}
+        end
+
+    end
 end

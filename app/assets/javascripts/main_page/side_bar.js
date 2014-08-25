@@ -2,7 +2,7 @@
 // used by html code
 function center_in_region(region_name){
 
-    REGION_OBJECTS.return_object_region(region_name).change_region_view();
+    region_objects_variable.return_object_region(region_name).change_region_view();
 
 }
 

@@ -1,1 +1,4 @@
-$("#outer-map").html(" <%= escape_javascript(render 'google_map/index')%>")
+$("#outer-map").html(" <%= escape_javascript(render 'google_map/index')%>");
+
+var spec = {'layer':REGION_LEVEL, 'name': 'North America'};
+reload_the_map_with_specification(spec);
