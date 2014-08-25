@@ -6,7 +6,15 @@ var MAP_DEFAULT_CENTER = [33.818667, -43.759049];
 var MAP;
 MAP = MAP || {};
 
-
+MAP = {
+     listener_objects: {
+         'click':{},
+         'rightclick':{},
+         'mouseover':{},
+         "mouseout":{}
+     },
+    generate_ids: 0
+}
 MAP.properties = {
     options: function() {
         return {
@@ -188,6 +196,7 @@ MAP.initialize = {
             strokeWeight: 1,
             fillColor:fill_color ,
             fillOpacity: 0.2,
+            assigned_id: MAP.generate_ids++,
             map:MAP.initialize.google_map()
         });
     }
@@ -195,6 +204,7 @@ MAP.initialize = {
 
 
 };
+
 MAP.events ={
 
     rightclick: function(object,optional_function){
@@ -202,7 +212,9 @@ MAP.events ={
              if(optional_function != undefined &&   typeof(optional_function) === 'function'  ){
                  function_options();
              }
-        });
+             MAP.listener_objects["rightclick"][object.assigned_id] = object;
+
+         });
 
     },
     click: function(object, optional_function){
@@ -212,6 +224,8 @@ MAP.events ={
            if(optional_function != undefined &&   typeof(optional_function) === 'function'  ){
                optional_function();
            }
+
+            MAP.listener_objects["click"][object.assigned_id] = object;
 
 
         });
@@ -224,6 +238,12 @@ MAP.events ={
                 optional_function();
             }
 
+            console.log(object.assigned_id);
+
+            MAP.listener_objects["mouseover"][object.assigned_id] = object;
+
+
+
 
         });
     },
@@ -234,7 +254,7 @@ MAP.events ={
             if (optional_function != undefined && typeof(optional_function) === 'function') {
                 optional_function();
             }
-
+            MAP.listener_objects["mouseout"][object.assigned_id] = object;
 
         });
     }
@@ -278,8 +298,14 @@ MAP.google_common_methods = {
             }
         }
     },
-    clear_listener:function(object){
-        google.maps.event.clearInstanceListeners(object);
+    clear_all_listeners:function(){
+        for(var event in MAP.listener_objects){
+            for (var object in MAP.listener_objects[event]){
+                google.maps.event.clearInstanceListeners(MAP.listener_objects[event][object]);
+            }
+
+        }
+
     }
 
 

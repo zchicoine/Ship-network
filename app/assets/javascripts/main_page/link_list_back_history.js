@@ -4,7 +4,7 @@
 //          level: Global, region, area, port, ship (required)
 
 refresh_link_list_back_history = function (string_name, level) {
-    console.log("R:" + string_name)
+
     if(string_name.match(/[a-z]*/i) &&  !isNaN(level)) {
 
         var data = { "name": string_name,  "level":level };

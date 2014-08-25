@@ -117,9 +117,9 @@ function constructNewCoordinates(polygon) {
     }
     return newCoordinates;
 }
-var count99 = 0
+
 function event_listeners_on_the_map(region_object,region_name) {
-    console.log( "event " + count99++);
+
     listener_array.push(region_object);
     if(MAP.state_information.current_layer().get() == GLOBAL_LEVEL){
         MAP.events.mouseover(region_object,function(){
