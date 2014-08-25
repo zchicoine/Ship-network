@@ -140,6 +140,8 @@ MAP.google_fusiontables = {
 
 
 }
+
+
 MAP.helper_methods = {
     current_layer: function(){
 
@@ -200,6 +202,19 @@ MAP.initialize = {
             assigned_id: object_unique_identifier || MAP.generate_ids++,
             map:MAP.initialize.google_map()
         });
+    },create_marker: function(id,position,default_icon,title,object_unique_identifier){
+
+
+        var marker = new google.maps.Marker({
+            id: id,
+            position: position,
+            icon: default_icon,
+            title:  title,
+            assigned_id: object_unique_identifier || MAP.generate_ids++,
+            map:MAP.initialize.google_map()
+        });
+        MAP.properties.markers.push(marker);
+        return marker;
     }
 
 
@@ -270,7 +285,6 @@ MAP.state_information = {
 }
 
 
-
 MAP.google_common_methods = {
 
     set_center: function(lat_lang){
@@ -282,19 +296,14 @@ MAP.google_common_methods = {
 
         }
     },
-    set_markers: function(markers) {
-        if (markers != undefined){
-            for (var i = 0; i < markers.length; i++) {
-                markers[i].setMap(MAP.initialize.google_map());
-            }
-        }
-    },
-    delete_marker: function(markers){
+    delete_all_marker: function(){
+        var markers = MAP.properties.markers;
         if (markers != undefined){
             for (var i = 0; i < markers.length; i++) {
                 markers[i].setMap(null);
             }
         }
+        MAP.properties.markers = [];
     },
     clear_all_listeners:function(){
         for(var event in MAP.listener_objects){
@@ -320,55 +329,52 @@ MAP.google_common_methods = {
 }
 
 MAP.google_controller_methods = {
-    set_region_center: function (getClickedPostion,region_name,e){
+    get_port_coordinates: function(region_name){
+        if( region_name.match(/[a-zA-Z]/i) ) {
+            var data_json = { "region_info": { "name": region_name } };
+            // ajax parameters
+            $.ajax({
+                url: 'google_map/port_coordinates',
+                beforeSend: function () {
+                },
+                type: 'POST',
+                data: data_json,
+                complete: function (r) {
 
-//            if(zval.get() == 3 && region_clicked_boolean.get() != 1){
-//
-//                MAP.google_common_methods.set_center(getClickedPostion);
-//
-//                region_clicked_boolean.set(1);
-//                MAP.google_common_methods.set_zoom(4);
-//
-//                REGION_OBJECTS.return_object_region(region_name).change_region_view();
-//            }else{
-//                region_clicked_boolean.set(0);
-//                MAP.google_common_methods.set_center(getClickedPostion);
-//                MAP.google_common_methods.set_zoom(4);
-//
-//
-//                $('.region_labels').remove();
-//
-//            }
+                },
+                success: function (result) {
 
+                    MAP.google_controller_methods.display_ports( result.coordinates , result.name, result.shipNumber)
+
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+
+                    error_message_display($.parseJSON(xhr.responseText).errors);
+                }
+            });
+        }else{
+            error_message_display(region_name + "is not support by system");
+        }
     },
-
-    display_ports: function (port , port_name , ship_number){
+    display_ports: function (port,port_name,ship_number){
         // clear marker on the google_map
-        MAP.google_common_methods.delete_marker( MAP.properties.markers);
-        MAP.properties.markers = [];
+        MAP.google_common_methods.delete_all_marker();
 
         var iconDefault = {
             url: 'assets/google_map/but_default_24.png'
             // This marker is 20 pixels wide by 32 pixels tall.
-
             // The origin for this image is 0,0.
-
         };
         var iconHover = {
             url: 'assets/google_map/but_hover_24.png'
             // This marker is 20 pixels wide by 32 pixels tall.
-
             // The origin for this image is 0,0.
-
         };
         var iconClick = {
             url: 'assets/google_map/but_down_24.png'
             // This marker is 20 pixels wide by 32 pixels tall.
-
             // The origin for this image is 0,0.
-
         };
-
 
         for(var i=0;i < port.length;i++){
 
@@ -378,17 +384,10 @@ MAP.google_controller_methods = {
                 port_name[i] +' has ' + ship_number[i] + ' ship(s)' +
                 "</div>";
 
-            new google.maps.Size(20, 34),
-                marker = new google.maps.Marker({
-                    id: port_name[i],
-                    position: position,
-                  //  google_map: google_map,
-                    icon: iconDefault,
-                    title:  ship_number[i] + ' ship(s)'
+          //  new google.maps.Size(20, 34), From Mohammed: why this line here?
+                marker = MAP.initialize.create_marker(port_name[i],position,iconDefault,ship_number[i] + ' ship(s)',port_name);
 
-                });
-           MAP.properties.markers.push(marker);
-            google.maps.event.addListener(marker, 'mouseover', (function( marker,content) {
+            MAP.events.mouseover(marker,(function( marker,content) {
                 return function() {
                     marker.setIcon(iconHover);
                     infowindow.setContent(content);
@@ -397,7 +396,7 @@ MAP.google_controller_methods = {
 
             })(marker,content));
 
-            google.maps.event.addListener(marker, 'mouseout', (function( marker,content) {
+            MAP.events.mouseout(marker, (function( marker,content) {
                 return function() {
                     // it allow clicking twice
                     if(marker.icon != iconClick) {
@@ -407,10 +406,8 @@ MAP.google_controller_methods = {
                 }
 
             })(marker, ""));
-            google.maps.event.addListener(marker, 'click', (function( marker,content) {
+            MAP.events.click(marker,(function( marker,content) {
                 return function() {
-
-
                     update_port_view(marker.id);
                     marker.setIcon(iconClick);
 
@@ -419,11 +416,7 @@ MAP.google_controller_methods = {
             })(marker, content));
 
 
-
-
         }
 
-        MAP.google_common_methods.set_markers( MAP.properties.markers);
     }
 }
-
