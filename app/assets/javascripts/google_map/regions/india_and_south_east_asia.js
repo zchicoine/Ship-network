@@ -7,6 +7,7 @@ India_and_South_East_Asia_class = function () {
     // set correctly during the call
     Region_class.call(this);
     this.name = 'India and South East Asia';
+    this.unique_identifier = this.name;
     this.lat_lang = new google.maps.LatLng(17.686816,83.218482);
     this.layer_array = [
 //vishakapatnam

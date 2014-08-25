@@ -7,6 +7,7 @@ Australia_class = function () {
     // set correctly during the call
     Region_class.call(this);
     this.name = "Australia";
+    this.unique_identifier = this.name;
     this.lat_lang = new google.maps.LatLng(-32.926689,151.778921);
     this.layer_array = [
         //new castle

@@ -7,6 +7,7 @@ Europe_class = function () {
     // set correctly during the call
     Region_class.call(this);
     this.name = 'Europe';
+    this.unique_identifier = this.name;
     this.lat_lang = new google.maps.LatLng(52.3666,4.8999);
     this.layer_array = [
         new google.maps.LatLng(52.3666,4.8999),

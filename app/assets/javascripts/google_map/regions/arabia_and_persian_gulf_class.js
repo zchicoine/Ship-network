@@ -7,6 +7,7 @@ Arabia_and_Persian_Gulf_Class = function () {
     // set correctly during the call
     Region_class.call(this);
     this.name = "Arabia and Persian Gulf";
+    this.unique_identifier = this.name;
     this.lat_lang = new google.maps.LatLng(-30.559482,22.937506);
     this.layer_array = [
         //sur

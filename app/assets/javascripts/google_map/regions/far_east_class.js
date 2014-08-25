@@ -7,6 +7,7 @@ Far_East_class = function () {
     // set correctly during the call
     Region_class.call(this);
     this.name = 'Far East';
+    this.unique_identifier = this.name;
     this.lat_lang = new google.maps.LatLng(35.179554,129.075642);
     this.layer_array = [
 //busan

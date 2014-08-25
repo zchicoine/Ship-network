@@ -6,6 +6,7 @@ North_America_class = function () {
     // set correctly during the call
     Region_class.call(this);
     this.name = 'North America';
+    this.unique_identifier = this.name;
     this.lat_lang = new google.maps.LatLng(55.443528, -96.053968);
     this.layer_array =[
         new google.maps.LatLng(29.95,-90.06667),

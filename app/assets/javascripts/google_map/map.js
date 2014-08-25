@@ -188,7 +188,8 @@ MAP.initialize = {
     google_map:function(){
         return new MAP.helper_methods.create_google_map_object().get();
     },
-    create_polygon: function(paths,stroke_color,fill_color){
+    create_polygon: function(paths,stroke_color,fill_color,object_unique_identifier){
+
        return new google.maps.Polygon({
             paths: paths,
             strokeColor: stroke_color,
@@ -196,7 +197,7 @@ MAP.initialize = {
             strokeWeight: 1,
             fillColor:fill_color ,
             fillOpacity: 0.2,
-            assigned_id: MAP.generate_ids++,
+            assigned_id: object_unique_identifier || MAP.generate_ids++,
             map:MAP.initialize.google_map()
         });
     }
@@ -212,9 +213,10 @@ MAP.events ={
              if(optional_function != undefined &&   typeof(optional_function) === 'function'  ){
                  function_options();
              }
-             MAP.listener_objects["rightclick"][object.assigned_id] = object;
-
          });
+        if(object.assigned_id != undefined) {
+            MAP.listener_objects["rightclick"][object.assigned_id] = object;
+        }
 
     },
     click: function(object, optional_function){
@@ -224,11 +226,10 @@ MAP.events ={
            if(optional_function != undefined &&   typeof(optional_function) === 'function'  ){
                optional_function();
            }
-
-            MAP.listener_objects["click"][object.assigned_id] = object;
-
-
         });
+        if(object.assigned_id != undefined) {
+            MAP.listener_objects["click"][object.assigned_id] = object;
+        }
     },
     mouseover: function(object, optional_function) {
         // click  event function for zooming in
@@ -237,26 +238,23 @@ MAP.events ={
             if (optional_function != undefined && typeof(optional_function) === 'function') {
                 optional_function();
             }
-
-            console.log(object.assigned_id);
-
-            MAP.listener_objects["mouseover"][object.assigned_id] = object;
-
-
-
-
         });
+        if(object.assigned_id != undefined) {
+            MAP.listener_objects["mouseover"][object.assigned_id] = object;
+        }
     },
     mouseout: function(object, optional_function) {
+
         // click  event function for zooming in
         google.maps.event.addListener(object, 'mouseout', function (e) {
 
             if (optional_function != undefined && typeof(optional_function) === 'function') {
                 optional_function();
             }
-            MAP.listener_objects["mouseout"][object.assigned_id] = object;
-
         });
+        if(object.assigned_id != undefined) {
+            MAP.listener_objects["mouseout"][object.assigned_id] = object;
+        }
     }
 };
 
@@ -306,6 +304,16 @@ MAP.google_common_methods = {
 
         }
 
+    },clear_all_listeners_of_an_object:function(object_unique_identifier){
+        for(var event in MAP.listener_objects){
+
+           var temp_obj =  MAP.listener_objects[event][object_unique_identifier];
+
+            if(temp_obj){
+                google.maps.event.clearInstanceListeners(temp_obj);
+                delete MAP.listener_objects[event][object_unique_identifier];
+            }
+        }
     }
 
 

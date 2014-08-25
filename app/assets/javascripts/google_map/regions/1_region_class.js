@@ -1,9 +1,10 @@
 // to make sure is load first
-var listener_array = [];
+
 // base class
 var Region_class;
 Region_class = function () {
     this.name = "Global";
+    this.unique_identifier = this.name;
     this.lat_lang = new google.maps.LatLng(55.443528, -96.053968);
     this.layer_array = [
             //north america
@@ -45,7 +46,8 @@ Region_class.prototype.change_region_view = function () {
 
     update_region_view(this.name);
     send_data_to_get_port_coordinates(this.name);
-    listener_array.forEach(function(value){ MAP.google_common_methods.clear_listener(value);})
+    //console.log(this.unique_identifier);
+    MAP.google_common_methods.clear_all_listeners_of_an_object(this.unique_identifier);
 
 };
 var i=0;
@@ -90,10 +92,10 @@ Region_class.prototype.extract_region_coordinates = function (country_name,count
 
 Region_class.prototype.set_region_highlight_on_the_map = function (){
 
-    var region =  MAP.initialize.create_polygon(this.fusiontables_properties['coordinates'],
-        this.map_properties['color'],this.map_properties['color']);
+    var region_polygon =  MAP.initialize.create_polygon(this.fusiontables_properties['coordinates'],
+        this.map_properties['color'],this.map_properties['color'],this.unique_identifier);
 
-    event_listeners_on_the_map(region,this.name);
+    event_listeners_on_the_map(region_polygon,this.name);
 
 }
 Region_class.prototype.set_map_label = function(map){
@@ -120,7 +122,7 @@ function constructNewCoordinates(polygon) {
 
 function event_listeners_on_the_map(region_object,region_name) {
 
-    listener_array.push(region_object);
+
     if(MAP.state_information.current_layer().get() == GLOBAL_LEVEL){
         MAP.events.mouseover(region_object,function(){
             region_object.setOptions({
@@ -135,6 +137,7 @@ function event_listeners_on_the_map(region_object,region_name) {
 
         MAP.events.click(region_object,function(){
             REGION_OBJECTS.return_object_region(region_name).change_region_view();
+
         })
     }
 

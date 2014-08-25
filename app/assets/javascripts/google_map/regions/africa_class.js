@@ -7,6 +7,7 @@ Africa_class = function () {
     // set correctly during the call
     Region_class.call(this);
     this.name = 'Africa';
+    this.unique_identifier = this.name;
     this.lat_lang = new google.maps.LatLng(4.05000,9.700000);
 
     this.layer_array = [

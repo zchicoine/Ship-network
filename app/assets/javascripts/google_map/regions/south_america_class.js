@@ -7,6 +7,7 @@ South_America_class = function () {
     // set correctly during the call
     Region_class.call(this);
     this.name = 'South America';
+    this.unique_identifier = this.name;
     this.lat_lang = new google.maps.LatLng(-12.05,-77.16667);
     this.layer_array = [
         new google.maps.LatLng(-12.05,-77.16667),
