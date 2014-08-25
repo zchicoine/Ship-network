@@ -1,10 +1,19 @@
+var temp_region = '<%= escape_javascript( @saved_name )%>'
+
 // make sure the map is in place
 if($("#googleMap").length == 0){
     $("#outer-map").html(" <%= escape_javascript(render 'google_map/index')%>");
-    // not only the map will reload but also others will change accordingly
-    var spec = {'layer':REGION_LEVEL, 'region_name': '<%= escape_javascript( @saved_name )%>'};
+    var spec = {'layer':REGION_LEVEL, 'region_name':temp_region };
     reload_the_map_with_specification(spec);
+    update_region_view(temp_region);
 }else{
-    update_region_view(" <%= escape_javascript(@saved_name)%>");
+    if( ! current_region().match(temp_region) ){
+        var spec = {'layer':REGION_LEVEL, 'region_name':temp_region };
+        reload_the_map_with_specification(spec);
+    }
+    update_region_view(temp_region);
 }
+
+
+
 

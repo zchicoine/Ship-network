@@ -249,6 +249,15 @@ short_region_info_hide = function(default_name){
     $('.triangle_image').addClass('want_to_open_table');
     open_table_side_bar(200);
 }
+
+$(document).ready(function() {
+    // ensure closing of dropdown menu when one of its elements has been clicked
+
+    $('.map_controller_go_to_region_li').click(function () {
+        $('.dropdown-toggle').trigger('click');
+    });
+});
+
 //$(document).on('click',".one", function(e){
 //    console.log("URL: " + this.href);
 //    $.getScript(this.href);

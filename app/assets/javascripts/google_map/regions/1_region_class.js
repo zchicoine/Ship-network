@@ -61,7 +61,7 @@ Region_class.prototype.scroll_between_specific_areas = function (){
 
     }
     else if (i == (temp.length - 1)) {
-        //alert(temp[i]);
+        //alert(temp_region[i]);
         MAP.google_common_methods.set_center(temp[(temp.length - 1)]);
         //	window.google_map.setZoom(5);
         i = 0;
