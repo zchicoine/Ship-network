@@ -1,5 +1,5 @@
 // to make sure is load first
-
+var listener_array = [];
 // base class
 var Region_class;
 Region_class = function () {
@@ -40,9 +40,13 @@ Region_class = function () {
 Region_class.prototype.change_region_view = function () {
 
     MAP.google_common_methods.set_center(this.lat_lang);
+    MAP.google_common_methods.set_zoom(3);
+    MAP.state_information.current_layer().set(REGION_LEVEL);
+
     update_region_view(this.name);
-    setSelectRegion_on_sidebar(this.name);
     send_data_to_get_port_coordinates(this.name);
+    listener_array.forEach(function(value){ MAP.google_common_methods.clear_listener(value);})
+
 };
 var i=0;
 Region_class.prototype.scroll_between_specific_areas = function (){
@@ -52,14 +56,14 @@ Region_class.prototype.scroll_between_specific_areas = function (){
     var temp = a.getValue();
 
     if (i != (temp.length - 1)) {
-        window.google_map.setCenter(temp[i]);
+        MAP.google_common_methods.set_center(temp[i]);
         //	window.google_map.setZoom(5);
         i++;
 
     }
     else if (i == (temp.length - 1)) {
         //alert(temp[i]);
-        window.google_map.setCenter(temp[(temp.length - 1)]);
+        MAP.google_common_methods.set_center(temp[(temp.length - 1)]);
         //	window.google_map.setZoom(5);
         i = 0;
 
@@ -113,18 +117,24 @@ function constructNewCoordinates(polygon) {
     }
     return newCoordinates;
 }
-
-function event_listeners_on_the_map(country,region_name) {
-    if(MAP.state_information.current_layer() == GLOBAL_LEVEL){
-        MAP.events.mouseover(country,function(){
-            country.setOptions({
+var count99 = 0
+function event_listeners_on_the_map(region_object,region_name) {
+    console.log( "event " + count99++);
+    listener_array.push(region_object);
+    if(MAP.state_information.current_layer().get() == GLOBAL_LEVEL){
+        MAP.events.mouseover(region_object,function(){
+            region_object.setOptions({
                 fillOpacity: 0.4
             });
         });
-        MAP.events.mouseout(country,function(){
-            country.setOptions({
+        MAP.events.mouseout(region_object,function(){
+            region_object.setOptions({
                 fillOpacity: 0.2
             });
+        })
+
+        MAP.events.click(region_object,function(){
+            REGION_OBJECTS.return_object_region(region_name).change_region_view();
         })
     }
 

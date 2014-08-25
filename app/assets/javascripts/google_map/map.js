@@ -7,8 +7,6 @@ var MAP;
 MAP = MAP || {};
 
 
-
-
 MAP.properties = {
     options: function() {
         return {
@@ -152,7 +150,7 @@ MAP.helper_methods = {
 
     },
 
-    google_map_object:function(){
+    create_google_map_object:function(){
 
         if ( arguments.callee._singletonInstance )
             return arguments.callee._singletonInstance;
@@ -180,7 +178,7 @@ MAP.helper_methods = {
 MAP.initialize = {
 
     google_map:function(){
-        return new MAP.helper_methods.google_map_object().get();
+        return new MAP.helper_methods.create_google_map_object().get();
     },
     create_polygon: function(paths,stroke_color,fill_color){
        return new google.maps.Polygon({
@@ -212,7 +210,7 @@ MAP.events ={
         google.maps.event.addListener(object, 'click', function(e) {
 
            if(optional_function != undefined &&   typeof(optional_function) === 'function'  ){
-               function_options();
+               optional_function();
            }
 
 
@@ -244,7 +242,7 @@ MAP.events ={
 
 MAP.state_information = {
     current_layer: function() {
-        return  new MAP.helper_methods.current_layer().get();
+        return  new MAP.helper_methods.current_layer();
     },
 
     get_zoom:function(){
@@ -258,18 +256,18 @@ MAP.state_information = {
 MAP.google_common_methods = {
 
     set_center: function(lat_lang){
-        MAP.initialize.google_map.setCenter(lat_lang);
+        MAP.initialize.google_map().setCenter(lat_lang);
     },
     set_zoom: function(val){
         if(val >= MAP_MINZOOM && val <= MAP_MAXZOOM){
-            MAP.initialize.google_map.setZoom(val);
+            MAP.initialize.google_map().setZoom(val);
 
         }
     },
     set_markers: function(markers) {
         if (markers != undefined){
             for (var i = 0; i < markers.length; i++) {
-                markers[i].setMap(MAP.initialize.google_map);
+                markers[i].setMap(MAP.initialize.google_map());
             }
         }
     },
@@ -279,6 +277,9 @@ MAP.google_common_methods = {
                 markers[i].setMap(null);
             }
         }
+    },
+    clear_listener:function(object){
+        google.maps.event.clearInstanceListeners(object);
     }
 
 
@@ -357,7 +358,7 @@ MAP.google_controller_methods = {
                 return function() {
                     marker.setIcon(iconHover);
                     infowindow.setContent(content);
-                    infowindow.open(google_map,marker);
+                    infowindow.open(MAP.initialize.google_map(),marker);
                 }
 
             })(marker,content));
@@ -367,7 +368,7 @@ MAP.google_controller_methods = {
                     // it allow clicking twice
                     if(marker.icon != iconClick) {
                         marker.setIcon(iconDefault);
-                        infowindow.close(google_map,marker);
+                        infowindow.close(MAP.initialize.google_map(),marker);
                     }
                 }
 

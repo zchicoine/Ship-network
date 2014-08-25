@@ -1,14 +1,8 @@
-var region_center_coordinates =  [[48.2893, -99.3594], [-10.4893, -59.3594],[17.6493, 11.5994],
-                   [33.1376, 47.6367], [-25.8000, 133.2422],[53.1289, 45.1102],
-                   [24.4471,85.1660] ,[35.8178, 118.0371],[-4.0396, 121.2891]];
 
-
-
+// used by html code
 function center_in_region(region_name){
 
-
     REGION_OBJECTS.return_object_region(region_name).change_region_view();
-
 
 }
 
@@ -24,7 +18,6 @@ setSelectRegion_on_sidebar = function(region_name){
 
 send_data_to_side_bar = function(name, level){
 
-    console.log(name + "   " + level)
     var data_json = { "side_info": { "name": name , "level": level} };
     var url = 'side_bar/index';
     var html_class = '.aside_ship_details_table_body';
@@ -61,7 +54,7 @@ send_data_to_side_bar = function(name, level){
 
             },
             error: function(xhr, ajaxOptions, thrownError){
-               // alert(r + " works");
+
                 error_message_display(thrownError)
             }
         });
