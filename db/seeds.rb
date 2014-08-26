@@ -106,7 +106,7 @@ open("db/data/region.txt") do |ports|
         region, name, latitude, longitude = port.chomp.split(";")
 
         # begin
-        #    # _shipment = Shipment.new(open_start_date: Time.now,open_end_date:  Time.new.advance({days:6}))
+
         #    #  country =    Geocoder.search("#{latitude},#{longitude}").last.data["address_components"].first["long_name"]
         #    #  region =     Region.get_region country
         #    #  output.write(" #{region};#{name};#{latitude}; #{longitude}; \n")
@@ -118,22 +118,29 @@ open("db/data/region.txt") do |ports|
         #
         # end
         begin
-            Port.create!(name: name, latitude: latitude.to_f, longitude: longitude.to_f, region: region,
-                         ships: [all_ships.sample, all_ships.sample,all_ships.sample,all_ships.sample,all_ships.sample,all_ships.sample,all_ships.sample,all_ships.sample,all_ships.sample,all_ships.sample]
+            _shipments = []
+           for i in 1..[*1..8].sample
+               _shipments.push(Shipment.new(open_start_date: Time.new.advance({days:[*1..25].sample}),open_end_date:  Time.new.advance({days:[*30..55].sample}),
+                                        ship:all_ships.sample))
+           end
 
-            )
+
+            Port.create!(name: name, latitude: latitude.to_f, longitude: longitude.to_f, region: region,
+                         shipments:_shipments)
         rescue => e
             puts e.message + " for  port: " + name
         end
      end
 end
-all_shipments = Shipment.all
+
 begin
-    Broker.create!(username: "Zack", password: "shipment",company:"Sterling Ocean Transport", email: "z.chicoine@gmail.com", shipments:all_shipments)
+    all_shipments = Shipment.all
+    Broker.create!(username: "Zack", password: "shipment",company:"Sterling Ocean Transport",
+                   email: "z.chicoine@gmail.com", shipments:all_shipments)
 
 rescue => e
-    puts e.message
+    puts "#{e.message} for broker Zack"
 end
-p "Created #{Port.count} ports and #{Ship.count} ships and #{Broker.count} broker"
+p "Created #{Port.count} ports and #{Ship.count} ships and #{Shipment.count} shipments and #{Broker.count} broker"
 
 # here some rails query that would be helpful for the developer later on
