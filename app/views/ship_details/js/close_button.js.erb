@@ -1,4 +1,5 @@
 $("#outer-map").html(" <%= escape_javascript(render 'google_map/index')%>");
 
-var spec = {'layer':PORT_LEVEL, 'region_name': 'North America', 'port_name':'Barahona'};
+var spec = {'new_map':true,'layer':PORT_LEVEL, 'region_name': 'North America', 'port_name':'Barahona'};
 reload_the_map_with_specification(spec);
+update_port_view("Barahona");

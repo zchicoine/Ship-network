@@ -27,5 +27,10 @@ Region_Functionality= function(){
             value.clear_all_listeners_of_region();
         })
     }
+    this.region_polygon_setOptions = function(options){
+        region_objects_variable.regions_objects_array().forEach(function(value){
+            value.region_polygon_setOptions(options);
+        })
+    }
 
 }

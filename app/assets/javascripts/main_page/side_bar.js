@@ -1,12 +1,4 @@
 
-// used by html code
-function center_in_region(region_name){
-
-    region_objects_variable.return_object_region(region_name).change_region_view();
-    update_region_view(region_name);
-}
-
-
 // this function for google_map controller on sidebar, when a user select a region then that region will be displayed and highlighted.
 setSelectRegion_on_sidebar = function(region_name){
 

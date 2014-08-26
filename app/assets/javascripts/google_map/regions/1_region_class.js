@@ -99,10 +99,16 @@ Region_class.prototype.extract_region_coordinates = function (data){
 
 Region_class.prototype.set_region_highlight_on_the_map = function (){
 
-     this.region_polygon =  MAP.initialize.create_polygon(this.fusiontables_properties['coordinates'],
-        this.map_properties['color'],this.map_properties['color'],this.unique_identifier);
+    if(this.region_polygon == undefined){
+        this.region_polygon = MAP.initialize.create_polygon(this.fusiontables_properties['coordinates'],
+            this.map_properties['color'], this.map_properties['color'], this.unique_identifier);
 
-    event_listeners_on_the_map(this.region_polygon,this.name);
+        event_listeners_on_the_map(this.region_polygon,this.name);
+    }else{
+        this.region_polygon.setMap(MAP.google_map());
+    }
+
+
 
 }
 Region_class.prototype.set_map_label = function(map){
@@ -115,6 +121,14 @@ Region_class.prototype.set_map_label = function(map){
 }
 Region_class.prototype.clear_all_listeners_of_region= function(){
     MAP.google_common_methods.clear_all_listeners_of_an_object(this.unique_identifier);
+}
+// see options https://developers.google.com/maps/documentation/javascript/reference#PolygonOptions
+
+Region_class.prototype.region_polygon_setOptions= function(options){
+    if(this.region_polygon != undefined && options != undefined){
+        this.region_polygon.setOptions(options);
+    }
+
 }
 
 // end of Region class //
@@ -147,8 +161,7 @@ function event_listeners_on_the_map(region_object,region_name) {
         })
 
         MAP.events.click(region_object,function(){
-            region_objects_variable.return_object_region(region_name).change_region_view();
-            region_objects_variable.each_object().clear_all_listeners_of_region();
+            zoom_to_region_level_map(region_name);
             update_region_view(region_name);
 
         })
