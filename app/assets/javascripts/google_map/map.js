@@ -119,7 +119,6 @@ MAP.google_fusiontables = {
             region_objects_variable.each_object().extract_region_coordinates(data)
             region_objects_variable.each_object().set_region_highlight_on_the_map();
         }else {
-            console.log(data_from_fusiontable['error'])
             error_message_display("Google map fusion tables: " + data_from_fusiontable['error']['message']);
         }
 

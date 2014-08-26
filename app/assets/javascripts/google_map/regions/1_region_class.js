@@ -6,7 +6,7 @@ Region_class = function () {
     this.name = "Global";
     this.unique_identifier = this.name;
     this.lat_lang = new google.maps.LatLng(55.443528, -96.053968);
-    this.layer_array = [
+    this.areas_coordinates = [
             //north america
                     new google.maps.LatLng(29.95,-90.06667),
             //south america
@@ -50,9 +50,9 @@ Region_class.prototype.change_region_view = function () {
 var i=0;
 Region_class.prototype.scroll_between_specific_areas = function (){
 
-    var a = new Field("test");
-    a.setValue(this.layer_array);
-    var temp = a.getValue();
+//    var a = new Field("test");
+//    a.setValue(this.areas_coordinates);
+    var temp = this.areas_coordinates;
 
     if (i != (temp.length - 1)) {
         MAP.google_common_methods.set_center(temp[i]);

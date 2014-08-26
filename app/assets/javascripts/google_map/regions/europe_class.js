@@ -9,7 +9,7 @@ Europe_class = function () {
     this.name = 'Europe';
     this.unique_identifier = this.name;
     this.lat_lang = new google.maps.LatLng(52.3666,4.8999);
-    this.layer_array = [
+    this.areas_coordinates = [
         new google.maps.LatLng(52.3666,4.8999),
         //Recalada
         new google.maps.LatLng(41.016666,28.983),

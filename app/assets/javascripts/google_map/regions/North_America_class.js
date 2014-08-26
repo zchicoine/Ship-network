@@ -8,7 +8,7 @@ North_America_class = function () {
     this.name = 'North America';
     this.unique_identifier = this.name;
     this.lat_lang = new google.maps.LatLng(55.443528, -96.053968);
-    this.layer_array =[
+    this.areas_coordinates =[
         new google.maps.LatLng(29.95,-90.06667),
         //Recalada
         new google.maps.LatLng(40.71667,-74)

@@ -10,7 +10,7 @@ Africa_class = function () {
     this.unique_identifier = this.name;
     this.lat_lang = new google.maps.LatLng(4.05000,9.700000);
 
-    this.layer_array = [
+    this.areas_coordinates = [
 //douala
         new google.maps.LatLng(4.05000,9.700000),
 //Durban

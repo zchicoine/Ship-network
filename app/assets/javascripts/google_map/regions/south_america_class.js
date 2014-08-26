@@ -9,7 +9,7 @@ South_America_class = function () {
     this.name = 'South America';
     this.unique_identifier = this.name;
     this.lat_lang = new google.maps.LatLng(-12.05,-77.16667);
-    this.layer_array = [
+    this.areas_coordinates = [
         new google.maps.LatLng(-12.05,-77.16667),
         //Recalada
         new google.maps.LatLng(6.81667,-58.16667)

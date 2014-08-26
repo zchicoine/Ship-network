@@ -9,7 +9,7 @@ Australia_class = function () {
     this.name = "Australia";
     this.unique_identifier = this.name;
     this.lat_lang = new google.maps.LatLng(-32.926689,151.778921);
-    this.layer_array = [
+    this.areas_coordinates = [
         //new castle
         new google.maps.LatLng(-32.926689,151.778921),
         //danpier

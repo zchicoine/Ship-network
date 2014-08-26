@@ -9,7 +9,7 @@ Far_East_class = function () {
     this.name = 'Far East';
     this.unique_identifier = this.name;
     this.lat_lang = new google.maps.LatLng(35.179554,129.075642);
-    this.layer_array = [
+    this.areas_coordinates = [
 //busan
         new google.maps.LatLng(35.179554,129.075642),
 //hong kong

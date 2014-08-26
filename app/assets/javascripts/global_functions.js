@@ -93,14 +93,13 @@ load_popover_with_id = function(element,popover_load_class, content_id, title_id
         // on click
         $(element).clickToggle(function () {
 
-            console.log("show popover " + "click 1");
+
             if(! popover_show){
                 $(popover_load_class_with_right_syntax).popover('show');
 
             }
 
         },function (be) {
-            console.log("hidden popover " + "click 2");
             if(popover_show){
                 $(popover_load_class_with_right_syntax).popover('hide');
             }
