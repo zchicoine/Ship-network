@@ -14,22 +14,3 @@ $(window).load(function () {
 
 
 });
-
-
-/*
-
- this is a function to set and get global values for arrays used
- to scroll in different ports on a region when zoomed in
- */
-function Field(val) {
-    var value = val;
-
-    this.getValue = function () {
-        return value;
-    };
-
-    this.setValue = function (val) {
-        value = val;
-        console.log(value);
-    };
-}

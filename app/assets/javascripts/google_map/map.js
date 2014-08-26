@@ -413,7 +413,7 @@ MAP.google_controller_methods = {
     }
 }
 
-// if new_map this function will reinitialize google map
+// if new_map is true then this function will reinitialize google map
 MAP.google_map = function(new_map){
     new_map = typeof new_map !== 'undefined' ? new_map : false ;
     if ( arguments.callee._singletonInstance && !new_map)
