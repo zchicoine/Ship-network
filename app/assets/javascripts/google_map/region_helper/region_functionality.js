@@ -22,5 +22,10 @@ Region_Functionality= function(){
        })
 
    }
+    this.clear_all_listeners_of_region = function(){
+        region_objects_variable.regions_objects_array().forEach(function(value){
+            value.clear_all_listeners_of_region();
+        })
+    }
 
 }
