@@ -113,11 +113,16 @@ MAP.properties = {
 MAP.google_fusiontables = {
 
     draw_on_the_map: function (data_from_fusiontable) {
+        if(data_from_fusiontable['error'] == undefined){
+            var data = data_from_fusiontable['rows'];
 
-       var data = data_from_fusiontable['rows'];
+            region_objects_variable.each_object().extract_region_coordinates(data)
+            region_objects_variable.each_object().set_region_highlight_on_the_map();
+        }else {
+            console.log(data_from_fusiontable['error'])
+            error_message_display("Google map fusion tables: " + data_from_fusiontable['error']['message']);
+        }
 
-        region_objects_variable.each_object().extract_region_coordinates(data)
-        region_objects_variable.each_object().set_region_highlight_on_the_map();
 
     },
     load: function(){

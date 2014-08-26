@@ -2,11 +2,9 @@ module LinkListBackHistoryHelperC
     include LevelDefine
 
     def create_history
-        session[:link_list_back_history] = nil
-        session[:link_list_back_history] = {}
-        session[:link_list_back_history]['name'] = ['Global']
-        session[:link_list_back_history]['url'] = [root_path]
 
+
+        Rails.cache.write :link_list_back_history ,{'name' => ['Global'],'url' => [root_path] }
         assign_session_to_the_variable
     end
 
@@ -73,13 +71,11 @@ module LinkListBackHistoryHelperC
 
     private
     def assign_session_to_the_variable
-        @linklist_back_history = session[:link_list_back_history]
+        @linklist_back_history = Rails.cache.read :link_list_back_history
     end
 
     def assign_the_variable_to_session
-         session[:link_list_back_history] = nil
-         session[:link_list_back_history] = {}
-         session[:link_list_back_history] = @linklist_back_history
+         Rails.cache.write :link_list_back_history, @linklist_back_history
     end
     def level_to_url name = "nil",level = 0
         _level = level.to_i

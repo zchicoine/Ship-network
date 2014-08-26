@@ -10,9 +10,9 @@ Region_Functionality= function(){
         });
 
     }
-    this.extract_region_coordinates = function(country_name,country_coordinates){
+    this.extract_region_coordinates = function(data){
         region_objects_variable.regions_objects_array().forEach(function(value){
-            value.extract_region_coordinates(country_name,country_coordinates);
+            value.extract_region_coordinates(data);
         });
 
     }
