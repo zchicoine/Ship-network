@@ -135,8 +135,9 @@ highlight_on_a_list = function(tag){
 var DELAY = 700, clicks = 0, timer = null;
 
 $(document).on('click',".ship_name_on_side_bar", function(e){
+       var names = this.id.split("_");
+       var ship_name = names[0], port_name =names[1], region_name =  names[2];
 
-       var ship_name =  this.id;
        clicks++;  //count clicks
 
 
@@ -149,14 +150,14 @@ $(document).on('click',".ship_name_on_side_bar", function(e){
                  //perform single-click action
                  update_ship_view(ship_name);
                      if ($(".ship_details").length) {
-                         ship_details(ship_name);
+                         ship_details(ship_name,port_name,region_name);
                      }
     }else {
 
         clearTimeout(timer);    //prevent single-click action
         //perform double-click action
         update_ship_view(ship_name);
-        ship_details(ship_name);
+        ship_details(ship_name,port_name,region_name);
 
         clicks = 0;             //after action performed, reset counter
     }
@@ -169,9 +170,9 @@ $(document).on("dblclick",".ship_name_on_side_bar", function(e){
 
 // ----//
 
-ship_details = function(ship_name){
+ship_details = function(ship_name,port_name,region_name){
 
-    var data_json =  { "name": ship_name } ;
+    var data_json =  { "ship_name": ship_name, "port_name":port_name,"region_name":region_name } ;
     $.ajax({
         url:'ship_details/show',
         beforeSend: function(){

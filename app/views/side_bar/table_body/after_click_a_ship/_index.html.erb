@@ -60,7 +60,7 @@
 </button>
 <tr class="text-left">
     <td colspan=<%= 2 %>>
-        <%= link_to "View more information", ship_details_show_path(name: @ship_info[:ship_name]),remote: true , method: :post%>
+        <%= link_to "View more information", ship_details_show_path(ship_name: @ship_info[:ship_name],port_name: @side_info[:port_name],region_name: @side_info[:region_name]),remote: true , method: :post%>
     </td>
 
 </tr>

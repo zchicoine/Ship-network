@@ -2,7 +2,10 @@
 <div class="tb">
   <div class="ship_details">
     <div class="modal-header ship_detail-header">
-      <%= link_to "&times;".html_safe ,ship_details_close_path, class:"close", remote: true , method: :post %>
+      <%= link_to "&times;".html_safe ,
+                  ship_details_close_path({region_name:@name_of_region,port_name:@name_of_port}),
+                  class:"close", remote: true , method: :post %>
+
       <h4 class="modal-title">Ship Details: <%= @name_of_ship %></h4>
     </div>
 
