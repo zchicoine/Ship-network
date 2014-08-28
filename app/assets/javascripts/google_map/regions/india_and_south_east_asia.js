@@ -9,12 +9,13 @@ India_and_South_East_Asia_class = function () {
     this.name = 'India and South East Asia';
     this.unique_identifier = this.name;
     this.lat_lang = new google.maps.LatLng(17.686816,83.218482);
-    this.areas_coordinates = [
-//vishakapatnam
-        new google.maps.LatLng(17.686816,83.218482),
-//singapore
-        new google.maps.LatLng(1.352083,103.819836)
-    ];
+
+    this.areas_coordinates =
+    {
+        "Vishakapatnam":{'short_name':"Vishakapatnam",'coordinates':[17.686816,83.218482]},
+        "Singapore":{ 'short_name':"Singapore",'coordinates':[1.352083,103.819836]}
+    };
+    this.areas_coordinates = make_json_iterable(this.areas_coordinates);
 
     this.list_of_countries = [  "India" , "Sri Lanka" , "Bangladesh", "Myanmar" , "Thailand" , "Malaysia"
         , "Brunei" , "Indonesia" , "Laos" , "Nepal" , "Bhutan", "Cambodia" , "Vietnam" , "Philippines" ];

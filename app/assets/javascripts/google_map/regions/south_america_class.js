@@ -9,11 +9,14 @@ South_America_class = function () {
     this.name = 'South America';
     this.unique_identifier = this.name;
     this.lat_lang = new google.maps.LatLng(-12.05,-77.16667);
-    this.areas_coordinates = [
-        new google.maps.LatLng(-12.05,-77.16667),
-        //Recalada
-        new google.maps.LatLng(6.81667,-58.16667)
-    ];
+
+    this.areas_coordinates =
+    {
+        "Recalada":{ 'short_name':"Recalada",'coordinates':[-12.05,-77.16667]},
+        "Default1":{ 'short_name':"Default",'coordinates':[6.81667,-58.16667]}
+    };
+    this.areas_coordinates = make_json_iterable(this.areas_coordinates);
+
 
     this.list_of_countries = [ "Colombia" , "Venezuela", "Guyana" , "Suriname" , "French Guiana" , "Trindad and Tobago"
         , "Barbados" , "Grenada" , "St Vincent and the Grenadines" , "St Lucia", "Martinique" , "Dominica" , "St Kitts and Nevis" , "Uruguay"

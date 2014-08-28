@@ -9,12 +9,13 @@ Far_East_class = function () {
     this.name = 'Far East';
     this.unique_identifier = this.name;
     this.lat_lang = new google.maps.LatLng(35.179554,129.075642);
-    this.areas_coordinates = [
-//busan
-        new google.maps.LatLng(35.179554,129.075642),
-//hong kong
-        new google.maps.LatLng(22.396428,114.109497)
-    ];
+
+    this.areas_coordinates =
+    {
+        "Busan":{ 'short_name':"Busan",'coordinates':[35.179554,129.075642]},
+        "Hong Kong":{ 'short_name':"Hong Kong",'coordinates':[22.396428,114.109497]}
+    };
+    this.areas_coordinates = make_json_iterable(this.areas_coordinates);
 
     this.list_of_countries = [ "China" , "Taiwan" , "S. Korea" , "N. Korea" , "Japan" , "Mongolia"];
 

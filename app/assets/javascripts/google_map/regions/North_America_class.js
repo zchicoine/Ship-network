@@ -8,11 +8,13 @@ North_America_class = function () {
     this.name = 'North America';
     this.unique_identifier = this.name;
     this.lat_lang = new google.maps.LatLng(55.443528, -96.053968);
-    this.areas_coordinates =[
-        new google.maps.LatLng(29.95,-90.06667),
-        //Recalada
-        new google.maps.LatLng(40.71667,-74)
-    ];
+
+    this.areas_coordinates =
+    {
+        "Recalada":{ 'short_name':"Recalada",'coordinates':[40.71667,-74]},
+        "Default1":{ 'short_name':"Default",'coordinates':[29.95,-90.06667]}
+    };
+    this.areas_coordinates = make_json_iterable(this.areas_coordinates);
 
     this.list_of_countries = [  "Canada" , "Mexico", "Greenland" , "Guatemala" , "Belize" , "El Salvador"
         , "Honduras" , "Nicaragua" , "Costa Rica" , "Panama", "Cuba" , "Haiti" , "Dominican Republic" , "Jamaica"

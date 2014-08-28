@@ -9,13 +9,13 @@ Australia_class = function () {
     this.name = "Australia";
     this.unique_identifier = this.name;
     this.lat_lang = new google.maps.LatLng(-32.926689,151.778921);
-    this.areas_coordinates = [
-        //new castle
-        new google.maps.LatLng(-32.926689,151.778921),
-        //danpier
-        new google.maps.LatLng(-20.663799,116.708460)
-    ];
 
+    this.areas_coordinates =
+    {
+        "New Castle":{'short_name':"New Castle",'coordinates':[-32.926689,151.778921]},
+        "Danpier":{ 'short_name':"Danpier",'coordinates':[-20.663799,116.708460]}
+    };
+    this.areas_coordinates = make_json_iterable(this.areas_coordinates);
     this.list_of_countries = [  "Australia" , "New Zealand" , "East Timor", "Papua New Guinea" , "Solomon Is." , "Vanuatu", "Fiji" , "New Caledonia"];
 
     this.map_properties = {

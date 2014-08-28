@@ -9,14 +9,13 @@ Arabia_and_Persian_Gulf_Class = function () {
     this.name = "Arabia and Persian Gulf";
     this.unique_identifier = this.name;
     this.lat_lang = new google.maps.LatLng(-30.559482,22.937506);
-    this.areas_coordinates = [
-        //sur
-        new google.maps.LatLng(-30.559482,22.937506),
-        //bandar
-        new google.maps.LatLng(26.371015,31.847656),
-        //
-        new google.maps.LatLng(32.634765,51.340669)
-    ];
+    this.areas_coordinates =
+    {
+        "Sur":{'short_name':"sur",'coordinates':[-30.559482,22.937506]},
+        "Bandar":{ 'short_name':"Bandar",'coordinates':[26.371015,31.847656]},
+        "Default1":{ 'short_name':"Default",'coordinates':[32.634765,51.340669]}
+    };
+    this.areas_coordinates = make_json_iterable(this.areas_coordinates);
 
 
     this.list_of_countries = [  "Jordan" , "Yemen" , "Oman" , "United Arab Emirates" , "Qatar" , "Bahrain" , "Turkmenistan"

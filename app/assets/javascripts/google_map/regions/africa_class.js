@@ -10,14 +10,13 @@ Africa_class = function () {
     this.unique_identifier = this.name;
     this.lat_lang = new google.maps.LatLng(4.05000,9.700000);
 
-    this.areas_coordinates = [
-//douala
-        new google.maps.LatLng(4.05000,9.700000),
-//Durban
-        new google.maps.LatLng(-29.858680,31.021840),
-//
-        new google.maps.LatLng(11.825138,42.590275)
-    ];
+    this.areas_coordinates =
+    {
+        "Douala":{'short_name':"douala",'coordinates':[4.05000,9.700000]},
+        "Durban":{ 'short_name':"Durban",'coordinates':[-29.858680,31.021840]},
+        "Default1":{ 'short_name':"Default",'coordinates':[11.825138,42.590275]}
+    };
+    this.areas_coordinates = make_json_iterable(this.areas_coordinates);
     this.list_of_countries = [ "Egypt", "Libya" ,"Botswana" , "Tunisia", "Algeria" , "Morocco" , "Senegal" , "Chad"
         , "Gambia" , "Guinea-Bissau" , "Guinea" , "Sierra Leone", "Liberia" , "Cote d'Ivoire" , "Ghana" ,"Togo",
        "Benin" , "Nigeria", "Cameroon", "Equatorial Guinea", "Gabon" , "Democratic Republic of the Congo" , "Angola" ,"Namibia"
