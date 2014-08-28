@@ -3,6 +3,9 @@ var REGION_LEVEL = 1
 var PORT_LEVEL = 2
 var SHIP_LEVEL = 3
 
+update_global = function () {
+    default_map_navigate("Global");
+}
 update_region_view = function(region_name){
 
     if(region_name.match(/[a-z]/i)){
@@ -11,7 +14,7 @@ update_region_view = function(region_name){
         refresh_link_list_back_history(region_name,REGION_LEVEL);
         refresh_current_view(region_name);
         setSelectRegion_on_sidebar(region_name);
-
+        default_map_navigate(region_name);
     }
 
 

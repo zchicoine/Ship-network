@@ -39,7 +39,6 @@ Region_class.prototype.change_region_view = function () {
     MAP.google_common_methods.set_center(this.lat_lang);
     MAP.google_common_methods.set_zoom(3);
     MAP.google_controller_methods.get_port_coordinates(this.name);
-     reset_globals_variable_that_associate_with_regions_classes();
 
 };
 
@@ -49,13 +48,6 @@ var store_navigate_next;
 
 Region_class.prototype.scroll_between_specific_areas = function (navigate_direction){
 
-
-if( !(store_navigate_back && store_navigate_next && store_navigate_now ) ){
-    json_arry_keys =  $.map(this.areas_coordinates, function(values,keys) {return keys;});
-    store_navigate_back =   json_arry_keys[(json_arry_keys.length - 1)] ;
-    store_navigate_now =  json_arry_keys[0];
-    store_navigate_next = json_arry_keys[1];
-}
 
     if(navigate_direction == NAVIGATE_NEXT){
         store_navigate_back = store_navigate_now;
@@ -229,8 +221,4 @@ function make_json_iterable(json_object){
 
 }
 
-function reset_globals_variable_that_associate_with_regions_classes(){
-    store_navigate_back = undefined;
-    store_navigate_now= undefined;
-    store_navigate_next= undefined;
-}
+
