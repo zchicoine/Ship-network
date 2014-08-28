@@ -5,14 +5,14 @@
 
     <%= render 'main_pages/current_view/index' %>
 
-    <div id="left_of_the_map" >
+    <div id="left_of_the_map"  >
         Back: <label id="left_of_the_map_label" ></label>
-    <%= image_tag "left_default.png", height: "auto", width: "25", class:"pointer",id:"left-img-responsive", data_toggle:"tooltip" ,data_placement:"top",title:"Tooltip on right" ,:onmouseover => "this.src = 'assets/left_hover.png'", :onmouseout => "this.src = 'assets/left_default.png'", :onclick => "this.src = 'assets/left_down.png'" %>
+    <%= image_tag "left_default.png", height: "auto", width: "25", class:"pointer",id:"left-img-responsive", data_toggle:"tooltip" , onload:"load_tooltip_with_id(this,'Tooltip on left','top')" %>
     </div>
     <div id="right_of_the_map" class="">
 
         Next:<label id="right_of_the_map_label" ></label>
-    <%= image_tag "right_default.png", height: "auto", width: "25", class:"pointer",id:"right-img-responsive", data_toggle:"tooltip" ,data_placement:"top",title:"Tooltip on left",:onmouseover => "this.src = 'assets/right_hover.png'", :onmouseout => "this.src = 'assets/right_default.png'", :onclick => "this.src = 'assets/right_down.png'" %>
+    <%= image_tag "right_default.png", height: "auto", width: "25", class:"pointer",id:"right-img-responsive", data_toggle:"tooltip" , onload:"load_tooltip_with_id(this,'Tooltip on right','top')" %>
     </div>
 
 	<div id="googleMap" align="center" >

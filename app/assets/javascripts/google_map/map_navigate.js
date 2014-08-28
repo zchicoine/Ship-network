@@ -2,24 +2,20 @@ var NAVIGATE_NEXT = 1;
 var NAVIGATE_BACK = 0;
 
 
-$(window).load(function () {
+$(document).on('click','#right-img-responsive',function(){
 
-    $("#right-img-responsive").click(function () {
-        // does not work after show the map
 
         region_objects_variable.return_object_region(current_region()).scroll_between_specific_areas(NAVIGATE_NEXT);
 
     });
 
+$(document).on('click', "#left-img-responsive" , function () {
 
-    $("#left-img-responsive").click(function () {
 
         region_objects_variable.return_object_region(current_region()).scroll_between_specific_areas(NAVIGATE_BACK);
 
     });
 
-
-});
 
 
 function default_map_navigate(region_name){
@@ -39,6 +35,7 @@ function default_map_navigate(region_name){
 }
 
 function update_map_navigate_label_and_tooltip(short_back,short_next,full_name_back,full_name_next){
+    console.log("sljdhfkljdsf");
     $("#right-img-responsive").attr("data-original-title", full_name_next);
     $("#left-img-responsive").attr("data-original-title", full_name_back);
 

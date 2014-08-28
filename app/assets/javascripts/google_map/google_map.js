@@ -43,6 +43,7 @@ function reload_the_map_with_specification(specification){
         }else if(specification['layer'] == PORT_LEVEL  && specification['region_name'] != undefined){
 
             region_objects_variable.return_object_region(specification['region_name']).change_region_view();
+             default_map_navigate(specification['region_name']);
 
         }
     }

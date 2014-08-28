@@ -18,6 +18,9 @@ $image_height: 50px;
   @include  vertical_align;
   margin-left:10px;
   max-width:35px;
+    &:hover{
+      // see solve_pre_compiling_of_the_assets.css.erb
+    }
 }
 
 #left-img-responsive{

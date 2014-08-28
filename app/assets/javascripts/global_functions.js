@@ -29,6 +29,7 @@ update_port_view = function(port_name){
         send_data_to_side_bar(port_name , PORT_LEVEL);
         refresh_link_list_back_history(port_name,PORT_LEVEL);
         refresh_current_view(port_name);
+
     }
 
 }
@@ -119,6 +120,26 @@ load_popover_with_id = function(element,popover_load_class, content_id, title_id
         popover_show = false;
     });
 
+}
+
+var tooltip_called_once = undefined; // to initialize the tooltip only once
+
+load_tooltip_with_id = function(element, title, placement) {
+
+    if (!element.isSameNode(tooltip_called_once)) {
+
+        tooltip_called_once = element;
+
+        $(element).tooltip({
+            trigger: 'hover click',
+            template: '<div class="tooltip" role="tooltip"><div class="tooltip_decoration tooltip-arrow"></div><div class="tooltip-inner "></div></div>',
+            html: true,
+            placement: placement,
+            title: title
+
+        });
+
+    }
 }
 
 remove_white_space = function(name){
