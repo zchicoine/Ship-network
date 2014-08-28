@@ -59,7 +59,7 @@ Region_class.prototype.scroll_between_specific_areas = function (navigate_direct
         store_navigate_now =  store_navigate_back ;
         store_navigate_back = this.areas_coordinates[store_navigate_now].back;
     }
-    update_map_navigate_label_and_tooltip(this.areas_coordinates[store_navigate_back]['short_name'],this.areas_coordinates[store_navigate_next]['short_name']);
+    update_map_navigate_label_and_tooltip(this.areas_coordinates[store_navigate_back]['short_name'],this.areas_coordinates[store_navigate_next]['short_name'],store_navigate_back,store_navigate_next);
     MAP.google_common_methods.set_center(new google.maps.LatLng(this.areas_coordinates[store_navigate_now]['coordinates'][0],this.areas_coordinates[store_navigate_now]['coordinates'][1]));
 
 

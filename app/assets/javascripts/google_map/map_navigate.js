@@ -32,12 +32,16 @@ function default_map_navigate(region_name){
 
    var back =  object_local.areas_coordinates[store_navigate_back]['short_name'];
    var next =  object_local.areas_coordinates[store_navigate_next]['short_name'];
-   update_map_navigate_label_and_tooltip(back,next);
+
+
+   update_map_navigate_label_and_tooltip(back,next,store_navigate_back,store_navigate_next);
 
 }
 
-function update_map_navigate_label_and_tooltip(back,next){
+function update_map_navigate_label_and_tooltip(short_back,short_next,full_name_back,full_name_next){
+    $("#right-img-responsive").attr("data-original-title", full_name_next);
+    $("#left-img-responsive").attr("data-original-title", full_name_back);
 
-    $("#left_of_the_map_label").html(back);
-    $("#right_of_the_map_label").html(next);
+    $("#left_of_the_map_label").html(short_back);
+    $("#right_of_the_map_label").html(short_next);
 }
