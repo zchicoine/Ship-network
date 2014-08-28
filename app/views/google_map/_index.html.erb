@@ -5,13 +5,13 @@
 
     <%= render 'main_pages/current_view/index' %>
 
-    <div id="left-of_the_map" >
-        Back:
+    <div id="left_of_the_map" >
+        Back: <label id="left_of_the_map_label" ></label>
     <%= image_tag "left_default.png", height: "auto", width: "25", class:"pointer",id:"left-img-responsive", data_toggle:"tooltip" ,data_placement:"top",title:"Tooltip on right" ,:onmouseover => "this.src = 'assets/left_hover.png'", :onmouseout => "this.src = 'assets/left_default.png'", :onclick => "this.src = 'assets/left_down.png'" %>
     </div>
-    <div id="right-of_the_map" class="">
+    <div id="right_of_the_map" class="">
 
-        Next:
+        Next:<label id="right_of_the_map_label" ></label>
     <%= image_tag "right_default.png", height: "auto", width: "25", class:"pointer",id:"right-img-responsive", data_toggle:"tooltip" ,data_placement:"top",title:"Tooltip on left",:onmouseover => "this.src = 'assets/right_hover.png'", :onmouseout => "this.src = 'assets/right_default.png'", :onclick => "this.src = 'assets/right_down.png'" %>
     </div>
 

@@ -67,8 +67,8 @@ if( !(store_navigate_back && store_navigate_next && store_navigate_now ) ){
         store_navigate_now =  store_navigate_back ;
         store_navigate_back = this.areas_coordinates[store_navigate_now].back;
     }
-
-        MAP.google_common_methods.set_center(new google.maps.LatLng(this.areas_coordinates[store_navigate_now]['coordinates'][0],this.areas_coordinates[store_navigate_now]['coordinates'][1]));
+    update_map_navigate_label_and_tooltip(this.areas_coordinates[store_navigate_back]['short_name'],this.areas_coordinates[store_navigate_next]['short_name']);
+    MAP.google_common_methods.set_center(new google.maps.LatLng(this.areas_coordinates[store_navigate_now]['coordinates'][0],this.areas_coordinates[store_navigate_now]['coordinates'][1]));
 
 
 }
@@ -172,7 +172,10 @@ function event_listeners_on_the_map(region_object,region_name) {
     }
 
 }
-// pass by value
+/* param: json object pass by value
+   return: json object included {next: next_json_key,back:previous_json_key}
+            if the value of json is not an object then the format  {'value': actual value }
+*/
 function make_json_iterable(json_object){
     var temp_json = JSON.parse(JSON.stringify(json_object));;
     var json_array_keys;
