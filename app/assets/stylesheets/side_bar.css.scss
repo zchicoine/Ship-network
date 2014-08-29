@@ -268,6 +268,7 @@ div.ship_details .col-md-6{ /*puts space between the columns*/
 
 
 .ship_details{ /*main size, positioning and etc for module window*/
+  border:10px solid #c4c4c4;
   z-index:1;
   top:12%;
   left:5%;
@@ -280,6 +281,14 @@ div.ship_details .col-md-6{ /*puts space between the columns*/
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.ship_details_inside_span_text_color {
+  color: #0080ff;
+}
+
+.close {
+  font-size: 35px;
 }
 
 div.ship_details .container{ /*used for the bootstrap grid system. do not delete*/
