@@ -34,8 +34,17 @@ class SideBarController < ApplicationController
 
     end
 
-
-
+    def broker_contact
+      parameters = params.require(:side_info).permit(:ship_name, :port_name)
+      result = UnitOfWork.instance.shipment.get_ship_broker parameters[:ship_name], parameters[:port_name]
+      if result[:error].nil?
+        @ship_info = result[:value]
+      end
+      respond_to do |format|
+        format.html {render :partial => 'side_bar/table_body/after_click_a_ship/broker_contact'}
+        format.js {render 'side_bar/table_body/after_click_a_ship/js/broker_contact'}
+      end
+    end
 
     private
 
@@ -87,6 +96,7 @@ class SideBarController < ApplicationController
             format.js {render 'side_bar/table_body/after_click_a_ship/js/index'}
         end
     end
+
 
 
 
