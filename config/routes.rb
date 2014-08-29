@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     #--------------
     post 'side_bar/index' => 'side_bar#index'
     post 'side_bar/region_short_info' => 'side_bar#region_short_info'
+    post 'side_bar/broker_contact' => 'side_bar#broker_contact'
     #--------------
     post  'google_map/port_coordinates' => 'google_map#port_coordinates'
 
