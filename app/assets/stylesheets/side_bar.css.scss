@@ -283,16 +283,17 @@ div.ship_details .col-md-6{ /*puts space between the columns*/
   -webkit-box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
 }
 
-.ship_details_inside_span_text_color {
+.ship_details_inside_span_text_color { /*a class added for each main elements inside the ship-details table
+to keep the color of the text blue */
   color: #0080ff;
 }
 
-.ship_detail_color {
+.ship_detail_color { /* changes the size of each ship name that appears in the header, after "Ship details:" title */
  font-size: 25px !important;
 }
 
-.close {
-  font-size: 35px;
+.close { /*changes the size of the cross that closes the Ship details window, !!! wasn't able to change the color of the cross to "white"...need help here */
+ font-size: 35px;
 }
 
 div.ship_details .container{ /*used for the bootstrap grid system. do not delete*/
