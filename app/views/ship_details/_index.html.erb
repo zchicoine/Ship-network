@@ -3,7 +3,7 @@
   <div class="ship_details">
     <div class="modal-header ship_detail-header">
       <%= link_to "&times;".html_safe ,google_map_close_path, class:"close", remote: true , method: :post %>
-      <h4 class="modal-title">Ship Details:<%= @name_of_ship %></h4>
+      <h4 class="modal-title">Ship Details: <span class="ship_detail_color"><%= @name_of_ship %></span></h4>
     </div>
     <div class="container scroll_inside_table scroll_size_ship_details">
 
