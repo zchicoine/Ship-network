@@ -23,6 +23,19 @@ class ShipmentBLL < Shipment
 
     end
 
+    def get_ship_broker ship_name = "", port_name = ""
+      result = ShipBLL.joins(:ports, :shipments => [:brokers]).select("brokers.*",
+                      ).where(
+          "ports.name" => port_name,name:ship_name).execute_query 1
+
+      unless result.blank?
+        coverted_to_ruby_hash = {broker_company:result[:company]}
+        return {value: coverted_to_ruby_hash, error: nil}
+      else
+        return {value: 0, error: "Error:  #{ship_name }  and  #{port_name} has no relationship "}
+      end
+    end
+
 
     # the format return
     # return hash {value: result/0 and error: nil/message}

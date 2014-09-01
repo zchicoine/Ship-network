@@ -1,4 +1,3 @@
-
 // this function for google_map controller on sidebar, when a user select a region then that region will be displayed and highlighted.
 setSelectRegion_on_sidebar = function(region_name){
 
@@ -29,7 +28,6 @@ send_data_to_side_bar = function(name, level){
             complete: function(r){
                 // Handle the complete event
                 // alert(r);
-
             },
             success: function(result) {
                 if(level == SHIP_LEVEL){
@@ -42,25 +40,46 @@ send_data_to_side_bar = function(name, level){
                     $('.region_stats .triangle_image').addClass('want_to_close_table');
                     closed_table_side_bar(30);
                 }
-
-
             },
             error: function(xhr, ajaxOptions, thrownError){
 
                 error_message_display(thrownError)
             }
         });
-
-
     }
-
-
-
-
-
 }
 
-closed_table_side_bar = function (speed) {
+send_broker_info_to_sidebar = function(ship_name, port_name) {
+console.log("This " + port_name + " should be port name")
+    var data_json = { "side_info": { "ship_name": ship_name, "port_name": port_name} };
+    var url = 'side_bar/broker_contact';
+    var html_class = '.aside_ship_details_table_body';
+
+    $.ajax({
+        url:url,
+        beforeSend: function(){
+            // Handle the beforeSend event
+        },
+        type: 'POST',
+        data:data_json,
+        dataType: 'html',
+        complete: function(r){
+            // Handle the complete event
+            // alert(r);
+
+        },
+        success: function(result) {
+            $("#ship-details-section").html(result);
+
+        },
+        error: function(xhr, ajaxOptions, thrownError){
+
+            error_message_display(thrownError)
+        }
+    });
+}
+
+    closed_table_side_bar = function (speed) {
 
         var image = '.triangle_image';
         if ($(image).hasClass("want_to_close_table")) {
@@ -148,17 +167,21 @@ $(document).on('click',".ship_name_on_side_bar", function(e){
     }, DELAY);
     if(clicks === 1) {
                  //perform single-click action
-                 update_ship_view(ship_name);
+
                      if ($(".ship_details").length) {
                          ship_details(ship_name,port_name,region_name);
+                         $( ".hide-or-show-it" ).hide( );
+                         update_broker_view(ship_name,port_name);
+                     }else{
+                         update_ship_view(ship_name);
                      }
     }else {
 
         clearTimeout(timer);    //prevent single-click action
         //perform double-click action
-        update_ship_view(ship_name);
+        update_broker_view(ship_name,port_name);
         ship_details(ship_name,port_name,region_name);
-
+        $( ".hide-or-show-it" ).hide( );
         clicks = 0;             //after action performed, reset counter
     }
 });
@@ -197,6 +220,11 @@ ship_details = function(ship_name,port_name,region_name){
 
 }
 
+update_broker_view = function(ship_name,port_name){
+    send_broker_info_to_sidebar(ship_name,port_name);
+    console.log("This is port name: " + port_name);
+}
+
 
 var content_header = "";
 short_region_info_show = function(region_name){
@@ -230,9 +258,6 @@ short_region_info_show = function(region_name){
         $('.region_short_info').show('550');
         $('.triangle_image').addClass('want_to_close_table');
         closed_table_side_bar(30);
-
-
-
 }
 
 short_region_info_hide = function(default_name){

@@ -1,6 +1,6 @@
 
 
-<tr class="text-left">
+<tr class="text-left hide-or-show-it">
     <td>
         Category:
     </td>
@@ -8,7 +8,7 @@
         <%= get_vessel_category_name @ship_info[:vessel_category] %>
     </td>
 </tr>
-<tr class="text-left">
+<tr class="text-left hide-or-show-it">
     <td>
         Open Port:
     </td>
@@ -16,7 +16,7 @@
         <%= @ship_info[:port_name] %>
     </td>
 </tr>
-<tr class="text-left">
+<tr class="text-left hide-or-show-it">
     <td>
         Open Date:
     </td>
@@ -24,7 +24,7 @@
         <%=  @ship_info[:open_start_date]%>
     </td>
 </tr>
-<tr class="text-left">
+<tr class="text-left hide-or-show-it">
   <% unless @ship_info[:deadweight] == 0 %>
     <td>
         Deadweight:
@@ -41,24 +41,10 @@
       </td>
   <% end %>
 </tr>
+<%= render 'side_bar/table_body/after_click_a_ship/broker_contact' %>
 
-<tr class="text-left broker_info_popover"   >
-
-    <td >
-
-        Broker Name:
-    </td>
-    <td class="">
-        <%= render 'side_bar/table_body/after_click_a_ship/broker_information' %>
-
-        <a tabindex="0" class="link_appearance_name pointer"  onmouseover="load_popover_with_id(this,'broker_info_popover','short_broker_info_content','short_broker_info_title', 'left')" >
-            <%= @ship_info[:broker_company]%>
-        </a>
-
-    </td>
-</tr>
 </button>
-<tr class="text-left">
+<tr class="text-left hide-or-show-it">
     <td colspan=<%= 2 %>>
         <%= link_to "View more information", ship_details_show_path(ship_name: @ship_info[:ship_name],port_name: @side_info[:port_name],region_name: @side_info[:region_name]),remote: true , method: :post%>
     </td>
