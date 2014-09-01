@@ -5,17 +5,15 @@
       <%= link_to "&times;".html_safe ,
                   ship_details_close_path({region_name:@name_of_region,port_name:@name_of_port}),
                   class:"close", remote: true , method: :post %>
-
-      <h4 class="modal-title">Ship Details: <%= @name_of_ship %></h4>
+        <h4 class="modal-title">Ship Details: <span class="ship_detail_color"><%= @name_of_ship %></span></h4>
     </div>
-
     <div class="container scroll_inside_table scroll_size_shipdetails">
 
       <div class="row">
         <div class="col-md-6 ship_details-portcall">
           <% @ship_details = get_ship_details_first_table @name_of_ship %>
               <img alt="Greentriangle down" class="triangle_image" height="16" src="/assets/greentriangle_down.png" width="16">
-              <span>General Information</span>
+              <span class="ship_details_inside_span_text_color">General Information</span>
           <table>
             <% @ship_details.as_json.each do |k, v| %>
                 <% unless v.blank? || v == 0 %>
@@ -34,7 +32,7 @@
           <% @ship_details = get_ship_details_second_table @name_of_ship %>
           <% unless @ship_details[1]%>
               <img alt="Greentriangle down" class="triangle_image" height="16" src="/assets/greentriangle_down.png" width="16">
-              <span>Capacity</span>
+              <span class="ship_details_inside_span_text_color">Capacity</span>
           <% end %>
           <table>
             <% @ship_details[0].as_json.each do |k, v| %>
@@ -57,7 +55,7 @@
 
           <% unless @ship_details[1]%>
               <img alt="Greentriangle down" class="triangle_image" height="16" src="/assets/greentriangle_down.png" width="16">
-              <span>Fuel</span>
+              <span class="ship_details_inside_span_text_color">Fuel</span>
           <% end %>
 
           <table>
