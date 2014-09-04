@@ -24,13 +24,18 @@ data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAICAYAAADA+m62AAAAPklEQVQYV2
 }
 
 .hover_change_color:hover{ /*make the main title of the page also work with the hover*/
- color:white;
+  color:white;
   background-color: #229ed0; 
 }
 
-.nav > li > a.hover_change_color:hover,.nav > li > a.hover_change_color:active { /*changes hover color of navbar buttons*/
+.navbar-nav > li > a { /*changes padding so the text is centered in navbar*/
+  padding-top:12px !important;
+  }
+
+.nav > li > a.hover_change_color:hover,.nav > li > a.hover_change_color:active,  { /*changes hover color of navbar buttons*/
   color:white;
   background-color: #229ed0;
+  padding-top:12px;
 }
 
 .navbar{ /*dropshadow for navbar*/
@@ -39,9 +44,14 @@ data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAICAYAAADA+m62AAAAPklEQVQYV2
   -webkit-box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
 }
 
+.navbar_decoration, .hover_change_color{ /*changes default height of navbar to 45px*/
+  height:45px;
+}
+
 .header-text {
     a{
-        color: #ffffff;
+      color: #ffffff;
+      padding-top:12px;
     }
 }
 
