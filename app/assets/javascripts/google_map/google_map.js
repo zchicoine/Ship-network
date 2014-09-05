@@ -55,3 +55,5 @@ function zoom_to_region_level_map(region_name){
     region_objects_variable.each_object().clear_all_listeners_of_region();
     region_objects_variable.return_object_region(region_name).change_region_view();
 }
+
+

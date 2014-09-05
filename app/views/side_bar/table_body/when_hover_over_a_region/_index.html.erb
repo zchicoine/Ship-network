@@ -1,16 +1,52 @@
+<thead>
+<tr>
+  <th colspan="2" id = "side_bar_header_region_name" class="radius-top-left-corner radius-top-right-corner side_bar_header">
+    <%= @region_name%>
+  </th>
+</tr>
+</thead>
+<tr>
+  <td colspan="2" class="">
+
+  </td>
+</tr>
+
+<thead>
+<tr>
+  <th colspan="2" id = "side_bar_header_region_name" class="radius-top-left-corner radius-top-right-corner side_bar_header region_hover_short_info">
+    Total # of Ships : <span class="text-left"><%= @all_ships_at_region %></span>
+  </th>
+</tr>
+</thead>
+
+<thead class="side_bar_default_table text-left">
+<tr >
+  <th colspan="<%= 2 %>">
+    <%= render 'side_bar/parts_used_in_table/accessories/green_triangle_image'%>
+    Ships by Size Class
+  </th>
+</tr>
+
+</thead>
+<tbody>
 
 
-<tbody class="region_short_info display-none">
-
-
-
+<% ship_category_size = get_number_of_ships_per_region_for_all_category @region_name
+   vessel_classes.each do |_name| %>
     <tr class="text-left">
-        <td>Total deadweight:</td>
-        <td>B</td>
+      <td><%=" #{_name}:" %></td>
+      <td><%= ship_category_size[Ship.vessel_categories[_name]] || 0 %></td>
     </tr>
-    <tr class="text-left">
-        <td>Total ship #:</td>
-        <td>B</td>
-    </tr>
-
+<% end %>
 </tbody>
+
+<thead>
+<tr>
+  <th  class="radius-bottom-left-corner ">
+    Total Deadweight:
+  </th>
+  <th class="radius-bottom-right-corner">
+    <%= get_total_deadweight_for_total_ships_per_region @region_name%> tons
+  </th>
+</tr>
+</thead>
