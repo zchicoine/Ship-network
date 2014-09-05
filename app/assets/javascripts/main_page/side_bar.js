@@ -222,7 +222,6 @@ ship_details = function(ship_name,port_name,region_name){
 
 update_broker_view = function(ship_name,port_name){
     send_broker_info_to_sidebar(ship_name,port_name);
-    console.log("This is port name: " + port_name);
 }
 
 
@@ -236,17 +235,19 @@ short_region_info_show = function(region_name){
             // Handle the beforeSend event
         },
         type: 'POST',
-        dataType: 'json',
+        dataType: 'html',
         data:data_json,
         complete: function(r){
             // Handle the complete event
             // alert(r);
 
-        },
+        },                                      //display-none
         success: function(result) {
 
-            $(".region_short_info tr:first td:nth-child(2)").html(result.deadweight);
-           $(".region_short_info tr:nth-child(2) td:nth-child(2)").html($("#number_of_ship_in_"+ remove_white_space(region_name)).html())
+           $(".aside_ship_details_table_body").html(result);
+           //$(".aside_ship_details_table_foot").html(result['partial_table_footer']);
+           $(".aside_ship_details_table_foot").hide();
+
         },
         error: function(xhr, ajaxOptions, thrownError){
             error_message_display($.parseJSON(xhr.responseText).errors);
@@ -255,18 +256,20 @@ short_region_info_show = function(region_name){
 
         content_header = $('.side_bar_header').html();
         $('.side_bar_header').html(region_name);
-        $('.region_short_info').show('550');
         $('.triangle_image').addClass('want_to_close_table');
-        closed_table_side_bar(30);
+        //closed_table_side_bar(30);
 }
+show_total_deadweight_when_mouse_out = function(){
 
-short_region_info_hide = function(default_name){
-
-    $('.side_bar_header').html(content_header);
-    $('.region_short_info').hide();
-    $('.triangle_image').addClass('want_to_open_table');
-    open_table_side_bar(200);
+    $(".aside_ship_details_table_foot").show();
 }
+//short_region_info_hide = function(default_name){
+
+//    $('.side_bar_header').html(content_header);
+//    $('.region_short_info').hide();
+//    $('.triangle_image').addClass('want_to_open_table');
+//   open_table_side_bar(200);
+//}
 
 $(document).ready(function() {
     // ensure closing of dropdown menu when one of its elements has been clicked
