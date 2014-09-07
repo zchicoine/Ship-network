@@ -89,6 +89,7 @@ $image_height: 50px;
   border-width: 5px 5px 0;
   border-top-color: white !important;
 
+
   border-color: transparent;
   border-style: solid;
   position: absolute;
@@ -97,6 +98,8 @@ $image_height: 50px;
 .tooltip.top .tooltip-inner {
   background-color:white;
   color:black;
+  width:100px; /*added this element and the text-align below to adjust the width of the tooltip */
+  text-align:center;
 
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
