@@ -243,10 +243,20 @@ short_region_info_show = function(region_name){
 
         },                                      //display-none
         success: function(result) {
+           //if((".short_region_info_two").length){
+               $(".short_region_info_two").show();
+               $(".short_region_info_two").html(result);
+               $(".aside_ship_details_table_body").hide();
+               //$(".aside_ship_details_table_foot").html(result['partial_table_footer']);
+               $(".aside_ship_details_table_foot").hide();
+           //}else{
+           //    $(".short_region_info_two").show();
+           //    $(".short_region_info_two").html(result);
+           //    $(".aside_ship_details_table_body").hide();
+           //    //$(".aside_ship_details_table_foot").html(result['partial_table_footer']);
+           //    $(".aside_ship_details_table_foot").hide();
+           //}
 
-           $(".aside_ship_details_table_body").html(result);
-           //$(".aside_ship_details_table_foot").html(result['partial_table_footer']);
-           $(".aside_ship_details_table_foot").hide();
 
         },
         error: function(xhr, ajaxOptions, thrownError){
@@ -254,13 +264,14 @@ short_region_info_show = function(region_name){
         }
     });
 
-        content_header = $('.side_bar_header').html();
-        $('.side_bar_header').html(region_name);
-        $('.triangle_image').addClass('want_to_close_table');
+     //   content_header = $('.side_bar_header').html();
+     //   $('.side_bar_header').html(region_name);
+     //   $('.triangle_image').addClass('want_to_close_table');
         //closed_table_side_bar(30);
 }
-show_total_deadweight_when_mouse_out = function(){
-
+show_default_table_when_mouse_out = function(){
+    $(".short_region_info_two").hide();
+    $(".aside_ship_details_table_body").show();
     $(".aside_ship_details_table_foot").show();
 }
 //short_region_info_hide = function(default_name){

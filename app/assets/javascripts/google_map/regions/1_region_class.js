@@ -146,17 +146,20 @@ function event_listeners_on_the_map(region_object,region_name) {
 
     if(MAP.state_information.current_layer().get() == GLOBAL_LEVEL){
         MAP.events.mouseover(region_object,function(){
+            short_region_info_show(region_name);
             region_object.setOptions({
                 fillOpacity: 0.4
             });
         });
         MAP.events.mouseout(region_object,function(){
+            show_default_table_when_mouse_out();
             region_object.setOptions({
                 fillOpacity: 0.2
             });
         })
 
         MAP.events.click(region_object,function(){
+            show_default_table_when_mouse_out();
             zoom_to_region_level_map(region_name);
             update_region_view(region_name);
 
