@@ -147,7 +147,7 @@ function event_listeners_on_the_map(region_object,region_name) {
     if(MAP.state_information.current_layer().get() == GLOBAL_LEVEL){
         MAP.events.mouseover(region_object,function(){
 
-            var that=this;
+           // var temp = this;
             clearTimeout(this.timer);
             this.timer = setTimeout(function(){
 
