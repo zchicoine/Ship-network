@@ -47,6 +47,12 @@ module SideBarHelper
         end
     end
 
+    def get_total_deadweight_for_total_ships_per_region region_name
+      result = UnitOfWork.instance.ship.get_deadweight_of_ships_per_region region_name
+      if result[:error].nil?
+        return result[:value]
+      end
+    end
 
     #not query methods
     def get_vessel_category_number name
