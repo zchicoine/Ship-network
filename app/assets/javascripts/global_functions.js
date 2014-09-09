@@ -131,6 +131,7 @@ load_tooltip_with_id = function(element, title, placement) {
         tooltip_called_once = element;
 
         $(element).tooltip({
+            container:'body',
             trigger: 'hover click',
             template: '<div class="tooltip" role="tooltip"><div class="tooltip_decoration tooltip-arrow"></div><div class="tooltip-inner "></div></div>',
             html: true,

@@ -5,10 +5,7 @@ $(document).ready(function(){
 
 
 
- $('*').tooltip({
-     trigger:'hover click',
-     template :'<div class="tooltip" role="tooltip"><div class="tooltip_decoration tooltip-arrow"></div><div class="tooltip-inner "></div></div>'
- });
+
 
 
 
