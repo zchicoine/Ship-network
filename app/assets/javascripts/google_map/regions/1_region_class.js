@@ -140,6 +140,7 @@ function constructNewCoordinates(polygon) {
     return newCoordinates;
 }
 
+
 function event_listeners_on_the_map(region_object,region_name) {
 
 
@@ -153,23 +154,28 @@ function event_listeners_on_the_map(region_object,region_name) {
 
                 short_region_info_show(region_name);
 
-            },500);
+            },350);
             region_object.setOptions({
                 fillOpacity: 0.4
             });
-            google.maps.event.addListenerOnce(this,'mouseout',
-                function(){clearTimeout(this.timer);});
-
-        });
+      });
         MAP.events.mouseout(region_object,function(){
+
             clearTimeout(this.timer);
-            show_default_table_when_mouse_out();
+
+            this.timer = setTimeout(function(){
+
+                show_default_table_when_mouse_out();
+
+            },450);
+
             region_object.setOptions({
                 fillOpacity: 0.2
             });
         })
 
         MAP.events.click(region_object,function(){
+            clearTimeout(this.timer);
             show_default_table_when_mouse_out();
             zoom_to_region_level_map(region_name);
             update_region_view(region_name);
