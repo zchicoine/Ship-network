@@ -14,7 +14,7 @@ update_region_view = function(region_name){
         refresh_link_list_back_history(region_name,REGION_LEVEL);
         refresh_current_view(region_name);
         setSelectRegion_on_sidebar(region_name);
-        default_map_navigate(region_name);
+
     }
 
 

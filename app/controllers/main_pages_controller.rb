@@ -23,6 +23,7 @@ class MainPagesController < ApplicationController
     def region
         parameters = params.require(:region_info).permit(:name)
         @saved_name = parameters[:name]
+        cookies[:region_name] = @saved_name
         respond_to do |format|
             format.js {render 'js/region_view'}
         end
@@ -31,9 +32,9 @@ class MainPagesController < ApplicationController
     def port
         parameters = params.require(:port_info).permit(:port_name)
         @saved_name = parameters[:port_name]
-
+        region_name = cookies[:region_name]
         respond_to do |format|
-            format.js {render 'js/port_view'}
+            format.js {render 'js/port_view', :locals => {region_name:region_name}}
         end
 
     end

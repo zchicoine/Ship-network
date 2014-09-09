@@ -35,7 +35,6 @@ function default_map_navigate(region_name){
 }
 
 function update_map_navigate_label_and_tooltip(short_back,short_next,full_name_back,full_name_next){
-    console.log("sljdhfkljdsf");
     $("#right-img-responsive").attr("data-original-title", full_name_next);
     $("#left-img-responsive").attr("data-original-title", full_name_back);
 
