@@ -274,9 +274,11 @@ div.ship_details .col-md-6{ /*puts space between the columns*/
 .ship_details{ /*main size, positioning and etc for module window*/
   border:10px solid #c4c4c4;
   z-index:1;
-  top:13%;
-  left:12%;
-  position:absolute;
+  /*top:13%;
+  left:12%;*/
+  border-margin: 0.5 rem;
+  margig-top: 1%;
+  position:relative;
   background-color: #ffffff;
   height:800px;
   width:800px;
