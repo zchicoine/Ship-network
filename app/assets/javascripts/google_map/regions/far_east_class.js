@@ -22,7 +22,7 @@ Far_East_class = function () {
     this.map_properties = {
         'color': "#20FF00",
         'lable':"FAR EAST",
-        'lable_position':new google.maps.LatLng(-4.0396, 121.2891)
+        'lable_position':new google.maps.LatLng(35.799871, 100.609244)
     };
 
     this.fusiontables_properties = {
