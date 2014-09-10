@@ -15,6 +15,14 @@
               <img alt="Greentriangle down" class="" height="16" src="/assets/greentriangle_down.png" width="16">
               <span class="ship_details_inside_span_text_color">General Information</span>
           <table>
+            <tr>
+                <td>Open Port</td>
+                <td><%= @get_open_port_and_date[:value][:name] %></td>
+            </tr>
+            <tr>
+              <td>Open Date</td>
+              <td><%= @get_open_port_and_date[:value][:open_start_date] %></td>
+            </tr>
             <% @ship_details.as_json.each do |k, v| %>
                 <% unless v.blank? || v == 0 %>
                     <tr>
