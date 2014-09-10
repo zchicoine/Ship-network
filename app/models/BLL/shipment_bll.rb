@@ -23,13 +23,24 @@ class ShipmentBLL < Shipment
 
     end
 
+    def get_open_port_and_date ship_name = "", port_name = ""
+      result = ShipBLL.joins(:ports).select("shipments.open_start_date","shipments.open_end_date", "ports.name").where(
+          "ports.name" => port_name,name:ship_name).execute_query 1
+      unless result.blank?
+        coverted_to_ruby_hash = {open_start_date: result[:open_start_date], open_end_date: result[:open_end_date], name: result[:name] }
+        return {value: coverted_to_ruby_hash, error: nil}
+      else
+        return {value: 0, error: "Error:  #{ship_name }  and  #{port_name} has no relationship "}
+      end
+    end
+
     def get_ship_broker ship_name = "", port_name = ""
       result = ShipBLL.joins(:ports, :shipments => [:brokers]).select("brokers.*",
                       ).where(
           "ports.name" => port_name,name:ship_name).execute_query 1
 
       unless result.blank?
-        coverted_to_ruby_hash = {broker_company:result[:company]}
+        coverted_to_ruby_hash = {broker_name: result[:username], broker_email: result[:email],broker_company:result[:company]}
         return {value: coverted_to_ruby_hash, error: nil}
       else
         return {value: 0, error: "Error:  #{ship_name }  and  #{port_name} has no relationship "}
