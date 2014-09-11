@@ -25,7 +25,7 @@ South_America_class = function () {
 
 
     this.map_properties = {
-        'color': "#20FF00",
+        'color': "#0055FF",
         'lable':"SOUTH AMERICA",
         'lable_position':new google.maps.LatLng(-10.4893, -59.3594)
     };

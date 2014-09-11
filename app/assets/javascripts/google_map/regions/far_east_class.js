@@ -20,7 +20,7 @@ Far_East_class = function () {
     this.list_of_countries = [ "China" , "Taiwan" , "S. Korea" , "N. Korea" , "Japan" , "Mongolia"];
 
     this.map_properties = {
-        'color': "#20FF00",
+        'color': "#20ff00",
         'lable':"FAR EAST",
         'lable_position':new google.maps.LatLng(35.799871, 100.609244)
     };
