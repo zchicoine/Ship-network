@@ -241,7 +241,7 @@ index = 1
         end
 
       else
-          p " #{index}  #{open_port}"
+        #  p index
       end
 
     end
