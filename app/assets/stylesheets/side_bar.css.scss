@@ -66,6 +66,9 @@
   }
 }
 
+.align-link-view-more-info { /* to align to center the view more information link, at the bottom of the sidebar*/
+  text-align: center;
+}
 
 
 .link_appearance{
@@ -110,6 +113,7 @@
     background-color: #d6de23;
     cursor:pointer;
 }
+
 /* --- end the general format ---  */
 
 /* table head */
@@ -125,7 +129,7 @@
 
 }
 
-/*  map controller table */
+/*  google_map controller table */
 
 
 .map_controller_go_to_region{
@@ -135,7 +139,7 @@
     li{
         height: 25px;
         cursor: pointer;
-        margin-left: 10px;
+        margin-left: 0px;
 
     }
     li:hover{
@@ -143,7 +147,7 @@
     }
 }
 
-/*  end  map controller table */
+/*  end  google_map controller table */
 /*  end table head  */
 
 
@@ -268,11 +272,14 @@ div.ship_details .col-md-6{ /*puts space between the columns*/
 
 
 .ship_details{ /*main size, positioning and etc for module window*/
+  border:10px solid #c4c4c4;
   z-index:1;
-  top:12%;
-  left:5%;
-  position:absolute;
-  background-color: white;
+  /*top:13%;
+  left:12%;*/
+  border-margin: 0.5 rem;
+  margig-top: 1%;
+  position:relative;
+  background-color: #ffffff;
   height:800px;
   width:800px;
   border-radius: 8px;
@@ -281,6 +288,33 @@ div.ship_details .col-md-6{ /*puts space between the columns*/
   -moz-box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
 }
+
+.ship_details_inside_span_text_color { /*a class added for each main elements inside the ship-details table
+to keep the color of the text blue */
+  color: #0080ff;
+}
+
+.ship_detail_color { /* changes the size of each ship name that appears in the header, after "Ship details:" title */
+ font-size: 25px !important;
+}
+
+.close {/* defines the size and color of the cross that closes the Ship details window */
+  font-size: 40px;
+  color: white;
+  opacity: 1.0;
+  font-family:roboto;
+}
+
+.close:hover {/* defines the hover color of the cross that closes the Ship details window */
+  color: #eaeaea;
+  opacity:0.9;
+}
+
+.close:active {/* defines active color of the cross that closes the Ship details window */
+  color: #c4c4c4;
+  opacity:0.9;
+}
+
 
 div.ship_details .container{ /*used for the bootstrap grid system. do not delete*/
   overflow-y: auto;

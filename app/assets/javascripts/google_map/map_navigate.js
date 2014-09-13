@@ -1,204 +1,43 @@
-//<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-$(window).load(function(){
+var NAVIGATE_NEXT = 1;
+var NAVIGATE_BACK = 0;
 
-	$("#outer-map").click(function(e){
-	   //e.preventDefault();
-	   //e.stopImmediatePropagation();
-	});
 
-$("#right-img-responsive").hover(function(){
+$(document).on('click','#right-img-responsive',function(){
 
-	
-	$("body").css("cursor","default");
-	
-	
-	//$('.tag-tooltip').tooltip();
-});
 
-$("#left-img-responsive").hover(function(){
-	$("body").css("cursor","default");
-});
+        region_objects_variable.return_object_region(current_region()).scroll_between_specific_areas(NAVIGATE_NEXT);
+
+    });
+
+$(document).on('click', "#left-img-responsive" , function () {
+
+
+        region_objects_variable.return_object_region(current_region()).scroll_between_specific_areas(NAVIGATE_BACK);
+
+    });
 
 
 
-$("#right-img-responsive").click(function(){	
-//		window.map.panby(150,0);
+function default_map_navigate(region_name){
+    var object_local = region_objects_variable.return_object_region(region_name);
 
-		
-		if(this.id=='right-img-responsive' && (zval.get()) < 4 ){
-		//console.log("right clicked ");
-		//console.log( zval.get());
-		var a = new Field("test");
-		a.setValue(region_layer_array);
-		//console.log(a);
-		var temp = a.getValue();
-		if(i!=(temp.length-1)){
-					window.map.setCenter(temp[i]);
-			//	window.map.setZoom(5);
-				i++;
+        json_arry_keys =  $.map(object_local.areas_coordinates, function(values,keys) {return keys;});
+        store_navigate_back =   json_arry_keys[(json_arry_keys.length - 1)] ;
+        store_navigate_now =  json_arry_keys[0];
+        store_navigate_next = json_arry_keys[1];
 
-				}
-				else if(i==(temp.length-1)){
-				//alert(temp[i]);
-				window.map.setCenter(temp[(temp.length-1)]);
-			//	window.map.setZoom(5);
-				i=0;
-				
-				}
-	
-		}
-		
-		else if(this.id=='right-img-responsive' && (zval.get()) == 4 ){
-			
-			var temp = select_scroll_array();
-
-		
-			if(i!=(temp.length-1)){
-					window.map.setCenter(temp[i]);
-			//	window.map.setZoom(5);
-				i++;
-
-			}
-			
-			else if(i==(temp.length-1)){
-				//alert(temp[i]);
-				window.map.setCenter(temp[(temp.length-1)]);
-			//	window.map.setZoom(5);
-				i=0;
-				
-			}
-			
-		}
-	});
+   var back =  object_local.areas_coordinates[store_navigate_back]['short_name'];
+   var next =  object_local.areas_coordinates[store_navigate_next]['short_name'];
 
 
-	$("#left-img-responsive").click(function(){	
-			//alert("The paragraph was clicked.");
-      //     window.map.panBy(-150,0);    	
-
-           if(this.id=='left-img-responsive' && (zval.get()) < 4){
-
-		var a = new Field("test");
-		a.setValue(region_layer_array);
-		var temp = a.getValue();
-
-		if(i!=(temp.length-1)){
-					window.map.setCenter(temp[i]);
-			//	window.map.setZoom(5);
-				i++;
-
-				}
-				else if(i==(temp.length-1)){
-				//alert(temp[i]);
-				window.map.setCenter(temp[(temp.length-1)]);
-			//	window.map.setZoom(5);
-				i=0;
-				
-				}
-	
-		}
-		
-		else if(this.id=='left-img-responsive' && (zval.get()) == 4 ){
-			
-			
-			var temp = select_scroll_array();
-
-		
-			if(i!=(temp.length-1)){
-					window.map.setCenter(temp[i]);
-			//	window.map.setZoom(5);
-				i++;
-
-			}
-			
-			else if(i==(temp.length-1)){
-				//alert(temp[i]);
-				window.map.setCenter(temp[(temp.length-1)]);
-			//	window.map.setZoom(5);
-				i=0;
-				
-			}
-			
-		}
-			
-	});
-
-
- 	$(".zoom_out").click(function(){  
- 
-   		initialize();
-   		setMarkers(null,markerArray);
-   		window.map.setZoom(3);
-
-   		// setting the global zoom value back to 2 so that the right navigation button will be set to act on 
-   		// region layer
-   		zval.set(3);
-
-   		// changing the cursor back to default
-   		$("body").css("cursor","default");
-   	});
-		
-
-
-});
-
-function select_scroll_array(){
-
-
-	if(global_region_name.get()=="Europe"){
-				a = new Field("test");
-        		a.setValue(europe_port_array);
-			}
-			else if(global_region_name.get()=="North America"){
-				a = new Field("test");
-        		a.setValue(north_america_port_array);
-			}
-			else if(global_region_name.get()=="South America"){
-				a = new Field("test");
-        		a.setValue(south_america_port_array);
-			}
-			else if(global_region_name.get()=="Africa"){
-				a = new Field("test");
-        		a.setValue(africa_port_array);
-			}
-			else if(global_region_name.get()=="India and South East Asia"){
-				a = new Field("test");
-        		a.setValue(sea_port_array);
-			}
-			else if(global_region_name.get()=="Arabia and Persian Gulf"){
-				a = new Field("test");
-        		a.setValue(persianGulf_port_array);
-			}
-			else if(global_region_name.get()=="Far East"){
-				a = new Field("test");
-        		a.setValue(farEast_port_array);
-			}
-			else if(global_region_name.get()=="Australia"){
-
-				a = new Field("test");
-        		a.setValue(australia_port_array);
-        		
-			}
-
-
-return a.getValue();
+   update_map_navigate_label_and_tooltip(back,next,store_navigate_back,store_navigate_next);
 
 }
 
-/*
+function update_map_navigate_label_and_tooltip(short_back,short_next,full_name_back,full_name_next){
+    $("#right-img-responsive").attr("data-original-title", full_name_next);
+    $("#left-img-responsive").attr("data-original-title", full_name_back);
 
-this is a function to set and get global values for arrays used 
-to scroll in different ports on a region when zoomed in
-*/
-function Field(val){
-    var value = val;
-   
-    this.getValue = function(){
-        return value;
-    };
-   
-    this.setValue = function(val){
-        value = val;
-        console.log(value);
-    };
+    $("#left_of_the_map_label").html(short_back);
+    $("#right_of_the_map_label").html(short_next);
 }

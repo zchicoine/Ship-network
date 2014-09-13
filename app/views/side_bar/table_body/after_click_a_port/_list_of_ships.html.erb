@@ -17,7 +17,7 @@
                     <tr >
                         <td>
 
-                            <li class="ship_name_on_side_bar btn btn-link" id="<%= ship[:name]  %>" onclick="highlight_on_a_list(this)">
+                            <li class="ship_name_on_side_bar btn btn-link" id="<%= "#{ship[:name]}_#{@side_info[:port_name]}_#{@side_info[:region_name]}"  %>" onclick="highlight_on_a_list(this)">
                                 <%= ship[:name] %>
                             </li>
 

@@ -18,11 +18,16 @@ class SideBarController < ApplicationController
     def region_short_info
         parameters = params.require(:region).permit(:name)
         result =  UnitOfWork.instance.ship.get_deadweight_of_ships_per_region parameters[:name]
-        if result[:error].nil?
-            deadweight = result[:value]
+        number_of_ships_given_region = UnitOfWork.instance.ship.get_number_of_ships_per_region parameters[:name]
+        @region_name = parameters[:name]
+            if result[:error].nil?
+            @deadweight = result[:value]
+            @all_ships_at_region = number_of_ships_given_region[:value]
+            #table_body = render_to_string(:partial => 'side_bar/table_body/when_hover_over_a_region/index')
+            #table_footer = render_to_string(:partial => 'side_bar/table_body/when_hover_over_a_region/footer')
             respond_to do |format|
-                format.html {render :partial =>  'side_bar/table_body/when_hover_over_a_region/index' , :locals => { deadweight: deadweight }}
-                format.json{ render :json => { deadweight: deadweight }}
+                format.html {render :partial =>  'side_bar/table_body/when_hover_over_a_region/index'}
+                format.json{ render :json => { partial_table_body: table_body  , partial_table_footer: table_footer }}
             end
         else
             respond_to do |format|
@@ -31,11 +36,19 @@ class SideBarController < ApplicationController
 
         end
 
-
     end
 
-
-
+    def broker_contact
+      parameters = params.require(:side_info).permit(:ship_name, :port_name)
+      result = UnitOfWork.instance.shipment.get_ship_broker parameters[:ship_name], parameters[:port_name]
+      if result[:error].nil?
+        @ship_info = result[:value]
+      end
+      respond_to do |format|
+        format.html {render :partial => 'side_bar/table_body/after_click_a_ship/broker_contact'}
+        format.js {render 'side_bar/table_body/after_click_a_ship/js/broker_contact'}
+      end
+    end
 
     private
 
@@ -87,6 +100,7 @@ class SideBarController < ApplicationController
             format.js {render 'side_bar/table_body/after_click_a_ship/js/index'}
         end
     end
+
 
 
 

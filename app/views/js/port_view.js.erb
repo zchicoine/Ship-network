@@ -1,2 +1,17 @@
-update_port_view("<%= escape_javascript( @saved_name )%>")
-//alert("<%= escape_javascript( @displayed_name_on_link_list_back_history )%>")
+
+var temp_port = '<%= escape_javascript( @saved_name )%>'
+var region_name = '<%= escape_javascript( region_name )%>'
+// make sure the map is in place
+if($("#googleMap").length == 0){
+
+    $("#outer-map").html(" <%= escape_javascript(render 'google_map/index')%>");
+    var spec = {'new_map':true,'layer':PORT_LEVEL, 'region_name': region_name,'port_name':temp_port };
+    reload_the_map_with_specification(spec);
+    update_port_view(temp_port);
+
+}else{
+
+    update_port_view(temp_port);
+}
+
+

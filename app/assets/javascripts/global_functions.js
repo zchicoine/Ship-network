@@ -3,12 +3,18 @@ var REGION_LEVEL = 1
 var PORT_LEVEL = 2
 var SHIP_LEVEL = 3
 
+update_global = function () {
+    default_map_navigate("Global");
+}
 update_region_view = function(region_name){
 
     if(region_name.match(/[a-z]/i)){
+        MAP.state_information.current_layer().set(REGION_LEVEL);
         send_data_to_side_bar(region_name, REGION_LEVEL);
         refresh_link_list_back_history(region_name,REGION_LEVEL);
         refresh_current_view(region_name);
+        setSelectRegion_on_sidebar(region_name);
+
     }
 
 
@@ -19,15 +25,18 @@ update_region_view = function(region_name){
 update_port_view = function(port_name){
 
     if(port_name.match(/[a-z]/i)){
+        MAP.state_information.current_layer().set(PORT_LEVEL);
         send_data_to_side_bar(port_name , PORT_LEVEL);
         refresh_link_list_back_history(port_name,PORT_LEVEL);
         refresh_current_view(port_name);
+
     }
 
 }
 update_ship_view = function(ship_name){
 
     if(ship_name.match(/[a-z]/i)){
+        MAP.state_information.current_layer().set(SHIP_LEVEL);
         send_data_to_side_bar(ship_name , SHIP_LEVEL);
         refresh_link_list_back_history(ship_name,SHIP_LEVEL);
         refresh_current_view(ship_name);
@@ -88,14 +97,13 @@ load_popover_with_id = function(element,popover_load_class, content_id, title_id
         // on click
         $(element).clickToggle(function () {
 
-            console.log("show popover " + "click 1");
+
             if(! popover_show){
                 $(popover_load_class_with_right_syntax).popover('show');
 
             }
 
         },function (be) {
-            console.log("hidden popover " + "click 2");
             if(popover_show){
                 $(popover_load_class_with_right_syntax).popover('hide');
             }
@@ -114,7 +122,34 @@ load_popover_with_id = function(element,popover_load_class, content_id, title_id
 
 }
 
+var tooltip_called_once = undefined; // to initialize the tooltip only once
+
+load_tooltip_with_id = function(element, title, placement) {
+
+    if (!element.isSameNode(tooltip_called_once)) {
+
+        tooltip_called_once = element;
+
+        $(element).tooltip({
+            container:'body',
+            trigger: 'hover click',
+            template: '<div class="tooltip" role="tooltip"><div class="tooltip_decoration tooltip-arrow"></div><div class="tooltip-inner "></div></div>',
+            html: true,
+            placement: placement,
+            title: title
+
+        });
+
+    }
+}
+
 remove_white_space = function(name){
    return name.replace(/\s+/g, '');
+}
+
+current_region = function(){
+
+    var region_name =  $("#side_bar_header_region_name").text();
+        return region_name.trim();
 }
 

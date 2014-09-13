@@ -61,7 +61,7 @@ class ShipBLL < Ship
     # return hash {value: result/0 and error: nil/message}
     def get_total_deadweight_of_ships
 
-        result =   Ship.sum(:deadweight)
+        result =   PortBLL.joins(:ships).sum(:deadweight)
         unless result.nil? or result <= 0
             return {value: result, error: nil}
         else
@@ -79,7 +79,7 @@ class ShipBLL < Ship
         unless number.blank?
             result = Ship.where(vessel_category: number).count
         else
-            return {value: 0, error: "#{category_name } does not exist in the system"}
+            return {value: 0, error: "#{category_name} does not exist in the system"}
         end
 
         unless number.nonzero?.nil?

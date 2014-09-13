@@ -9,17 +9,15 @@ Rails.application.routes.draw do
     #--------------
     post 'side_bar/index' => 'side_bar#index'
     post 'side_bar/region_short_info' => 'side_bar#region_short_info'
+    post 'side_bar/broker_contact' => 'side_bar#broker_contact'
     #--------------
     post  'google_map/port_coordinates' => 'google_map#port_coordinates'
-    post  'google_map/display_ship_on_side_bar' => 'google_map#display_ship_on_side_bar'
-    post  'google_map/close' => 'google_map#close'
-    #--------------
-    post 'user/sign_in' => 'user#sign_in'
-    post 'user/sign_out' => 'user#sign_out'
+
     #--------------
     post 'link_list_back_history/refresh' => 'link_list_back_history#refresh'
     #--------------
     post 'ship_details/show' => 'ship_details#show'
+    post  'ship_details/close' => 'ship_details#close'
     #--------------
     post 'main_pages/region' => "main_pages#region"
     post 'main_pages/port' => "main_pages#port"

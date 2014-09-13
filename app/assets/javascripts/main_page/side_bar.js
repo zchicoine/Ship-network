@@ -1,20 +1,5 @@
-var region_center_coordinates =  [[48.2893, -99.3594], [-10.4893, -59.3594],[17.6493, 11.5994],
-                   [33.1376, 47.6367], [-25.8000, 133.2422],[53.1289, 45.1102],
-                   [24.4471,85.1660] ,[35.8178, 118.0371],[-4.0396, 121.2891]];
-
-
-
-function center_in_region(region_name){
-    setSelectRegion(region_name);
-
-    return_object_region(region_name).change_region_view();
-
-
-}
-
-
-// this function for map controller on sidebar, when a user select a region then that region will be displayed and highlighted.
-setSelectRegion = function(region_name){
+// this function for google_map controller on sidebar, when a user select a region then that region will be displayed and highlighted.
+setSelectRegion_on_sidebar = function(region_name){
 
     $("#dropdownGoToRegion_lable").html(region_name);
 
@@ -24,7 +9,6 @@ setSelectRegion = function(region_name){
 
 send_data_to_side_bar = function(name, level){
 
-    console.log(name + "   " + level)
     var data_json = { "side_info": { "name": name , "level": level} };
     var url = 'side_bar/index';
     var html_class = '.aside_ship_details_table_body';
@@ -44,7 +28,6 @@ send_data_to_side_bar = function(name, level){
             complete: function(r){
                 // Handle the complete event
                 // alert(r);
-
             },
             success: function(result) {
                 if(level == SHIP_LEVEL){
@@ -57,32 +40,53 @@ send_data_to_side_bar = function(name, level){
                     $('.region_stats .triangle_image').addClass('want_to_close_table');
                     closed_table_side_bar(30);
                 }
-
-
             },
-            error: function(r){
-               // alert(r + " works");
-                error_message_display("error when refreshing sidebar table")
+            error: function(xhr, ajaxOptions, thrownError){
+
+                error_message_display(thrownError)
             }
         });
-
-
     }
-
-
-
-
-
 }
 
-closed_table_side_bar = function (speed) {
+send_broker_info_to_sidebar = function(ship_name, port_name) {
+console.log("This " + port_name + " should be port name")
+    var data_json = { "side_info": { "ship_name": ship_name, "port_name": port_name} };
+    var url = 'side_bar/broker_contact';
+    var html_class = '.aside_ship_details_table_body';
+
+    $.ajax({
+        url:url,
+        beforeSend: function(){
+            // Handle the beforeSend event
+        },
+        type: 'POST',
+        data:data_json,
+        dataType: 'html',
+        complete: function(r){
+            // Handle the complete event
+            // alert(r);
+
+        },
+        success: function(result) {
+            $("#ship-details-section").html(result);
+
+        },
+        error: function(xhr, ajaxOptions, thrownError){
+
+            error_message_display(thrownError)
+        }
+    });
+}
+
+    closed_table_side_bar = function (speed) {
 
         var image = '.triangle_image';
         if ($(image).hasClass("want_to_close_table")) {
               image += ".want_to_close_table";
 
             if ( ! $(image).hasClass("this_class_only_to_change_image") ){
-                $(image).attr("src", "/assets/greentriangle_closed.png");
+                $(image).attr("src",image_greentriangle_closed());
                 $(image).addClass("this_class_only_to_change_image");
 
                 $(image).parent().parent().parent().next().children('tr').
@@ -101,7 +105,7 @@ open_table_side_bar = function (speed){
         image += ".want_to_open_table";
 
         if (  $(image).hasClass("this_class_only_to_change_image") ){
-            $(image).attr("src", "assets/greentriangle_down.png");
+            $(image).attr("src", image_greentriangle_down());
             $(image).removeClass("this_class_only_to_change_image");
 
             $(image).parent().parent().parent().next().children('tr').
@@ -121,11 +125,11 @@ open_table_side_bar = function (speed){
         // if the following class present that means a block is closed
         if ( $(image).hasClass("this_class_only_to_change_image") ) {
 
-            $(image).attr("src", "assets/greentriangle_down.png");
+            $(image).attr("src", image_greentriangle_down());
             $(image).removeClass("this_class_only_to_change_image");
         }
         else {
-            $(image).attr("src", "assets/greentriangle_closed.png");
+            $(image).attr("src",image_greentriangle_closed());
             $(image).addClass("this_class_only_to_change_image");
 
         }
@@ -150,8 +154,9 @@ highlight_on_a_list = function(tag){
 var DELAY = 700, clicks = 0, timer = null;
 
 $(document).on('click',".ship_name_on_side_bar", function(e){
+       var names = this.id.split("_");
+       var ship_name = names[0], port_name =names[1], region_name =  names[2];
 
-       var ship_name =  this.id;
        clicks++;  //count clicks
 
 
@@ -162,17 +167,21 @@ $(document).on('click',".ship_name_on_side_bar", function(e){
     }, DELAY);
     if(clicks === 1) {
                  //perform single-click action
-                 update_ship_view(ship_name);
+
                      if ($(".ship_details").length) {
-                         ship_details(ship_name);
+                         ship_details(ship_name,port_name,region_name);
+                         $( ".hide-or-show-it" ).hide( );
+                         update_broker_view(ship_name,port_name);
+                     }else{
+                         update_ship_view(ship_name);
                      }
     }else {
 
         clearTimeout(timer);    //prevent single-click action
         //perform double-click action
-        update_ship_view(ship_name);
-        ship_details(ship_name);
-
+        update_broker_view(ship_name,port_name);
+        ship_details(ship_name,port_name,region_name);
+        $( ".hide-or-show-it" ).hide( );
         clicks = 0;             //after action performed, reset counter
     }
 });
@@ -184,9 +193,9 @@ $(document).on("dblclick",".ship_name_on_side_bar", function(e){
 
 // ----//
 
-ship_details = function(ship_name){
+ship_details = function(ship_name,port_name,region_name){
 
-    var data_json =  { "name": ship_name } ;
+    var data_json =  { "ship_name": ship_name, "port_name":port_name,"region_name":region_name } ;
     $.ajax({
         url:'ship_details/show',
         beforeSend: function(){
@@ -211,6 +220,10 @@ ship_details = function(ship_name){
 
 }
 
+update_broker_view = function(ship_name,port_name){
+    send_broker_info_to_sidebar(ship_name,port_name);
+}
+
 
 var content_header = "";
 short_region_info_show = function(region_name){
@@ -222,40 +235,61 @@ short_region_info_show = function(region_name){
             // Handle the beforeSend event
         },
         type: 'POST',
-        dataType: 'json',
+        dataType: 'html',
         data:data_json,
         complete: function(r){
             // Handle the complete event
             // alert(r);
 
-        },
+        },                                      //display-none
         success: function(result) {
+           //if((".short_region_info_two").length){
+               $(".short_region_info_two").show();
+               $(".short_region_info_two").html(result);
+               $(".aside_ship_details_table_body").hide();
+               //$(".aside_ship_details_table_foot").html(result['partial_table_footer']);
+               $(".aside_ship_details_table_foot").hide();
+           //}else{
+           //    $(".short_region_info_two").show();
+           //    $(".short_region_info_two").html(result);
+           //    $(".aside_ship_details_table_body").hide();
+           //    //$(".aside_ship_details_table_foot").html(result['partial_table_footer']);
+           //    $(".aside_ship_details_table_foot").hide();
+           //}
 
-            $(".region_short_info tr:first td:nth-child(2)").html(result.deadweight);
-           $(".region_short_info tr:nth-child(2) td:nth-child(2)").html($("#number_of_ship_in_"+ remove_white_space(region_name)).html())
+
         },
         error: function(xhr, ajaxOptions, thrownError){
             error_message_display($.parseJSON(xhr.responseText).errors);
         }
     });
 
-        content_header = $('.side_bar_header').html();
-        $('.side_bar_header').html(region_name);
-        $('.region_short_info').show('550');
-        $('.triangle_image').addClass('want_to_close_table');
-        closed_table_side_bar(30);
-
-
-
+     //   content_header = $('.side_bar_header').html();
+     //   $('.side_bar_header').html(region_name);
+     //   $('.triangle_image').addClass('want_to_close_table');
+        //closed_table_side_bar(30);
 }
-
-short_region_info_hide = function(default_name){
-
-    $('.side_bar_header').html(content_header);
-    $('.region_short_info').hide();
-    $('.triangle_image').addClass('want_to_open_table');
-    open_table_side_bar(200);
+show_default_table_when_mouse_out = function(){
+    $(".short_region_info_two").hide();
+    $(".aside_ship_details_table_body").show();
+    $(".aside_ship_details_table_foot").show();
 }
+//short_region_info_hide = function(default_name){
+
+//    $('.side_bar_header').html(content_header);
+//    $('.region_short_info').hide();
+//    $('.triangle_image').addClass('want_to_open_table');
+//   open_table_side_bar(200);
+//}
+
+$(document).ready(function() {
+    // ensure closing of dropdown menu when one of its elements has been clicked
+
+    $('.map_controller_go_to_region_li').click(function () {
+        $('.dropdown-toggle').trigger('click');
+    });
+});
+
 //$(document).on('click',".one", function(e){
 //    console.log("URL: " + this.href);
 //    $.getScript(this.href);
