@@ -52,7 +52,7 @@ class ShipmentBLL < Shipment
     end
     def get_name_of_Ports_that_has_ships_per_Region region_name = "null"
 
-        result =  PortBLL.joins(:shipments).select(:name).query_at_a_region(region_name)
+        result =  PortBLL.joins(:shipments).select(:name).query_at_a_region(region_name).group(:name)
 
         unless result.blank?
             return {value: result, error: nil}
