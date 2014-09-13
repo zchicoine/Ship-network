@@ -12,7 +12,7 @@
       <div class="row">
         <div class="col-md-6 ship_details-portcall">
           <% @ship_details = get_ship_details_first_table @name_of_ship %>
-              <img alt="Greentriangle down" class="" height="16" src="/assets/greentriangle_down.png" width="16">
+             <%= image_tag("/assets/greentriangle_down.png", alt:"Greentriangle down"  , height:"16" , width:"16")  %>
               <span class="ship_details_inside_span_text_color">General Information</span>
           <table>
             <% @ship_details.as_json.each do |k, v| %>
@@ -31,7 +31,7 @@
         <div class="col-md-6 ship_details-portcall" >
           <% @ship_details = get_ship_details_second_table @name_of_ship %>
           <% unless @ship_details[1]%>
-              <img alt="Greentriangle down" class="" height="16" src="/assets/greentriangle_down.png" width="16">
+              <%= image_tag("/assets/greentriangle_down.png", alt:"Greentriangle down"  , height:"16" , width:"16")  %>
               <span class="ship_details_inside_span_text_color">Capacity</span>
           <% end %>
           <table>
@@ -54,7 +54,7 @@
           <% @ship_details = get_ship_details_third_table @name_of_ship %>
 
           <% unless @ship_details[1]%>
-              <img alt="Greentriangle down" class="" height="16" src="/assets/greentriangle_down.png" width="16">
+              <%= image_tag("/assets/greentriangle_down.png", alt:"Greentriangle down"  , height:"16" , width:"16")  %>
               <span class="ship_details_inside_span_text_color">Fuel</span>
           <% end %>
 

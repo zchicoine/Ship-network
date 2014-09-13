@@ -353,17 +353,17 @@ MAP.google_controller_methods = {
         MAP.google_common_methods.delete_all_marker();
 
         var iconDefault = {
-            url: 'assets/google_map/but_default_24.png'
+            url: image_port_on_map_default()
             // This marker is 20 pixels wide by 32 pixels tall.
             // The origin for this image is 0,0.
         };
         var iconHover = {
-            url: 'assets/google_map/but_hover_24.png'
+            url: image_port_on_map_hover()
             // This marker is 20 pixels wide by 32 pixels tall.
             // The origin for this image is 0,0.
         };
         var iconClick = {
-            url: 'assets/google_map/but_down_24.png'
+            url: image_port_on_map_down()
             // This marker is 20 pixels wide by 32 pixels tall.
             // The origin for this image is 0,0.
         };
