@@ -12,9 +12,9 @@ Africa_class = function () {
 
     this.areas_coordinates =
     {
-        "Douala":{'short_name':"douala",'coordinates':[4.05000,9.700000]},
+        "Douala":{'short_name':"Douala",'coordinates':[4.05000,9.700000]},
         "Durban":{ 'short_name':"Durban",'coordinates':[-29.858680,31.021840]},
-        "Default1":{ 'short_name':"Default",'coordinates':[11.825138,42.590275]}
+        "Djibouti":{ 'short_name':"Djibouti",'coordinates':[11.825138,42.590275]}
     };
     this.areas_coordinates = make_json_iterable(this.areas_coordinates);
     this.list_of_countries = [ "Egypt", "Libya" ,"Botswana" , "Tunisia", "Algeria" , "Morocco" , "Senegal" , "Chad"
