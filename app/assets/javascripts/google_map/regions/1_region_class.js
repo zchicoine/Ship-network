@@ -14,7 +14,7 @@ Region_class = function () {
        // "Arabia and Persian Gulf":{'short_name':"Arabia & PG",'coordinates':[-30.559482,22.937506]},
        // "Europe":{'short_name':"Europe",'coordinates':[52.3666,4.8999]},
         "India and South East Asia":{'short_name':"SEA",'coordinates':[17.686816,83.218482]},
-        "Far East":{'short_name':"Far East",'coordinates':[35.179554,129.075642]}
+        "Far East":{'short_name':"F.E.",'coordinates':[35.179554,129.075642]}
       //  "Australia":{'short_name':"Australia",'coordinates':[-32.926689,151.778921]}
     };
     this.areas_coordinates = make_json_iterable(this.areas_coordinates);

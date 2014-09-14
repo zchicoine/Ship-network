@@ -11,7 +11,7 @@ Arabia_and_Persian_Gulf_Class = function () {
     this.lat_lang = new google.maps.LatLng(-30.559482,22.937506);
     this.areas_coordinates =
     {
-        "Sur":{'short_name':"sur",'coordinates':[-30.559482,22.937506]},
+        "Sur":{'short_name':"Sur",'coordinates':[-30.559482,22.937506]},
         "Bandar":{ 'short_name':"Bandar",'coordinates':[26.371015,31.847656]},
         "Khomeini":{ 'short_name':"Khomeini",'coordinates':[32.634765,51.340669]}
     };
