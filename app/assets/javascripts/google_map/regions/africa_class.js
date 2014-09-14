@@ -26,7 +26,7 @@ Africa_class = function () {
         , "Malawi" , "Somaliland" , "W. Sahara" , "Swaziland", "Guinea Bissau" , "Eq. Guinea" , "Lesotho"];
 
     this.map_properties = {
-        'color': "#0055FF",
+        'color': "#a8ff00",
         'lable':"AFRICA",
         'lable_position':new google.maps.LatLng(17.6493, 11.5994)
     };
