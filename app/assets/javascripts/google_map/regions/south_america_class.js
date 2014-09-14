@@ -12,8 +12,9 @@ South_America_class = function () {
 
     this.areas_coordinates =
     {
-        "Recalada":{ 'short_name':"Recalada",'coordinates':[-12.05,-77.16667]},
-        "Default1":{ 'short_name':"Default",'coordinates':[6.81667,-58.16667]}
+        "Recalada":{ 'short_name':"Recalada",'coordinates':[-34.7878,-55.8831]},
+        "Callao":{ 'short_name':"Callao",'coordinates':[-12.05,-77.16667]},
+        "Default1":{ 'short_name':"Georgetown",'coordinates':[6.81667,-58.16667]}
     };
     this.areas_coordinates = make_json_iterable(this.areas_coordinates);
 

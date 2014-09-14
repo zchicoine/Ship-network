@@ -13,7 +13,7 @@ Arabia_and_Persian_Gulf_Class = function () {
     {
         "Sur":{'short_name':"sur",'coordinates':[-30.559482,22.937506]},
         "Bandar":{ 'short_name':"Bandar",'coordinates':[26.371015,31.847656]},
-        "Default1":{ 'short_name':"Default",'coordinates':[32.634765,51.340669]}
+        "Khomeini":{ 'short_name':"Khomeini",'coordinates':[32.634765,51.340669]}
     };
     this.areas_coordinates = make_json_iterable(this.areas_coordinates);
 
