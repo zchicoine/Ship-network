@@ -11,8 +11,9 @@ North_America_class = function () {
 
     this.areas_coordinates =
     {
-        "Recalada":{ 'short_name':"Recalada",'coordinates':[40.71667,-74]},
-        "Default1":{ 'short_name':"Default",'coordinates':[29.95,-90.06667]}
+        "New York":{ 'short_name':"N.Y.",'coordinates':[40.71667,-74]},
+        "North Orleans":{ 'short_name':"N.O.",'coordinates':[29.95,-90.06667]},
+        "Vancouver":{ 'short_name':"VN",'coordinates':[49.261226,-123.11]}
     };
     this.areas_coordinates = make_json_iterable(this.areas_coordinates);
 
