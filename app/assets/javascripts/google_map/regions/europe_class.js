@@ -30,7 +30,7 @@ Europe_class = function () {
 
 
     this.map_properties = {
-        'color': "#20FF00",
+        'color': "#003cb3",
         'lable':"EUROPE",
         'lable_position':new google.maps.LatLng(53.1289, 45.1102)
     };

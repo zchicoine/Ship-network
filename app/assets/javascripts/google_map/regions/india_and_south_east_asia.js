@@ -21,7 +21,7 @@ India_and_South_East_Asia_class = function () {
         , "Brunei" , "Indonesia" , "Laos" , "Nepal" , "Bhutan", "Cambodia" , "Vietnam" , "Philippines" ];
 
     this.map_properties = {
-        'color': "#20FF00",
+        'color': "#006e99",
         'lable':"INDIA AND SEA",
         'lable_position':new google.maps.LatLng(24.4471,85.1660)
     };
