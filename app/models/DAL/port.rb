@@ -3,7 +3,10 @@
         before_save{
             self.region = region.downcase
             self.region = region.strip!
+            #self.name = name.capitalize
+            #self.name = name.strip!
         }
+
       validates_presence_of :name
       validates_presence_of :region
       validates_uniqueness_of :name, case_sensitive: false
