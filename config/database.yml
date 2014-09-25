@@ -21,8 +21,9 @@ test:
   database: db/test.sqlite3
 
 production:
+   adapter: postgresql
    pool: 5
    timeout: 5000
    host: ec2-107-20-191-205.compute-1.amazonaws.com
-  database: d1l4jqrvl6hbm7
-  User: blixkgfofbnmvw
+   database: d1l4jqrvl6hbm7
+   User: blixkgfofbnmvw
