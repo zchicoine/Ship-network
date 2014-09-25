@@ -206,7 +206,7 @@ index = 1
       end
 
 
-      _port_associate_to_ship = Port.find_by_name(open_port.capitalize)
+      _port_associate_to_ship = Port.find_by_name(open_port)
         index = index + 1
       unless _port_associate_to_ship.blank?
         begin

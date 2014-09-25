@@ -172,6 +172,7 @@ $(document).on('click',".ship_name_on_side_bar", function(e){
                          ship_details(ship_name,port_name,region_name);
                          $( ".hide-or-show-it" ).hide( );
                          update_broker_view(ship_name,port_name);
+
                      }else{
                          update_ship_view(ship_name);
                      }
@@ -222,6 +223,7 @@ ship_details = function(ship_name,port_name,region_name){
 
 update_broker_view = function(ship_name,port_name){
     send_broker_info_to_sidebar(ship_name,port_name);
+    refresh_link_list_back_history(ship_name,SHIP_LEVEL);
 }
 
 

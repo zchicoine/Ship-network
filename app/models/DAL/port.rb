@@ -2,8 +2,11 @@
     class Port < ActiveRecord::Base
         before_save{
             self.region = region.downcase
-            self.region = region.strip!
+          # strip! Removes leading and trailing whitespace from str. Returns nil if str was not altered.
+            # therefore strip will be used
+            self.region = region.strip
         }
+
       validates_presence_of :name
       validates_presence_of :region
       validates_uniqueness_of :name, case_sensitive: false
