@@ -26,5 +26,5 @@ production:
    timeout: 5000
    host: ec2-107-20-191-205.compute-1.amazonaws.com
    database: d1l4jqrvl6hbm7
-   User: blixkgfofbnmvw
-   Password: Z4qxOQZYkgHjV7KHX0wnzwD_pT
+   username: blixkgfofbnmvw
+   password: Z4qxOQZYkgHjV7KHX0wnzwD_pT
