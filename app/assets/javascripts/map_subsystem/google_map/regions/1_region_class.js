@@ -170,7 +170,7 @@ function event_listeners_on_the_map(region_object,region_name) {
             },450);
 
             region_object.setOptions({
-                fillOpacity: 0.3
+                fillOpacity: 0.1
             });
         })
 
