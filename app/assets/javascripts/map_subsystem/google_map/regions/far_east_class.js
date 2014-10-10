@@ -27,7 +27,7 @@ Far_East_class = function () {
 
     this.fusiontables_properties = {
         "countries": this.list_of_countries,
-        'coordinates':[],
+        'coordinates':MAP.Models.Coordinates.farEest(),
         'color':this.map_properties['color']
     }
 };
