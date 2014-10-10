@@ -116,7 +116,7 @@ MAP.google_fusiontables = {
         if(data_from_fusiontable['error'] == undefined){
             var data = data_from_fusiontable['rows'];
 
-            region_objects_variable.each_object().extract_region_coordinates(data)
+            region_objects_variable.North_America().extract_region_coordinates(data)
             region_objects_variable.each_object().set_region_highlight_on_the_map();
         }else {
             error_message_display("Google map fusion tables: " + data_from_fusiontable['error']['message']);

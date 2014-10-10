@@ -6,8 +6,8 @@ function initialize_the_map() {
 
 
    var map = MAP.google_map();
-   //MAP.google_fusiontables.load();
-    region_objects_variable.Africa().set_region_highlight_on_the_map();
+  // MAP.google_fusiontables.load();
+    region_objects_variable.each_object().set_region_highlight_on_the_map();
     region_objects_variable.each_object().set_map_label(map);
     update_global();
 

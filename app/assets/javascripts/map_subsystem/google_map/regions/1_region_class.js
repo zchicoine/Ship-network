@@ -72,20 +72,22 @@ Region_class.prototype.extract_region_coordinates = function (data){
             country_name = data[i][0];
             country_coordinates = data[i][1];
 
-            if( region_objects_variable.Africa().fusiontables_properties["countries"].indexOf(country_name) > -1 ){
+            if( region_objects_variable.North_America().fusiontables_properties["countries"].indexOf(country_name) > -1 ){
                 console.log("//" + country_name);
-                console.log("[");
+
                 if (country_coordinates['geometries']) {
                     for (var j in country_coordinates['geometries']) {
+                        console.log("[");
                         this.fusiontables_properties['coordinates'].push(constructNewCoordinates(country_coordinates['geometries'][j]));
-
+                        console.log("],");
                     }
 
                 } else {
+                    console.log("[");
                     this.fusiontables_properties['coordinates'].push(constructNewCoordinates(country_coordinates['geometry']));
-
+                    console.log("],");
                 }
-                console.log("],");
+
 
             }
         }
