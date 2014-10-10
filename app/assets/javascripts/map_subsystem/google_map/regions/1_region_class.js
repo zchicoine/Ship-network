@@ -72,7 +72,7 @@ Region_class.prototype.extract_region_coordinates = function (data){
             country_name = data[i][0];
             country_coordinates = data[i][1];
 
-            if( region_objects_variable.Far_East().fusiontables_properties["countries"].indexOf(country_name) > -1 ){
+            if( region_objects_variable.Arabia_and_PG().fusiontables_properties["countries"].indexOf(country_name) > -1 ){
                 console.log("//" + country_name);
 
                 if (country_coordinates['geometries']) {

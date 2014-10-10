@@ -31,7 +31,7 @@ Arabia_and_Persian_Gulf_Class = function () {
 
     this.fusiontables_properties = {
         "countries": this.list_of_countries,
-        'coordinates':[],
+        'coordinates':MAP.Models.Coordinates.arabia_pg(),
         'color':this.map_properties['color']
     }
 };
