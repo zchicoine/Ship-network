@@ -6,7 +6,6 @@ function initialize_the_map() {
 
 
    var map = MAP.google_map();
-  // MAP.google_fusiontables.load();
     region_objects_variable.each_object().set_region_highlight_on_the_map();
     region_objects_variable.each_object().set_map_label(map);
     update_global();
@@ -37,8 +36,9 @@ function reload_the_map_with_specification(specification){
         if(specification['new_map'] == true){
 
           var  map = MAP.google_map(specification['new_map']);
-            MAP.google_fusiontables.load();
+            region_objects_variable.each_object().set_region_highlight_on_the_map();
             region_objects_variable.each_object().set_map_label(map);
+
         }
          if(specification['layer'] == REGION_LEVEL  && specification['region_name'] != undefined){
             zoom_to_region_level_map(specification['region_name']);
