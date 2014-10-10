@@ -5,13 +5,4 @@
  */
 
 
-MAP.Models.Coordinates = MAP.Models.Coordinates ||{
-
-
-    europe: function(){
-        return regionEuropeCoords = [
-
-
-        ];
-    }
-}
+MAP.Models.Coordinates = MAP.Models.Coordinates ||{}
