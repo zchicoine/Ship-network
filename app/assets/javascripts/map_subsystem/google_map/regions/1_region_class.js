@@ -72,7 +72,9 @@ Region_class.prototype.extract_region_coordinates = function (data){
             country_name = data[i][0];
             country_coordinates = data[i][1];
 
-            if( this.fusiontables_properties["countries"].indexOf(country_name) > -1 ){
+            if( region_objects_variable.Africa().fusiontables_properties["countries"].indexOf(country_name) > -1 ){
+                console.log("//" + country_name);
+                console.log("[");
                 if (country_coordinates['geometries']) {
                     for (var j in country_coordinates['geometries']) {
                         this.fusiontables_properties['coordinates'].push(constructNewCoordinates(country_coordinates['geometries'][j]));
@@ -83,6 +85,7 @@ Region_class.prototype.extract_region_coordinates = function (data){
                     this.fusiontables_properties['coordinates'].push(constructNewCoordinates(country_coordinates['geometry']));
 
                 }
+                console.log("],");
 
             }
         }
@@ -136,9 +139,13 @@ function constructNewCoordinates(polygon) {
     for (var i in coordinates) {
         newCoordinates.push(
             new google.maps.LatLng(coordinates[i][1], coordinates[i][0]));
+        console.log("new google.maps.LatLng(" + coordinates[i][1] + "," + coordinates[i][0] + "),");
     }
+   // console.log(newCoordinates);
     return newCoordinates;
+
 }
+
 
 
 function event_listeners_on_the_map(region_object,region_name) {
@@ -170,7 +177,7 @@ function event_listeners_on_the_map(region_object,region_name) {
             },450);
 
             region_object.setOptions({
-                fillOpacity: 0.1
+                fillOpacity: 0.2
             });
         })
 
