@@ -268,8 +268,8 @@ read_ship_db2_file
 
 begin
     all_shipments = Shipment.all
-    Broker.create!(username: "Zack", password: "shipment", company: "Sterling Ocean Transport",
-                   email: "z.chicoine@gmail.com", shipments: all_shipments)
+    Broker.create!(username: "Zack", password: "shipment", company: "Sterling Ocean Transport Inc",
+                   email: "brokers@sterlingoceantransport.com", shipments: all_shipments)
 
 rescue => e
     puts "#{e.message} for broker Zack"
