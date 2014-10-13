@@ -215,7 +215,8 @@ def read_ship_db2_file
                                            box_shaped_holds?: box_shaped_holds, cement_holes_fitted?: cement_holes_fitted, marine_gasoline_oil?: marine_gasoline_oil, ice_classed?: ice_classed)
                     b.ship_detail = a
 
-
+                else
+                   # p open_port
                 end
             rescue => e
                 puts e.message + " for  vessel: " + name
