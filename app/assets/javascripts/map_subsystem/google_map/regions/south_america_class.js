@@ -33,7 +33,7 @@ South_America_class = function () {
 
     this.fusiontables_properties = {
         "countries": this.list_of_countries,
-        'coordinates':[],
+        'coordinates':MAP.Models.Coordinates.southAmerica(),
         'color':this.map_properties['color']
     }
 };

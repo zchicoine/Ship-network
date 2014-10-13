@@ -37,7 +37,7 @@ Europe_class = function () {
 
     this.fusiontables_properties = {
         "countries": this.list_of_countries,
-        'coordinates':[],
+        'coordinates':MAP.Models.Coordinates.europe(),
         'color':this.map_properties['color']
     }
 };

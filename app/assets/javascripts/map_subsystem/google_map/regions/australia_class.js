@@ -26,7 +26,7 @@ Australia_class = function () {
 
     this.fusiontables_properties = {
         "countries": this.list_of_countries,
-        'coordinates':[],
+        'coordinates':MAP.Models.Coordinates.australia(),
         'color':this.map_properties['color']
     };
 

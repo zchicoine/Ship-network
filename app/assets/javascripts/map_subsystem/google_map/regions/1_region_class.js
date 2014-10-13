@@ -9,13 +9,14 @@ Region_class = function () {
     this.areas_coordinates =
     {
         "North America":{ 'short_name':"NA",'coordinates':[29.95,-90.06667]},
-        "Africa":{'short_name':"Africa",'coordinates':[4.05000,9.700000]},
         "South America":{'short_name':"SA",'coordinates':[-12.05,-77.16667]},
-        "Arabia and Persian Gulf":{'short_name':"A & PG",'coordinates':[-30.559482,22.937506]},
+        "Africa":{'short_name':"Africa",'coordinates':[4.05000,9.700000]},
         "Europe":{'short_name':"Europe",'coordinates':[52.3666,4.8999]},
+        "Arabia and Persian Gulf":{'short_name':"A & PG",'coordinates':[-30.559482,22.937506]},
         "India and South East Asia":{'short_name':"SEA",'coordinates':[17.686816,83.218482]},
-        "Far East":{'short_name':"F.E.",'coordinates':[35.179554,129.075642]},
-        "Australia":{'short_name':"Aus",'coordinates':[-32.926689,151.778921]}
+        "Australia":{'short_name':"Aus",'coordinates':[-32.926689,151.778921]},
+        "Far East":{'short_name':"F.E.",'coordinates':[35.179554,129.075642]}
+
     };
     this.areas_coordinates = make_json_iterable(this.areas_coordinates);
 
@@ -72,17 +73,22 @@ Region_class.prototype.extract_region_coordinates = function (data){
             country_name = data[i][0];
             country_coordinates = data[i][1];
 
-            if( this.fusiontables_properties["countries"].indexOf(country_name) > -1 ){
+            if( region_objects_variable.Arabia_and_PG().fusiontables_properties["countries"].indexOf(country_name) > -1 ){
+                console.log("//" + country_name);
+
                 if (country_coordinates['geometries']) {
                     for (var j in country_coordinates['geometries']) {
+                        console.log("[");
                         this.fusiontables_properties['coordinates'].push(constructNewCoordinates(country_coordinates['geometries'][j]));
-
+                        console.log("],");
                     }
 
                 } else {
+                    console.log("[");
                     this.fusiontables_properties['coordinates'].push(constructNewCoordinates(country_coordinates['geometry']));
-
+                    console.log("],");
                 }
+
 
             }
         }
@@ -136,9 +142,13 @@ function constructNewCoordinates(polygon) {
     for (var i in coordinates) {
         newCoordinates.push(
             new google.maps.LatLng(coordinates[i][1], coordinates[i][0]));
+        console.log("new google.maps.LatLng(" + coordinates[i][1] + "," + coordinates[i][0] + "),");
     }
+   // console.log(newCoordinates);
     return newCoordinates;
+
 }
+
 
 
 function event_listeners_on_the_map(region_object,region_name) {
@@ -170,7 +180,7 @@ function event_listeners_on_the_map(region_object,region_name) {
             },450);
 
             region_object.setOptions({
-                fillOpacity: 0.3
+                fillOpacity: 0.2
             });
         })
 

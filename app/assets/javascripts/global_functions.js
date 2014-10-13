@@ -86,14 +86,14 @@ load_popover_with_id = function(element,popover_load_class, content_id, title_id
         });
 
         // on blur
-            $(element).blur(function () {
-
-            if( popover_show){
-                $(popover_load_class_with_right_syntax).popover('hide');
-                $(element).trigger('click');
-            }
-
-        });
+//            $(element).blur(function () {
+//
+//            if( popover_show){
+//                $(popover_load_class_with_right_syntax).popover('hide');
+//                $(element).trigger('click');
+//            }
+//
+//        });
         // on click
         $(element).clickToggle(function () {
 

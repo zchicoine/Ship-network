@@ -7,12 +7,12 @@ North_America_class = function () {
     Region_class.call(this);
     this.name = 'North America';
     this.unique_identifier = this.name;
-    this.lat_lang = new google.maps.LatLng(55.443528, -96.053968);
+    this.lat_lang = new google.maps.LatLng(29.95,-90.06667);
 
     this.areas_coordinates =
     {
+        "New Orleans":{ 'short_name':"N.O.",'coordinates':[29.95,-90.06667]},
         "New York":{ 'short_name':"N.Y.",'coordinates':[40.71667,-74]},
-        "North Orleans":{ 'short_name':"N.O.",'coordinates':[29.95,-90.06667]},
         "Vancouver":{ 'short_name':"VN",'coordinates':[49.261226,-123.11]}
     };
     this.areas_coordinates = make_json_iterable(this.areas_coordinates);
@@ -29,7 +29,7 @@ North_America_class = function () {
 
     this.fusiontables_properties = {
         "countries": this.list_of_countries,
-        'coordinates':[],
+        'coordinates':MAP.Models.Coordinates.northAmerica(),
         'color':this.map_properties['color']
     }
 };
