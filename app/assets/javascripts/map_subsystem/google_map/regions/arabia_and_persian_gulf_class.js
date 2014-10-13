@@ -8,12 +8,12 @@ Arabia_and_Persian_Gulf_Class = function () {
     Region_class.call(this);
     this.name = "Arabia and Persian Gulf";
     this.unique_identifier = this.name;
-    this.lat_lang = new google.maps.LatLng(-30.559482,22.937506);
+    this.lat_lang = new google.maps.LatLng(22.58333333332,59.4833333334);
     this.areas_coordinates =
     {
-        "Sur":{'short_name':"Sur",'coordinates':[-30.559482,22.937506]},
-        "Bandar":{ 'short_name':"Bandar",'coordinates':[26.371015,31.847656]},
-        "Khomeini":{ 'short_name':"Khomeini",'coordinates':[32.634765,51.340669]}
+        "Sur":{'short_name':"Sur",'coordinates':[22.58333333332,59.4833333334]},
+        "Bandar Imam Khomeini":{ 'short_name':"BIK",'coordinates':[30.4333333334,49.08333333336]}
+
     };
     this.areas_coordinates = make_json_iterable(this.areas_coordinates);
 
