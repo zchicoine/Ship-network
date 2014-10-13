@@ -9,13 +9,14 @@ Region_class = function () {
     this.areas_coordinates =
     {
         "North America":{ 'short_name':"NA",'coordinates':[29.95,-90.06667]},
-        "Africa":{'short_name':"Africa",'coordinates':[4.05000,9.700000]},
         "South America":{'short_name':"SA",'coordinates':[-12.05,-77.16667]},
-        "Arabia and Persian Gulf":{'short_name':"A & PG",'coordinates':[-30.559482,22.937506]},
+        "Africa":{'short_name':"Africa",'coordinates':[4.05000,9.700000]},
         "Europe":{'short_name':"Europe",'coordinates':[52.3666,4.8999]},
+        "Arabia and Persian Gulf":{'short_name':"A & PG",'coordinates':[-30.559482,22.937506]},
         "India and South East Asia":{'short_name':"SEA",'coordinates':[17.686816,83.218482]},
-        "Far East":{'short_name':"F.E.",'coordinates':[35.179554,129.075642]},
-        "Australia":{'short_name':"Aus",'coordinates':[-32.926689,151.778921]}
+        "Australia":{'short_name':"Aus",'coordinates':[-32.926689,151.778921]},
+        "Far East":{'short_name':"F.E.",'coordinates':[35.179554,129.075642]}
+
     };
     this.areas_coordinates = make_json_iterable(this.areas_coordinates);
 
