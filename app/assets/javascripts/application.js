@@ -15,6 +15,8 @@
 //= require turbolinks
 //= require bootstrap
 //= require sugar
+//= require_tree ./map_subsystem/google_map
+//= require map_subsystem/map_models/map_models
 //= require_tree .
 
 
