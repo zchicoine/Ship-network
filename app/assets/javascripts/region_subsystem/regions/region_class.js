@@ -1,4 +1,3 @@
-// to make sure is load first
 
 // base class
 var Region_class;
@@ -66,38 +65,7 @@ Region_class.prototype.scroll_between_specific_areas = function (navigate_direct
 
 }
 
-Region_class.prototype.extract_region_coordinates = function (data){
 
-    if(this.region_polygon == undefined){
-        for (var i in data) {
-            country_name = data[i][0];
-            country_coordinates = data[i][1];
-
-            if( region_objects_variable.Arabia_and_PG().fusiontables_properties["countries"].indexOf(country_name) > -1 ){
-                console.log("//" + country_name);
-
-                if (country_coordinates['geometries']) {
-                    for (var j in country_coordinates['geometries']) {
-                        console.log("[");
-                        this.fusiontables_properties['coordinates'].push(constructNewCoordinates(country_coordinates['geometries'][j]));
-                        console.log("],");
-                    }
-
-                } else {
-                    console.log("[");
-                    this.fusiontables_properties['coordinates'].push(constructNewCoordinates(country_coordinates['geometry']));
-                    console.log("],");
-                }
-
-
-            }
-        }
-    }
-
-
-
-
-}
 
 Region_class.prototype.set_region_highlight_on_the_map = function (){
 

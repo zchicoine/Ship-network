@@ -31,7 +31,7 @@ function reload_the_map_with_specification(specification){
 
     if(specification != undefined){
 
-        MAP.state_information.current_zoom_layer().set(specification['layer']);
+        MAP.Controller.current_zoom_layer().set(specification['layer']);
 
         if(specification['new_map'] == true){
 
