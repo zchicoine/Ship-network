@@ -112,56 +112,10 @@ MAP.properties = {
 
 MAP.google_fusiontables = {
 
-    draw_on_the_map: function (data_from_fusiontable) {
-        if(data_from_fusiontable['error'] == undefined){
-            var data = data_from_fusiontable['rows'];
-
-            region_objects_variable.Arabia_and_PG().extract_region_coordinates(data)
-            region_objects_variable.each_object().set_region_highlight_on_the_map();
-        }else {
-            error_message_display("Google map fusion tables: " + data_from_fusiontable['error']['message']);
-        }
-
-
-    },
-    load: function(){
-            var script = document.createElement('script');
-            var url = ['https://www.googleapis.com/fusiontables/v1/query?'];
-            url.push('sql=');
-            var query = 'SELECT name, kml_4326 FROM ' +
-                '1foc3xO9DyfSIF6ofvN0kp2bxSfSeKog5FbdWdQ';
-            var encodedQuery = encodeURIComponent(query);
-            url.push(encodedQuery);
-            url.push('&callback=MAP.google_fusiontables.draw_on_the_map');
-            url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
-            script.src = url.join('');
-            var body = document.getElementsByTagName('body')[0];
-            body.appendChild(script);
-
-    }
-
-
-
 }
 
 
 MAP.helper_methods = {
-    current_layer: function(){
-
-        if ( arguments.callee._singletonInstance )
-            return arguments.callee._singletonInstance;
-        arguments.callee._singletonInstance = this;
-
-        var layer_level = GLOBAL_LEVEL;
-        this.get =  function(){
-            return   layer_level;
-        }
-        this.set = function(new_layer_level){
-            layer_level = new_layer_level;
-            return this;
-        }
-
-    }
 
 };
 
@@ -266,9 +220,7 @@ MAP.events ={
 };
 
 MAP.state_information = {
-    current_layer: function() {
-        return  new MAP.helper_methods.current_layer();
-    },
+
 
     get_zoom:function(){
         return MAP.google_map().get_zoom();
