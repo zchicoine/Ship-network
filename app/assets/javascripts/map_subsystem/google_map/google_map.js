@@ -1,5 +1,14 @@
 
-var geometries;
+
+var GoogleMapApp;
+GoogleMapApp = function(){
+
+};
+
+GoogleMapApp.prototype.start = function(){
+    google.maps.event.addDomListenerOnce(window, 'load', initialize_the_map);
+}
+
 
 
 function initialize_the_map() {
@@ -12,7 +21,7 @@ function initialize_the_map() {
 
 }
 
-google.maps.event.addDomListenerOnce(window, 'load', initialize_the_map);
+
 
 
 
