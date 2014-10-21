@@ -2,6 +2,8 @@
  * Created by Mohammed Alnakli on 2014-10-15.
  */
 
+
+
 var GlobalView;
 GlobalView = function(){
 

@@ -9,3 +9,9 @@ var string_match = function(string){
 
     return true;
 };
+
+var remove_white_space = function(name){
+    return name.replace(/\s+/g, '');
+
+};
+
