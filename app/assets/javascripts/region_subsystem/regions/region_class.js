@@ -36,8 +36,8 @@ Region_class = function () {
 
 Region_class.prototype.change_region_view = function () {
 
-    MAP.google_common_methods.set_center(this.lat_lang);
-    MAP.google_common_methods.set_zoom(4);
+    MAP.google_methods.set_center(this.lat_lang);
+    MAP.google_methods.set_zoom(4);
     MAP.google_controller_methods.get_port_coordinates(this.name);
 
 };
@@ -60,7 +60,7 @@ Region_class.prototype.scroll_between_specific_areas = function (navigate_direct
         store_navigate_back = this.areas_coordinates[store_navigate_now].back;
     }
     update_map_navigate_label_and_tooltip(this.areas_coordinates[store_navigate_back]['short_name'],this.areas_coordinates[store_navigate_next]['short_name'],store_navigate_back,store_navigate_next);
-    MAP.google_common_methods.set_center(new google.maps.LatLng(this.areas_coordinates[store_navigate_now]['coordinates'][0],this.areas_coordinates[store_navigate_now]['coordinates'][1]));
+    MAP.google_methods.set_center(new google.maps.LatLng(this.areas_coordinates[store_navigate_now]['coordinates'][0],this.areas_coordinates[store_navigate_now]['coordinates'][1]));
 
 
 }
@@ -70,7 +70,7 @@ Region_class.prototype.scroll_between_specific_areas = function (navigate_direct
 Region_class.prototype.set_region_highlight_on_the_map = function (){
 
     if(this.region_polygon == undefined){
-        this.region_polygon = MAP.initialize.create_polygon(this.fusiontables_properties['coordinates'],
+        this.region_polygon = MAP.initialize.google_polygon(this.fusiontables_properties['coordinates'],
             this.map_properties['color'], this.map_properties['color'], this.unique_identifier);
 
         event_listeners_on_the_map(this.region_polygon,this.name);
@@ -90,7 +90,7 @@ Region_class.prototype.set_map_label = function(map){
     });
 }
 Region_class.prototype.clear_all_listeners_of_region= function(){
-    MAP.google_common_methods.clear_all_listeners_of_an_object(this.unique_identifier);
+    MAP.google_methods.clear_all_listeners_of_an_object(this.unique_identifier);
 }
 // see options https://developers.google.com/maps/documentation/javascript/reference#PolygonOptions
 
@@ -102,20 +102,6 @@ Region_class.prototype.region_polygon_setOptions= function(options){
 }
 
 // end of Region class //
-
-
-function constructNewCoordinates(polygon) {
-    var newCoordinates = [];
-    var coordinates = polygon['coordinates'][0];
-    for (var i in coordinates) {
-        newCoordinates.push(
-            new google.maps.LatLng(coordinates[i][1], coordinates[i][0]));
-        console.log("new google.maps.LatLng(" + coordinates[i][1] + "," + coordinates[i][0] + "),");
-    }
-   // console.log(newCoordinates);
-    return newCoordinates;
-
-}
 
 
 
