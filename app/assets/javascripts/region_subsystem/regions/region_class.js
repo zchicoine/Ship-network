@@ -38,7 +38,7 @@ Region_class.prototype.change_region_view = function () {
 
     MAP.google_methods.set_center(this.lat_lang);
     MAP.google_methods.set_zoom(4);
-    MAP.Models.Backend.ports_info(this.name);
+    MAP.google_controller_methods.display_ports(this.name);
 
 };
 

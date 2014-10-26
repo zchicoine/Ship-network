@@ -27,67 +27,87 @@ MAP.Controller.current_zoom_layer = function() {
 
 MAP.google_controller_methods = {
 
-    display_ports: function (port,port_name,ship_number){
+    display_ports: function (region_name){
+
+        if  (!string_match(region_name)){
+               return "";
+        }
+
         // clear marker on the google_map
         MAP.google_methods.delete_all_marker();
+        MAP.Models.Backend.ports_info(region_name).done(function(data){
 
-        var iconDefault = {
-            url: image_port_on_map_default()
-            // This marker is 20 pixels wide by 32 pixels tall.
-            // The origin for this image is 0,0.
-        };
-        var iconHover = {
-            url: image_port_on_map_hover()
-            // This marker is 20 pixels wide by 32 pixels tall.
-            // The origin for this image is 0,0.
-        };
-        var iconClick = {
-            url: image_port_on_map_down()
-            // This marker is 20 pixels wide by 32 pixels tall.
-            // The origin for this image is 0,0.
-        };
+            var port = data.coordinates;
+            var port_name = data.name;
+            var ship_number = data.shipNumber;
 
-        for(var i=0;i < port.length;i++){
+            var iconDefault = {
+                url: image_port_on_map_default()
+                // This marker is 20 pixels wide by 32 pixels tall.
+                // The origin for this image is 0,0.
+            };
+            var iconHover = {
+                url: image_port_on_map_hover()
+                // This marker is 20 pixels wide by 32 pixels tall.
+                // The origin for this image is 0,0.
+            };
+            var iconClick = {
+                url: image_port_on_map_down()
+                // This marker is 20 pixels wide by 32 pixels tall.
+                // The origin for this image is 0,0.
+            };
 
-            var position = new google.maps.LatLng(port[i][0],port[i][1]);
-            var infowindow = new google.maps.InfoWindow({maxWidth:200} );
-            var content = "<div class='' >"+
-                port_name[i] +' has ' + ship_number[i] + ' ship(s)' +
-                "</div>";
+            for(var i=0;i < port.length;i++){
 
-            //  new google.maps.Size(20, 34), From Mohammed: why this line here?
-            marker = MAP.initialize.google_marker(port_name[i],position,iconDefault,ship_number[i] + ' ship(s)',port_name);
+                var position = new google.maps.LatLng(port[i][0],port[i][1]);
+                var infowindow = new google.maps.InfoWindow({maxWidth:200} );
+                var content = "<div class='' >"+
+                    port_name[i] +' has ' + ship_number[i] + ' ship(s)' +
+                    "</div>";
 
-            MAP.events.mouseover(marker,(function( marker,content) {
-                return function() {
-                    marker.setIcon(iconHover);
-                    infowindow.setContent(content);
-                    infowindow.open(MAP.google_map(),marker);
-                }
+                //  new google.maps.Size(20, 34), From Mohammed: why this line here?
+                marker = MAP.initialize.google_marker(port_name[i],position,iconDefault,ship_number[i] + ' ship(s)',port_name);
 
-            })(marker,content));
-
-            MAP.events.mouseout(marker, (function( marker,content) {
-                return function() {
-                    // it allow clicking twice
-                    if(marker.icon != iconClick) {
-                        marker.setIcon(iconDefault);
-                        infowindow.close(MAP.google_map(),marker);
+                MAP.events.mouseover(marker,(function( marker,content) {
+                    return function() {
+                        marker.setIcon(iconHover);
+                        infowindow.setContent(content);
+                        infowindow.open(MAP.google_map(),marker);
                     }
-                }
 
-            })(marker, ""));
-            MAP.events.click(marker,(function( marker,content) {
-                return function() {
-                    update_port_view(marker.id);
-                    marker.setIcon(iconClick);
+                })(marker,content));
 
-                }
+                MAP.events.mouseout(marker, (function( marker,content) {
+                    return function() {
+                        // it allow clicking twice
+                        if(marker.icon != iconClick) {
+                            marker.setIcon(iconDefault);
+                            infowindow.close(MAP.google_map(),marker);
+                        }
+                    }
 
-            })(marker, content));
+                })(marker, ""));
+                MAP.events.click(marker,(function( marker,content) {
+                    return function() {
+                        // marker.id: port name
+                        // marker.position.B: longitude
+                        // marker.position.K: latitude
+                        var port_name = marker.id;
+                        var port_coordinates = [marker.position.k,marker.position.B];
+                        new PortViewApp().start(port_name,port_coordinates);
+                      //  update_port_view(marker.id);
+                        marker.setIcon(iconClick);
+
+                    }
+
+                })(marker, content));
 
 
-        }
+            }
+
+
+        });
+
 
     }
 }

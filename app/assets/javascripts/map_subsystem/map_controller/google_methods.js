@@ -4,6 +4,9 @@
 MAP.google_methods = {
 
     set_center: function(lat_lang){
+        if( Object.prototype.toString.call( lat_lang ) === '[object Array]'){
+            lat_lang = new google.maps.LatLng(lat_lang[0], lat_lang[1])
+        }
         MAP.google_map().setCenter(lat_lang);
     },
     set_zoom: function(val){
