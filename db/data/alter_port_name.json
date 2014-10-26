@@ -1,6 +1,7 @@
 {
-    "abbas": "Bandar Abbas",
-    "Mumbai": "Bombay",
+    "Abbas": "Bandar Abbas",
+    "Haji Bunder": "Mumbai",
+    "Bombay":"Mumbai",
     "Kolkata": "Calcutta",
     "Capetown": "Cape Town",
     "Casa": "Casablanca",
@@ -57,6 +58,7 @@
     "Mesaieed": "Messaieed",
     "Brazil": "Brasil",
     "East Coast Uk": "Ecuk",
+    "SEA":"Se Asia",
     "Vdc": "Vila Do Conde",
     "Wc India": "West Coast India",
     "Wci": "West Coast India",
@@ -65,5 +67,15 @@
     "W Afr": "West Africa",
     "N Spain": "North Spain",
     "Ec Mex": "Ec Mexico",
-    "Nola":"New Orleans"
+    "NOLA":"New Orleans",
+    "spore":"Singapore",
+    "s'pore":"Singapore",
+    "Visak":"Visakhapatnam",
+    "Vizag":"Visakhapatnam",
+    "Vizak":"Visakhapatnam",
+    "Spain Med":"Span Med",
+    "Spanish Med":"Span Med",
+    "N.china":"North China",
+    "Nopac":"Vancouver, Canada",
+    "Vanc":"Vancouver, Canada"
 }
