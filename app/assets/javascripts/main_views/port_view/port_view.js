@@ -42,14 +42,15 @@ PortView.prototype.draw = function(port_name, coordinates){
 
 //app
 
-var PortViewApp = function(){
-
+var PortViewApp = function(name, coordinates){
+    this.name = name;
+    this.coordinates = coordinates;
     this.portViewInstance = new PortView();
 
 };
 
-PortViewApp.prototype.start = function(port_name, coordinates){
-    this.portViewInstance.draw(port_name, coordinates);
+PortViewApp.prototype.start = function(){
+    this.portViewInstance.draw(this.name, this.coordinates);
 }
 
 //end app

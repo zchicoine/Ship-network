@@ -18,7 +18,9 @@
 
                     <tr >
                         <td>
-                            <%= link_to port[:name], main_pages_port_path(port_info: {port_name: port[:name]}),:remote => true, method: :post
+                            <%= link_to port[:name],
+                                        main_pages_port_path(port_info: {port_name: port[:name], port_coordinates: {latitude: port[:latitude], longitude: port[:longitude] } }),
+                                        :remote => true, method: :post
                             %>
                         </td>
                     </tr>

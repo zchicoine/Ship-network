@@ -70,9 +70,13 @@ MAP.google_controller_methods = {
 
                 MAP.events.mouseover(marker,(function( marker,content) {
                     return function() {
-                        marker.setIcon(iconHover);
-                        infowindow.setContent(content);
-                        infowindow.open(MAP.google_map(),marker);
+
+
+                            marker.setIcon(iconHover);
+                            infowindow.setContent(content);
+                            infowindow.open(MAP.google_map(),marker);
+
+
                     }
 
                 })(marker,content));
@@ -80,10 +84,12 @@ MAP.google_controller_methods = {
                 MAP.events.mouseout(marker, (function( marker,content) {
                     return function() {
                         // it allow clicking twice
-                        if(marker.icon != iconClick) {
+
+                       // if(marker.icon.url != iconClick.url) {
                             marker.setIcon(iconDefault);
                             infowindow.close(MAP.google_map(),marker);
-                        }
+                       // }
+
                     }
 
                 })(marker, ""));
@@ -94,8 +100,7 @@ MAP.google_controller_methods = {
                         // marker.position.K: latitude
                         var port_name = marker.id;
                         var port_coordinates = [marker.position.k,marker.position.B];
-                        new PortViewApp().start(port_name,port_coordinates);
-                      //  update_port_view(marker.id);
+                        new PortViewApp(port_name,port_coordinates).start();
                         marker.setIcon(iconClick);
 
                     }
