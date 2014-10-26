@@ -10,7 +10,6 @@ setSelectRegion_on_sidebar = function(region_name){
 var Side_Panel;
 Side_Panel = Side_Panel || {}
 
-
 // backend
 Side_Panel.backend =  {}
 

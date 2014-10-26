@@ -58,12 +58,22 @@ class SideBarController < ApplicationController
             _region_name = region_name
         end
         cookies[:region_name] = _region_name
+        region_deadweight =  UnitOfWork.instance.ship.get_deadweight_of_ships_per_region _region_name
 
-        respond_to do |format|
-             format.html { render :partial =>  'side_bar/table_body/after_click_a_region/index' , :locals => { region: _region_name }  }
+        if region_deadweight[:error].nil?
+            table_body = render_to_string(:partial => 'side_bar/table_body/after_click_a_region/index', :locals => { region: _region_name } )
+            table_footer = render_to_string(:partial => 'side_bar/table_foot/region_deadweight', :locals => { region: _region_name } )
+            respond_to do |format|
+                format.html { render :partial =>  'side_bar/table_body/after_click_a_region/index' , :locals => { region: _region_name }  }
+                format.json{ render :json => { body: table_body  , footer: table_footer }}
 
-
+            end
+        else
+            respond_to do |format|
+                format.json{  render :json => { :errors => region_deadweight[:error] }, :status => 422}
+            end
         end
+
 
 
     end
