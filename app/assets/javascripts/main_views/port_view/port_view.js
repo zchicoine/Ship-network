@@ -15,7 +15,9 @@ update_port_view = function(port_name){
 
 // PortView Class
 var PortView;
-PortView = function(){
+PortView = function(name, coordinates){
+    this.name = name;
+    this.coordinates = coordinates;
     this.html_classnames ={
         "side_panel":{"body": ".aside_ship_details_table_body",
             "footer":".aside_ship_details_table_foot"
@@ -24,33 +26,46 @@ PortView = function(){
 
     }
 };
-PortView.prototype.backend = function(port_name){
+PortView.prototype.backend = function(){
 
 
 }
-PortView.prototype.render = function(port_name, coordinates){
-    update_port_view(port_name);
-    MAP.google_methods.set_center(coordinates);
+PortView.prototype.render = function(){
+    update_port_view(this.name);
+    MAP.google_methods.set_center(this.coordinates);
 
 }
 
-PortView.prototype.draw = function(port_name, coordinates){
-    this.render(port_name , coordinates);
+PortView.prototype.draw = function(){
+    this.render(this.name , this.coordinates);
 }
 
 
 
 //app
 
-var PortViewApp = function(name, coordinates){
-    this.name = name;
-    this.coordinates = coordinates;
-    this.portViewInstance = new PortView();
+var PortViewApp = function(){
+    // make this class singleton
+    if ( arguments.callee._singletonInstance )
+        return arguments.callee._singletonInstance;
+    arguments.callee._singletonInstance = this;
+
+    // keep list of active ports
+    this.active_port= {};
+    this.add_port = function(name,coordinates){
+        if(this.active_port[name] == undefined) {
+            this.active_port[name] = new PortView(name, coordinates);
+        }else {
+            // port has been already created
+        }
+    }
 
 };
 
-PortViewApp.prototype.start = function(){
-    this.portViewInstance.draw(this.name, this.coordinates);
+PortViewApp.prototype.start = function(name){
+
+    this.active_port[name].draw();
 }
+var PortViewAppInstance = new PortViewApp();
 
 //end app

@@ -3,4 +3,4 @@ $("#outer-map").html(" <%= escape_javascript(render 'google_map/index')%>");
 
 var spec = {'new_map':true,'layer':PORT_LEVEL, 'region_name': '<%= escape_javascript(region_name )%>', 'port_name':'<%= escape_javascript(port_name )%>'};
 reload_the_map_with_specification(spec);
-update_port_view("<%= escape_javascript(port_name )%>");
+PortViewAppInstance.start("<%= escape_javascript(port_name )%>");
