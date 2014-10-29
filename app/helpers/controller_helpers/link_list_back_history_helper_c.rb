@@ -85,7 +85,8 @@ module LinkListBackHistoryHelperC
             when REGION_LEVEL
                 main_pages_region_path(:region_info => {name:name})
             when PORT_LEVEL
-                main_pages_port_path(:port_info => {port_name:name})
+                #port_coordinates is set to 0 because when the user click on like history that meed the coordinates already set
+                main_pages_port_path(:port_info => {port_name:name, port_coordinates:{latitude:0, longitude: 0 }})
             when SHIP_LEVEL
                 main_pages_ship_path(:ship_info => {ship_name:name})
 

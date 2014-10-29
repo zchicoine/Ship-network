@@ -142,7 +142,8 @@ function event_listeners_on_the_map(region_object,region_name) {
             clearTimeout(this.timer);
             show_default_table_when_mouse_out();
             zoom_to_region_level_map(region_name);
-            update_region_view(region_name);
+            RegionViewAppInstance.start(region_name);
+
 
         })
     }

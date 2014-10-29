@@ -1,18 +1,5 @@
 
 
-
-update_port_view = function(port_name){
-
-    if(port_name.match(/[a-z]/i)){
-        MAP.Controller.current_zoom_layer().set(PORT_LEVEL);
-        send_data_to_side_bar(port_name , PORT_LEVEL);
-        refresh_link_list_back_history(port_name,PORT_LEVEL);
-        refresh_current_view(port_name);
-
-    }
-
-}
-
 // PortView Class
 var PortView;
 PortView = function(name, coordinates){
@@ -31,12 +18,15 @@ PortView.prototype.backend = function(){
 
 }
 PortView.prototype.render = function(){
-    update_port_view(this.name);
+    send_data_to_side_bar(this.name , PORT_LEVEL);
+    refresh_link_list_back_history(this.name,PORT_LEVEL);
+    refresh_current_view(this.name);
     MAP.google_methods.set_center(this.coordinates);
 
 }
 
 PortView.prototype.draw = function(){
+    MAP.Controller.current_zoom_layer().set(PORT_LEVEL);
     this.render(this.name , this.coordinates);
 }
 

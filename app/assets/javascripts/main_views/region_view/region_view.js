@@ -1,6 +1,7 @@
 
 var RegionView;
-RegionView = function(){
+RegionView = function(name){
+    this.name = name;
    this.html_classnames ={
         "side_panel":{"body": ".aside_ship_details_table_body",
                       "footer":".aside_ship_details_table_foot"
@@ -9,51 +10,61 @@ RegionView = function(){
 
     }
 };
-RegionView.prototype.backend = function(region_name){
+RegionView.prototype.backend = function(){
 
   var _data;
-  var results =   Side_Panel.backend.get_result(region_name,REGION_LEVEL,"json",false);
+  var results =   Side_Panel.backend.get_result(this.name,REGION_LEVEL,"json",false);
      results.done( function(data) {
          _data =  data;
     });
     return _data;
 }
-RegionView.prototype.render = function(region_name){
-    $(this.html_classnames.side_panel.body).html(this.backend(region_name).body);
-    $(this.html_classnames.side_panel.footer).html(this.backend(region_name).footer);
+RegionView.prototype.render = function(){
+    refresh_link_list_back_history(this.name,REGION_LEVEL);
+    refresh_current_view(this.name);
+    setSelectRegion_on_sidebar(this.name);
+    var backend_results = this.backend(this.name);
+    $(this.html_classnames.side_panel.body).html(backend_results.body);
+    $(this.html_classnames.side_panel.footer).html(backend_results.footer);
 
 }
 
-RegionView.prototype.draw = function(region_name){
-    this.render(region_name);
+RegionView.prototype.draw = function(){
+    MAP.Controller.current_zoom_layer().set(REGION_LEVEL);
+    this.render(this.name);
 }
 
-
-update_region_view = function(region_name){
-
-    if(region_name.match(/[a-z]/i)){
-        MAP.Controller.current_zoom_layer().set(REGION_LEVEL);
-        new RegionViewApp().start(region_name);
-        refresh_link_list_back_history(region_name,REGION_LEVEL);
-        refresh_current_view(region_name);
-        setSelectRegion_on_sidebar(region_name);
-
-    }
-
-
-
-}
 
 //app
 
 var RegionViewApp = function(){
 
-    this.regionViewInstance = new RegionView();
+    if ( arguments.callee._singletonInstance )
+        return arguments.callee._singletonInstance;
+    arguments.callee._singletonInstance = this;
+    // keep list of active regions
+
+    this.active_region= {};
+    this.add_region = function(name){
+        if(this.active_region[name] == undefined) {
+            this.active_region[name] = new RegionView(name);
+        }else {
+            // port has been already created
+        }
+    }
 
 };
 
-RegionViewApp.prototype.start = function(region_name){
-    this.regionViewInstance.draw(region_name);
+RegionViewApp.prototype.start = function(name){
+    if  (string_match(name)){
+        this.add_region(name);
+        this.active_region[name].draw();
+
+    }else{
+        error_message_display("RegionViewApp start function name is not string")
+    }
+
 }
 
+var RegionViewAppInstance = new RegionViewApp();
 //end app
