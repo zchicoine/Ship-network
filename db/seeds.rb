@@ -194,7 +194,8 @@ create_shipments
 begin
     all_shipments = Shipment.all
     Broker.create!(username: "Zack", password: "shipment", company: "Sterling Ocean Transport Inc.",
-                   email: "brokers@sterlingoceantransport.com", shipments: all_shipments)
+                   email: "brokers@sterlingoceantransport.com", shipments: all_shipments, website:"www.sterlingoceantransport.com",
+                   telephone:"+1(514)807-3707", country:"Canada", city:"Montreal")
 
 rescue => e
     puts "#{e.message} for broker Zack"

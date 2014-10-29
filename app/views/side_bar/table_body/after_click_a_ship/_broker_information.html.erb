@@ -7,23 +7,26 @@
 <div id="short_broker_info_content" class="display-none">
 
     <table>
-
         <tr>
-            <td id="table-left">Company name</td>
+            <td id="table-left">Company</td>
             <td><%= @ship_info[:broker_company] %></td>
         </tr>
+      <tr>
+        <td id="table-left">Website</td>
+        <td><%= @ship_info[:broker_website] %></td>
+      </tr>
         <tr>
             <td id="table-left">City</td>
-            <td>Montreal</td>
-        </tr>
-        <tr>
-            <td id="table-left">Country</td>
-            <td>Canada</td>
+            <td><%= @ship_info[:broker_city] %>, <%= @ship_info[:broker_country] %></td>
         </tr>
         <tr>
             <td id="table-left">E-mail</td>
             <td><%= @ship_info[:broker_email] %></td>
         </tr>
+      <tr>
+        <td id="table-left">Tel.</td>
+        <td><%= @ship_info[:broker_telephone] %></td>
+      </tr>
     </table>
 
 
