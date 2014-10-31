@@ -28,7 +28,7 @@ module GoogleMapHelper
 
     def get_ship_details_first_table ship_name = "null"
         @ship_details_first_table = Ship.joins(:ship_detail).select(:deadweight,:vessel_type,:deadweight_cargo_capacity,:vessel_category,
-                        'ship_details.draft', 'ship_details.built', 'ship_details.combined_crane_capacity', 'ship_details.crane_capacity',
+                        'ship_details.draft', 'ship_details.built', 'ship_details.crane_capacity',
                         'ship_details.number_of_cranes', 'ship_details.laden').where(name: ship_name).take
 
          @ship_details_first_table
@@ -56,7 +56,7 @@ module GoogleMapHelper
                                 :consumption_in_port_Working, :consumption_in_port_Idle, :marine_diesel_in_port, :marine_gasoline_oil_in_port,
                                 :marine_gasoline_oil?, :aussie_holds_ladders?, :CO2_system_on_board?, :twenty_foot_equivalent_unit?, :lakes_fitted?,
                                 :ice_classed?, :log_fitted?, :grabber?, :gearless?, :double_hull?, :imo_fitted?, :appendix_B_fitted?, :box_shaped_holds?,
-                                :cement_holes_fitted?).find_by(ship_id: @ship_id_two)
+                                :cement_holes_fitted?, :combined_crane_capacity).find_by(ship_id: @ship_id_two)
       @hash_is_nil = true
       @return_ship_details_three.as_json.each do |k, v|
       unless v.blank? || v == 0
