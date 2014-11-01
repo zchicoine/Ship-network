@@ -40,12 +40,13 @@
           </table>
         </div>
 
+        <% @ship_details = get_ship_details_green_table @name_of_ship %>
+        <% unless @ship_details[1]%>
         <div class="col-md-6 ship_details-portcall" >
-          <% @ship_details = get_ship_details_green_table @name_of_ship %>
-          <% unless @ship_details[1]%>
+
               <%= image_tag("greentriangle_down.png", alt:"Greentriangle down"  , height:"16" , width:"16")  %>
               <span class="ship_details_inside_span_text_color">Capacity</span>
-          <% end %>
+
           <table>
             <% @ship_details[0].as_json.each do |k, v| %>
                 <% unless v.blank? || v == 0 %>
@@ -59,16 +60,13 @@
 
           </table>
         </div>
-      </div>
+        <% end %>
 
-      <div class="row">
+        <% @ship_details = get_ship_details_red_table @name_of_ship %>
+        <% unless @ship_details[1]%>
         <div class="col-md-6 ship_details-portcall">
-          <% @ship_details = get_ship_details_red_table @name_of_ship %>
-
-          <% unless @ship_details[1]%>
               <%= image_tag("greentriangle_down.png", alt:"Greentriangle down"  , height:"16" , width:"16")  %>
               <span class="ship_details_inside_span_text_color">Speed and Consumption</span>
-          <% end %>
 
           <table>
             <% #@table_one = @ship_details[0] %>
@@ -82,13 +80,13 @@
             <% end %>
           </table>
         </div>
-        <div class="col-md-6 ship_details-portcall">
-          <% @ship_details = get_ship_details_yellow_table @name_of_ship %>
+        <% end %>
 
-          <% unless @ship_details[1]%>
+        <% @ship_details = get_ship_details_yellow_table @name_of_ship %>
+        <% unless @ship_details[1]%>
+        <div class="col-md-6 ship_details-portcall">
               <%= image_tag("greentriangle_down.png", alt:"Greentriangle down"  , height:"16" , width:"16")  %>
               <span class="ship_details_inside_span_text_color">Equipment, Fittings and Special Class</span>
-          <% end %>
 
           <table>
             <% #@table_one = @ship_details[0] %>
@@ -102,12 +100,9 @@
             <% end %>
           </table>
         </div>
-
-
-
+        <% end %>
 
       </div>
-
     </div>
 
   </div>
