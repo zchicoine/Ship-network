@@ -14,6 +14,12 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap
+//= require sugar
+//= require map_subsystem/map
+//= require region_subsystem/regions/region_class
+//= require_tree ./map_subsystem/google_map
+//= require map_subsystem/map_models/map_models
+//= require map_subsystem/map_models/countries_coordinates/countries_coordinates
 //= require_tree .
 
 

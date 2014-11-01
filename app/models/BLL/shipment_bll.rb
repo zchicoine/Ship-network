@@ -61,6 +61,17 @@ class ShipmentBLL < Shipment
              return {value: 0, error: "Error: either #{region_name } has no ports or it does not support by the system"}
          end
     end
+    #result = ["region name", latitude,longitude ]
+    def get_name_and_coordinates_of_Ports_that_has_ships_per_Region region_name = "null"
+
+        result =  PortBLL.joins(:shipments).select(:name, :latitude, :longitude).query_at_a_region(region_name).group(:name, :latitude, :longitude)
+
+        unless result.blank?
+            return {value: result, error: nil}
+        else
+            return {value: 0, error: "Error: either #{region_name } has no ports or it does not support by the system"}
+        end
+    end
     def get_name_of_Ports_that_has_ships_per_Region region_name = "null"
 
         result =  PortBLL.joins(:shipments).select(:name).query_at_a_region(region_name).group(:name)

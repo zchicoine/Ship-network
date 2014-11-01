@@ -16,7 +16,7 @@ module GoogleMapHelper
     # end
 
     def get_name_of_ports_and_coordinates_per_region region_name = "null"
-        result =  UnitOfWork.instance.shipment.get_name_of_Ports_that_has_ships_per_Region region_name
+        result =  UnitOfWork.instance.shipment.get_name_and_coordinates_of_Ports_that_has_ships_per_Region region_name
         if result[:error].nil?
             return result[:value]
         end

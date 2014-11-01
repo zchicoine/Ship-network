@@ -40,7 +40,7 @@ Africa_class = function () {
 
 };
 Africa_class.prototype = createObject(Region_class.prototype);
-// Set the "constructor" property to refer to South_America_class
+// Set the "constructor" property to refer to Africa_class
 Africa_class.prototype.constructor = Africa_class;
 
 
