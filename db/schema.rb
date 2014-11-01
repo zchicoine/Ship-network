@@ -86,7 +86,6 @@ ActiveRecord::Schema.define(version: 20140808122843) do
     t.boolean  "ice_classed?"
     t.boolean  "log_fitted?"
     t.boolean  "grabber?"
-    t.boolean  "Mechanical_or_Electrical_Ventilation?"
     t.boolean  "gearless?"
     t.boolean  "double_hull?"
     t.boolean  "imo_fitted?"
