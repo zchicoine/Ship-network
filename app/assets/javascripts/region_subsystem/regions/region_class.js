@@ -118,7 +118,7 @@ function event_listeners_on_the_map(region_object,region_name) {
 
                 short_region_info_show(region_name);
 
-            },350);
+            },150);
             region_object.setOptions({
                 fillOpacity: 0.4
             });
@@ -131,7 +131,7 @@ function event_listeners_on_the_map(region_object,region_name) {
 
                 show_default_table_when_mouse_out();
 
-            },450);
+            },250);
 
             region_object.setOptions({
                 fillOpacity: 0.2
@@ -139,12 +139,15 @@ function event_listeners_on_the_map(region_object,region_name) {
         })
 
         MAP.events.click(region_object,function(){
+
             clearTimeout(this.timer);
-            show_default_table_when_mouse_out();
+            setTimeout(function(){
+                show_default_table_when_mouse_out();
+            },5);
+
+
             zoom_to_region_level_map(region_name);
             RegionViewAppInstance.start(region_name);
-
-
         })
     }
 
