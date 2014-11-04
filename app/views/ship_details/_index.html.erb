@@ -28,7 +28,7 @@
                 <td><%= @get_open_port_and_date[:value][:open_start_date] %></td>
             </tr>
             <% @ship_details.as_json.each do |k, v| %>
-                <% unless v.blank? || v == 0 %>
+                <% unless v.nil? || v == 0 %>
                     <tr>
                       <td><%= k.humanize.capitalize %></td>
                       <td> <%= v %></td>
@@ -49,7 +49,7 @@
 
           <table>
             <% @ship_details[0].as_json.each do |k, v| %>
-                <% unless v.blank? || v == 0 %>
+                <% unless v.nil? || v == 0 %>
                     <tr>
                       <td> <%= k.humanize.capitalize %> </td>
                       <td> <%= v %> </td>
@@ -71,7 +71,7 @@
           <table>
             <% #@table_one = @ship_details[0] %>
             <% @ship_details[0].as_json.each do |k, v| %>
-                <% unless v.blank? || v == 0 %>
+                <% unless v.nil? || v == 0 %>
                     <tr>
                       <td> <%= k.humanize.capitalize %> </td>
                       <td> <%= v %> </td>
@@ -91,7 +91,7 @@
           <table>
             <% #@table_one = @ship_details[0] %>
             <% @ship_details[0].as_json.each do |k, v| %>
-                <% unless v.blank? || v == 0 %>
+                <% unless v.nil? || v == 0 %>
                     <tr>
                       <td> <%= k.humanize.capitalize %> </td>
                       <td> <%= v %> </td>
