@@ -31,7 +31,15 @@
                 <% unless v.nil? || v == 0 %>
                     <tr>
                       <td><%= k.humanize.capitalize %></td>
+                      <% if !!v == v %>
+                          <% if v%>
+                              <td>Yes</td>
+                          <% else %>
+                              <td>No</td>
+                          <% end %>
+                      <% else %>
                       <td> <%= v %></td>
+                      <% end %>
                     </tr>
 
                 <% end %>
@@ -52,7 +60,16 @@
                 <% unless v.nil? || v == 0 %>
                     <tr>
                       <td> <%= k.humanize.capitalize %> </td>
-                      <td> <%= v %> </td>
+                      <% if !!v == v %>
+                          <% if v%>
+                              <td>Yes</td>
+                          <% else %>
+                              <td>No</td>
+                          <% end %>
+                      <% else %>
+                          <td> <%= v %></td>
+                      <% end %>
+
                     </tr>
 
                 <% end %>
@@ -74,7 +91,15 @@
                 <% unless v.nil? || v == 0 %>
                     <tr>
                       <td> <%= k.humanize.capitalize %> </td>
-                      <td> <%= v %> </td>
+                      <% if !!v == v %>
+                          <% if v%>
+                              <td>Yes</td>
+                          <% else %>
+                              <td>No</td>
+                          <% end %>
+                      <% else %>
+                          <td> <%= v %></td>
+                      <% end %>
                     </tr>
                 <% end %>
             <% end %>
@@ -94,7 +119,15 @@
                 <% unless v.nil? || v == 0 %>
                     <tr>
                       <td> <%= k.humanize.capitalize %> </td>
-                      <td> <%= v %> </td>
+                      <% if !!v == v %>
+                          <% if v%>
+                              <td>Yes</td>
+                          <% else %>
+                              <td>No</td>
+                          <% end %>
+                      <% else %>
+                          <td> <%= v %></td>
+                      <% end %>
                     </tr>
                 <% end %>
             <% end %>
