@@ -30,15 +30,15 @@
             <% @ship_details.as_json.each do |k, v| %>
                 <% unless v.nil? || v == 0 %>
                     <tr>
-                      <td><%= k.humanize.capitalize %></td>
+                      <td width="75%"><%= k.humanize.capitalize %></td>
                       <% if !!v == v %>
                           <% if v%>
-                              <td>Yes</td>
+                              <td width="25%">Yes</td>
                           <% else %>
-                              <td>No</td>
+                              <td width="25%">No</td>
                           <% end %>
                       <% else %>
-                      <td> <%= v %></td>
+                      <td width="25%"> <%= v %></td>
                       <% end %>
                     </tr>
 
@@ -90,15 +90,15 @@
             <% @ship_details[0].as_json.each do |k, v| %>
                 <% unless v.nil? || v == 0 %>
                     <tr>
-                      <td> <%= k.humanize.capitalize %> </td>
+                      <td width="75%"> <%= k.humanize.capitalize %> </td>
                       <% if !!v == v %>
                           <% if v%>
-                              <td>Yes</td>
+                              <td width="25%">Yes</td>
                           <% else %>
-                              <td>No</td>
+                              <td width="25%">No</td>
                           <% end %>
                       <% else %>
-                          <td> <%= v %></td>
+                          <td width="25%"> <%= v %></td>
                       <% end %>
                     </tr>
                 <% end %>
@@ -118,15 +118,15 @@
             <% @ship_details[0].as_json.each do |k, v| %>
                 <% unless v.nil? || v == 0 %>
                     <tr>
-                      <td> <%= k.humanize.capitalize %> </td>
+                      <td width="75%"> <%= k.humanize.capitalize %> </td>
                       <% if !!v == v %>
                           <% if v%>
-                              <td>Yes</td>
+                              <td width="25%">Yes</td>
                           <% else %>
-                              <td>No</td>
+                              <td width="25%">No</td>
                           <% end %>
                       <% else %>
-                          <td> <%= v %></td>
+                          <td width="25%"> <%= v %></td>
                       <% end %>
                     </tr>
                 <% end %>
