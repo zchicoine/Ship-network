@@ -20,25 +20,25 @@
               <td><%= @name_of_ship %></td>
             </tr>
             <tr>
-                <td>Open Port</td>
-                <td><%= @get_open_port_and_date[:value][:name] %></td>
+              <td>Open Port</td>
+              <td><%= @get_open_port_and_date[:value][:name] %></td>
             </tr>
             <tr>
-                <td>Open Date</td>
-                <td><%= @get_open_port_and_date[:value][:open_start_date] %></td>
+              <td>Open Date</td>
+              <td><%= @get_open_port_and_date[:value][:open_start_date] %></td>
             </tr>
             <% @ship_details.as_json.each do |k, v| %>
                 <% unless v.nil? || v == 0 %>
                     <tr>
-                      <td width="75%"><%= k.humanize.capitalize %></td>
+                      <td><%= k.humanize.capitalize %></td>
                       <% if !!v == v %>
                           <% if v%>
-                              <td width="25%">Yes</td>
+                              <td>Yes</td>
                           <% else %>
-                              <td width="25%">No</td>
+                              <td>No</td>
                           <% end %>
                       <% else %>
-                      <td width="25%"> <%= v %></td>
+                      <td> <%= v %></td>
                       <% end %>
                     </tr>
 
@@ -85,20 +85,20 @@
               <%= image_tag("greentriangle_down.png", alt:"Greentriangle down"  , height:"16" , width:"16")  %>
               <span class="ship_details_inside_span_text_color">Speed and Consumption</span>
 
-          <table>
+          <table style="width:81.5%">
             <% #@table_one = @ship_details[0] %>
             <% @ship_details[0].as_json.each do |k, v| %>
                 <% unless v.nil? || v == 0 %>
                     <tr>
-                      <td width="75%"> <%= k.humanize.capitalize %> </td>
+                      <td width="40%"><%= k.humanize.capitalize %></td>
                       <% if !!v == v %>
                           <% if v%>
-                              <td width="25%">Yes</td>
+                              <td width="30%">Yes</td>
                           <% else %>
-                              <td width="25%">No</td>
+                              <td width="30%">No</td>
                           <% end %>
                       <% else %>
-                          <td width="25%"> <%= v %></td>
+                          <td width="30%"> <%= v %></td>
                       <% end %>
                     </tr>
                 <% end %>
@@ -118,15 +118,15 @@
             <% @ship_details[0].as_json.each do |k, v| %>
                 <% unless v.nil? || v == 0 %>
                     <tr>
-                      <td width="75%"> <%= k.humanize.capitalize %> </td>
+                      <td> <%= k.humanize.capitalize %> </td>
                       <% if !!v == v %>
                           <% if v%>
-                              <td width="25%">Yes</td>
+                              <td>Yes</td>
                           <% else %>
-                              <td width="25%">No</td>
+                              <td>No</td>
                           <% end %>
                       <% else %>
-                          <td width="25%"> <%= v %></td>
+                          <td> <%= v %></td>
                       <% end %>
                     </tr>
                 <% end %>
