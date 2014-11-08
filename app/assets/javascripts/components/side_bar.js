@@ -82,7 +82,7 @@ send_data_to_side_bar = function(name, level){
                     $(html_class).html(result);
                 if(level == SHIP_LEVEL || level == PORT_LEVEL){
                     $('.region_stats .triangle_image').addClass('want_to_close_table');
-                    closed_table_side_bar(30);
+                    closed_table_side_bar(0);
                 }
             },
             error: function(xhr, ajaxOptions, thrownError){
