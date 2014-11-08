@@ -12,7 +12,7 @@ India_and_South_East_Asia_class = function () {
 
     this.areas_coordinates =
     {
-        "Singapore":{ 'short_name':"Singapore",'coordinates':[1.352083,103.819836]},
+        "Singapore":{ 'short_name':"S'pore",'coordinates':[1.352083,103.819836]},
         "Vishakapatnam":{'short_name':"Vizag",'coordinates':[17.686816,83.218482]}
 
     };
