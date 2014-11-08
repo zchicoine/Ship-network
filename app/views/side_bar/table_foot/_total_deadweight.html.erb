@@ -4,7 +4,7 @@
         Total Deadweight:
     </th>
     <th class="radius-bottom-right-corner">
-        <%= get_total_deadweight_for_total_ships%> tons
+        <%= number_with_delimiter(get_total_deadweight_for_total_ships, :delimiter => ',')%> tons
     </th>
 </tr>
 </thead>
