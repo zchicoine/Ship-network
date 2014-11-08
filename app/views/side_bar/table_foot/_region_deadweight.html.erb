@@ -3,10 +3,12 @@
   <th  class="radius-bottom-left-corner ">
     Total Deadweight:
   </th>
-  <th class="radius-bottom-right-corner">
+  <th class="">
     <% _deadweight =  get_total_deadweight_for_total_ships_per_region  region %>
-    <%= number_with_delimiter(_deadweight, :delimiter => ',')%> tons
-
+    <%= number_with_delimiter(_deadweight, :delimiter => ',')%>
+  </th>
+  <th class="radius-bottom-right-corner" style="font-size:10px">
+    metric<br>tons
   </th>
 </tr>
 </thead>
