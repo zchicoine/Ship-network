@@ -12,8 +12,9 @@ India_and_South_East_Asia_class = function () {
 
     this.areas_coordinates =
     {
-        "Vishakapatnam":{'short_name':"Vizag",'coordinates':[17.686816,83.218482]},
-        "Singapore":{ 'short_name':"Singapore",'coordinates':[1.352083,103.819836]}
+        "Singapore":{ 'short_name':"Singapore",'coordinates':[1.352083,103.819836]},
+        "Vishakapatnam":{'short_name':"Vizag",'coordinates':[17.686816,83.218482]}
+
     };
     this.areas_coordinates = make_json_iterable(this.areas_coordinates);
 

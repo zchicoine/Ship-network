@@ -13,8 +13,10 @@ Europe_class = function () {
     this.areas_coordinates =
     {
         "Amsterdam":{ 'short_name':"Amsterdam",'coordinates':[52.3666,4.8999]},
-        "Palermo":{ 'short_name':"Palermo",'coordinates':[38.11666,13.33333]},
-        "Istanbul":{'short_name':"Istanbul",'coordinates':[41.016666,28.983]}
+        "Hemnesberget":{ 'short_name':"Hemnesberget",'coordinates':[52.3666,4.8999]},
+        "Istanbul":{'short_name':"Istanbul",'coordinates':[41.016666,28.983]},
+        "Palermo":{ 'short_name':"Palermo",'coordinates':[38.11666,13.33333]}
+
 
 
     };
