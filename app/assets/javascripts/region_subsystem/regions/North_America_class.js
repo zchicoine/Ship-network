@@ -13,8 +13,8 @@ North_America_class = function () {
     {
         "New Orleans":{ 'short_name':"N.O.",'coordinates':[29.95,-90.06667]},
         "New York":{ 'short_name':"N.Y.",'coordinates':[40.71667,-74]},
-        "Lazaro Cardenas":{ 'short_name':"LC",'coordinates':[17.88333,-102.1667]},
-        "Sitka":{ 'short_name':"Sitka",'coordinates':[57.0333,-135.3333]}
+        "Sitka":{ 'short_name':"Sitka",'coordinates':[57.0333,-135.3333]},
+        "Lazaro Cardenas":{ 'short_name':"LC",'coordinates':[17.88333,-102.1667]}
     };
     this.areas_coordinates = make_json_iterable(this.areas_coordinates);
 
