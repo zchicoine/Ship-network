@@ -6,17 +6,17 @@
     <%= render 'main_pages/current_view/index' %>
 
     <div id="left_of_the_map"  >
-      <div class="nextback_decoration back_class"> <!-- <span style="font-style:italic">Back:</span>
+      <!--  <div class="nextback_decoration back_class"><span style="font-style:italic">Back:</span>
 
-            <label id="left_of_the_map_label" class="nextback_decoration" ></label>-->  </div>
+            <label id="left_of_the_map_label" class="nextback_decoration" ></label>  </div>-->
 
 <!--uncommented the label and the "Next" word below, the same as the label and "Back" word above-->
 
         <%= image_tag "left_default.png", height: "auto", width: "25", class:"pointer",id:"left-img-responsive", data_toggle:"tooltip" , onload:"load_tooltip_with_id(this,'Tooltip on left','top')" %>
     </div>
-    <div id="right_of_the_map" class="nextback_decoration">
-        <div class="nextback_decoration next_class"> <!--<span style="font-style:italic">Next:</span>
-            <label id="right_of_the_map_label" ></label> --> </div>
+    <div id="right_of_the_map" class="">
+      <!-- <div class="nextback_decoration next_class"> <span style="font-style:italic">Next:</span>
+           <label id="right_of_the_map_label" ></label> </div> -->
 
 
         <%= image_tag "right_default.png", height: "auto", width: "25", class:"pointer",id:"right-img-responsive", data_toggle:"tooltip" , onload:"load_tooltip_with_id(this,'Tooltip on right','top')" %>
