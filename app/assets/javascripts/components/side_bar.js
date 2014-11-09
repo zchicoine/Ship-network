@@ -7,6 +7,50 @@ setSelectRegion_on_sidebar = function(region_name){
     $("#" + remove_white_space(region_name) + "_inside_dropdown_main").addClass('highlight-clicked-row');
 }
 
+var Side_Panel;
+Side_Panel = Side_Panel || {}
+
+// backend
+Side_Panel.backend =  {}
+
+/*
+ this function is responsible for calling the backend throw ajax call
+ name: region, port or ship name.
+ level: one of the four levels (Global,Region, etc)
+ datatype: html,json
+ */
+Side_Panel.backend.get_result = function(name, level ,datatype,async){
+
+
+    if(! isNaN(level) && name.match(/[a-z]/i) )
+
+    {
+        var data_json = { "side_info": { "name": name , "level": level} };
+        var url = 'side_bar/index';
+
+
+      return  $.ajax({
+            url:url,
+            beforeSend: function(){
+                // Handle the beforeSend event
+            },
+          async:      async,
+          type: 'POST',
+            data:data_json,
+            dataType: datatype,
+          error: function(xhr, ajaxOptions, thrownError){
+
+              error_message_display(thrownError)
+          }
+
+
+        });
+    }
+}
+
+// end of the backend
+
+//This method will be deleted when all the dependencies are using the new function
 send_data_to_side_bar = function(name, level){
 
     var data_json = { "side_info": { "name": name , "level": level} };
@@ -38,7 +82,7 @@ send_data_to_side_bar = function(name, level){
                     $(html_class).html(result);
                 if(level == SHIP_LEVEL || level == PORT_LEVEL){
                     $('.region_stats .triangle_image').addClass('want_to_close_table');
-                    closed_table_side_bar(30);
+                    closed_table_side_bar(0);
                 }
             },
             error: function(xhr, ajaxOptions, thrownError){

@@ -12,7 +12,9 @@ class ShipmentBLL < Shipment
 
         unless result.blank?
                 coverted_to_ruby_hash = {broker_name: result[:username], broker_email: result[:email],broker_company:result[:company] ,
-                                         deadweight_cargo_capacity: result[:deadweight_cargo_capacity],deadweight: result[:deadweight],
+                                         broker_website:result[:website] ,broker_telephone:result[:telephone],broker_country:result[:country],
+                                        broker_city:result[:city],
+                                        deadweight_cargo_capacity: result[:deadweight_cargo_capacity],deadweight: result[:deadweight],
                                          open_start_date: result[:open_start_date],open_end_date:  result[:open_end_date],
                                          vessel_category: result[:vessel_category], ship_name:  ship_name ,  port_name:  port_name
                                         }
@@ -60,6 +62,17 @@ class ShipmentBLL < Shipment
          else
              return {value: 0, error: "Error: either #{region_name } has no ports or it does not support by the system"}
          end
+    end
+    #result = ["region name", latitude,longitude ]
+    def get_name_and_coordinates_of_Ports_that_has_ships_per_Region region_name = "null"
+
+        result =  PortBLL.joins(:shipments).select(:name, :latitude, :longitude).query_at_a_region(region_name).group(:name, :latitude, :longitude)
+
+        unless result.blank?
+            return {value: result, error: nil}
+        else
+            return {value: 0, error: "Error: either #{region_name } has no ports or it does not support by the system"}
+        end
     end
     def get_name_of_Ports_that_has_ships_per_Region region_name = "null"
 

@@ -34,6 +34,8 @@ class CreateShipDetails < ActiveRecord::Migration
       t.integer :number_of_cranes
       t.float :crane_capacity
       t.integer :combined_crane_capacity
+      t.boolean :mechanical_or_electrical_ventilation?
+      t.boolean :self_trimming?
       t.boolean :aussie_holds_ladders?
       t.boolean :CO2_system_on_board?
       t.boolean :twenty_foot_equivalent_unit?

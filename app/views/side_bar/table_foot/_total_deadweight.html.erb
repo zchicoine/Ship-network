@@ -1,10 +1,13 @@
 <thead>
 <tr>
-    <th  class="radius-bottom-left-corner ">
-        Total Deadweight:
-    </th>
-    <th class="radius-bottom-right-corner">
-        <%= get_total_deadweight_for_total_ships%> tons
-    </th>
+  <th  class="radius-bottom-left-corner ">
+    Total Deadweight:
+  </th>
+  <th class="radius-bottom-right-corner" >
+    <%= number_with_delimiter(get_total_deadweight_for_total_ships, :delimiter => ',')%>    MTS
+  </th>
+
+
+
 </tr>
 </thead>

@@ -10,12 +10,7 @@ Region_Functionality= function(){
         });
 
     }
-    this.extract_region_coordinates = function(data){
-        region_objects_variable.regions_objects_array().forEach(function(value){
-            value.extract_region_coordinates(data);
-        });
 
-    }
    this.set_region_highlight_on_the_map = function(){
        region_objects_variable.regions_objects_array().forEach(function(value){
            value.set_region_highlight_on_the_map();

@@ -16,7 +16,7 @@ Australia_class = function () {
         "Danpier":{ 'short_name':"Danpier",'coordinates':[-20.663799,116.708460]}
     };
     this.areas_coordinates = make_json_iterable(this.areas_coordinates);
-    this.list_of_countries = [  "Australia" , "New Zealand" , "East Timor", "Papua New Guinea" , "Solomon Is." , "Vanuatu", "Fiji" , "New Caledonia"];
+    this.list_of_countries = [  "Australia" , "New Zealand" , "East Timor", "Papua New Guinea" , "Solomon Is." , "Vanuatu", "Fiji" , "New Caledonia", "Samoa", "Tuvalu", "Nauru"];
 
     this.map_properties = {
         'color': "#20FF00",

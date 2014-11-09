@@ -12,8 +12,9 @@ India_and_South_East_Asia_class = function () {
 
     this.areas_coordinates =
     {
-        "Vishakapatnam":{'short_name':"Vizag",'coordinates':[17.686816,83.218482]},
-        "Singapore":{ 'short_name':"Singapore",'coordinates':[1.352083,103.819836]}
+        "Singapore":{ 'short_name':"S'pore",'coordinates':[1.352083,103.819836]},
+        "Vishakapatnam":{'short_name':"Vizag",'coordinates':[17.686816,83.218482]}
+
     };
     this.areas_coordinates = make_json_iterable(this.areas_coordinates);
 
@@ -22,7 +23,7 @@ India_and_South_East_Asia_class = function () {
 
     this.map_properties = {
         'color': "#006e99",
-        'lable':"INDIA AND SEA",
+        'lable':"INDIA AND SE Asia",
         'lable_position':new google.maps.LatLng(24.4471,85.1660)
     };
 

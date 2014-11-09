@@ -14,7 +14,8 @@ Africa_class = function () {
     {
         "Douala":{'short_name':"Douala",'coordinates':[4.05000,9.700000]},
         "Durban":{ 'short_name':"Durban",'coordinates':[-29.858680,31.021840]},
-        "Djibouti":{ 'short_name':"Djibouti",'coordinates':[11.825138,42.590275]}
+        "Djibouti":{ 'short_name':"Djibouti",'coordinates':[11.825138,42.590275]},
+        "Tripoli LY":{ 'short_name':"Tripoli LY",'coordinates':[32.9,13.2166666666666]}
     };
     this.areas_coordinates = make_json_iterable(this.areas_coordinates);
     this.list_of_countries = [ "Egypt", "Libya" ,"Botswana" , "Tunisia", "Algeria" , "Morocco" , "Senegal" , "Chad"
@@ -40,7 +41,7 @@ Africa_class = function () {
 
 };
 Africa_class.prototype = createObject(Region_class.prototype);
-// Set the "constructor" property to refer to South_America_class
+// Set the "constructor" property to refer to Africa_class
 Africa_class.prototype.constructor = Africa_class;
 
 
