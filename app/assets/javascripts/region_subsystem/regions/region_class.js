@@ -71,14 +71,6 @@ Region_class.prototype.set_map_label = function(map){
         map: map
     });
 }
-Region_class.prototype.clear_all_listeners_of_region= function(){
-    this.region_polygon = undefined;
-    MAP.google_methods.clear_all_listeners_of_an_object(this.unique_identifier);
-}
-Region_class.prototype.clear_all_mouseout_mouseover_listeners_of_region= function(){
-    MAP.google_methods.clear_all_mouseover_listeners_of_an_object(this.unique_identifier);
-    MAP.google_methods.clear_all_mouseout_listeners_of_an_object(this.unique_identifier);
-}
 
 // see options https://developers.google.com/maps/documentation/javascript/reference#PolygonOptions
 Region_class.prototype.region_polygon_setOptions= function(options){

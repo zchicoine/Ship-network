@@ -6,14 +6,14 @@ if($("#googleMap").length == 0){
     $("#outer-map").html(" <%= escape_javascript(render 'google_map/index')%>");
     var spec = {'new_map':true,'layer':REGION_LEVEL, 'region_name':temp_region };
     reload_the_map_with_specification(spec);
-    RegionViewAppInstance.start(temp_region);
+    MainViewGeneratorInstance.regionView(temp_region);
 
 }else{
     if( ! current_region().match(temp_region) ){
         var spec = {'new_map':false,'layer':REGION_LEVEL, 'region_name':temp_region };
         reload_the_map_with_specification(spec);
     }
-    RegionViewAppInstance.start(temp_region);
+    MainViewGeneratorInstance.regionView(temp_region);
 }
 
 

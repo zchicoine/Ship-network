@@ -20,6 +20,13 @@ RegionView.prototype.backend = function(){
     return _data;
 }
 RegionView.prototype.controller = {
+    clear_all_listeners_of_the_regions: function(){
+        region_objects_variable.regions_objects_array().forEach(function (value)
+        {
+            value.region_polygon = undefined;
+            MAP.google_methods.clear_all_listeners_of_an_object(value.unique_identifier);
+        })
+    },
     set_event_listeners_on_the_map: function(region_object,region_name){
 
         MAP.events.click(region_object,function(){
