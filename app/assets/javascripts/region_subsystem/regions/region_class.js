@@ -35,7 +35,7 @@ Region_class = function () {
 };
 
 Region_class.prototype.change_region_view = function () {
-
+    event_listeners_on_the_map(this.region_polygon,this.name);
     MAP.google_methods.set_center(this.lat_lang);
     MAP.google_methods.set_zoom(4);
     MAP.google_controller_methods.display_ports(this.name);
@@ -92,13 +92,16 @@ Region_class.prototype.set_map_label = function(map){
 Region_class.prototype.clear_all_listeners_of_region= function(){
     MAP.google_methods.clear_all_listeners_of_an_object(this.unique_identifier);
 }
-// see options https://developers.google.com/maps/documentation/javascript/reference#PolygonOptions
+Region_class.prototype.clear_all_mouseout_mouseover_listeners_of_region= function(){
+    MAP.google_methods.clear_all_mouseover_listeners_of_an_object(this.unique_identifier);
+    MAP.google_methods.clear_all_mouseout_listeners_of_an_object(this.unique_identifier);
+}
 
+// see options https://developers.google.com/maps/documentation/javascript/reference#PolygonOptions
 Region_class.prototype.region_polygon_setOptions= function(options){
     if(this.region_polygon != undefined && options != undefined){
         this.region_polygon.setOptions(options);
     }
-
 }
 
 // end of Region class //
@@ -109,7 +112,8 @@ function event_listeners_on_the_map(region_object,region_name) {
 
 
 
-    if(MAP.Controller.current_zoom_layer().get() == GLOBAL_LEVEL){
+    if(MAP.Controller.current_zoom_layer.value == GLOBAL_LEVEL)
+    {
         MAP.events.mouseover(region_object,function(){
 
            // var temp = this;
@@ -149,6 +153,9 @@ function event_listeners_on_the_map(region_object,region_name) {
             zoom_to_region_level_map(region_name);
             RegionViewAppInstance.start(region_name);
         })
+    }else if(MAP.Controller.current_zoom_layer.value == REGION_LEVEL)
+    {
+        console.log("sjd");
     }
 
 }

@@ -5,25 +5,18 @@ MAP.Controller = MAP.Controller || {
 
 };
 
-MAP.Controller.current_zoom_layer = function() {
+MAP.Controller.current_zoom_layer = {
+        // default
+        layer_level: GLOBAL_LEVEL,
+        get value (){
+            console.log(this.layer_level + " layer on get function");
+            return   this.layer_level;
+        },
+        set value  (layer){
+            this.layer_level = layer;
 
-    return new function(){
-        if ( arguments.callee._singletonInstance )
-            return arguments.callee._singletonInstance;
-        arguments.callee._singletonInstance = this;
-        // by default
-        var layer_level = GLOBAL_LEVEL;
-        this.get =  function(){
-            return   layer_level;
         }
-        this.set = function(layer){
-            layer_level = layer;
-            return this;
-        }
-
-    }
 };
-
 
 MAP.google_controller_methods = {
 

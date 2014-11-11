@@ -164,6 +164,7 @@ MAP.events ={
                  function_options();
              }
          });
+        // assign the object to listener array
         if(object.assigned_id != undefined) {
             MAP.listener_objects["rightclick"][object.assigned_id] = object;
         }
@@ -177,6 +178,7 @@ MAP.events ={
                optional_function();
            }
         });
+        // assign the object to listener array
         if(object.assigned_id != undefined) {
             MAP.listener_objects["click"][object.assigned_id] = object;
         }
@@ -189,6 +191,7 @@ MAP.events ={
                 optional_function();
             }
         });
+        // assign the object to listener array
         if(object.assigned_id != undefined) {
             MAP.listener_objects["mouseover"][object.assigned_id] = object;
         }
@@ -202,6 +205,7 @@ MAP.events ={
                 optional_function();
             }
         });
+        // assign the object to listener array
         if(object.assigned_id != undefined) {
             MAP.listener_objects["mouseout"][object.assigned_id] = object;
         }

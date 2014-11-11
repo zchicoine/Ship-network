@@ -26,7 +26,7 @@ PortView.prototype.render = function(){
 }
 
 PortView.prototype.draw = function(){
-    MAP.Controller.current_zoom_layer().set(PORT_LEVEL);
+    MAP.Controller.current_zoom_layer.value = PORT_LEVEL;
     this.render(this.name , this.coordinates);
 }
 

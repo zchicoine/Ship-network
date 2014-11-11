@@ -30,7 +30,7 @@ RegionView.prototype.render = function(){
 }
 
 RegionView.prototype.draw = function(){
-    MAP.Controller.current_zoom_layer().set(REGION_LEVEL);
+    MAP.Controller.current_zoom_layer.value = REGION_LEVEL;
     this.render(this.name);
 }
 

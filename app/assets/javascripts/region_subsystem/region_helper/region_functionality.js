@@ -27,5 +27,10 @@ Region_Functionality= function(){
             value.region_polygon_setOptions(options);
         })
     }
+    this.clear_all_mouseout_mouseover_listeners_of_region = function(){
+        region_objects_variable.regions_objects_array().forEach(function(value){
+            value.clear_all_mouseout_mouseover_listeners_of_region();
+        })
+    }
 
 }
