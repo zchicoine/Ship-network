@@ -108,54 +108,10 @@ Region_class.prototype.region_polygon_setOptions= function(options){
 
 function event_listeners_on_the_map(region_object,region_name) {
 
-
-
-    if(MAP.Controller.current_zoom_layer.value == GLOBAL_LEVEL)
-    {
-        MAP.events.mouseover(region_object,function(){
-
-           // var temp = this;
-            clearTimeout(this.timer);
-            this.timer = setTimeout(function(){
-
-                short_region_info_show(region_name);
-
-            },150);
-            region_object.setOptions({
-                fillOpacity: 0.4
-            });
-      });
-        MAP.events.mouseout(region_object,function(){
-
-            clearTimeout(this.timer);
-
-            this.timer = setTimeout(function(){
-
-                show_default_table_when_mouse_out();
-
-            },250);
-
-            region_object.setOptions({
-                fillOpacity: 0.2
-            });
-        })
-
-        MAP.events.click(region_object,function(){
-
-            clearTimeout(this.timer);
-            setTimeout(function(){
-                show_default_table_when_mouse_out();
-            },5);
-
-
-            zoom_to_region_level_map(region_name);
-            RegionViewAppInstance.start(region_name);
-        })
-    }else if(MAP.Controller.current_zoom_layer.value == REGION_LEVEL)
+    if(MAP.Controller.current_zoom_layer.value == REGION_LEVEL)
     {
         console.log("sjd");
     }
-
 }
 /* param: json object pass by value
    return: json object included {next: next_json_key,back:previous_json_key}

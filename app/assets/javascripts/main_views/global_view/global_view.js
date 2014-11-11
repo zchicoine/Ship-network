@@ -9,21 +9,69 @@ GlobalView = function(){
 };
 
 GlobalView.prototype.controller = {
-    set_region_highlight_on_the_map: function(){
-        region_objects_variable.regions_objects_array().forEach(function(value){
-            if(value.region_polygon == undefined){
-                value.region_polygon = MAP.initialize.google_polygon(value.fusiontables_properties['coordinates'],
-                    value.map_properties['color'], value.map_properties['color'], value.unique_identifier);
 
-                event_listeners_on_the_map(value.region_polygon,value.name);
-            }else{
-                value.region_polygon.setMap(MAP.google_map());
-            }
+    set_event_listeners_on_the_map: function(region_object,region_name){
+
+        MAP.events.mouseover(region_object,function(){
+
+            clearTimeout(this.timer);
+            this.timer = setTimeout(function(){
+                short_region_info_show(region_name);
+            },150);
+
+            region_object.setOptions({
+                fillOpacity: 0.4
+            });
+        });
+
+        MAP.events.mouseout(region_object,function(){
+            clearTimeout(this.timer);
+
+            this.timer = setTimeout(function(){
+
+                show_default_table_when_mouse_out();
+
+            },250);
+
+            region_object.setOptions({
+                fillOpacity: 0.2
+            });
         })
+
+        MAP.events.click(region_object,function(){
+
+            clearTimeout(this.timer);
+            setTimeout(function(){
+                show_default_table_when_mouse_out();
+            },5);
+
+
+            zoom_to_region_level_map(region_name);
+            RegionViewAppInstance.start(region_name);
+        })
+    },
+      set_region_highlight_on_the_map: function(){
+          var this_object = this;
+        region_objects_variable.regions_objects_array().forEach(function(value)
+            {
+                if (value.region_polygon != undefined)
+                {
+                    value.region_polygon.setMap(MAP.google_map());
+                } else
+                {
+                    value.region_polygon = MAP.initialize.google_polygon(value.fusiontables_properties['coordinates'],
+                        value.map_properties['color'], value.map_properties['color'], value.unique_identifier);
+
+                    this_object.set_event_listeners_on_the_map(value.region_polygon, value.name);
+                }
+            }
+        )
 
     }
 
 }
+
+
 GlobalView.prototype.render = function(){
     this.controller.set_region_highlight_on_the_map();
     GoogleMapAppInstance.start();
@@ -33,6 +81,6 @@ GlobalView.prototype.draw = function(){
     this.render();
 }
 
-update_global = function () {
+var update_global = function () {
     default_map_navigate("Global");
 }

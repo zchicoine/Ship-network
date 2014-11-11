@@ -2,7 +2,6 @@
 
 var current_view = function(){
 
-
         return new function(){
             if ( arguments.callee._singletonInstance )
                 return arguments.callee._singletonInstance;
@@ -22,9 +21,8 @@ var current_view = function(){
 current_view();
 
 var initialize_views = function(){
-    var view;
-        view  =   new GlobalViewApp();
-    view.start();
+
+    GlobalViewAppInstance.start();
 }
 
 
