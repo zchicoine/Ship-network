@@ -10,13 +10,6 @@ Region_Functionality= function(){
         });
 
     }
-
-   this.set_region_highlight_on_the_map = function(){
-       region_objects_variable.regions_objects_array().forEach(function(value){
-           value.set_region_highlight_on_the_map();
-       })
-
-   }
     this.clear_all_listeners_of_region = function(){
         region_objects_variable.regions_objects_array().forEach(function(value){
             value.clear_all_listeners_of_region();

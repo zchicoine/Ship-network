@@ -35,7 +35,6 @@ Region_class = function () {
 };
 
 Region_class.prototype.change_region_view = function () {
-    event_listeners_on_the_map(this.region_polygon,this.name);
     MAP.google_methods.set_center(this.lat_lang);
     MAP.google_methods.set_zoom(4);
     MAP.google_controller_methods.display_ports(this.name);
@@ -64,21 +63,6 @@ Region_class.prototype.scroll_between_specific_areas = function (navigate_direct
 
 
 }
-
-
-
-Region_class.prototype.set_region_highlight_on_the_map = function (){
-
-    if(this.region_polygon == undefined){
-        this.region_polygon = MAP.initialize.google_polygon(this.fusiontables_properties['coordinates'],
-            this.map_properties['color'], this.map_properties['color'], this.unique_identifier);
-
-        event_listeners_on_the_map(this.region_polygon,this.name);
-    }else{
-        this.region_polygon.setMap(MAP.google_map());
-    }
-
-}
 Region_class.prototype.set_map_label = function(map){
 
     new Label({
@@ -88,6 +72,7 @@ Region_class.prototype.set_map_label = function(map){
     });
 }
 Region_class.prototype.clear_all_listeners_of_region= function(){
+    this.region_polygon = undefined;
     MAP.google_methods.clear_all_listeners_of_an_object(this.unique_identifier);
 }
 Region_class.prototype.clear_all_mouseout_mouseover_listeners_of_region= function(){
@@ -106,13 +91,6 @@ Region_class.prototype.region_polygon_setOptions= function(options){
 
 
 
-function event_listeners_on_the_map(region_object,region_name) {
-
-    if(MAP.Controller.current_zoom_layer.value == REGION_LEVEL)
-    {
-        console.log("sjd");
-    }
-}
 /* param: json object pass by value
    return: json object included {next: next_json_key,back:previous_json_key}
             if the value of json is not an object then the format  {'value': actual value }

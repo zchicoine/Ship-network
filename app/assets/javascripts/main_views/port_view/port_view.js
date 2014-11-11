@@ -17,7 +17,36 @@ PortView.prototype.backend = function(){
 
 
 }
+PortView.prototype.controller = {
+    set_event_listeners_on_the_map: function(region_object,region_name){
+
+        MAP.events.click(region_object,function(){
+
+            zoom_to_region_level_map(region_name);
+            RegionViewAppInstance.start(region_name);
+        })
+    },
+    set_region_highlight_on_the_map: function()
+    {
+        var this_object = this;
+        region_objects_variable.regions_objects_array().forEach(function (value)
+            {
+                if (value.region_polygon != undefined)
+                {
+                    value.region_polygon.setMap(MAP.google_map());
+                } else
+                {
+                    value.region_polygon = MAP.initialize.google_polygon(value.fusiontables_properties['coordinates'],
+                        value.map_properties['color'], value.map_properties['color'], value.unique_identifier);
+
+                    //this_object.set_event_listeners_on_the_map(value.region_polygon, value.name);
+                }
+            }
+        )
+    }
+}
 PortView.prototype.render = function(){
+    this.controller.set_region_highlight_on_the_map();
     send_data_to_side_bar(this.name , PORT_LEVEL);
     refresh_link_list_back_history(this.name,PORT_LEVEL);
     refresh_current_view(this.name);
@@ -31,31 +60,3 @@ PortView.prototype.draw = function(){
 }
 
 
-
-//app
-
-var PortViewApp = function(){
-    // make this class singleton
-    if ( arguments.callee._singletonInstance )
-        return arguments.callee._singletonInstance;
-    arguments.callee._singletonInstance = this;
-
-    // keep list of active ports
-    this.active_port= {};
-    this.add_port = function(name,coordinates){
-        if(this.active_port[name] == undefined) {
-            this.active_port[name] = new PortView(name, coordinates);
-        }else {
-            // port has been already created
-        }
-    }
-
-};
-
-PortViewApp.prototype.start = function(name){
-
-    this.active_port[name].draw();
-}
-var PortViewAppInstance = new PortViewApp();
-
-//end app

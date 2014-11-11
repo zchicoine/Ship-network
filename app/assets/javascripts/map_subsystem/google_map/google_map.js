@@ -48,7 +48,7 @@ function reload_the_map_with_specification(specification){
         if(specification['new_map'] == true){
 
           var  map = MAP.google_map(specification['new_map']);
-            region_objects_variable.each_object().set_region_highlight_on_the_map();
+           // region_objects_variable.each_object().set_region_highlight_on_the_map();
             region_objects_variable.each_object().set_map_label(map);
 
         }
@@ -65,10 +65,10 @@ function reload_the_map_with_specification(specification){
 }
 
 function zoom_to_region_level_map(region_name){
-     MAP.Controller.current_zoom_layer.value = REGION_LEVEL;
-    console.log(MAP.Controller.current_zoom_layer.value + " aa");
-    region_objects_variable.each_object().region_polygon_setOptions({'clickable':false});
-    region_objects_variable.each_object().clear_all_mouseout_mouseover_listeners_of_region();
+
+    MAP.Controller.current_zoom_layer.value = REGION_LEVEL;
+    //region_objects_variable.each_object().region_polygon_setOptions({'clickable':false});
+    region_objects_variable.each_object().clear_all_listeners_of_region();
     region_objects_variable.return_object_region(region_name).change_region_view();
     default_map_navigate(region_name);
 }
