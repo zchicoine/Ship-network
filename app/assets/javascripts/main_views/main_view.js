@@ -32,7 +32,8 @@ var initialize_views = function()
 }
 MainViewGenerator.prototype.regionView = function(name)
 {
-    console.log( name +" regionView has been called " )
+
+    //console.log( name +" regionView has been called " )
     GlobalViewAppInstance.globalViewInstance.controller.clear_all_listeners_of_the_regions();
     RegionViewAppInstance.start(name);
 

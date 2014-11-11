@@ -2,10 +2,16 @@
 var RegionView;
 RegionView = function(name){
     this.name = name;
-   this.html_classnames ={
-        "side_panel":{"body": ".aside_ship_details_table_body",
-                      "footer":".aside_ship_details_table_foot"
-
+   this.html_classnames =
+   {
+        "side_panel":
+        {
+            "body": ".aside_ship_details_table_body",
+            "footer":".aside_ship_details_table_foot"
+        },
+        "current_location":
+        {
+            "body":".current_view"
         }
 
     }
@@ -31,7 +37,6 @@ RegionView.prototype.controller = {
 
         MAP.events.click(region_object,function(){
 
-            zoom_to_region_level_map(region_name);
             RegionViewAppInstance.start(region_name);
         })
     },
@@ -52,20 +57,29 @@ RegionView.prototype.controller = {
                 }
             }
         )
+    },map_customization:function(region_name){
+        this.set_region_highlight_on_the_map();
+        MAP.google_methods.set_center(region_objects_variable.return_object_region(region_name).lat_lang);
+        MAP.google_methods.set_zoom(4);
+        MAP.google_controller_methods.display_ports(region_name);
     }
+
 }
+
 RegionView.prototype.render = function(){
-    this.controller.set_region_highlight_on_the_map();
     refresh_link_list_back_history(this.name,REGION_LEVEL);
-    refresh_current_view(this.name);
     setSelectRegion_on_sidebar(this.name);
     var backend_results = this.backend(this.name);
     $(this.html_classnames.side_panel.body).html(backend_results.body);
     $(this.html_classnames.side_panel.footer).html(backend_results.footer);
+    $(this.html_classnames.current_location.body).html(this.name);
 
 }
 
 RegionView.prototype.draw = function(){
     MAP.Controller.current_zoom_layer.value = REGION_LEVEL;
-    this.render(this.name);
+
+    this.controller.map_customization(this.name);
+    default_map_navigate(this.name);
+    this.render();
 }

@@ -34,12 +34,12 @@ Region_class = function () {
     };
 };
 
-Region_class.prototype.change_region_view = function () {
-    MAP.google_methods.set_center(this.lat_lang);
-    MAP.google_methods.set_zoom(4);
-    MAP.google_controller_methods.display_ports(this.name);
-
-};
+//Region_class.prototype.change_region_view = function () {
+//    MAP.google_methods.set_center(this.lat_lang);
+//    MAP.google_methods.set_zoom(4);
+//    MAP.google_controller_methods.display_ports(this.name);
+//
+//};
 
 var store_navigate_back;
 var store_navigate_now;

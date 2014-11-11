@@ -9,10 +9,7 @@ if($("#googleMap").length == 0){
     MainViewGeneratorInstance.regionView(temp_region);
 
 }else{
-    if( ! current_region().match(temp_region) ){
-        var spec = {'new_map':false,'layer':REGION_LEVEL, 'region_name':temp_region };
-        reload_the_map_with_specification(spec);
-    }
+
     MainViewGeneratorInstance.regionView(temp_region);
 }
 

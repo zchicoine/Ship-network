@@ -52,7 +52,6 @@ GlobalView.prototype.controller = {
             },5);
 
 
-            zoom_to_region_level_map(region_name);
             MainViewGeneratorInstance.regionView(region_name);
         })
     },
@@ -79,11 +78,12 @@ GlobalView.prototype.controller = {
 
 
 GlobalView.prototype.render = function(){
-    this.controller.set_region_highlight_on_the_map();
+
     GoogleMapAppInstance.start();
 }
 
 GlobalView.prototype.draw = function(){
+    this.controller.set_region_highlight_on_the_map();
     this.render();
 }
 
