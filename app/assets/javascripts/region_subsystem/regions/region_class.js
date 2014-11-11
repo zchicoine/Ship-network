@@ -78,8 +78,6 @@ Region_class.prototype.set_region_highlight_on_the_map = function (){
         this.region_polygon.setMap(MAP.google_map());
     }
 
-
-
 }
 Region_class.prototype.set_map_label = function(map){
 

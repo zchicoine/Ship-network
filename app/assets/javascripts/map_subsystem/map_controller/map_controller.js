@@ -9,7 +9,6 @@ MAP.Controller.current_zoom_layer = {
         // default
         layer_level: GLOBAL_LEVEL,
         get value (){
-            console.log(this.layer_level + " layer on get function");
             return   this.layer_level;
         },
         set value  (layer){

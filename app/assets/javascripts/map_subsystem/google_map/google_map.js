@@ -2,7 +2,11 @@
 
 var GoogleMapApp;
 GoogleMapApp = function(){
+    if ( arguments.callee._singletonInstance )
+        return arguments.callee._singletonInstance;
+    arguments.callee._singletonInstance = this;
 
+  //  this.map = MAP.google_map();
 };
 
 GoogleMapApp.prototype.start = function(){
@@ -15,14 +19,14 @@ function initialize_the_map() {
 
 
    var map = MAP.google_map();
-    region_objects_variable.each_object().set_region_highlight_on_the_map();
+  //  region_objects_variable.each_object().set_region_highlight_on_the_map();
     region_objects_variable.each_object().set_map_label(map);
     update_global();
 
 }
 
-
-
+// create an instance of google map app
+var GoogleMapAppInstance = new GoogleMapApp();
 
 
 

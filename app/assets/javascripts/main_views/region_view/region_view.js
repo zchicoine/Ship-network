@@ -49,7 +49,7 @@ var RegionViewApp = function(){
         if(this.active_region[name] == undefined) {
             this.active_region[name] = new RegionView(name);
         }else {
-            // port has been already created
+            // region has been already created
         }
     }
 
