@@ -74,7 +74,6 @@ Region_class.prototype.set_map_label = function(map){
 
 // see options https://developers.google.com/maps/documentation/javascript/reference#PolygonOptions
 Region_class.prototype.region_polygon_setOptions= function(options){
-    console.log(this.name);
     if(this.region_polygon != undefined && options != undefined){
         this.region_polygon.setOptions(options);
     }

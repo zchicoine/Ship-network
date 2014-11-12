@@ -7,9 +7,4 @@ refresh_current_view = function(name){
 
 
 
-current_region = function(){
-
-    var region_name =  $("#side_bar_header_region_name").text();
-        return region_name.trim();
-}
 

@@ -36,7 +36,10 @@ RegionView.prototype.controller = {
 
         MAP.events.click(region_object,function(){
 
+            current_view.value = REGION_LEVEL;
+            current_location.value = COME_FROM_MAP;
             RegionViewAppInstance.start(region_name);
+
         })
     },
     set_region_highlight_on_the_map: function(region_name)
@@ -47,7 +50,6 @@ RegionView.prototype.controller = {
                 // do not assigned my self to an event
                 if(value.name != region_name)
                 {
-                    console.log('nonononon');
                     if (value.region_polygon != undefined)
                     {
                         value.region_polygon.setMap(MAP.google_map());

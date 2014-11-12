@@ -45,7 +45,9 @@ RegionViewApp.prototype.start = function (name)
             _regionObject.controller.clear_all_listeners_of_the_regions();
             region_objects_variable.each_object().region_polygon_setOptions({'clickable':true});
             region_objects_variable.return_object_region(name).region_polygon_setOptions({'clickable':false});
-            _regionObject.draw();
+            MAP.Controller.current_zoom_layer.value = REGION_LEVEL;
+            _regionObject.controller.map_customization(_regionObject.name);
+            _regionObject.render();
             region_objects_variable.regions_objects_array().forEach(function (value)
             {
                 if(value.name != name )
@@ -54,7 +56,23 @@ RegionViewApp.prototype.start = function (name)
 
                 }
             });
+            if(current_location.value == COME_FROM_MAP){
 
+                default_map_navigate(_regionObject.name);
+
+            }else {
+
+                default_map_navigate(_regionObject.name);
+
+            }
+
+        }else if(current_view.value == PORT_LEVEL){
+            console.log("inside port level");
+
+
+        }else if(current_view == SHIP_LEVEL){
+
+            console.log("inside ship level");
         }
 
     } else {
