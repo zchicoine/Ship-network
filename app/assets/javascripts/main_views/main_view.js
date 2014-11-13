@@ -53,5 +53,18 @@ MainViewGenerator.prototype.regionView = function(name)
 var MainViewGeneratorInstance = new MainViewGenerator();
 
 
+var createView = function(view)
+{
+    switch (view)
+    {
+        case GLOBAL_LEVEL:
+            return GlobalViewAppInstance ;
+            break;
+        case REGION_LEVEL:
+            return RegionViewAppInstance ;
+        default:
+
+    }
+}
 
 

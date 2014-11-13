@@ -40,10 +40,37 @@ Africa_class = function () {
 
 
 };
+
+
 Africa_class.prototype = createObject(Region_class.prototype);
 // Set the "constructor" property to refer to Africa_class
 Africa_class.prototype.constructor = Africa_class;
+/*
+ override
+ */
+Africa_class.prototype.default_map_navigate = function(come_from)
+{
+    console.log(come_from + " ya");
+    var default_area = "Douala";
+    if(come_from == "Europe"){
+        this.lat_lang = this.areas_coordinates["Tripoli LY"].coordinates;
+        default_area = "Tripoli LY";
+    }
+    var json_arry_keys =  $.map(this.areas_coordinates, function(values,keys) {return keys;});
+    var keyIndex =   json_arry_keys.indexOf(default_area);
+    keyIndex = keyIndex < 0? 0: keyIndex;
+    // at function is part of sugar.js
+    store_navigate_back =   json_arry_keys.at((keyIndex - 1)) ;
+    store_navigate_now =  json_arry_keys.at(keyIndex);
+    store_navigate_next = json_arry_keys.at((keyIndex + 1));
+    console.log(store_navigate_next);
+    var back =  this.areas_coordinates[store_navigate_back]['short_name'];
+    var next =  this.areas_coordinates[store_navigate_next]['short_name'];
 
+
+    update_map_navigate_label_and_tooltip(back,next,store_navigate_back,store_navigate_next);
+
+}
 
 
 

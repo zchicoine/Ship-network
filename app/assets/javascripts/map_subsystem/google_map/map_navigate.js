@@ -41,10 +41,10 @@ var default_map_navigate = function(region_name , default_area)
     var keyIndex =   json_arry_keys.indexOf(default_area);
     keyIndex = keyIndex < 0? 0: keyIndex;
 
-    store_navigate_back =   json_arry_keys.from((keyIndex - 1)) ;
+    store_navigate_back =   json_arry_keys.at((keyIndex - 1)) ;
     store_navigate_now =  json_arry_keys[keyIndex];
-    store_navigate_next = json_arry_keys[(keyIndex + 1)];
-
+    store_navigate_next = json_arry_keys.at((keyIndex + 1));
+    console.log(store_navigate_next);
     var back =  object_local.areas_coordinates[store_navigate_back]['short_name'];
     var next =  object_local.areas_coordinates[store_navigate_next]['short_name'];
 

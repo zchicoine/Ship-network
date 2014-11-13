@@ -34,17 +34,33 @@ Region_class = function () {
     };
 };
 
-//Region_class.prototype.change_region_view = function () {
-//    MAP.google_methods.set_center(this.lat_lang);
-//    MAP.google_methods.set_zoom(4);
-//    MAP.google_controller_methods.display_ports(this.name);
-//
-//};
-
 var store_navigate_back;
 var store_navigate_now;
 var store_navigate_next;
 
+/*
+    default_area: the default prospective that a region should center the map to.
+    come_from: Global, Region: name of the region should be pass, Port, Ship.
+    this the default implementation, each drive class should override this for different implementation
+ */
+Region_class.prototype.default_map_navigate = function(come_from)
+{
+
+    var json_arry_keys =  $.map(this.areas_coordinates, function(values,keys) {return keys;});
+    var keyIndex =   json_arry_keys.indexOf("North America");
+    keyIndex = keyIndex < 0? 0: keyIndex;
+    // at function is part of sugar.js
+    store_navigate_back =   json_arry_keys.at((keyIndex - 1)) ;
+    store_navigate_now =  json_arry_keys.at(keyIndex);
+    store_navigate_next = json_arry_keys.at((keyIndex + 1));
+    console.log(store_navigate_next);
+    var back =  this.areas_coordinates[store_navigate_back]['short_name'];
+    var next =  this.areas_coordinates[store_navigate_next]['short_name'];
+
+
+    update_map_navigate_label_and_tooltip(back,next,store_navigate_back,store_navigate_next);
+
+}
 Region_class.prototype.scroll_between_specific_areas = function (navigate_direction){
 
 
