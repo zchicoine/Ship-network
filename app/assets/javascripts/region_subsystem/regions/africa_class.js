@@ -50,8 +50,8 @@ Africa_class.prototype.constructor = Africa_class;
  */
 Africa_class.prototype.default_map_navigate = function(come_from)
 {
-    console.log(come_from + " ya");
     var default_area = "Douala";
+    this.lat_lang = this.areas_coordinates["Douala"].coordinates;
     if(come_from == "Europe"){
         this.lat_lang = this.areas_coordinates["Tripoli LY"].coordinates;
         default_area = "Tripoli LY";

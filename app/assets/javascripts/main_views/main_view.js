@@ -1,6 +1,6 @@
 var GLOBAL_LEVEL = 0;       var COME_FROM_START= 0;
 var REGION_LEVEL = 1;       var COME_FROM_MAP = 1;
-var PORT_LEVEL = 2;         var COME_FROM_SIDE_PANEL = 2;
+var PORT_LEVEL = 2;         var COME_FROM_OUTSIDE_MAP = 2;
 var SHIP_LEVEL = 3;
 
 
