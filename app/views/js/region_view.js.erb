@@ -6,7 +6,6 @@ if($("#googleMap").length == 0){
     $("#outer-map").html(" <%= escape_javascript(render 'google_map/index')%>");
 
 }
-    current_location.value = COME_FROM_OUTSIDE_MAP;
     MainViewGeneratorInstance.regionView(temp_region);
 
 
