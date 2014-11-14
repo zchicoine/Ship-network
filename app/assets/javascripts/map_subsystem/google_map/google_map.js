@@ -15,7 +15,7 @@ GoogleMapApp.prototype.start = function(){
 
 GoogleMapApp.prototype.is_map_shown = function()
 {
-    if(current_location.value != MOTOR_VESSEL)
+    if(current_location.value != COME_FROM_MOTOR_VESSEL)
         return true;
 
     MAP.google_map(true);

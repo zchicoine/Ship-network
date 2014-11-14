@@ -255,9 +255,9 @@ ship_details = function(ship_name,port_name,region_name){
 
         },
         success: function(result) {
-
+            current_location.value = COME_FROM_MOTOR_VESSEL;
             $("#outer-map").html(result);
-            current_location.value = MOTOR_VESSEL;
+
         },
         error: function(r){
             error_message_display("display Motor Vessel.");
