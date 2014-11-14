@@ -32,18 +32,21 @@ var current_region = function(){
     var region_name =  $("#side_bar_header_region_name").text();
     return region_name.trim();
 }
-var initialize_views = function()
-{
 
-    GlobalViewAppInstance.start();
-}
+// MainViewGenerator class
 
 var MainViewGenerator;
-MainViewGenerator = function ()
+MainViewGenerator = (function ()
 {
 
-}
+}).once();
 
+MainViewGenerator.prototype.globalView = function()
+{
+    GlobalViewAppInstance.start();
+    current_view.value = GLOBAL_LEVEL;
+
+}
 MainViewGenerator.prototype.regionView = function(name)
 {
     RegionViewAppInstance.start(name);
@@ -58,30 +61,12 @@ MainViewGenerator.prototype.portView = function(name,coordinates)
     PortViewAppInstance.start(name);
     current_view.value = PORT_LEVEL;
 }
-MainViewGenerator.prototype.shipView = function(name,coordinates)
+MainViewGenerator.prototype.shipView = function(name)
 {
 
     ShipViewAppInstance.start(name);
     current_view.value = SHIP_LEVEL;
 }
+
 var MainViewGeneratorInstance = new MainViewGenerator();
-
-
-var createView = function(view)
-{
-    switch (view)
-    {
-        case GLOBAL_LEVEL:
-            return GlobalViewAppInstance ;
-        case REGION_LEVEL:
-            return RegionViewAppInstance ;
-        case PORT_LEVEL:
-            return PortViewAppInstance ;
-        case SHIP_LEVEL:
-            return ShipViewAppInstance ;
-        default:
-
-    }
-}
-
 

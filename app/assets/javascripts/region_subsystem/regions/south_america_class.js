@@ -59,7 +59,6 @@ South_America_class.prototype.default_map_navigate = function(come_from)
     store_navigate_back =   json_arry_keys.at((keyIndex - 1)) ;
     store_navigate_now =  json_arry_keys.at(keyIndex);
     store_navigate_next = json_arry_keys.at((keyIndex + 1));
-    console.log(store_navigate_next);
     var back =  this.areas_coordinates[store_navigate_back]['short_name'];
     var next =  this.areas_coordinates[store_navigate_next]['short_name'];
 

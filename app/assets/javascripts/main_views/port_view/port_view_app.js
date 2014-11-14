@@ -23,7 +23,23 @@ PortViewApp.prototype.start = function(name){
 
         var _portViewObject =  this.active_port[name];
 
-        createView(current_view.value).start_view(_portViewObject);
+        switch (current_view.value)
+        {
+            case GLOBAL_LEVEL:
+                this.come_from_global_view(_portViewObject);
+                break;
+            case REGION_LEVEL:
+                this.come_from_region_view(_portViewObject);
+                break;
+            case PORT_LEVEL:
+                this.come_from_port_view(_portViewObject);
+                break;
+            case SHIP_LEVEL:
+                this.come_from_ship_view(_portViewObject);
+                break;
+            default:
+
+        }
 
     } else {
         error_message_display("PortViewApp start function name is not string")
@@ -33,33 +49,33 @@ PortViewApp.prototype.start = function(name){
 }
 
 
-PortViewApp.prototype.start_view = function(_ViewObject)
+PortViewApp.prototype.come_from_global_view = function(_portObject)
 {
-
-    if( _ViewObject instanceof RegionView )
-    {
-        console.log("called region from port");
-        _ViewObject.controller.clear_all_listeners_of_the_regions();
-        region_objects_variable.return_object_region(_ViewObject.name).region_polygon_setOptions({'clickable':false});
-        _ViewObject.draw();
-        set_event_listeners_on_the_map_viewHelper(_ViewObject);
-    }else if(_ViewObject instanceof PortView)
-    {
-        if (current_location.value == COME_FROM_MAP) {
-            _ViewObject.draw();
-
-        }else
-        {
-
-            _ViewObject.draw();
-        }
-
-    }else if(_ViewObject instanceof ShipView){
-
-        _ViewObject.draw();
-    }
+        // no functionality
 }
 
+PortViewApp.prototype.come_from_region_view = function(_portObject)
+{
+    if (current_location.value == COME_FROM_MAP) {
+        _portObject.draw();
+
+    }else
+    {
+        _portObject.draw();
+    }
+}
+PortViewApp.prototype.come_from_port_view = function(_portObject)
+{
+    if (current_location.value == COME_FROM_MAP) {
+        _portObject.draw();
+
+    }else
+    {
+
+        _portObject.draw();
+    }
+
+}
 PortViewApp.prototype.come_from_ship_view = function(_portObject)
 {
 

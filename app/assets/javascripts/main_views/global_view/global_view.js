@@ -50,7 +50,6 @@ GlobalView.prototype.controller = {
                 show_default_table_when_mouse_out();
             },5);
 
-            current_view.value = GLOBAL_LEVEL;
             current_location.value = COME_FROM_MAP;
             MainViewGeneratorInstance.regionView(region_name);
         })

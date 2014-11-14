@@ -1,7 +1,7 @@
 
 var RegionView;
 RegionView = function(name){
-    this.name = name;
+   this.name = name;
    this.html_classnames =
    {
         "side_panel":
@@ -36,9 +36,8 @@ RegionView.prototype.controller = {
 
         MAP.events.click(region_object,function(){
 
-            current_view.value = REGION_LEVEL;
             current_location.value = COME_FROM_MAP;
-            RegionViewAppInstance.start(region_name);
+            MainViewGeneratorInstance.regionView(region_name);
 
         })
     },

@@ -47,15 +47,14 @@ ShipView.prototype.controller = {
             }
         )
     },map_customization:function(){
-        //this.set_region_highlight_on_the_map();
-        //MAP.google_controller_methods.display_ports(region_name);
+
     }
 }
 ShipView.prototype.render = function(){
 
     send_data_to_side_bar(this.name , SHIP_LEVEL);
     refresh_link_list_back_history(this.name,SHIP_LEVEL);
-    //$(this.html_classnames.current_location.body).html(this.name);
+    //$(this.html_classnames.current_location.body).html(this.name); // this feature is turn off
 }
 
 ShipView.prototype.draw = function(){

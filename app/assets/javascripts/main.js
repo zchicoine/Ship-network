@@ -4,8 +4,7 @@
 $(document).ready(function(){
 
 
-    initialize_views();
-
+    MainViewGeneratorInstance.globalView();
 
 
 });

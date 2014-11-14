@@ -27,9 +27,8 @@ PortView.prototype.controller = {
 
         MAP.events.click(region_object,function(){
 
-            current_view.value = PORT_LEVEL;
             current_location.value = COME_FROM_MAP;
-            RegionViewAppInstance.start(region_name);
+            MainViewGeneratorInstance.regionView(region_name);
         })
     },
     set_region_highlight_on_the_map: function(region_name)

@@ -23,8 +23,27 @@ ShipViewApp.prototype.start = function(name){
         this.add_ship(name);
         var _shipViewObject =  this.active_ship[name];
 
-        console.log(current_view.value);
-        createView(current_view.value).start_view(_shipViewObject);
+        /*
+         current_view.value: return the view level {Global, Region, Port or Ship}
+         */
+        switch (current_view.value)
+        {
+            case GLOBAL_LEVEL:
+                this.come_from_global_view(_shipViewObject);
+                break;
+            case REGION_LEVEL:
+                this.come_from_region_view(_shipViewObject);
+                break;
+            case PORT_LEVEL:
+                this.come_from_port_view(_shipViewObject);
+                break;
+            case SHIP_LEVEL:
+                this.come_from_ship_view(_shipViewObject);
+                break;
+            default:
+
+        }
+
 
     } else {
         error_message_display("ShipViewApp start function name is not string")
@@ -33,17 +52,23 @@ ShipViewApp.prototype.start = function(name){
 }
 
 
-ShipViewApp.prototype.start_view = function(_ViewObject)
+ShipViewApp.prototype.come_from_global_view = function(_shipView)
 {
-
-    if( _ViewObject instanceof RegionView )
-    {
-        RegionViewAppInstance.come_from_ship_view(_ViewObject);
-    }else if(_ViewObject instanceof PortView)
-    {
-            PortViewAppInstance.come_from_ship_view(_ViewObject);
-    }
 }
+
+ShipViewApp.prototype.come_from_region_view = function(_shipView)
+{
+}
+
+ShipViewApp.prototype.come_from_port_view = function(_shipView)
+{
+    _shipView.draw();
+}
+
+ShipViewApp.prototype.come_from_ship_view = function(_shipView)
+{
+}
+
 
 var ShipViewAppInstance = new ShipViewApp();
 
