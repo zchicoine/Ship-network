@@ -50,6 +50,14 @@ MainViewGenerator.prototype.regionView = function(name)
     current_view.value = REGION_LEVEL;
 
 }
+MainViewGenerator.prototype.portView = function(name,coordinates)
+{
+    if(coordinates != undefined)
+    PortViewAppInstance.add_port(name,coordinates);
+
+    PortViewAppInstance.start(name);
+    current_view.value = PORT_LEVEL;
+}
 var MainViewGeneratorInstance = new MainViewGenerator();
 
 
@@ -59,9 +67,10 @@ var createView = function(view)
     {
         case GLOBAL_LEVEL:
             return GlobalViewAppInstance ;
-            break;
         case REGION_LEVEL:
             return RegionViewAppInstance ;
+        case PORT_LEVEL:
+            return PortViewAppInstance ;
         default:
 
     }

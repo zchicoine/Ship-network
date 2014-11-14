@@ -92,8 +92,8 @@ MAP.google_controller_methods = {
                         // marker.position.K: latitude
                         var port_name = marker.id;
                         var port_coordinates = [marker.position.k,marker.position.B];
-                        PortViewAppInstance.add_port(port_name,port_coordinates);
-                        PortViewAppInstance.start(port_name);
+                        current_location.value = COME_FROM_MAP;
+                        MainViewGeneratorInstance.portView(port_name,port_coordinates);
                         marker.setIcon(iconClick);
 
                     }

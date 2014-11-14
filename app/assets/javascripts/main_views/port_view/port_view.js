@@ -49,7 +49,7 @@ PortView.prototype.controller = {
         )
     },map_customization:function(coordinates){
     MAP.google_methods.set_zoom(4);
-    this.set_region_highlight_on_the_map();
+    //this.set_region_highlight_on_the_map();
     MAP.google_methods.set_center(coordinates);
     //MAP.google_controller_methods.display_ports(region_name);
 }
@@ -58,16 +58,13 @@ PortView.prototype.render = function(){
 
     send_data_to_side_bar(this.name , PORT_LEVEL);
     refresh_link_list_back_history(this.name,PORT_LEVEL);
-
     $(this.html_classnames.current_location.body).html(this.name);
-
-
 }
 
 PortView.prototype.draw = function(){
     MAP.Controller.current_zoom_layer.value = PORT_LEVEL;
     this.controller.map_customization(this.coordinates);
-    this.render(this.name , this.coordinates);
+    this.render();
 }
 
 

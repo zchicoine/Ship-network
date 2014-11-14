@@ -57,7 +57,21 @@ RegionViewApp.prototype.start_view = function(_ViewObject)
         _ViewObject.controller.map_customization(_ViewObject.name);
         _ViewObject.render();
 
+    }else if(_ViewObject instanceof PortView)
+    {
+        if (current_location.value == COME_FROM_MAP) {
+            console.log("called region");
+            _ViewObject.draw();
+
+        }else
+        {
+
+            _ViewObject.draw();
+
+        }
+
     }
+
 }
 
 var RegionViewAppInstance = new RegionViewApp();

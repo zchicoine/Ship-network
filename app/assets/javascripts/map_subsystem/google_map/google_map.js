@@ -48,17 +48,13 @@ function reload_the_map_with_specification(specification){
         if(specification['new_map'] == true){
 
          var  map = MAP.google_map(specification['new_map']);
-            region_objects_variable.each_object().set_map_label(map);
 
         }
          if(specification['layer'] == PORT_LEVEL  && specification['region_name'] != undefined){
-
-           // region_objects_variable.return_object_region(specification['region_name']).change_region_view();
+             region_objects_variable.each_object().set_map_label(map);
              MAP.google_controller_methods.display_ports(specification['region_name']);
              default_map_navigate(specification['region_name']);
 
         }
     }
 }
-//region_objects_variable.each_object().region_polygon_setOptions({'clickable':false});
-
