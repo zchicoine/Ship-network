@@ -58,6 +58,12 @@ MainViewGenerator.prototype.portView = function(name,coordinates)
     PortViewAppInstance.start(name);
     current_view.value = PORT_LEVEL;
 }
+MainViewGenerator.prototype.shipView = function(name,coordinates)
+{
+
+    ShipViewAppInstance.start(name);
+    current_view.value = SHIP_LEVEL;
+}
 var MainViewGeneratorInstance = new MainViewGenerator();
 
 
@@ -71,6 +77,8 @@ var createView = function(view)
             return RegionViewAppInstance ;
         case PORT_LEVEL:
             return PortViewAppInstance ;
+        case SHIP_LEVEL:
+            return ShipViewAppInstance ;
         default:
 
     }

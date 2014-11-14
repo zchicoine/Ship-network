@@ -218,7 +218,7 @@ $(document).on('click',".ship_name_on_side_bar", function(e){
                          update_broker_view(ship_name,port_name);
 
                      }else{
-                         update_ship_view(ship_name);
+                         MainViewGeneratorInstance.shipView(ship_name);
                      }
     }else {
 

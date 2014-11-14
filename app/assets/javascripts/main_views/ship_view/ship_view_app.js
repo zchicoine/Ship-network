@@ -1,44 +1,44 @@
 
 //app
 
-var PortViewApp = function(){
+var ShipViewApp = function(){
     // make this class singleton
     if ( arguments.callee._singletonInstance )
         return arguments.callee._singletonInstance;
     arguments.callee._singletonInstance = this;
 
     // keep list of active ports
-    this.active_port= {};
-    this.add_port = function(name,coordinates){
-        if(this.active_port[name] == undefined) {
-            this.active_port[name] = new PortView(name, coordinates);
+    this.active_ship= {};
+    this.add_ship = function(name){
+        if(this.active_ship[name] == undefined) {
+            this.active_ship[name] = new ShipView(name);
         }
     }
 
 };
 
-PortViewApp.prototype.start = function(name){
+ShipViewApp.prototype.start = function(name){
 
     if (string_match(name)) {
+        this.add_ship(name);
+        var _shipViewObject =  this.active_ship[name];
 
-        var _portViewObject =  this.active_port[name];
-
-        createView(current_view.value).start_view(_portViewObject);
+        console.log(current_view.value);
+        createView(current_view.value).start_view(_shipViewObject);
 
     } else {
-        error_message_display("PortViewApp start function name is not string")
+        error_message_display("ShipViewApp start function name is not string")
     }
-
 
 }
 
 
-PortViewApp.prototype.start_view = function(_ViewObject)
+ShipViewApp.prototype.start_view = function(_ViewObject)
 {
 
     if( _ViewObject instanceof RegionView )
     {
-        console.log("called region from port");
+        console.log("called region from ship");
         _ViewObject.controller.clear_all_listeners_of_the_regions();
         region_objects_variable.return_object_region(_ViewObject.name).region_polygon_setOptions({'clickable':false});
         _ViewObject.draw();
@@ -53,10 +53,8 @@ PortViewApp.prototype.start_view = function(_ViewObject)
             _ViewObject.draw();
         }
 
-    }else if(_ViewObject instanceof ShipView){
-        _ViewObject.draw();
     }
 }
-var PortViewAppInstance = new PortViewApp();
+var ShipViewAppInstance = new ShipViewApp();
 
 //end app
