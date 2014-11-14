@@ -23,7 +23,7 @@ GlobalViewApp.prototype.start_view = function(_ViewObject)
         this.globalViewInstance.controller.clear_all_listeners_of_the_regions();
         region_objects_variable.return_object_region(_ViewObject.name).region_polygon_setOptions({'clickable':false});
         _ViewObject.draw();
-        set_event_listeners_on_the_map_viewHelper(_ViewObject);
+        set_event_listeners_on_the_map_viewHelper(_ViewObject.name,_ViewObject);
     }
 }
 

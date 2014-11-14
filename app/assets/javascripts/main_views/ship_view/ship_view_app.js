@@ -38,23 +38,13 @@ ShipViewApp.prototype.start_view = function(_ViewObject)
 
     if( _ViewObject instanceof RegionView )
     {
-        console.log("called region from ship");
-        _ViewObject.controller.clear_all_listeners_of_the_regions();
-        region_objects_variable.return_object_region(_ViewObject.name).region_polygon_setOptions({'clickable':false});
-        _ViewObject.draw();
-        set_event_listeners_on_the_map_viewHelper(_ViewObject);
+        RegionViewAppInstance.come_from_ship_view(_ViewObject);
     }else if(_ViewObject instanceof PortView)
     {
-        if (current_location.value == COME_FROM_MAP) {
-            _ViewObject.draw();
-
-        }else
-        {
-            _ViewObject.draw();
-        }
-
+            PortViewAppInstance.come_from_ship_view(_ViewObject);
     }
 }
+
 var ShipViewAppInstance = new ShipViewApp();
 
 //end app

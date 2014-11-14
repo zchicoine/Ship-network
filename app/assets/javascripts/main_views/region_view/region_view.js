@@ -47,9 +47,7 @@ RegionView.prototype.controller = {
         var this_object = this;
         region_objects_variable.regions_objects_array().forEach(function (value)
             {
-                // do not assigned my self to an event
-                if(value.name != region_name)
-                {
+
                     if (value.region_polygon != undefined)
                     {
                         value.region_polygon.setMap(MAP.google_map());
@@ -57,10 +55,10 @@ RegionView.prototype.controller = {
                     {
                         value.region_polygon = MAP.initialize.google_polygon(value.fusiontables_properties['coordinates'],
                                    value.map_properties['color'], value.map_properties['color'], value.unique_identifier);
-
+                        value.region_polygon.setMap(MAP.google_map());
                     }
 
-                }
+
 
             }
         )

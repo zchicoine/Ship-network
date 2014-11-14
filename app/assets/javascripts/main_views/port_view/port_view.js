@@ -27,31 +27,33 @@ PortView.prototype.controller = {
 
         MAP.events.click(region_object,function(){
 
+            current_view.value = PORT_LEVEL;
+            current_location.value = COME_FROM_MAP;
             RegionViewAppInstance.start(region_name);
         })
     },
-    set_region_highlight_on_the_map: function()
+    set_region_highlight_on_the_map: function(region_name)
     {
-        var this_object = this;
         region_objects_variable.regions_objects_array().forEach(function (value)
             {
-                if (value.region_polygon != undefined)
-                {
-                    value.region_polygon.setMap(MAP.google_map());
-                } else
-                {
-                    value.region_polygon = MAP.initialize.google_polygon(value.fusiontables_properties['coordinates'],
-                        value.map_properties['color'], value.map_properties['color'], value.unique_identifier);
 
-                    //this_object.set_event_listeners_on_the_map(value.region_polygon, value.name);
-                }
+                    if (value.region_polygon != undefined)
+                    {
+                        value.region_polygon.setMap(MAP.google_map());
+                    } else
+                    {
+                        value.region_polygon = MAP.initialize.google_polygon(value.fusiontables_properties['coordinates'],
+                            value.map_properties['color'], value.map_properties['color'], value.unique_identifier);
+                        value.region_polygon.setMap(MAP.google_map());
+
+                    }
+
+
             }
         )
     },map_customization:function(coordinates){
     MAP.google_methods.set_zoom(4);
-    //this.set_region_highlight_on_the_map();
     MAP.google_methods.set_center(coordinates);
-    //MAP.google_controller_methods.display_ports(region_name);
 }
 }
 PortView.prototype.render = function(){

@@ -13,6 +13,14 @@ GoogleMapApp.prototype.start = function(){
     google.maps.event.addDomListenerOnce(window, 'load', initialize_the_map);
 }
 
+GoogleMapApp.prototype.is_map_shown = function()
+{
+    if(current_location.value != MOTOR_VESSEL)
+        return true;
+
+    MAP.google_map(true);
+    return false;
+}
 
 
 function initialize_the_map() {
@@ -58,3 +66,4 @@ function reload_the_map_with_specification(specification){
         }
     }
 }
+

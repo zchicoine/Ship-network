@@ -1,7 +1,7 @@
 var GLOBAL_LEVEL = 0;       var COME_FROM_START= 0;
 var REGION_LEVEL = 1;       var COME_FROM_MAP = 1;
 var PORT_LEVEL = 2;         var COME_FROM_OUTSIDE_MAP = 2;
-var SHIP_LEVEL = 3;
+var SHIP_LEVEL = 3;         var MOTOR_VESSEL = 3;
 
 
 var current_view =

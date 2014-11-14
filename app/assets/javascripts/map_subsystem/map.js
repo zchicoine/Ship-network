@@ -134,8 +134,7 @@ MAP.initialize = {
             strokeWeight: 1,
             fillColor:fill_color ,
             fillOpacity: 0.2,
-            assigned_id: object_unique_identifier || MAP.generate_ids++,
-            map:MAP.google_map()
+            assigned_id: object_unique_identifier || MAP.generate_ids++
         });
     },google_marker: function(id,position,default_icon,title,object_unique_identifier){
 
