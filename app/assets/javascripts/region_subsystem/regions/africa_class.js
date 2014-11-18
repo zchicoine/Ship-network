@@ -28,8 +28,8 @@ Africa_class = function () {
 
     this.map_properties = {
         'color': "#a8ff00",
-        'lable':"AFRICA",
-        'lable_position':new google.maps.LatLng(17.6493, 11.5994)
+        "label":"AFRICA",
+        'labelposition':new google.maps.LatLng(17.6493, 11.5994)
     };
 
     this.fusiontables_properties = {

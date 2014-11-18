@@ -21,8 +21,8 @@ Far_East_class = function () {
 
     this.map_properties = {
         'color': "#20ff00",
-        'lable':"FAR EAST",
-        'lable_position':new google.maps.LatLng(35.799871, 100.609244)
+        'label':"FAR EAST",
+        'label_position':new google.maps.LatLng(35.799871, 100.609244)
     };
 
     this.fusiontables_properties = {

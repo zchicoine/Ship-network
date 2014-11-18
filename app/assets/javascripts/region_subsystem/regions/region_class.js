@@ -23,8 +23,8 @@ Region_class = function () {
     this.list_of_countries = [];
     this.map_properties = {
         'color': "#20FF00",
-        'lable':"REGION",
-        'lable_position':this.lat_lang
+        "label":"REGION",
+        "label_position":this.lat_lang
     };
     this.region_polygon = undefined;
     this.fusiontables_properties = {
@@ -82,8 +82,8 @@ Region_class.prototype.scroll_between_specific_areas = function (navigate_direct
 Region_class.prototype.set_map_label = function(map){
 
     new Label({
-        text: this.map_properties['lable'],
-        position: this.map_properties['lable_position'],
+        text: this.map_properties['label'],
+        position: this.map_properties['label_position'],
         map: map
     });
 }
