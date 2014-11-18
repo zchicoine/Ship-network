@@ -4,13 +4,9 @@ var temp_region = '<%= escape_javascript( @saved_name )%>'
 if($("#googleMap").length == 0){
 
     $("#outer-map").html(" <%= escape_javascript(render 'google_map/index')%>");
-    var spec = {'new_map':true,'layer':REGION_LEVEL, 'region_name':temp_region };
-    reload_the_map_with_specification(spec);
+
+}
     MainViewGeneratorInstance.regionView(temp_region);
 
-}else{
-    current_location.value = COME_FROM_OUTSIDE_MAP;
-    MainViewGeneratorInstance.regionView(temp_region);
-}
 
 

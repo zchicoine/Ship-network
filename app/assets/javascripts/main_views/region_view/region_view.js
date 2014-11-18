@@ -1,7 +1,7 @@
 
 var RegionView;
 RegionView = function(name){
-    this.name = name;
+   this.name = name;
    this.html_classnames =
    {
         "side_panel":
@@ -36,9 +36,8 @@ RegionView.prototype.controller = {
 
         MAP.events.click(region_object,function(){
 
-            current_view.value = REGION_LEVEL;
             current_location.value = COME_FROM_MAP;
-            RegionViewAppInstance.start(region_name);
+            MainViewGeneratorInstance.regionView(region_name);
 
         })
     },
@@ -47,9 +46,7 @@ RegionView.prototype.controller = {
         var this_object = this;
         region_objects_variable.regions_objects_array().forEach(function (value)
             {
-                // do not assigned my self to an event
-                if(value.name != region_name)
-                {
+
                     if (value.region_polygon != undefined)
                     {
                         value.region_polygon.setMap(MAP.google_map());
@@ -57,10 +54,10 @@ RegionView.prototype.controller = {
                     {
                         value.region_polygon = MAP.initialize.google_polygon(value.fusiontables_properties['coordinates'],
                                    value.map_properties['color'], value.map_properties['color'], value.unique_identifier);
-
+                        value.region_polygon.setMap(MAP.google_map());
                     }
 
-                }
+
 
             }
         )

@@ -50,7 +50,7 @@ GlobalView.prototype.controller = {
                 show_default_table_when_mouse_out();
             },5);
 
-
+            current_location.value = COME_FROM_MAP;
             MainViewGeneratorInstance.regionView(region_name);
         })
     },
@@ -67,6 +67,7 @@ GlobalView.prototype.controller = {
                         value.map_properties['color'], value.map_properties['color'], value.unique_identifier);
 
                     this_object.set_event_listeners_on_the_map(value.region_polygon, value.name);
+                    value.region_polygon.setMap(MAP.google_map());
                 }
             }
         )
