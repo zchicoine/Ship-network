@@ -24,7 +24,7 @@ RegionViewApp.prototype.start = function (name)
 
         this.add_region(name);
         var _regionViewObject =  this.active_region[name];
-
+        console.log(current_view.value + "ddd");
         createView(current_view.value).start_view(_regionViewObject);
 
     } else {
