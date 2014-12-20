@@ -5,25 +5,17 @@ MAP.Controller = MAP.Controller || {
 
 };
 
-MAP.Controller.current_zoom_layer = function() {
+MAP.Controller.current_zoom_layer = {
+        // default
+        layer_level: GLOBAL_LEVEL,
+        get value (){
+            return   this.layer_level;
+        },
+        set value  (layer){
+            this.layer_level = layer;
 
-    return new function(){
-        if ( arguments.callee._singletonInstance )
-            return arguments.callee._singletonInstance;
-        arguments.callee._singletonInstance = this;
-        // by default
-        var layer_level = GLOBAL_LEVEL;
-        this.get =  function(){
-            return   layer_level;
         }
-        this.set = function(layer){
-            layer_level = layer;
-            return this;
-        }
-
-    }
 };
-
 
 MAP.google_controller_methods = {
 
@@ -100,8 +92,8 @@ MAP.google_controller_methods = {
                         // marker.position.K: latitude
                         var port_name = marker.id;
                         var port_coordinates = [marker.position.k,marker.position.B];
-                        PortViewAppInstance.add_port(port_name,port_coordinates);
-                        PortViewAppInstance.start(port_name);
+                        current_location.value = COME_FROM_MAP;
+                        MainViewGeneratorInstance.portView(port_name,port_coordinates);
                         marker.setIcon(iconClick);
 
                     }

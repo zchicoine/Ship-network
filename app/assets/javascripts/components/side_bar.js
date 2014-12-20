@@ -218,7 +218,7 @@ $(document).on('click',".ship_name_on_side_bar", function(e){
                          update_broker_view(ship_name,port_name);
 
                      }else{
-                         update_ship_view(ship_name);
+                         MainViewGeneratorInstance.shipView(ship_name);
                      }
     }else {
 
@@ -255,11 +255,12 @@ ship_details = function(ship_name,port_name,region_name){
 
         },
         success: function(result) {
-
+            current_location.value = COME_FROM_MOTOR_VESSEL;
             $("#outer-map").html(result);
+
         },
         error: function(r){
-            error_message_display("display ship details.");
+            error_message_display("display Motor Vessel.");
         }
     });
 

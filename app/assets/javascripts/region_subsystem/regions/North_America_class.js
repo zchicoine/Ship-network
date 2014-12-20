@@ -24,8 +24,8 @@ North_America_class = function () {
 
     this.map_properties = {
         'color': "#20FF00",
-        'lable':"NORTH AMERICA",
-        'lable_position':new google.maps.LatLng(48.2893, -99.3594)
+        'label':"NORTH AMERICA",
+        'label_position':new google.maps.LatLng(48.2893, -99.3594)
     };
 
     this.fusiontables_properties = {

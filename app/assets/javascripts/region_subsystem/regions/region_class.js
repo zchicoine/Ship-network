@@ -23,8 +23,8 @@ Region_class = function () {
     this.list_of_countries = [];
     this.map_properties = {
         'color': "#20FF00",
-        'lable':"REGION",
-        'lable_position':this.lat_lang
+        "label":"REGION",
+        "label_position":this.lat_lang
     };
     this.region_polygon = undefined;
     this.fusiontables_properties = {
@@ -34,18 +34,33 @@ Region_class = function () {
     };
 };
 
-Region_class.prototype.change_region_view = function () {
-
-    MAP.google_methods.set_center(this.lat_lang);
-    MAP.google_methods.set_zoom(4);
-    MAP.google_controller_methods.display_ports(this.name);
-
-};
-
 var store_navigate_back;
 var store_navigate_now;
 var store_navigate_next;
 
+/*
+    default_area: the default prospective that a region should center the map to.
+    come_from: Global, Region: name of the region should be pass, Port, Ship.
+    this the default implementation, each drive class should override this for different implementation
+ */
+Region_class.prototype.default_map_navigate = function(come_from)
+{
+
+    var json_arry_keys =  $.map(this.areas_coordinates, function(values,keys) {return keys;});
+    var keyIndex =   json_arry_keys.indexOf("North America");
+    keyIndex = keyIndex < 0? 0: keyIndex;
+    // at function is part of sugar.js
+    store_navigate_back =   json_arry_keys.at((keyIndex - 1)) ;
+    store_navigate_now =  json_arry_keys.at(keyIndex);
+    store_navigate_next = json_arry_keys.at((keyIndex + 1));
+    console.log(store_navigate_next);
+    var back =  this.areas_coordinates[store_navigate_back]['short_name'];
+    var next =  this.areas_coordinates[store_navigate_next]['short_name'];
+
+
+    update_map_navigate_label_and_tooltip(back,next,store_navigate_back,store_navigate_next);
+
+}
 Region_class.prototype.scroll_between_specific_areas = function (navigate_direction){
 
 
@@ -64,94 +79,25 @@ Region_class.prototype.scroll_between_specific_areas = function (navigate_direct
 
 
 }
-
-
-
-Region_class.prototype.set_region_highlight_on_the_map = function (){
-
-    if(this.region_polygon == undefined){
-        this.region_polygon = MAP.initialize.google_polygon(this.fusiontables_properties['coordinates'],
-            this.map_properties['color'], this.map_properties['color'], this.unique_identifier);
-
-        event_listeners_on_the_map(this.region_polygon,this.name);
-    }else{
-        this.region_polygon.setMap(MAP.google_map());
-    }
-
-
-
-}
 Region_class.prototype.set_map_label = function(map){
 
     new Label({
-        text: this.map_properties['lable'],
-        position: this.map_properties['lable_position'],
+        text: this.map_properties['label'],
+        position: this.map_properties['label_position'],
         map: map
     });
 }
-Region_class.prototype.clear_all_listeners_of_region= function(){
-    MAP.google_methods.clear_all_listeners_of_an_object(this.unique_identifier);
-}
-// see options https://developers.google.com/maps/documentation/javascript/reference#PolygonOptions
 
+// see options https://developers.google.com/maps/documentation/javascript/reference#PolygonOptions
 Region_class.prototype.region_polygon_setOptions= function(options){
     if(this.region_polygon != undefined && options != undefined){
         this.region_polygon.setOptions(options);
     }
-
 }
-
 // end of Region class //
 
 
 
-function event_listeners_on_the_map(region_object,region_name) {
-
-
-
-    if(MAP.Controller.current_zoom_layer().get() == GLOBAL_LEVEL){
-        MAP.events.mouseover(region_object,function(){
-
-           // var temp = this;
-            clearTimeout(this.timer);
-            this.timer = setTimeout(function(){
-
-                short_region_info_show(region_name);
-
-            },150);
-            region_object.setOptions({
-                fillOpacity: 0.4
-            });
-      });
-        MAP.events.mouseout(region_object,function(){
-
-            clearTimeout(this.timer);
-
-            this.timer = setTimeout(function(){
-
-                show_default_table_when_mouse_out();
-
-            },250);
-
-            region_object.setOptions({
-                fillOpacity: 0.2
-            });
-        })
-
-        MAP.events.click(region_object,function(){
-
-            clearTimeout(this.timer);
-            setTimeout(function(){
-                show_default_table_when_mouse_out();
-            },5);
-
-
-            zoom_to_region_level_map(region_name);
-            RegionViewAppInstance.start(region_name);
-        })
-    }
-
-}
 /* param: json object pass by value
    return: json object included {next: next_json_key,back:previous_json_key}
             if the value of json is not an object then the format  {'value': actual value }

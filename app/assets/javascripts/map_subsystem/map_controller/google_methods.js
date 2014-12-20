@@ -12,7 +12,6 @@ MAP.google_methods = {
     set_zoom: function(val){
         if(val >= MAP_MINZOOM && val <= MAP_MAXZOOM){
             MAP.google_map().setZoom(val);
-
         }
     },
     get_zoom:function(){
@@ -32,9 +31,7 @@ MAP.google_methods = {
             for (var object in MAP.listener_objects[event]){
                 google.maps.event.clearInstanceListeners(MAP.listener_objects[event][object]);
             }
-
         }
-
     },clear_all_listeners_of_an_object:function(object_unique_identifier){
         for(var event in MAP.listener_objects){
 
@@ -45,7 +42,23 @@ MAP.google_methods = {
                 delete MAP.listener_objects[event][object_unique_identifier];
             }
         }
-    }
+    },clear_all_mouseout_listeners_of_an_object:function(object_unique_identifier){
 
+        var temp_obj = MAP.listener_objects["mouseout"][object_unique_identifier];
+
+        if(temp_obj){
+            google.maps.event.clearInstanceListeners(temp_obj);
+            delete MAP.listener_objects["mouseout"][object_unique_identifier];
+        }
+
+    },clear_all_mouseover_listeners_of_an_object:function(object_unique_identifier){
+
+        var temp_obj = MAP.listener_objects["mouseover"][object_unique_identifier];
+
+        if(temp_obj){
+            google.maps.event.clearInstanceListeners(temp_obj);
+            delete MAP.listener_objects["mouseover"][object_unique_identifier];
+        }
+    }
 
 }

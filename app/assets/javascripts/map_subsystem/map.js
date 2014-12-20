@@ -134,8 +134,7 @@ MAP.initialize = {
             strokeWeight: 1,
             fillColor:fill_color ,
             fillOpacity: 0.2,
-            assigned_id: object_unique_identifier || MAP.generate_ids++,
-            map:MAP.google_map()
+            assigned_id: object_unique_identifier || MAP.generate_ids++
         });
     },google_marker: function(id,position,default_icon,title,object_unique_identifier){
 
@@ -164,6 +163,7 @@ MAP.events ={
                  function_options();
              }
          });
+        // assign the object to listener array
         if(object.assigned_id != undefined) {
             MAP.listener_objects["rightclick"][object.assigned_id] = object;
         }
@@ -177,6 +177,7 @@ MAP.events ={
                optional_function();
            }
         });
+        // assign the object to listener array
         if(object.assigned_id != undefined) {
             MAP.listener_objects["click"][object.assigned_id] = object;
         }
@@ -189,6 +190,7 @@ MAP.events ={
                 optional_function();
             }
         });
+        // assign the object to listener array
         if(object.assigned_id != undefined) {
             MAP.listener_objects["mouseover"][object.assigned_id] = object;
         }
@@ -202,6 +204,7 @@ MAP.events ={
                 optional_function();
             }
         });
+        // assign the object to listener array
         if(object.assigned_id != undefined) {
             MAP.listener_objects["mouseout"][object.assigned_id] = object;
         }

@@ -53,7 +53,25 @@ data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAICAYAAADA+m62AAAAPklEQVQYV2
       color: #ffffff;
       padding-top:12px;
     }
+  div.navbar-header
+  {
+    @media (min-width: 768px)
+    {
+      margin-left:-15px;
+    }
+
+  }
+
+  .nav.navbar-nav.navbar-right
+  {
+    @media (min-width: 768px)
+    {
+      margin-right:-5px;
+    }
+
+  }
 }
+
 
 /*-----CURRENT VIEW----------------------------------------------------------------*/
 

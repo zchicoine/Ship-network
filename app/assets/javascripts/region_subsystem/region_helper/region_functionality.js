@@ -10,13 +10,6 @@ Region_Functionality= function(){
         });
 
     }
-
-   this.set_region_highlight_on_the_map = function(){
-       region_objects_variable.regions_objects_array().forEach(function(value){
-           value.set_region_highlight_on_the_map();
-       })
-
-   }
     this.clear_all_listeners_of_region = function(){
         region_objects_variable.regions_objects_array().forEach(function(value){
             value.clear_all_listeners_of_region();
@@ -25,6 +18,11 @@ Region_Functionality= function(){
     this.region_polygon_setOptions = function(options){
         region_objects_variable.regions_objects_array().forEach(function(value){
             value.region_polygon_setOptions(options);
+        })
+    }
+    this.clear_all_mouseout_mouseover_listeners_of_region = function(){
+        region_objects_variable.regions_objects_array().forEach(function(value){
+            value.clear_all_mouseout_mouseover_listeners_of_region();
         })
     }
 

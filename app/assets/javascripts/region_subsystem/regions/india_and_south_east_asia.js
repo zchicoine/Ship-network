@@ -23,8 +23,8 @@ India_and_South_East_Asia_class = function () {
 
     this.map_properties = {
         'color': "#006e99",
-        'lable':"INDIA AND SE Asia",
-        'lable_position':new google.maps.LatLng(24.4471,85.1660)
+        'label':"INDIA & SE ASIA",
+        'label_position':new google.maps.LatLng(24.4471,85.1660)
     };
 
     this.fusiontables_properties = {

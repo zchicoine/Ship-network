@@ -35,8 +35,8 @@ Europe_class = function () {
 
     this.map_properties = {
         'color': "#003cb3",
-        'lable':"EUROPE",
-        'lable_position':new google.maps.LatLng(53.1289, 45.1102)
+        'label':"EUROPE",
+        'label_position':new google.maps.LatLng(53.1289, 45.1102)
     };
 
     this.fusiontables_properties = {
@@ -49,3 +49,29 @@ Europe_class.prototype = createObject(Region_class.prototype);
 // Set the "constructor" property to refer to Europe_class
 Europe_class.prototype.constructor = Europe_class;
 
+/*
+ override
+ */
+Europe_class.prototype.default_map_navigate = function(come_from)
+{
+
+    var default_area = "Amsterdam";
+    this.lat_lang = this.areas_coordinates["Amsterdam"].coordinates;
+    if(come_from == "Africa"){
+        this.lat_lang = this.areas_coordinates["Palermo"].coordinates;
+        default_area = "Palermo";
+    }
+    var json_arry_keys =  $.map(this.areas_coordinates, function(values,keys) {return keys;});
+    var keyIndex =   json_arry_keys.indexOf(default_area);
+    keyIndex = keyIndex < 0? 0: keyIndex;
+    // at function is part of sugar.js
+    store_navigate_back =   json_arry_keys.at((keyIndex - 1)) ;
+    store_navigate_now =  json_arry_keys.at(keyIndex);
+    store_navigate_next = json_arry_keys.at((keyIndex + 1));
+    var back =  this.areas_coordinates[store_navigate_back]['short_name'];
+    var next =  this.areas_coordinates[store_navigate_next]['short_name'];
+
+
+    update_map_navigate_label_and_tooltip(back,next,store_navigate_back,store_navigate_next);
+
+}
