@@ -13,7 +13,7 @@ Australia_class = function () {
     this.areas_coordinates =
     {
         "New Castle":{'short_name':"N.C.",'coordinates':[-32.926689,151.778921]},
-        "Danpier":{ 'short_name':"Danpier",'coordinates':[-20.663799,116.708460]}
+        "Dampier":{ 'short_name':"Dampier",'coordinates':[-20.663799,116.708460]}
     };
     this.areas_coordinates = make_json_iterable(this.areas_coordinates);
     this.list_of_countries = [  "Australia" , "New Zealand" , "East Timor", "Papua New Guinea" , "Solomon Is." , "Vanuatu", "Fiji" , "New Caledonia", "Samoa", "Tuvalu", "Nauru"];

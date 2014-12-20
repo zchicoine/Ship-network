@@ -15,11 +15,24 @@
 //= require turbolinks
 //= require bootstrap
 //= require sugar
+
+///  include global functions and variables first.
+//= require global_functions
+/// include map
 //= require map_subsystem/map
-//= require region_subsystem/regions/region_class
-//= require_tree ./map_subsystem/google_map
 //= require map_subsystem/map_models/map_models
 //= require map_subsystem/map_models/countries_coordinates/countries_coordinates
+//= require_tree ./map_subsystem/map_models/countries_coordinates
+//= require map_subsystem/map_models/backend/map_backend
+//= require_tree ./map_subsystem/map_models/backend
+//= require_tree ./map_subsystem/map_models
+//= require map_subsystem/map_controller/map_controller
+//= require_tree ./map_subsystem/map_controller
+//= require_tree ./map_subsystem/google_map
+//= require_tree ./map_subsystem
+/// include the main region class, then drive region classes
+//= require region_subsystem/regions/region_class
+/// include the rest
 //= require_tree .
 
 
