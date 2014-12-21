@@ -57,7 +57,7 @@ MAP.google_controller_methods = {
                     port_name[i] +' has ' + ship_number[i] + ' ship(s)' +
                     "</div>";
 
-                //  new google.maps.Size(20, 34), From Mohammed: why this line here?
+                //  new google.maps.Size(20, 34), From Mohammed: why this line is here?
                 marker = MAP.initialize.google_marker(port_name[i],position,iconDefault,ship_number[i] + ' ship(s)',port_name);
 
                 MAP.events.mouseover(marker,(function( marker,content) {
@@ -67,7 +67,6 @@ MAP.google_controller_methods = {
                             marker.setIcon(iconHover);
                             infowindow.setContent(content);
                             infowindow.open(MAP.google_map(),marker);
-
 
                     }
 
@@ -88,10 +87,9 @@ MAP.google_controller_methods = {
                 MAP.events.click(marker,(function( marker,content) {
                     return function() {
                         // marker.id: port name
-                        // marker.position.B: longitude
-                        // marker.position.K: latitude
+                        // Object.values() is a define in sugar.js library. Returns an array containing the values in obj.
                         var port_name = marker.id;
-                        var port_coordinates = [marker.position.k,marker.position.B];
+                        var port_coordinates = Object.values(marker.getPosition());
                         current_location.value = COME_FROM_MAP;
                         MainViewGeneratorInstance.portView(port_name,port_coordinates);
                         marker.setIcon(iconClick);
@@ -100,12 +98,9 @@ MAP.google_controller_methods = {
 
                 })(marker, content));
 
-
             }
 
-
         });
-
 
     }
 }
