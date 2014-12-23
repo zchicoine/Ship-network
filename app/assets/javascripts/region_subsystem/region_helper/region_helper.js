@@ -35,10 +35,10 @@ Region_Helper.Region_Functionality= function(){
  * return a json file which is local in public/external_files/regions_database.json
  * @returns {*}
  */
-Region_Helper.access_json_file = function()
+Region_Helper.access_json_file = (function()
 {
-
-   return $.ajax({
+    var _data = [];
+    $.ajax({
         url:"external_files/regions_database.json",
         type: 'GET',
         dataType: "json",
@@ -47,7 +47,9 @@ Region_Helper.access_json_file = function()
 
             error_message_display(thrownError)
         }
-
-
+    }).done(function (data)
+    {
+        _data = data;
     });
-}
+    return _data;
+}).once();
