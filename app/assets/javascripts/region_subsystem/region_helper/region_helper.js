@@ -1,8 +1,11 @@
-// the pupose of this class is to enable Region_Objects to be classed like the following code
+
+var Region_Helper = {};
+
+
+// the purpose of this function is to enable Region_Objects to be classed like the following code
 // region_objects_variable.each_object().set_map_label();
 
-var Region_Functionality;
-Region_Functionality= function(){
+Region_Helper.Region_Functionality= function(){
 
     this.set_map_label = function(map){
         region_objects_variable.regions_objects_array().forEach(function(value){
@@ -26,4 +29,25 @@ Region_Functionality= function(){
         })
     }
 
+}
+
+/**
+ * return a json file which is local in public/external_files/regions_database.json
+ * @returns {*}
+ */
+Region_Helper.access_json_file = function()
+{
+
+   return $.ajax({
+        url:"external_files/regions_database.json",
+        type: 'GET',
+        dataType: "json",
+        async:false,
+        error: function(xhr, ajaxOptions, thrownError){
+
+            error_message_display(thrownError)
+        }
+
+
+    });
 }
