@@ -86,6 +86,14 @@ class Region
         return "'#{country_name}'  is not a country in the system"
     end
 
+
+
+    def read_region_database_file
+        path = Rails.public_path.join('external_files/regions_database.json')
+        json_file =   File.read(path)
+        return JSON.parse(json_file)
+    end
+
 end
 
 
