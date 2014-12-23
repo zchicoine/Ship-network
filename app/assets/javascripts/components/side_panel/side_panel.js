@@ -10,51 +10,11 @@ setSelectRegion_on_sidebar = function(region_name){
 var Side_Panel;
 Side_Panel = Side_Panel || {}
 
-// backend
-Side_Panel.backend =  {}
-
-/*
- this function is responsible for calling the backend throw ajax call
- name: region, port or ship name.
- level: one of the four levels (Global,Region, etc)
- datatype: html,json
- */
-Side_Panel.backend.get_result = function(name, level ,datatype,async){
-
-
-    if(! isNaN(level) && name.match(/[a-z]/i) )
-
-    {
-        var data_json = { "side_info": { "name": name , "level": level} };
-        var url = 'side_bar/index';
-
-
-      return  $.ajax({
-            url:url,
-            beforeSend: function(){
-                // Handle the beforeSend event
-            },
-          async:      async,
-          type: 'POST',
-            data:data_json,
-            dataType: datatype,
-          error: function(xhr, ajaxOptions, thrownError){
-
-              error_message_display(thrownError)
-          }
-
-
-        });
-    }
-}
-
-// end of the backend
-
 //This method will be deleted when all the dependencies are using the new function
 send_data_to_side_bar = function(name, level){
 
     var data_json = { "side_info": { "name": name , "level": level} };
-    var url = 'side_bar/index';
+    var url = 'side_panel/index';
     var html_class = '.aside_ship_details_table_body';
 
     if(! isNaN(level) && name.match(/[a-z]/i) )
@@ -96,7 +56,7 @@ send_data_to_side_bar = function(name, level){
 send_broker_info_to_sidebar = function(ship_name, port_name) {
 console.log("This " + port_name + " should be port name")
     var data_json = { "side_info": { "ship_name": ship_name, "port_name": port_name} };
-    var url = 'side_bar/broker_contact';
+    var url = 'side_panel/broker_contact';
     var html_class = '.aside_ship_details_table_body';
 
     $.ajax({
@@ -279,7 +239,7 @@ short_region_info_show = function(region_name){
 
     var data_json =  { 'region':{ "name": region_name} } ;
     $.ajax({
-        url:'side_bar/region_short_info',
+        url:'side_panel/region_short_info',
         beforeSend: function(){
             // Handle the beforeSend event
         },

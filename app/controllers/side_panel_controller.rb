@@ -1,9 +1,11 @@
-class SideBarController < ApplicationController
+class SidePanelController < ApplicationController
 
     def index
         parameters = params.require(:side_info).permit(:name, :level)
         _level = parameters[:level].to_i
         case _level
+            when GLOBAL_LEVEL
+                global parameters[:name]
             when REGION_LEVEL
                 region parameters[:name]
             when PORT_LEVEL
@@ -23,10 +25,10 @@ class SideBarController < ApplicationController
         if result[:error].nil?
             @deadweight = result[:value]
             @all_ships_at_region = number_of_ships_given_region[:value]
-            #table_body = render_to_string(:partial => 'side_bar/table_body/when_hover_over_a_region/index')
-            #table_footer = render_to_string(:partial => 'side_bar/table_body/when_hover_over_a_region/footer')
+            #table_body = render_to_string(:partial => 'side_panel/table_body/when_hover_over_a_region/index')
+            #table_footer = render_to_string(:partial => 'side_panel/table_body/when_hover_over_a_region/footer')
             respond_to do |format|
-                format.html {render :partial =>  'side_bar/table_body/when_hover_over_a_region/index'}
+                format.html {render :partial =>  'side_panel/table_body/when_hover_over_a_region/index'}
                # format.json{ render :json => { partial_table_body: table_body  , partial_table_footer: table_footer }}
             end
         else
@@ -45,10 +47,15 @@ class SideBarController < ApplicationController
         @ship_info = result[:value]
       end
       respond_to do |format|
-        format.html {render :partial => 'side_bar/table_body/after_click_a_ship/broker_contact'}
-        format.js {render 'side_bar/table_body/after_click_a_ship/js/broker_contact'}
+        format.html {render :partial => 'side_panel/table_body/after_click_a_ship/broker_contact'}
+        format.js {render 'side_panel/table_body/after_click_a_ship/js/broker_contact'}
       end
     end
+
+
+
+
+
 
     private
 
@@ -61,10 +68,10 @@ class SideBarController < ApplicationController
         region_deadweight =  UnitOfWork.instance.ship.get_deadweight_of_ships_per_region _region_name
 
         if region_deadweight[:error].nil?
-            table_body = render_to_string(:partial => 'side_bar/table_body/after_click_a_region/index', :locals => { region: _region_name } )
-            table_footer = render_to_string(:partial => 'side_bar/table_foot/region_deadweight', :locals => { region: _region_name } )
+            table_body = render_to_string(:partial => 'side_panel/table_body/after_click_a_region/index', :locals => { region: _region_name } )
+            table_footer = render_to_string(:partial => 'side_panel/table_foot/region_deadweight', :locals => { region: _region_name } )
             respond_to do |format|
-                format.html { render :partial =>  'side_bar/table_body/after_click_a_region/index' , :locals => { region: _region_name }  }
+                format.html { render :partial =>  'side_panel/table_body/after_click_a_region/index' , :locals => { region: _region_name }  }
                 format.json{ render :json => { body: table_body  , footer: table_footer }}
 
             end
@@ -77,9 +84,11 @@ class SideBarController < ApplicationController
 
 
     end
-    def default
+
+
+    def global name
         @side_info = { region_name:'General Information'}
-        render :partial =>  'side_bar/table_body/default/index'
+        render :partial =>  'side_panel/table_body/default/index'
     end
 
     def port port_name
@@ -91,8 +100,8 @@ class SideBarController < ApplicationController
             @ships_at_port = result[:value]
         end
         respond_to do |format|
-            format.html {render :partial =>  'side_bar/table_body/after_click_a_port/index'}
-            format.js {render 'side_bar/table_body/after_click_a_port/js/index'}
+            format.html {render :partial =>  'side_panel/table_body/after_click_a_port/index'}
+            format.js {render 'side_panel/table_body/after_click_a_port/js/index'}
         end
     end
 
@@ -107,8 +116,8 @@ class SideBarController < ApplicationController
             @ship_info = result[:value]
         end
         respond_to do |format|
-            format.html {render :partial =>  'side_bar/table_body/after_click_a_ship/index'}
-            format.js {render 'side_bar/table_body/after_click_a_ship/js/index'}
+            format.html {render :partial =>  'side_panel/table_body/after_click_a_ship/index'}
+            format.js {render 'side_panel/table_body/after_click_a_ship/js/index'}
         end
     end
 

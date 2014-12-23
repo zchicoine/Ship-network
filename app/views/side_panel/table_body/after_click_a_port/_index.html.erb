@@ -1,0 +1,16 @@
+<!--
+After the user click the port on the google_map this side will appear.
+-->
+
+
+
+
+<%= render 'side_panel/table_body/share/header', header_name: @side_info[:region_name]%>
+
+<%= render 'side_panel/table_body/share/port_header_name' %>
+
+<%= render 'side_panel/table_body/after_click_a_port/list_of_ships' %>
+
+<%= render 'side_panel/table_body/share/region_stats', region_name: @side_info[:region_name] %>
+
+
