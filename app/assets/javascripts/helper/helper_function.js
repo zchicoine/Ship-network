@@ -29,3 +29,18 @@ var pluralize_word = function(number,word,pword)
 
     return word;
 }
+
+
+/***
+ *  check if the passing parameter is a function
+ * @param fun
+ * return boolean: true or false
+ */
+var isFunction = function(fun)
+{
+    if (typeof(fun) == "function" && typeof fun !== "undefined" && fun)
+        return true;
+
+    return false;
+
+}
