@@ -6,11 +6,6 @@ module SidePanelHelper
         Ship.vessel_categories.keys[1..7]
     end
 
-    def regions_names_coordinates
-        Region::all_with_coordinates
-    end
-
-
     def get_number_of_ships_per_region region_name
         result =   UnitOfWork.instance.ship.get_number_of_ships_per_region region_name
         if result[:error].nil?

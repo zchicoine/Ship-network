@@ -2,41 +2,57 @@
   {
     "region": "North America",
     "coordinates": "29.95,-90.06667",
-    "alternativeNames1": "NORTH AMERICA"
+    "labelCoordinates": "48.2893, -99.3594",
+    "alternativeNames1": "NORTH AMERICA",
+    "alternativeNames2": "North America"
   },
   {
     "region": "South America",
     "coordinates": "-12.05,-77.16667",
-    "alternativeNames1": "SOUTH AMERICA"
+    "labelCoordinates": "-10.4893, -59.3594",
+    "alternativeNames1": "SOUTH AMERICA",
+    "alternativeNames2": "South America"
   },
   {
     "region": "Africa",
     "coordinates": "4.05000,9.700000",
-    "alternativeNames1": "AFRICA"
+    "labelCoordinates": "17.6493, 11.5994",
+    "alternativeNames1": "AFRICA",
+    "alternativeNames2": "Africa"
   },
   {
     "region": "Europe",
     "coordinates": "52.3666,4.8999",
-    "alternativeNames1": "EUROPE"
+    "labelCoordinates": "53.1289, 45.1102",
+    "alternativeNames1": "EUROPE",
+    "alternativeNames2": "Europe"
   },
   {
     "region": "Arabia and Persian Gulf",
-    "coordinates": "-30.559482,22.937506",
-    "alternativeNames1": "ARABIA & PG"
+    "coordinates": "33.1376, 47.6367",
+    "labelCoordinates": "33.1376, 47.6367",
+    "alternativeNames1": "ARABIA & PG",
+    "alternativeNames2": "Arabia & PG"
   },
   {
     "region": "India and South East Asia",
     "coordinates": "17.686816,83.218482",
-    "alternativeNames1": "INDIA & SE ASIA"
+    "labelCoordinates": "24.4471,85.1660",
+    "alternativeNames1": "INDIA & SE ASIA",
+    "alternativeNames2": "India & SE Asia"
   },
   {
     "region": "Australia",
     "coordinates": "-32.926689,151.778921",
-    "alternativeNames1": "AUSTRALIA"
+    "labelCoordinates": "-25.8000, 133.2422",
+    "alternativeNames1": "AUSTRALIA",
+    "alternativeNames2": "Australia"
   },
   {
     "region": "Far East",
     "coordinates": "35.179554,129.075642",
-    "alternativeNames1": "FAR EAST"
+    "labelCoordinates": "35.799871, 100.609244",
+    "alternativeNames1": "FAR EAST",
+    "alternativeNames2": "Far East"
   }
 ]

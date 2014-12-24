@@ -1,17 +1,8 @@
 
 class Region
-    # hash regions Keys are the regions name and Values are an sorted array of countries
-    REGIONS_HASH = {"North America" => ["Bahamas", "Belize", "Bermuda", "Canada", "Costa Rica", "Cuba", "Dominican Republic", "El Salvador", "Greenland", "Guatemala", "Haiti", "Honduras", "Jamaica", "Mexico", "Montserrat","Nicaragua", "Panama","Puerto Rico", "Saint Barthelemy","United States"],
-                    "South America" =>["Antigua & Barbuda", "Argentina", "Barbados", "Bonaire, Sint Eustatius and Saba","Brazil","Chile", "Colombia", "Curacao", "Dominica", "Ecuador", "French Guiana", "Grenada", "Guadeloupe", "Guyana", "Martinique", "Peru", "Saint Lucia" ,"St Kitts and Nevis", "St Lucia", "St Vincent and the Grenadines", "Suriname", "Trinidad and Tobago" , "Uruguay", "Venezuela"],
-                    "Europe"        =>["Albania", "Belgium", "Bulgaria", "Croatia", "Cyprus", "Denmark","Estonia","Faroe Islands", "Finland", "France", "Georgia", "Germany", "Gibraltar","Greece", "Iceland", "Ireland", "Israel", "Italy", "Latvia","Lebanon", "Lithuania","Malta","Montenegro","Netherlands", "Norway","Poland" ,"Portugal", "Romania", "Russia","Russian Arctic", "Russian Black Sea", "Serbia & Montenegro", "Slovenia", "Spain", "Sweden","Switzerland", "Syria", "The Netherlands","Turkey", "Ukraine", "United Kingdom"],
-                    "Africa"        => ["Algeria", "Angola", "Benin", "Cameroon", "Congo", "Cote d'ivoire", "DR Congo", "Djibouti", "Egypt", "Equatorial Guinea", "Eritrea", "Gabon", "Gambia", "Ghana", "Guinea", "Guinea-Bissau", "Kenya", "Liberia", "Libya", "Madagascar", "Mauritania","Mauritius", "Morocco", "Mozambique", "Namibia", "Nigeria", "Senegal", "Sierra Leone", "Somalia", "South Africa", "Sudan", "Tanzania", "Togo", "Tunisia", "Western Sahara"],
-                    "Australia"     =>["Australia","Fiji", "French Polynesia" ,"Guam","New Caledonia", "New Zealand", "Papua New Guinea","Solomon Islands","Tonga", "Vanuatu"],
-                    "India and South East Asia" =>["Bangladesh", "Brunei", "Cambodia", "Hong Kong","India", "Indonesia", "Malaysia", "Myanmar", "Philippines", "Republic of the Union of Myanmar","Sri Lanka", "Thailand", "Timor-leste", "Vietnam"],
-                    "Arabia and Persian Gulf"   => ["Bahrain", "Iran", "Iraq", "Jordan", "Kuwait", "Oman", "Pakistan", "Qatar", "Saudi Arabia", "United Arab Emirates", "Yemen"],
-                    "Far East" => ["China", "Japan", "North Korea", "Russian Pacific", "South Korea", "Taiwan"],
-    }
+
     # this class replacing enum.
-    class Region_names
+    class RegionNames
         include Singleton
 
         def north_america
@@ -39,35 +30,89 @@ class Region
             "Far East"
         end
 
-
-
-
     end
     # end Region_names class
 
+    # read data from region_database.json file
+    class RegionDatabase
 
-    REGIONS = Region_names.instance
+        def self.read_region_database_file
+            path = Rails.public_path.join('external_files/regions_database.json')
+            json_file =   File.read(path)
+            return JSON.parse(json_file)
+        end
+        def self.region_names
+            _region_names = Array.new
+            read_region_database_file.each do |element|
+                _region_names.push element["region"]
+            end
+            # return an array of all the regions
+            return  _region_names
+        end
 
+        def self.region_alter1_names
+            _region_alter_names = Array.new
+            # return an array of all the regions
+            read_region_database_file.each do |element|
+                _region_alter_names.push element["alternativeNames1"]
+            end
+
+            return  _region_alter_names
+        end
+        def self.region_alter2_names
+            _region_alter_names = Array.new
+            # return an array of all the regions
+            read_region_database_file.each do |element|
+                _region_alter_names.push element["alternativeNames2"]
+            end
+
+            return  _region_alter_names
+        end
+        def self.region_coordinates
+            _region_coordinates = Array.new
+            # return an array of all the regions
+            read_region_database_file.each do |element|
+                _region_coordinates.push element["coordinates"]
+            end
+
+            return  _region_coordinates
+        end
+
+
+    end
+    # end of RegionDatabase
+
+
+    # hash regions Keys are the regions name and Values are an sorted array of countries
+    REGIONS_HASH = {"North America" => ["Bahamas", "Belize", "Bermuda", "Canada", "Costa Rica", "Cuba", "Dominican Republic", "El Salvador", "Greenland", "Guatemala", "Haiti", "Honduras", "Jamaica", "Mexico", "Montserrat","Nicaragua", "Panama","Puerto Rico", "Saint Barthelemy","United States"],
+                    "South America" =>["Antigua & Barbuda", "Argentina", "Barbados", "Bonaire, Sint Eustatius and Saba","Brazil","Chile", "Colombia", "Curacao", "Dominica", "Ecuador", "French Guiana", "Grenada", "Guadeloupe", "Guyana", "Martinique", "Peru", "Saint Lucia" ,"St Kitts and Nevis", "St Lucia", "St Vincent and the Grenadines", "Suriname", "Trinidad and Tobago" , "Uruguay", "Venezuela"],
+                    "Europe"        =>["Albania", "Belgium", "Bulgaria", "Croatia", "Cyprus", "Denmark","Estonia","Faroe Islands", "Finland", "France", "Georgia", "Germany", "Gibraltar","Greece", "Iceland", "Ireland", "Israel", "Italy", "Latvia","Lebanon", "Lithuania","Malta","Montenegro","Netherlands", "Norway","Poland" ,"Portugal", "Romania", "Russia","Russian Arctic", "Russian Black Sea", "Serbia & Montenegro", "Slovenia", "Spain", "Sweden","Switzerland", "Syria", "The Netherlands","Turkey", "Ukraine", "United Kingdom"],
+                    "Africa"        => ["Algeria", "Angola", "Benin", "Cameroon", "Congo", "Cote d'ivoire", "DR Congo", "Djibouti", "Egypt", "Equatorial Guinea", "Eritrea", "Gabon", "Gambia", "Ghana", "Guinea", "Guinea-Bissau", "Kenya", "Liberia", "Libya", "Madagascar", "Mauritania","Mauritius", "Morocco", "Mozambique", "Namibia", "Nigeria", "Senegal", "Sierra Leone", "Somalia", "South Africa", "Sudan", "Tanzania", "Togo", "Tunisia", "Western Sahara"],
+                    "Australia"     =>["Australia","Fiji", "French Polynesia" ,"Guam","New Caledonia", "New Zealand", "Papua New Guinea","Solomon Islands","Tonga", "Vanuatu"],
+                    "India and South East Asia" =>["Bangladesh", "Brunei", "Cambodia", "Hong Kong","India", "Indonesia", "Malaysia", "Myanmar", "Philippines", "Republic of the Union of Myanmar","Sri Lanka", "Thailand", "Timor-leste", "Vietnam"],
+                    "Arabia and Persian Gulf"   => ["Bahrain", "Iran", "Iraq", "Jordan", "Kuwait", "Oman", "Pakistan", "Qatar", "Saudi Arabia", "United Arab Emirates", "Yemen"],
+                    "Far East" => ["China", "Japan", "North Korea", "Russian Pacific", "South Korea", "Taiwan"],
+    }
+
+    REGIONS = RegionNames.instance
+
+    # start of  class functions
     def self.all
-
          # return an array of all the regions
-        regions = ["North America","South America" , "Africa" ,"Arabia and Persian Gulf" ,
-                   "Australia"  ,"Europe"  , "India and South East Asia","Far East"  ]
+        RegionDatabase::region_alter2_names
     end
 
     def self.all_with_coordinates
 
         # array that holds coordinates of the regions.
-        lat_lng = [[48.2893, -99.3594], [-10.4893, -59.3594],[17.6493, 11.5994],
-                   [33.1376, 47.6367], [-25.8000, 133.2422],[53.1289, 45.1102],
-                   [24.4471,85.1660] ,[35.8178, 118.0371]];
+        lat_lng = RegionDatabase::region_coordinates
+        region_name = RegionDatabase::region_alter2_names
         # return a hash with all regions and its coordinates.
-        regions_coordinates = {"North America" => lat_lng[0],"South America" => lat_lng[1] ,
-                                "Africa" => lat_lng[2],"Arabia and Persian Gulf" => lat_lng[3],
-                                "Australia" => lat_lng[4],"Europe" => lat_lng[5],
-                                "India and South East Asia" => lat_lng[6],"Far East" => lat_lng[7]}
+        return  {region_name[0] => lat_lng[0],region_name[1] => lat_lng[1] ,
+                 region_name[2] => lat_lng[2],region_name[3] => lat_lng[3],
+                 region_name[4]=> lat_lng[4],region_name[5] => lat_lng[5],
+                 region_name[6]=> lat_lng[6],region_name[7]=> lat_lng[7]}
     end
-
 
     def self.get_region country_name
 
@@ -85,19 +130,13 @@ class Region
         end
         return "'#{country_name}'  is not a country in the system"
     end
-
-
-
-    def read_region_database_file
-        path = Rails.public_path.join('external_files/regions_database.json')
-        json_file =   File.read(path)
-        return JSON.parse(json_file)
-    end
+    # end of class functions
 
 end
 
 
 # class
+# needs to be updates to read from json file (written by Mohammed Alnakli)
 class NorthAmerica < Region
 
     def self.countries
