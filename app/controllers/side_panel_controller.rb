@@ -88,7 +88,7 @@ class SidePanelController < ApplicationController
 
     def global name
         @side_info = { region_name:'General Information'}
-        render :partial =>  'side_panel/table_body/default/index'
+        render :partial =>  'side_panel/table_body/global/index'
     end
 
     def port port_name
