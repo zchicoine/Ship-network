@@ -36,15 +36,11 @@ class Region
     # read data from region_database.json file
     class RegionDatabase
 
-        def self.read_region_database_file
-            path = Rails.public_path.join('external_files/regions_database.json')
-            json_file =   File.read(path)
-            return JSON.parse(json_file)
-        end
+
         def self.region_names
             _region_names = Array.new
-            read_region_database_file.each do |element|
-                _region_names.push element["region"]
+            read_region_database_overview.each do |element|
+                _region_names.push element['region']
             end
             # return an array of all the regions
             return  _region_names
@@ -53,8 +49,8 @@ class Region
         def self.region_alter1_names
             _region_alter_names = Array.new
             # return an array of all the regions
-            read_region_database_file.each do |element|
-                _region_alter_names.push element["alternativeNames1"]
+            read_region_database_overview.each do |element|
+                _region_alter_names.push element['alternativeNames1']
             end
 
             return  _region_alter_names
@@ -62,8 +58,8 @@ class Region
         def self.region_alter2_names
             _region_alter_names = Array.new
             # return an array of all the regions
-            read_region_database_file.each do |element|
-                _region_alter_names.push element["alternativeNames2"]
+            read_region_database_overview.each do |element|
+                _region_alter_names.push element['alternativeNames2']
             end
 
             return  _region_alter_names
@@ -71,13 +67,19 @@ class Region
         def self.region_coordinates
             _region_coordinates = Array.new
             # return an array of all the regions
-            read_region_database_file.each do |element|
-                _region_coordinates.push element["coordinates"]
+            read_region_database_overview.each do |element|
+                _region_coordinates.push element['coordinates']
             end
 
             return  _region_coordinates
         end
 
+        private
+        def self.read_region_database_overview
+            path = Rails.public_path.join('external_files/regions_database.json')
+            json_file =   File.read(path)
+            return JSON.parse(json_file)['overview']
+        end
 
     end
     # end of RegionDatabase
@@ -99,14 +101,14 @@ class Region
     # start of  class functions
     def self.all
          # return an array of all the regions
-        RegionDatabase::region_alter2_names
+        RegionDatabase::region_names
     end
 
     def self.all_with_coordinates
 
         # array that holds coordinates of the regions.
         lat_lng = RegionDatabase::region_coordinates
-        region_name = RegionDatabase::region_alter2_names
+        region_name = RegionDatabase::region_names
         # return a hash with all regions and its coordinates.
         return  {region_name[0] => lat_lng[0],region_name[1] => lat_lng[1] ,
                  region_name[2] => lat_lng[2],region_name[3] => lat_lng[3],

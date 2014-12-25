@@ -37,7 +37,7 @@ var default_map_navigate = function(region_name , default_area)
 {
     var object_local = region_objects_variable.return_object_region(region_name);
 
-    json_arry_keys =  $.map(object_local.areas_coordinates, function(values,keys) {return keys;});
+    var json_arry_keys =  $.map(object_local.areas_coordinates, function(values,keys) {return keys;});
     var keyIndex =   json_arry_keys.indexOf(default_area);
     keyIndex = keyIndex < 0? 0: keyIndex;
 
