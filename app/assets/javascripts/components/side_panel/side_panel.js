@@ -1,14 +1,32 @@
-// this function for google_map controller on sidebar, when a user select a region then that region will be displayed and highlighted.
+// this function for google_map controller on side panel, when a user select a region then that region will be displayed and highlighted.
 setSelectRegion_on_sidebar = function(region_name){
 
     $("#dropdownGoToRegion_lable").html(region_name);
 
-    $('.dropdown-menu.map_controller_go_to_region').children().removeClass('highlight-clicked-row');
-    $("#" + remove_white_space(region_name) + "_inside_dropdown_main").addClass('highlight-clicked-row');
+
 }
 
 var Side_Panel;
-Side_Panel = Side_Panel || {}
+Side_Panel = Side_Panel || {};
+
+
+Side_Panel.controller = {};
+
+
+Side_Panel.controller.select_region = function(region_name)
+{
+    current_location.value = COME_FROM_SIDE_PANEL;
+    MainViewGeneratorInstance.regionView(region_name);
+
+
+}
+
+
+
+
+
+
+// the following methods should be replaced
 
 //This method will be deleted when all the dependencies are using the new function
 send_data_to_side_bar = function(name, level){

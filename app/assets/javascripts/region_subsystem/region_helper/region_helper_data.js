@@ -4,36 +4,54 @@
  */
 Region_Helper.regions_names = function()
 {
-    var _data = [];
-    var counter = 0;
+    var _data = {};
     Region_Helper.access_json_file()['overview'].forEach(function (region)
         {
-
             if(region["region"] != undefined) {
-                _data[counter] = region["region"];
-                counter++;
+                _data[region["region"]] = region["region"];
             }
         });
     return _data;
 }
+
 /**
  *
  * @returns {region alternative1 names from region_database.json}
  */
 Region_Helper.regions_alter1_names = function()
 {
-    var _data = [];
-    var counter = 0;
+    var _data = {};
     Region_Helper.access_json_file()['overview'].forEach(function (region)
     {
 
         if(region["alternativeNames1"] != undefined) {
-            _data[counter] = region["alternativeNames1"];
-            counter++;
+            _data[region["region"]]= region["alternativeNames1"];
         }
     });
     return _data;
 }
+
+
+/**
+ *
+ * @returns {region alternative2 names from region_database.json}
+ */
+Region_Helper.regions_alter2_names = function()
+{
+    var _data = {};
+    Region_Helper.access_json_file()['overview'].forEach(function (region)
+    {
+
+        if(region["alternativeNames2"] != undefined) {
+            _data[region["region"]]= region["alternativeNames2"];
+        }
+    });
+    return _data;
+}
+
+
+
+
 /**
  *
  * @returns {North America area names from region_database.json}

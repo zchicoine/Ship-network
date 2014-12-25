@@ -1,81 +1,49 @@
 
 class Region
-
-    # this class replacing enum.
-    class RegionNames
-        include Singleton
-
-        def north_america
-            NorthAmerica.to_s
-        end
-        def south_america
-            SouthAmerica.to_s
-        end
-        def africa
-            "Africa"
-        end
-        def persian_gulf
-            "Arabia and Persian Gulf"
-        end
-        def australia
-            "Australia"
-        end
-        def europe
-            "Europe"
-        end
-        def india
-            "India and South East Asia"
-        end
-        def far_east
-            "Far East"
-        end
-
-    end
-    # end Region_names class
-
+    include Singleton
     # read data from region_database.json file
     class RegionDatabase
+        include Singleton
 
-
-        def self.region_names
-            _region_names = Array.new
+        def region_names
+            _region_names = Hash.new
             read_region_database_overview.each do |element|
-                _region_names.push element['region']
+                _region_names.store( element['region'], element['region'] )
             end
             # return an array of all the regions
             return  _region_names
         end
 
-        def self.region_alter1_names
-            _region_alter_names = Array.new
+        def region_alter1_names
+            _region_alter_names = Hash.new
             # return an array of all the regions
             read_region_database_overview.each do |element|
-                _region_alter_names.push element['alternativeNames1']
+                _region_alter_names..store( element['region'], element['alternativeNames1'])
             end
 
             return  _region_alter_names
         end
-        def self.region_alter2_names
-            _region_alter_names = Array.new
+        def region_alter2_names
+            _region_alter_names = Hash.new
             # return an array of all the regions
             read_region_database_overview.each do |element|
-                _region_alter_names.push element['alternativeNames2']
+                _region_alter_names.store( element['region'], element['alternativeNames2'])
             end
 
             return  _region_alter_names
         end
-        def self.region_coordinates
-            _region_coordinates = Array.new
+        def region_coordinates
+            _region_coordinates = Hash.new
             # return an array of all the regions
             read_region_database_overview.each do |element|
-                _region_coordinates.push element['coordinates']
+                _region_coordinates.store( element['region'], element['coordinates'])
             end
 
             return  _region_coordinates
         end
 
         private
-        def self.read_region_database_overview
+        def read_region_database_overview
             path = Rails.public_path.join('external_files/regions_database.json')
             json_file =   File.read(path)
             return JSON.parse(json_file)['overview']
@@ -96,34 +64,37 @@ class Region
                     "Far East" => ["China", "Japan", "North Korea", "Russian Pacific", "South Korea", "Taiwan"],
     }
 
-    REGIONS = RegionNames.instance
 
-    # start of  class functions
-    def self.all
+    NAMES = RegionDatabase.instance.region_alter2_names #An instance variable
+
+    # start of public functions
+
+    def all
          # return an array of all the regions
-        RegionDatabase::region_names
+        return  NAMES
     end
 
-    def self.all_with_coordinates
+    def all_with_coordinates
 
         # array that holds coordinates of the regions.
-        lat_lng = RegionDatabase::region_coordinates
-        region_name = RegionDatabase::region_names
+        lat_lng = RegionDatabase.instance.region_coordinates.values
+        _names = NAMES.to_a
         # return a hash with all regions and its coordinates.
-        return  {region_name[0] => lat_lng[0],region_name[1] => lat_lng[1] ,
-                 region_name[2] => lat_lng[2],region_name[3] => lat_lng[3],
-                 region_name[4]=> lat_lng[4],region_name[5] => lat_lng[5],
-                 region_name[6]=> lat_lng[6],region_name[7]=> lat_lng[7]}
+        return  {Hash[*_names[0]] => lat_lng[0],Hash[*_names[1]] => lat_lng[1] ,
+                 Hash[*_names[2]] => lat_lng[2],Hash[*_names[3]] => lat_lng[3],
+                 Hash[*_names[4]]=> lat_lng[4],Hash[*_names[5]] => lat_lng[5],
+                 Hash[*_names[6]]=> lat_lng[6],Hash[*_names[7]]=> lat_lng[7]}
     end
 
-    def self.get_region country_name
+
+    def get_region(country_name)
 
         REGIONS_HASH.each_value do |v|
             v.bsearch { |x|
                 if (country_name > x)
                     1 # go right
-                elsif(country_name == x)
-                    return  REGIONS_HASH.key(v)
+                elsif (country_name == x)
+                    return REGIONS_HASH.key(v)
                 else
                     -1 # go left
                 end
@@ -132,13 +103,12 @@ class Region
         end
         return "'#{country_name}'  is not a country in the system"
     end
-    # end of class functions
+    # end of public functions
 
 end
 
 
 # class
-# needs to be updates to read from json file (written by Mohammed Alnakli)
 class NorthAmerica < Region
 
     def self.countries
@@ -146,8 +116,9 @@ class NorthAmerica < Region
     end
 
     def self.to_s
-        "North America"
+        RegionDatabase::region_names[0]
     end
+
 end
 
 class SouthAmerica < Region
@@ -158,19 +129,10 @@ class SouthAmerica < Region
     end
 
     def self.to_s
-        "South America"
+        RegionDatabase::region_names[1]
     end
 end
 
-class Europe < Region
-
-    def self.countries
-        countries = ["Albania", "Belgium", "Bulgaria", "Croatia", "Cyprus", "Denmark", "Finland", "France", "Georgia", "Germany", "Greece", "Iceland", "Ireland", "Israel", "Italy", "Lebanon", "Netherlands", "Norway", "Portugal", "Romania", "Russian Arctic", "Russian Black Sea", "Serbia & Montenegro", "Slovenia", "Spain", "Sweden", "Syria", "Turkey", "Ukraine", "United Kingdom"]
-    end
-    def self.to_s
-        "Europe"
-    end
-end
 
 class Africa < Region
 
@@ -179,10 +141,41 @@ class Africa < Region
 
     end
     def self.to_s
-        "Africa"
+        RegionDatabase::region_names[2]
+    end
+end
+class Europe < Region
+
+    def self.countries
+        countries = ["Albania", "Belgium", "Bulgaria", "Croatia", "Cyprus", "Denmark", "Finland", "France", "Georgia", "Germany", "Greece", "Iceland", "Ireland", "Israel", "Italy", "Lebanon", "Netherlands", "Norway", "Portugal", "Romania", "Russian Arctic", "Russian Black Sea", "Serbia & Montenegro", "Slovenia", "Spain", "Sweden", "Syria", "Turkey", "Ukraine", "United Kingdom"]
+    end
+    def self.to_s
+        RegionDatabase::region_names[3]
     end
 end
 
+class ArabiaAndPG < Region
+
+    def self.countries
+        countries = ["Bahrain", "Iran", "Iraq", "Jordan", "Kuwait", "Oman", "Pakistan", "Qatar", "Saudi Arabia", "UAE", "Yemen"]
+
+    end
+    def self.to_s
+        RegionDatabase::region_names[4]
+    end
+end
+
+
+class IndiaAndSEA < Region
+
+    def self.countries
+        countries = ["Bangladesh", "Brunei", "Cambodia", "India", "Indonesia", "Malaysia", "Myanmar", "Philippines", "Sri Lanka", "Thailand", "Timor-leste", "Vietnam"]
+
+    end
+    def self.to_s
+        RegionDatabase::region_names[5]
+    end
+end
 class Australia < Region
 
     def self.countries
@@ -190,31 +183,10 @@ class Australia < Region
 
     end
     def self.to_s
-        "Australia"
+        RegionDatabase::region_names[6]
     end
 end
 
-class India_and_SouthEastAsia < Region
-
-    def self.countries
-        countries = ["Bangladesh", "Brunei", "Cambodia", "India", "Indonesia", "Malaysia", "Myanmar", "Philippines", "Sri Lanka", "Thailand", "Timor-leste", "Vietnam"]
-
-    end
-    def self.to_s
-        "India and South East Asia"
-    end
-end
-
-class Arabia_and_PersianGulf < Region
-
-    def self.countries
-        countries = ["Bahrain", "Iran", "Iraq", "Jordan", "Kuwait", "Oman", "Pakistan", "Qatar", "Saudi Arabia", "UAE", "Yemen"]
-
-    end
-    def self.to_s
-        "India and South East Asia"
-    end
-end
 
 class FarEast < Region
 
@@ -222,6 +194,6 @@ class FarEast < Region
         countries = ["China", "Japan", "North Korea", "Russian Pacific", "South Korea", "Taiwan"]
     end
     def self.to_s
-        "India and South East Asia"
+        RegionDatabase::region_names[7]
     end
 end

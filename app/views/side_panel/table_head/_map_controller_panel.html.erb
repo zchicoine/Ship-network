@@ -20,11 +20,11 @@
                     </div>
                     <ul class="dropdown-menu full-width map_controller_go_to_region" role="menu" aria-labelledby="dropdownGoToRegion">
 
-                        <% get_region_names.each do |region|%>
+                        <% get_region_names_with_keys.each do |key , region|%>
 
-                            <%= content_tag :li, id: "#{remove_white_space region}_inside_dropdown_main",
-                                            class: "map_controller_go_to_region_li", role:"presentation" do
-                                link_to region ,main_pages_region_path({region_info: {name:region}}), html:{role:"menuitem", tabindex:"-1"}, method: :post, :remote => true
+                            <%= content_tag :li, id: "#{remove_white_space key}_inside_dropdown_main",
+                                            class: "map_controller_go_to_region_li", onclick:"Side_Panel.controller.select_region('#{key}')", role:"presentation" do
+                               region
                             end
                             %>
                         <% end %>

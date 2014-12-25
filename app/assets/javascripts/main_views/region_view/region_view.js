@@ -2,10 +2,12 @@
 var RegionView;
 RegionView = function(name){
    this.name = name;
+    this.display_name = Region_Helper.regions_alter2_names()[this.name];
    this.html_classnames =
    {
         "side_panel":
         {
+            "head":{"select_region": "#dropdownGoToRegion_lable"},
             "body": ".aside_ship_details_table_body",
             "footer":".aside_ship_details_table_foot"
         },
@@ -75,11 +77,17 @@ RegionView.prototype.controller = {
 RegionView.prototype.render = function()
 {
     refresh_link_list_back_history(this.name,REGION_LEVEL);
-    setSelectRegion_on_sidebar(this.name);
+
     var backend_results = this.backend(this.name);
+
+    // when a user select a region on side panel, the region name will be displayed and highlighted.
+    $(this.html_classnames.side_panel.head.select_region).html(this.display_name);
+    $('.dropdown-menu.map_controller_go_to_region').children().removeClass('highlight-clicked-row');
+    $("#" + remove_white_space(this.name) + "_inside_dropdown_main").addClass('highlight-clicked-row');
+
     $(this.html_classnames.side_panel.body).html(backend_results.body);
     $(this.html_classnames.side_panel.footer).html(backend_results.footer);
-    $(this.html_classnames.current_location.body).html(this.name);
+    $(this.html_classnames.current_location.body).html(this.display_name);
 }
 
 RegionView.prototype.draw = function()
