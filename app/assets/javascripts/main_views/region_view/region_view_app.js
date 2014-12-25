@@ -64,10 +64,10 @@ RegionViewApp.prototype.come_from_region_view = function(_regionView)
 {
     var _currentRegion = current_region();
     var _regionObject =      region_objects_variable.return_object_region(_regionView.name);
+
     _regionView.controller.clear_all_listeners_of_the_regions();
     region_objects_variable.each_object().region_polygon_setOptions({'clickable': true});
     _regionObject.region_polygon_setOptions({'clickable': false});
-
     set_event_listeners_on_the_map_viewHelper(_regionView.name,_regionView);
 
     if (current_location.value == COME_FROM_MAP) {
@@ -76,7 +76,6 @@ RegionViewApp.prototype.come_from_region_view = function(_regionView)
 
     }else
     {
-
         _regionObject.default_map_navigate();
 
     }
@@ -105,9 +104,7 @@ RegionViewApp.prototype.come_from_ship_view = function(_regionObject)
         _regionObject.draw();
     } else
     {
-
         _regionObject.draw();
-
     }
 }
 

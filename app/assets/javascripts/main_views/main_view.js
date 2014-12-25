@@ -53,6 +53,7 @@ MainViewGenerator.prototype.portView = function(name,coordinates)
     if(coordinates != undefined)
     PortViewAppInstance.add_port(name,coordinates);
 
+
     PortViewAppInstance.start(name);
     current_view.value = PORT_LEVEL;
 }

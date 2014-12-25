@@ -18,6 +18,8 @@ GoogleMapApp.prototype.is_map_shown = function()
     if(current_location.value != COME_FROM_MOTOR_VESSEL)
         return true;
 
+   MAP.Controller.display_map_view();
+    console.log("Iam here");
     MAP.google_map(true);
     return false;
 }

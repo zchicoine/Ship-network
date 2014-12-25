@@ -4,7 +4,7 @@
  * @returns {boolean}
  */
 var string_match = function(string){
-    if (!(string.match(/[a-zA-Z]/i)) )
+    if (string && !(string.match(/[a-zA-Z]/i)) )
         return false;
 
     return true;

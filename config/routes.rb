@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     post 'side_panel/broker_contact' => 'side_panel#broker_contact'
     #--------------
     post  'google_map/port_coordinates' => 'google_map#port_coordinates'
+    post  'google_map/index' => 'google_map#index'
 
     #--------------
     post 'link_list_back_history/refresh' => 'link_list_back_history#refresh'

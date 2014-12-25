@@ -91,9 +91,7 @@ PortViewApp.prototype.come_from_ship_view = function(_portObject)
         _portObject.draw();
     } else
     {
-
         _portObject.draw();
-
     }
 }
 var PortViewAppInstance = new PortViewApp();

@@ -6,6 +6,8 @@
 var GlobalView;
 GlobalView = function(){
 
+    this.name = "Global";
+    this.display_name = this.name;
 };
 
 GlobalView.prototype.controller = {
@@ -80,6 +82,7 @@ GlobalView.prototype.controller = {
 GlobalView.prototype.render = function(){
 
     GoogleMapAppInstance.start();
+    Back_History.link_list(this.display_name,this.name,GLOBAL_LEVEL)
 }
 
 GlobalView.prototype.draw = function(){

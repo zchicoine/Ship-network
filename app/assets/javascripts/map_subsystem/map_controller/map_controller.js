@@ -104,3 +104,24 @@ MAP.google_controller_methods = {
 
     }
 }
+
+MAP.Controller.display_map_view = function()
+{
+// make sure the map is in place
+    if($("#googleMap").length == 0){
+        $.ajax({
+            url:"google_map/index",
+            type: 'POST',
+            dataType: 'html',
+            async:false,
+            success: function(result) {
+                $("#outer-map").html(result);
+
+            },
+            error: function(xhr, ajaxOptions, thrownError){
+
+                error_message_display(thrownError)
+            }
+        });
+    }
+}

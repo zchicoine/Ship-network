@@ -76,7 +76,8 @@ RegionView.prototype.controller = {
 
 RegionView.prototype.render = function()
 {
-    refresh_link_list_back_history(this.name,REGION_LEVEL);
+    Back_History.link_list(this.display_name,this.name,REGION_LEVEL)
+    //refresh_link_list_back_history(this.name,REGION_LEVEL);
 
     var backend_results = this.backend(this.name);
 
