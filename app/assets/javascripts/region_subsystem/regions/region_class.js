@@ -81,9 +81,15 @@ Region_class.prototype.scroll_between_specific_areas = function (navigate_direct
 }
 Region_class.prototype.set_map_label = function(map){
 
+    // check weather a label position is an array object or google.map.LatLng object.
+    // if it is an array then convert to google.map.LatLng object.
+    var label_position = this.map_properties['label_position'];
+    if( Object.prototype.toString.call( label_position ) === '[object Array]'){
+        label_position = new google.maps.LatLng(label_position[0], label_position[1])
+    }
     new Label({
         text: this.map_properties['label'],
-        position: this.map_properties['label_position'],
+        position: label_position,
         map: map
     });
 }

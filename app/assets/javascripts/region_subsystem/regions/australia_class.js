@@ -8,13 +8,13 @@ Australia_class = function () {
     Region_class.call(this);
     this.name = "Australia";
     this.unique_identifier = this.name;
-    this.lat_lang = new google.maps.LatLng(-32.926689,151.778921);
+    this.lat_lang = Region_Helper.australia_area_coord()[0];
 
-    this.areas_coordinates =
-    {
-        "New Castle":{'short_name':"N.C.",'coordinates':[-32.926689,151.778921]},
-        "Dampier":{ 'short_name':"Dampier",'coordinates':[-20.663799,116.708460]}
-    };
+
+    this.areas_coordinates = {};
+    this.areas_coordinates[Region_Helper.australia_area_names()[0]] = {'short_name':"N.C.",    'coordinates':Region_Helper.australia_area_coord()[0]};
+    this.areas_coordinates[Region_Helper.australia_area_names()[1]] = {'short_name':"Dampier" ,'coordinates':Region_Helper.australia_area_coord()[1]};
+
     this.areas_coordinates = make_json_iterable(this.areas_coordinates);
     this.list_of_countries = [  "Australia" , "New Zealand" , "East Timor", "Papua New Guinea" , "Solomon Is." , "Vanuatu", "Fiji" , "New Caledonia", "Samoa", "Tuvalu", "Nauru"];
 
