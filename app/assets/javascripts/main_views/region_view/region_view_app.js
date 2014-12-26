@@ -62,7 +62,7 @@ RegionViewApp.prototype.come_from_global_view = function(_regionView)
 
 RegionViewApp.prototype.come_from_region_view = function(_regionView)
 {
-    var _currentRegion = current_region();
+    var _currentRegion = current_region.value;
     var _regionObject =      region_objects_variable.return_object_region(_regionView.name);
 
     _regionView.controller.clear_all_listeners_of_the_regions();
@@ -88,13 +88,14 @@ RegionViewApp.prototype.come_from_region_view = function(_regionView)
 RegionViewApp.prototype.come_from_port_view = function(_regionView)
 {
     this.come_from_region_view(_regionView);
+
 }
 
 
 RegionViewApp.prototype.come_from_ship_view = function(_regionObject)
 {
 
-    var _currentRegion = current_region();
+    var _currentRegion = current_region.value;
 
     if (! GoogleMapAppInstance.is_map_shown()) {
 

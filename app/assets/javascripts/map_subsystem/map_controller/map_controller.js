@@ -105,6 +105,10 @@ MAP.google_controller_methods = {
     }
 }
 
+
+/**
+ * call this function when the map is not visible
+ */
 MAP.Controller.display_map_view = function()
 {
 // make sure the map is in place

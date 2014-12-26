@@ -77,7 +77,6 @@ RegionView.prototype.controller = {
 RegionView.prototype.render = function()
 {
     Back_History.link_list(this.display_name,this.name,REGION_LEVEL)
-    //refresh_link_list_back_history(this.name,REGION_LEVEL);
 
     var backend_results = this.backend(this.name);
 
@@ -95,6 +94,8 @@ RegionView.prototype.draw = function()
 {
     MAP.Controller.current_zoom_layer.value = REGION_LEVEL;
     this.controller.map_customization(this.name);
+    // enable  navigate the map when the user on region layer
+
     default_map_navigate(this.name);
     this.render();
 }

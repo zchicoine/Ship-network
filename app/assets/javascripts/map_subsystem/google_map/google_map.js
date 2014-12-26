@@ -19,7 +19,6 @@ GoogleMapApp.prototype.is_map_shown = function()
         return true;
 
    MAP.Controller.display_map_view();
-    console.log("Iam here");
     MAP.google_map(true);
     return false;
 }

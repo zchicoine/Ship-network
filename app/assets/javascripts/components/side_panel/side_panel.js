@@ -9,10 +9,10 @@ Side_Panel.controller = {};
 
 Side_Panel.controller.select_region = function(region_name)
 {
-    current_location.value = COME_FROM_SIDE_PANEL;
+    // if the location comes from motor vessel then give it high priority over side panel
+    if( current_location.value != COME_FROM_MOTOR_VESSEL)
+        current_location.value =  COME_FROM_SIDE_PANEL;
     MainViewGeneratorInstance.regionView(region_name);
-
-
 }
 
 
@@ -175,7 +175,7 @@ ship_details = function(ship_name,port_name,region_name){
 
 update_broker_view = function(ship_name,port_name){
     send_broker_info_to_sidebar(ship_name,port_name);
-    refresh_link_list_back_history(ship_name,SHIP_LEVEL);
+    Back_History.link_list(ship_name,ship_name,SHIP_LEVEL);
 }
 
 

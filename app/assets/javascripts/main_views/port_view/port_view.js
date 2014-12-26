@@ -52,7 +52,7 @@ PortView.prototype.controller = {
             }
         )
     },map_customization:function(coordinates){
-    MAP.google_methods.set_zoom(4);
+    MAP.google_methods.set_zoom(6);
     MAP.google_methods.set_center(coordinates);
 }
 }
