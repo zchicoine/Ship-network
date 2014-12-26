@@ -26,10 +26,8 @@ GoogleMapApp.prototype.is_map_shown = function()
 
 function initialize_the_map() {
 
-
    var map = MAP.google_map();
     region_objects_variable.each_object().set_map_label(map);
-    update_global();
 
 }
 

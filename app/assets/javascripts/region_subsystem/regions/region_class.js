@@ -43,22 +43,11 @@ var store_navigate_next;
     come_from: Global, Region: name of the region should be pass, Port, Ship.
     this the default implementation, each drive class should override this for different implementation
  */
-Region_class.prototype.default_map_navigate = function(come_from)
+Region_class.prototype.update_map_navigate = function(come_from)
 {
 
-    var json_arry_keys =  $.map(this.areas_coordinates, function(values,keys) {return keys;});
-    var keyIndex =   json_arry_keys.indexOf("North America");
-    keyIndex = keyIndex < 0? 0: keyIndex;
-    // at function is part of sugar.js
-    store_navigate_back =   json_arry_keys.at((keyIndex - 1)) ;
-    store_navigate_now =  json_arry_keys.at(keyIndex);
-    store_navigate_next = json_arry_keys.at((keyIndex + 1));
-    console.log(store_navigate_next);
-    var back =  this.areas_coordinates[store_navigate_back]['short_name'];
-    var next =  this.areas_coordinates[store_navigate_next]['short_name'];
-
-
-    update_map_navigate_label_and_tooltip(back,next,store_navigate_back,store_navigate_next);
+    var default_area = "North America";
+    MAP_Navigate.default_map_navigate(this.name,default_area);
 
 }
 Region_class.prototype.scroll_between_specific_areas = function (navigate_direction){
@@ -74,7 +63,7 @@ Region_class.prototype.scroll_between_specific_areas = function (navigate_direct
         store_navigate_now =  store_navigate_back ;
         store_navigate_back = this.areas_coordinates[store_navigate_now].back;
     }
-    update_map_navigate_label_and_tooltip(this.areas_coordinates[store_navigate_back]['short_name'],this.areas_coordinates[store_navigate_next]['short_name'],store_navigate_back,store_navigate_next);
+    MAP_Navigate.update_map_navigate_label_and_tooltip(this.areas_coordinates[store_navigate_back]['short_name'],this.areas_coordinates[store_navigate_next]['short_name'],store_navigate_back,store_navigate_next);
     MAP.google_methods.set_center(new google.maps.LatLng(this.areas_coordinates[store_navigate_now]['coordinates'][0],this.areas_coordinates[store_navigate_now]['coordinates'][1]));
 
 

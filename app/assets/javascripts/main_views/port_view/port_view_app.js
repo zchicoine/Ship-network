@@ -87,7 +87,7 @@ PortViewApp.prototype.come_from_ship_view = function(_portObject)
         set_event_listeners_on_the_map_viewHelper(current_region.value,_portObject);
         region_objects_variable.each_object().set_map_label(MAP.google_map());
         MAP.google_controller_methods.display_ports(_currentRegion);
-        region_objects_variable.return_object_region(_currentRegion).default_map_navigate();
+        region_objects_variable.return_object_region(_currentRegion).update_map_navigate();
         _portObject.draw();
     } else
     {

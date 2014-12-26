@@ -87,9 +87,6 @@ GlobalView.prototype.render = function(){
 
 GlobalView.prototype.draw = function(){
     this.controller.set_region_highlight_on_the_map();
+    MAP_Navigate.default_map_navigate("Global");
     this.render();
-}
-
-var update_global = function () {
-    default_map_navigate("Global");
 }
