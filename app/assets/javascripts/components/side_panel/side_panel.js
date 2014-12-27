@@ -51,7 +51,7 @@ send_data_to_side_bar = function(name, level){
 
                 }
 
-                    $(html_class).html(result);
+                    $(html_class).htmlCustom(result);
                 if(level == SHIP_LEVEL || level == PORT_LEVEL){
                     $('.region_stats .triangle_image').addClass('want_to_close_table');
                     closed_table_side_bar(0);
@@ -100,8 +100,8 @@ console.log("This " + port_name + " should be port name")
         var image = '.triangle_image';
         if ($(image).hasClass("want_to_close_table")) {
               image += ".want_to_close_table";
-
             if ( ! $(image).hasClass("this_class_only_to_change_image") ){
+
                 $(image).attr("src",image_greentriangle_closed());
                 $(image).addClass("this_class_only_to_change_image");
 
@@ -116,11 +116,11 @@ console.log("This " + port_name + " should be port name")
 }
 open_table_side_bar = function (speed){
     var image = '.triangle_image';
-
     if ($(image).hasClass("want_to_open_table")) {
         image += ".want_to_open_table";
 
         if (  $(image).hasClass("this_class_only_to_change_image") ){
+
             $(image).attr("src", image_greentriangle_down());
             $(image).removeClass("this_class_only_to_change_image");
 
@@ -199,7 +199,7 @@ short_region_info_show = function(region_name){
         success: function(result) {
            //if((".short_region_info_two").length){
                $(".short_region_info_two").show();
-               $(".short_region_info_two").html(result);
+               $(".short_region_info_two").htmlCustom(result);
                $(".aside_ship_details_table_body").hide();
                //$(".aside_ship_details_table_foot").html(result['partial_table_footer']);
                $(".aside_ship_details_table_foot").hide();
@@ -224,7 +224,8 @@ short_region_info_show = function(region_name){
         //closed_table_side_bar(30);
 }
 show_default_table_when_mouse_out = function(){
-    $(".short_region_info_two").hide();
+    // hide() does not delete the element
+    $(".short_region_info_two").children().detach();
     $(".aside_ship_details_table_body").show();
     $(".aside_ship_details_table_foot").show();
 }

@@ -60,7 +60,7 @@ PortView.prototype.render = function(){
 
     send_data_to_side_bar(this.name , PORT_LEVEL);
     Back_History.link_list(this.display_name,this.name,PORT_LEVEL)
-    $(this.html_classnames.current_location.body).html(this.name);
+    $(this.html_classnames.current_location.body).html(this.display_name);
 }
 
 PortView.prototype.draw = function(){

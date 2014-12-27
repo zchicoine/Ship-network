@@ -85,7 +85,7 @@ RegionView.prototype.render = function()
     $('.dropdown-menu.map_controller_go_to_region').children().removeClass('highlight-clicked-row');
     $("#" + remove_white_space(this.name) + "_inside_dropdown_main").addClass('highlight-clicked-row');
 
-    $(this.html_classnames.side_panel.body).html(backend_results.body);
+    $(this.html_classnames.side_panel.body).htmlCustom(backend_results.body);
     $(this.html_classnames.side_panel.footer).html(backend_results.footer);
     $(this.html_classnames.current_location.body).html(this.display_name);
 }
