@@ -1,54 +1,6 @@
-<thead>
-<tr>
-  <th colspan="2" id = "side_bar_header_region_name" class="radius-top-left-corner radius-top-right-corner side_bar_header">
-    <%= @region_name%>
-  </th>
-</tr>
-</thead>
-<tr>
-  <td colspan="2" class="">
-
-  </td>
-</tr>
-
-<thead>
-<tr>
-  <th colspan="2" id = "side_bar_header_region_name" class="radius-top-left-corner radius-top-right-corner side_bar_header region_hover_short_info">
-    Total Ships : <span class="text-left"><%= @all_ships_at_region %></span>
-  </th>
-</tr>
-</thead>
-
-<thead class="side_bar_default_table text-left">
-<tr >
-  <th colspan="<%= 2 %>">
-    <%= render 'side_panel/parts_used_in_table/accessories/green_triangle_image'%>
-    Ships by Size Class
-  </th>
-</tr>
-
-</thead>
-<tbody>
 
 
-<% ship_category_size = get_number_of_ships_per_region_for_all_category @region_name
-   vessel_classes.each do |_name| %>
-    <tr class="text-left">
-      <td><%=" #{_name}:" %></td>
-      <td><%= ship_category_size[Ship.vessel_categories[_name]] || 0 %></td>
-    </tr>
-<% end %>
-</tbody>
-
-<thead>
-<tr>
-  <th  class="radius-bottom-left-corner ">
-    Total Deadweight:
-  </th>
-  <th class="">
-    <% _deadweight =  get_total_deadweight_for_total_ships_per_region @region_name%>
-    <%= number_with_delimiter(_deadweight, :delimiter => ',')%> MTS
-
-  </th>
-</tr>
-</thead>
+<%= render 'side_panel/table_body/share/header' , header_name: display_region_name(@region_name) %>
+<%= render 'side_panel/table_body/share/total_ships_header', region_name: @region_name %>
+<%= render 'side_panel/table_body/share/region_stats', region_name: @region_name %>
+<%= render 'side_panel/table_foot/region_deadweight', region_name: @region_name %>

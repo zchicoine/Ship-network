@@ -100,7 +100,7 @@ RegionViewApp.prototype.come_from_ship_view = function(_regionObject)
 
         set_event_listeners_on_the_map_viewHelper(_currentRegion,_regionObject);
         region_objects_variable.each_object().set_map_label(MAP.google_map());
-        region_objects_variable.return_object_region(_currentRegion).default_map_navigate();
+        region_objects_variable.return_object_region(_currentRegion).update_map_navigate();
         _regionObject.draw();
     } else
     {

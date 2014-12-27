@@ -2,6 +2,7 @@
 class ShipBLL < Ship
 
     extend CustomQuery
+    extend LocalizationHelper
 
     # return hash {value: result/0 and error: nil/message}
     def retrieve_a_ship ship_name = ""
@@ -187,7 +188,25 @@ class ShipBLL < Ship
 
     end
 
+    # in this section, helper functions will be add
 
+    # pass the (number) of category based on enum define in Ship class.
+    # return user friendly  string array
+    def self.get_categories_as_hash_string
+
+        categories = Hash.new
+
+        categories['MiniBulker']  = locales.miniBulker
+        categories['Handysize']   = locales.handysize
+        categories['Handymax' ]   = locales.handymax
+        categories['Supramax']    = locales.supramax
+        categories['Panamax']     = locales.panamax
+        categories['PostPanamax'] = locales.postPanamax
+        categories['Capesize']    = locales.capesize
+
+        categories
+    end
+    # end of helper functions
 
     # in this section, we will define methods that only return rails query
     # begin of query section

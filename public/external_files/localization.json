@@ -8,6 +8,7 @@
     "postPanamax": "Post Panamax",
     "capesize": "Capesize",
     "shipsBySizeClass": "Ships by Size Class",
-    "websiteName": "The Ship Network"
+    "websiteName": "The Ship Network",
+    "shipsByRegion": "Ships by Region"
   }
 ]

@@ -3,34 +3,18 @@
 <tr>
     <th colspan="<%= 2 %>" id="shipsByRegion">
         <%= render 'side_panel/parts_used_in_table/accessories/green_triangle_image'%>
-         Ships by Region:
+        <%= locales.shipsByRegion %>
     </th>
 </tr>
 </thead>
 <tbody >
-<%
-   count = 0
-   regions =  get_number_of_ships_for_all_regions
-   region_hash_array =[]
-   get_region_names.each do |_name|
 
-       temp = regions[_name.downcase] || 0
-       # insert in the end of the hash array
-       region_hash_array.insert(-1,{name:_name, count: temp })
-       count = count + temp
-   end
-%>
-
-<tr class="text-left thick_horizontal_line" >
-    <td>Total Ships</td>
-    <td><%= count%></td>
-</tr>
-
-<% region_hash_array.each do |_region| %>
+<% region_hash_array =get_number_of_ships_for_all_regions %>
+<% region_hash_array.each do |key , value| %>
 
     <tr class="text-left " >
-        <td ><%= _region[:name] %></td>
-        <td id="number_of_ship_in_<%= remove_white_space _region[:name] %>"> <%= _region[:count]%></td>
+        <td ><%= key %></td>
+        <td id="number_of_ship_in_<%= remove_white_space(key)%>"> <%= value%></td>
     </tr>
 
 <% end %>
