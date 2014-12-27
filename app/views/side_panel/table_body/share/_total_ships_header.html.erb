@@ -1,7 +1,17 @@
+<%
+
+   # get the total number of ships
+   if (region_name == 'Global')
+       total_ships = get_number_of_ships_globally
+   else
+       total_ships = get_number_of_ships_per_region(region_name)
+   end
+%>
+
 <thead>
 <tr>
   <th colspan="2" id = "side_bar_header_region_name" class="radius-top-left-corner radius-top-right-corner side_bar_header region_hover_short_info">
-    Total Ships : <span class="text-left"><%=  get_number_of_ships_per_region region_name  %></span>
+    Total Ships : <span class="text-left"><%= total_ships  %></span>
   </th>
 </tr>
 </thead>

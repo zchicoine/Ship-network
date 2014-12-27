@@ -85,5 +85,15 @@ class ShipmentBLL < Shipment
         end
     end
 
+    # return total number of ships global,
+    # each ship will be count once
+    def get_total_number_of_ships_count_once
+       result = Shipment.distinct().count(:ship_id)
+        unless result.blank?
+            return {value: result, error:nil}
+        else
+            return {value: 0, error: "Error: in ShipmentBLL get_total_number_of_ships_count_once()"}
+        end
+    end
 
 end

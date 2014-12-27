@@ -198,7 +198,7 @@ short_region_info_show = function(region_name){
         },                                      //display-none
         success: function(result) {
            //if((".short_region_info_two").length){
-               $(".short_region_info_two").show();
+              // $(".short_region_info_two").show();
                $(".short_region_info_two").htmlCustom(result);
                $(".aside_ship_details_table_body").hide();
                //$(".aside_ship_details_table_foot").html(result['partial_table_footer']);
