@@ -9,6 +9,12 @@ class MainPagesController < ApplicationController
         
         create_history
 
+
+    # Redirect admin to the admin view (through its controller)
+        if current_broker.try(:admin?)
+          redirect_to(controller: 'admin', action: 'index')
+        end
+
     end
 
     # def loginpage
