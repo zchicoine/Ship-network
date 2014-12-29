@@ -207,7 +207,15 @@ begin
 rescue => e
     puts "#{e.message} for broker Zack"
 end
-p "Created #{Port.count} ports and #{Ship.count} ships and #{Shipment.count} shipments and #{Broker.count} broker"
+
+begin
+  Broker.create!(username: "Admin", password: "database", admin: true, email: "admin@shipnetwork.com")
+
+rescue => e
+  puts "#{e.message} for broker Admin"
+end
+
+p "Created #{Port.count} ports and #{Ship.count} ships and #{Shipment.count} shipments and #{Broker.count} brokers"
 
 
 # # here some rails query that would be helpful for the developer later on
