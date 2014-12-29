@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
 
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
     root 'main_pages#index'
 
     devise_for :brokers, controllers: { sessions: "brokers/sessions" }
+
+    #--------------
+    get 'admin/index'
 
     #--------------
     post 'side_bar/index' => 'side_bar#index'
