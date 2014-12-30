@@ -4,10 +4,10 @@
  * @returns {boolean}
  */
 var string_match = function(string){
-    if (string && !(string.match(/[a-zA-Z]/i)) )
-        return false;
+    if (string  && (string.match(/[a-zA-Z]/i)) )
+        return true;
 
-    return true;
+    return false;
 };
 
 var remove_white_space = function(name){

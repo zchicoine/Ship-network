@@ -18,14 +18,22 @@ RegionView = function(name){
 
     }
 };
-RegionView.prototype.backend = function(){
+RegionView.prototype.backend = function()
+{
 
-  var _data;
-  var results =   Side_Panel.backend.get_result(this.name,REGION_LEVEL,"json",false);
-     results.done( function(data) {
-         _data =  data;
-    });
-    return _data;
+    var _temp_object = this;
+    return {
+        region_data: function()
+        {
+            var _data;
+            var results = Side_Panel.backend.get_result(_temp_object.name, REGION_LEVEL, "json", false);
+            results.done(function (data)
+            {
+                _data = data;
+            });
+            return _data;
+        }
+    }
 }
 RegionView.prototype.controller = {
     clear_all_listeners_of_the_regions: function(){
@@ -78,7 +86,7 @@ RegionView.prototype.render = function()
 {
     Back_History.link_list(this.display_name,this.name,REGION_LEVEL)
 
-    var backend_results = this.backend(this.name);
+    var backend_results = this.backend().region_data();
 
     // when a user select a region on side panel, the region name will be displayed and highlighted.
     $(this.html_classnames.side_panel.head.select_region).html(this.display_name);
@@ -86,7 +94,7 @@ RegionView.prototype.render = function()
     $("#" + remove_white_space(this.name) + "_inside_dropdown_main").addClass('highlight-clicked-row');
 
     $(this.html_classnames.side_panel.body).htmlCustom(backend_results.body);
-    $(this.html_classnames.side_panel.footer).html(backend_results.footer);
+    $(this.html_classnames.side_panel.footer).htmlCustom(backend_results.footer);
     $(this.html_classnames.current_location.body).html(this.display_name);
 }
 

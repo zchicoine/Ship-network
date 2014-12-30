@@ -11,21 +11,24 @@ Side_Panel.backend =  {}
  level: one of the four levels (Global,Region,Port,Ship, etc)
  datatype: html,json
  async: false or true
- details: add extra details, an example (for the region level, details could be = to "region_stats" )
+ details: add extra details, an example (for the region level, details could be = to "region_stats" ), it has a json object
  beforeSend: this should be a function that will run before send ajax call to backend
  */
-Side_Panel.backend.get_result = function(name, level ,datatype,async,detials,beforeSend){
+Side_Panel.backend.get_result = function(name, level ,datatype,async,url,detials,beforeSend){
 
 
-    if(! isNaN(level) && name.match(/[a-z]/i) )
+
+    if(! isNaN(level) && string_match(name) )
 
     {
         var data_json = { "side_info": { "name": name , "level": level, "details": detials} };
-        var url = 'side_panel/index';
+        var _url = 'side_panel/index';
 
+        if( string_match(url) )
+            _url = url;
 
         return  $.ajax({
-            url:url,
+            url:_url,
             beforeSend: function(){
                 if(isFunction(beforeSend))
                     beforeSend();
@@ -39,14 +42,8 @@ Side_Panel.backend.get_result = function(name, level ,datatype,async,detials,bef
                 error_message_display(thrownError)
             }
 
-
         });
     }
 }
 
-
-Side_Panel.backend.regions_controller = function()
-{
-
-}
 // end of the backend

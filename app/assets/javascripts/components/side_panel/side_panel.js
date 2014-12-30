@@ -65,7 +65,8 @@ send_data_to_side_bar = function(name, level){
     }
 }
 
-send_broker_info_to_sidebar = function(ship_name, port_name) {
+// this feature is turn off for now
+var send_broker_info_to_sidebar = function(ship_name, port_name) {
 console.log("This " + port_name + " should be port name")
     var data_json = { "side_info": { "ship_name": ship_name, "port_name": port_name} };
     var url = 'side_panel/broker_contact';
@@ -95,7 +96,8 @@ console.log("This " + port_name + " should be port name")
     });
 }
 
-    closed_table_side_bar = function (speed) {
+var closed_table_side_bar = function (speed)
+{
 
         var image = '.triangle_image';
         if ($(image).hasClass("want_to_close_table")) {
@@ -108,13 +110,11 @@ console.log("This " + port_name + " should be port name")
                 $(image).parent().parent().parent().next().children('tr').
                     closest('tr').children('td').wrapInner('<div />').
                     animate({padding: 'toggle', opacity: 'toggle'}, speed);
-
-
             }
-
         }
 }
-open_table_side_bar = function (speed){
+var open_table_side_bar = function (speed)
+{
     var image = '.triangle_image';
     if ($(image).hasClass("want_to_open_table")) {
         image += ".want_to_open_table";
@@ -128,9 +128,7 @@ open_table_side_bar = function (speed){
                 closest('tr').children('td').wrapInner('<div />').
                 animate({padding: 'toggle', opacity: 'toggle'}, speed);
 
-
         }
-
     }
 }
 
@@ -179,56 +177,7 @@ update_broker_view = function(ship_name,port_name){
 }
 
 
-var content_header = "";
-short_region_info_show = function(region_name){
 
-    var data_json =  { 'region':{ "name": region_name} } ;
-    $.ajax({
-        url:'side_panel/region_short_info',
-        beforeSend: function(){
-            // Handle the beforeSend event
-        },
-        type: 'POST',
-        dataType: 'html',
-        data:data_json,
-        complete: function(r){
-            // Handle the complete event
-            // alert(r);
-
-        },                                      //display-none
-        success: function(result) {
-           //if((".short_region_info_two").length){
-              // $(".short_region_info_two").show();
-               $(".short_region_info_two").htmlCustom(result);
-               $(".aside_ship_details_table_body").hide();
-               //$(".aside_ship_details_table_foot").html(result['partial_table_footer']);
-               $(".aside_ship_details_table_foot").hide();
-           //}else{
-           //    $(".short_region_info_two").show();
-           //    $(".short_region_info_two").html(result);
-           //    $(".aside_ship_details_table_body").hide();
-           //    //$(".aside_ship_details_table_foot").html(result['partial_table_footer']);
-           //    $(".aside_ship_details_table_foot").hide();
-           //}
-
-
-        },
-        error: function(xhr, ajaxOptions, thrownError){
-            error_message_display($.parseJSON(xhr.responseText).errors);
-        }
-    });
-
-     //   content_header = $('.side_bar_header').html();
-     //   $('.side_bar_header').html(region_name);
-     //   $('.triangle_image').addClass('want_to_close_table');
-        //closed_table_side_bar(30);
-}
-show_default_table_when_mouse_out = function(){
-    // hide() does not delete the element
-    $(".short_region_info_two").children().detach();
-    $(".aside_ship_details_table_body").show();
-    $(".aside_ship_details_table_foot").show();
-}
 //short_region_info_hide = function(default_name){
 
 //    $('.side_bar_header').html(content_header);
