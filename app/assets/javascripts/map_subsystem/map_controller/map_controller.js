@@ -55,12 +55,12 @@ MAP.google_controller_methods = {
 
                 var _content_text = port_name[i] +' (' + ship_number[i] + ' ' + pluralize_word(ship_number[i],'ship','ships') + ' )';
                 // add the text to the infobox div
-                $("#mapInfoBox").html(_content_text);
+                $("#mapInfoBox").htmlCustom(_content_text);
                 var content = $("div.infobox-wrapper").html();
 
                 var _infoBoxOpiion = {
                     alignBottom:true,
-                    pixelOffset: new google.maps.Size( - ($(".infobox-wrapper").width() / 2), - ($(".infobox-wrapper").height()) ), // The offset (in pixels) from the top left corner of the InfoBox (or the bottom left corner if the alignBottom property is true) to the map pixel corresponding to position.
+                    pixelOffset: new google.maps.Size(0,0), // The offset (in pixels) from the top left corner of the InfoBox (or the bottom left corner if the alignBottom property is true) to the map pixel corresponding to position.
                     closeBoxURL: "",
                     boxStyle: {
                         //background: "url(" + image_tipbox() + ") " + " no-repeat"
@@ -76,34 +76,33 @@ MAP.google_controller_methods = {
                     return function() {
 
                         marker.setIcon(iconHover);
-
                         infoBox_object.open(MAP.google_map(), marker);
                         infoBox_object.setContent(content);
+                        // actual function is a plugin from dreamerslab.com
+                        var _infoBox_width = $(infoBox_object.getContent()).actual( "innerWidth" , { clone : true });
+                        var _infoBox_heigth= $(infoBox_object.getContent()).actual( "innerHeight" , { clone : true });
 
-
+                        infoBox_object.pixelOffset_.width = - (_infoBox_width / 2);
+                        infoBox_object.pixelOffset_.height = - _infoBox_heigth;
                     }
-
                 })(marker,content));
 
                 MAP.events.mouseout(marker, (function( marker,content) {
                     return function() {
                         // it allow clicking twice
 
-                       // if(marker.icon.url != iconClick.url) {
-                            marker.setIcon(iconDefault);
+                        marker.setIcon(iconDefault);
                         infoBox_object.close();
-                       // }
 
                     }
-
                 })(marker, ""));
                 MAP.events.click(marker,(function( marker,content) {
                     return function() {
                         // marker.id: port name
                         // Object.values() is a define in sugar.js library. Returns an array containing the values in obj.
-
                         var port_name = marker.id;
                         var port_coordinates = Object.values(marker.getPosition());
+
                         current_location.value = COME_FROM_MAP;
                       //  MAP.google_map().panTo(new google.maps.LatLng(port_coordinates[0], port_coordinates[1]));
                         MainViewGeneratorInstance.portView(port_name,port_coordinates);
@@ -114,9 +113,7 @@ MAP.google_controller_methods = {
                 })(marker, content));
 
             }
-
         });
-
     }
 }
 
@@ -144,3 +141,12 @@ MAP.Controller.display_map_view = function()
         });
     }
 }
+
+
+
+
+
+
+
+
+
