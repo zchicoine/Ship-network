@@ -15,6 +15,7 @@
 //= require turbolinks
 //= require bootstrap
 //= require sugar
+//= require infobox_packed
 
 ///  include global functions and variables first.
 //= require global_functions

@@ -21,11 +21,11 @@ var remove_white_space = function(name){
  * pword: the pluralize form of the word
  * return the word either pluralize or not based on the value of the number
  */
-var pluralize_word = function(number,word,pword)
+var pluralize_word = function(number,word,ppluralize_word)
 {
-    if(string_match(word) && string_match(pword))
+    if(string_match(word) && string_match(ppluralize_word))
     if(number > 1 && ! isNaN(number))
-        return pword;
+        return ppluralize_word;
 
     return word;
 }
