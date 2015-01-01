@@ -82,7 +82,7 @@
         </div>
         <% end %>
 
-        <% @ship_details = get_ship_details_red_table @name_of_ship %>
+        <% @ship_details = get_ship_details_speed_and_consumption @name_of_ship %>
         <% unless @ship_details[1]%>
         <div class="col-md-6 ship_details-portcall">
               <%= image_tag("greentriangle_down.png", alt:"Greentriangle down"  , height:"16" , width:"16")  %>
@@ -110,7 +110,7 @@
         </div>
         <% end %>
 
-        <% @ship_details = get_ship_details_yellow_table @name_of_ship %>
+        <% @ship_details = get_ship_details_EF_SC @name_of_ship %>
         <% unless @ship_details[1]%>
         <div class="col-md-6 ship_details-portcall">
               <%= image_tag("greentriangle_down.png", alt:"Greentriangle down"  , height:"16" , width:"16")  %>
