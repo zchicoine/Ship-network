@@ -11,9 +11,12 @@
 
       <div class="row">
         <div class="col-md-6 ship_details-portcall">
-          <% @ship_details = get_ship_details_blue_table @name_of_ship %>
+          <% @ship_details = get_ship_details_general_info @name_of_ship %>
+
              <%= image_tag("greentriangle_down.png", alt:"Greentriangle down"  , height:"16" , width:"16")  %>
+
               <span class="ship_details_inside_span_text_color">General Information</span>
+
           <table>
             <tr>
               <td>Vessel Name</td>
@@ -48,7 +51,7 @@
           </table>
         </div>
 
-        <% @ship_details = get_ship_details_green_table @name_of_ship %>
+        <% @ship_details = get_ship_details_capacity @name_of_ship %>
         <% unless @ship_details[1]%>
         <div class="col-md-6 ship_details-portcall" >
 

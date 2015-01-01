@@ -35,18 +35,12 @@ MAP.google_controller_methods = {
 
             var iconDefault = {
                 url: image_port_on_map_default()
-                // This marker is 20 pixels wide by 32 pixels tall.
-                // The origin for this image is 0,0.
             };
             var iconHover = {
                 url: image_port_on_map_hover()
-                // This marker is 20 pixels wide by 32 pixels tall.
-                // The origin for this image is 0,0.
             };
             var iconClick = {
                 url: image_port_on_map_down()
-                // This marker is 20 pixels wide by 32 pixels tall.
-                // The origin for this image is 0,0.
             };
 
             for(var i=0;i < port.length;i++){
