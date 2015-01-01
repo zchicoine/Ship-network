@@ -143,33 +143,6 @@ highlight_on_a_list = function(tag){
 
 // ----//
 
-ship_details = function(ship_name,port_name,region_name){
-
-    var data_json =  { "ship_name": ship_name, "port_name":port_name,"region_name":region_name } ;
-    $.ajax({
-        url:'ship_details/show',
-        beforeSend: function(){
-            // Handle the beforeSend event
-        },
-        type: 'POST',
-        dataType: 'html',
-        data:data_json,
-        complete: function(r){
-            // Handle the complete event
-            // alert(r);
-
-        },
-        success: function(result) {
-            current_location.value = COME_FROM_MOTOR_VESSEL;
-            $("#outer-map").html(result);
-
-        },
-        error: function(r){
-            error_message_display("display Motor Vessel.");
-        }
-    });
-
-}
 
 update_broker_view = function(ship_name,port_name){
     send_broker_info_to_sidebar(ship_name,port_name);

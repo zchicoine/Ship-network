@@ -46,7 +46,8 @@
 </button>
 <tr class="text-left hide-or-show-it">
     <td colspan=<%= 2 %>>
-       <ul class="align-link-view-more-info"><%= link_to "View more information", ship_details_show_path(ship_name: @ship_info[:ship_name],port_name: @side_info[:port_name],region_name: @side_info[:region_name]),remote: true , method: :post%>
+       <ul class="align-link-view-more-info">
+         <a href="#" class=" btn-link" onclick="ShipDetailsViewInstance.start('<%= @ship_info[:ship_name]%>' ,'<%= @ship_info[:port_name]%>')"> View more information</a>
         </ul>
     </td>
 </tr>
