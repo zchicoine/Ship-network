@@ -250,12 +250,12 @@ class ShipBLL < Ship
 
         categories = Hash.new
 
-        categories['MiniBulker']  = locales_CEW.miniBulker
+        categories['MiniBulker']  = locales.capitalize_first_word.miniBulker
         categories['Handysize']   = locales_CEW.handysize
         categories['Handymax' ]   = locales_CEW.handymax
         categories['Supramax']    = locales_CEW.supramax
         categories['Panamax']     = locales_CEW.panamax
-        categories['PostPanamax'] = locales_CEW.postPanamax
+        categories['PostPanamax'] = locales.capitalize_first_word.postPanamax
         categories['Capesize']    = locales_CEW.capesize
 
         categories

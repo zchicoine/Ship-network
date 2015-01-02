@@ -6,7 +6,7 @@
     "supramax": "Supramax",
     "panamax": "Panamax",
     "postPanamax": "Post Panamax",
-    "capesize": "Capesize",
+    "capesize": "Capesize +",
     "shipsBySizeClass": "Ships by Size Class",
     "websiteName": "The Ship Network",
     "shipsByRegion": "Ships by Region",
@@ -14,6 +14,8 @@
     "openDate": "Open Date"
   },
   {
+    "miniBulker": "Mini bulker",
+    "postPanamax": "Post panama",
     "openPort": "Open port",
     "openDate": "Open date"
   }
