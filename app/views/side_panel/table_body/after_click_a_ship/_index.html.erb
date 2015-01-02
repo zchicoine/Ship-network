@@ -1,6 +1,6 @@
 
 
-<tr class="text-left hide-or-show-it">
+<tr class="text-left ship-info-small-window">
     <td>
         Category:
     </td>
@@ -8,23 +8,23 @@
         <%= get_vessel_category_name @ship_info[:vessel_category] %>
     </td>
 </tr>
-<tr class="text-left hide-or-show-it">
+<tr class="text-left ship-info-small-window">
     <td>
-        Open Port:
+      <%= locales.capitalize_first_word.openPort %>
     </td>
     <td>
         <%= @ship_info[:port_name] %>
     </td>
 </tr>
-<tr class="text-left hide-or-show-it">
+<tr class="text-left  ship-info-small-window">
     <td>
-        Open Date:
+      <%= locales.capitalize_first_word.openDate %>:
     </td>
     <td>
         <%=  @ship_info[:open_start_date]%>
     </td>
 </tr>
-<tr class="text-left hide-or-show-it">
+<tr class="text-left  ship-info-small-window ">
   <% unless @ship_info[:deadweight] == 0 %>
     <td>
         Deadweight:
@@ -44,7 +44,7 @@
 <%# render 'side_panel/table_body/after_click_a_ship/broker_contact' %>
 
 </button>
-<tr class="text-left hide-or-show-it">
+<tr class="text-left  ship-info-small-window">
     <td colspan=<%= 2 %>>
        <ul class="align-link-view-more-info">
          <a href="#" class=" btn-link" onclick="ShipDetailsViewInstance.start('<%= @ship_info[:ship_name]%>' ,'<%= @ship_info[:port_name]%>')"> View more information</a>

@@ -6,6 +6,7 @@
                   ship_details_close_path({region_name:@name_of_region,port_name:@name_of_port}),
                   class:"close", remote: true , method: :post %>
         <h4 class="modal-title">Motor Vessel: <span class="ship_detail_color"><%= @name_of_ship %></span></h4>
+      <h4 class="modal-title">Open Port <span class="ship_detail_color"><%=  @get_open_port_and_date[:value][:name]  %></span></h4>
     </div>
     <div class="container scroll_inside_table scroll_size_shipdetails">
 
@@ -18,16 +19,16 @@
               <span class="ship_details_inside_span_text_color">General Information</span>
 
           <table>
+            <!--<tr>-->
+              <!--<td>Vessel Name</td>-->
+              <!--<td><%= @name_of_ship %></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+              <!--<td>Open Port</td>-->
+              <!--<td><%= @get_open_port_and_date[:value][:name] %></td>-->
+            <!--</tr>-->
             <tr>
-              <td>Vessel Name</td>
-              <td><%= @name_of_ship %></td>
-            </tr>
-            <tr>
-              <td>Open Port</td>
-              <td><%= @get_open_port_and_date[:value][:name] %></td>
-            </tr>
-            <tr>
-              <td>Open Date</td>
+              <td><%= locales.capitalize_first_word.openDate %></td>
               <td><%= @get_open_port_and_date[:value][:open_start_date] %></td>
             </tr>
             <% @ship_details.as_json.each do |k, v| %>

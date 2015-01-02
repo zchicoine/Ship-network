@@ -6,7 +6,8 @@ Ship_Details = function(ship_name,port_name)
     this.region_name = current_region.value;
     this.html_classnames =
     {
-        main_page:"#outer-map"
+        main_page:"#outer-map",
+        side_panel:{ship_small_window:".ship-info-small-window"}
     }
 }
 
@@ -67,6 +68,8 @@ Ship_Details.prototype.controller = function()
             results.done(function (data)
             {
                 current_location.value = COME_FROM_MOTOR_VESSEL;
+                // hide the small window of ship info
+                $( temp_object.html_classnames.side_panel.ship_small_window).hide( );
                 $(temp_object.html_classnames.main_page).htmlCustom(data);
             });
 

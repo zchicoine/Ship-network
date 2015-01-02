@@ -52,7 +52,6 @@ $(document).on('click',".ship_name_on_side_bar", function(e){
 
         if ($(".ship_details").length) {
             ShipDetailsViewInstance.start(ship_name,port_name);
-            $( ".hide-or-show-it" ).hide( );
             // remove the broker info for the demo time
             //update_broker_view(ship_name,port_name);
 
@@ -66,7 +65,6 @@ $(document).on('click',".ship_name_on_side_bar", function(e){
         // remove the broker info for the demo time
         // update_broker_view(ship_name,port_name);
         ShipDetailsViewInstance.start(ship_name,port_name);
-        $( ".hide-or-show-it" ).hide( );
         clicks = 0;             //after action performed, reset counter
     }
 });
