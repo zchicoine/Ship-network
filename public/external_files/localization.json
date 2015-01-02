@@ -9,6 +9,12 @@
     "capesize": "Capesize",
     "shipsBySizeClass": "Ships by Size Class",
     "websiteName": "The Ship Network",
-    "shipsByRegion": "Ships by Region"
+    "shipsByRegion": "Ships by Region",
+    "openPort": "Open Port",
+    "openDate": "Open Date"
+  },
+  {
+    "openPort": "Open port",
+    "openDate": "Open date"
   }
 ]

@@ -250,13 +250,13 @@ class ShipBLL < Ship
 
         categories = Hash.new
 
-        categories['MiniBulker']  = locales.miniBulker
-        categories['Handysize']   = locales.handysize
-        categories['Handymax' ]   = locales.handymax
-        categories['Supramax']    = locales.supramax
-        categories['Panamax']     = locales.panamax
-        categories['PostPanamax'] = locales.postPanamax
-        categories['Capesize']    = locales.capesize
+        categories['MiniBulker']  = locales_CEW.miniBulker
+        categories['Handysize']   = locales_CEW.handysize
+        categories['Handymax' ]   = locales_CEW.handymax
+        categories['Supramax']    = locales_CEW.supramax
+        categories['Panamax']     = locales_CEW.panamax
+        categories['PostPanamax'] = locales_CEW.postPanamax
+        categories['Capesize']    = locales_CEW.capesize
 
         categories
     end

@@ -2,7 +2,7 @@ module ApplicationHelper
     include LocalizationHelper
     # this function return a string of the project name which is ship network to be used in views
     def project_name
-        locales.websiteName
+        locales_CEW.websiteName
     end 
 
     def remove_white_space name = ""
