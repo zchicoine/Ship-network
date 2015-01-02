@@ -25,11 +25,11 @@ class ShipmentBLL < Shipment
 
     end
 
-    def get_open_port_and_date ship_name = "", port_name = ""
+    def get_open_port_date_and_end ship_name = "", port_name = ""
       result = ShipBLL.joins(:ports).select("shipments.open_start_date","shipments.open_end_date", "ports.name").where(
           "ports.name" => port_name,name:ship_name).execute_query 1
       unless result.blank?
-        coverted_to_ruby_hash = {open_start_date: result[:open_start_date], open_end_date: result[:open_end_date], name: result[:name] }
+        coverted_to_ruby_hash = {open_start_date: result[:open_start_date].to_date , open_end_date: result[:open_end_date].to_date, name: result[:name] }
         return {value: coverted_to_ruby_hash, error: nil}
       else
         return {value: 0, error: "Error:  #{ship_name }  and  #{port_name} has no relationship "}

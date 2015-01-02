@@ -29,7 +29,8 @@
             <!--</tr>-->
             <tr>
               <td><%= locales.capitalize_first_word.openDate %></td>
-              <td><%= @get_open_port_and_date[:value][:open_start_date] %></td>
+                <!-- date format ( Jan 12, 2015) -->
+              <td><%= @get_open_port_and_date[:value][:open_start_date].strftime("%b %d,%Y")%></td>
             </tr>
             <% @ship_details.as_json.each do |k, v| %>
                 <% unless v.nil? || v == 0 %>
