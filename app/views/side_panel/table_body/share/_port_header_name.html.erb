@@ -4,9 +4,8 @@
         <small>Port: </small><%=  @side_info[:port_name]%>
     </th>
     <th class="text-right" >
-        <%=
-            "#{@ships_at_port.size} Ships"
-        %>
+        <%= @ships_at_port.size %>
+        <%= pluralize_word @ships_at_port.size , 'Ship', 'Ships' %>
     </th>
 </tr>
 
