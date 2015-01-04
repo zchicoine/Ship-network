@@ -1,7 +1,10 @@
+#Database cannot contain any seed data if we want to add data form controller or other places in the app (bug in rails).
 def clean_database
     Ship.destroy_all
     Port.destroy_all
     ShipDetail.destroy_all
+end
+=begin
     Broker.destroy_all
 end
 
@@ -219,3 +222,4 @@ p "Created #{Port.count} ports and #{Ship.count} ships and #{Shipment.count} shi
 
 
 # # here some rails query that would be helpful for the developer later on
+=end
