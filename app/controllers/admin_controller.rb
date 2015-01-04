@@ -20,7 +20,8 @@ class AdminController < ApplicationController
       open_json_ships_file = File.open(Rails.root.join('public', 'ship_data.json'))
       read_file = open_json_ships_file.read
       hash_object = JSON.parse(read_file)
-
+      # This next line can be removed after we delete the seed data once. We cannot mix seed data and other data.
+      Ship.destroy_all
       hash_object.each do |ship|
         name, deadweight, deadweight_cargo_capacity, vessel_type = ship['motorVessel'], ship['deadweightMts'], ship['deadweightCargoCapacityMts'],
             ship['typeOfVessel']
