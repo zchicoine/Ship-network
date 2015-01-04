@@ -2,7 +2,8 @@ class Ship < ActiveRecord::Base
 
     validates_presence_of :name
     validates_uniqueness_of :name, case_sensitive: false
-    validates :deadweight, numericality: {greater_than_or_equal_to: 0}, :if => "deadweight_validates?"
+    #used to work fine with seed code, now breaks. Added :allow_nil to fix it (sometimes deadweight is nil and we use deadweight_cargo data instead)
+    validates :deadweight, numericality: {greater_than_or_equal_to: 0}, :if => "deadweight_validates?", :allow_nil => true
     validates :vessel_category,presence: true, if: :vessel_category_validates?
     validate  :vessel_type_validates?
 
@@ -13,9 +14,8 @@ class Ship < ActiveRecord::Base
     has_many :shipments
     has_many :ports, :through => :shipments, :dependent => :destroy
 
-
     def deadweight_validates?
-        if (deadweight > 0 or !deadweight_cargo_capacity.nil?)
+        if (deadweight != 0 or !deadweight_cargo_capacity.nil?)
             return true
 
         else
