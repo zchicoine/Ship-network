@@ -5,8 +5,23 @@
       <%= link_to "&times;".html_safe ,
                   ship_details_close_path({region_name:@name_of_region,port_name:@name_of_port}),
                   class:"close", remote: true , method: :post %>
-        <h4 class="modal-title">Motor Vessel: <span class="ship_detail_color"><%= @name_of_ship %></span></h4>
-      <h4 class="modal-title">Open Port <span class="ship_detail_color"><%=  @get_open_port_and_date[:value][:name]  %></span></h4>
+
+        <h4 class="modal-title">Motor Vessel:
+            <span class="ship_detail_color">
+                <%= @name_of_ship %>
+            </span>
+        </h4>
+        <h4 class="modal-title"><%= locales_CEW.openPort %>
+            <span class="ship_detail_color">
+                <%=  @get_open_port_and_date[:value][:name]  %>
+            </span>
+        </h4>
+        <h4 class="modal-title"><%= locales_CEW.openDate %>
+            <span class="ship_detail_color">
+                <%= @get_open_port_and_date[:value][:open_start_date].strftime("%b %d, %Y") %>
+            </span>
+        </h4>
+
     </div>
     <div class="container scroll_inside_table scroll_size_shipdetails">
 
@@ -27,11 +42,11 @@
               <!--<td>Open Port</td>-->
               <!--<td><%= @get_open_port_and_date[:value][:name] %></td>-->
             <!--</tr>-->
-            <tr>
-              <td><%= locales.capitalize_first_word.openDate %></td>
-                <!-- date format ( Jan 12, 2015) -->
-              <td><%= @get_open_port_and_date[:value][:open_start_date].strftime("%b %d,%Y")%></td>
-            </tr>
+            <!--<tr>-->
+              <!--<td><%= locales.capitalize_first_word.openDate %></td>-->
+                <!--&lt;!&ndash; date format ( Jan 12, 2015) &ndash;&gt;-->
+              <!--<td><%= @get_open_port_and_date[:value][:open_start_date].strftime("%b %d,%Y")%></td>-->
+            <!--</tr>-->
             <% @ship_details.as_json.each do |k, v| %>
                 <% unless v.nil? || v == 0 %>
                     <tr>

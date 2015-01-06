@@ -11,12 +11,17 @@
     "websiteName": "The Ship Network",
     "shipsByRegion": "Ships by Region",
     "openPort": "Open Port",
-    "openDate": "Open Date"
+    "openDate": "Open Date",
+    "sizeClass": "Size Class"
   },
   {
     "miniBulker": "Mini bulker",
     "postPanamax": "Post panama",
     "openPort": "Open port",
-    "openDate": "Open date"
+    "openDate": "Open date",
+    "sizeClass": "Size class"
+  },
+  {
+    "sizeClass": "SIZE CLASS"
   }
 ]
