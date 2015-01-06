@@ -21,7 +21,7 @@
       <%= locales.capitalize_first_word.openDate %>:
     </td>
     <td>
-        <%=  @ship_info[:open_start_date]%>
+        <%=  @ship_info[:open_start_date].strftime("%b %d, %Y")%>
     </td>
 </tr>
 <tr class="text-left  ship-info-small-window ">

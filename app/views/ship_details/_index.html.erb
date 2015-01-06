@@ -48,7 +48,7 @@
               <!--<td><%= @get_open_port_and_date[:value][:open_start_date].strftime("%b %d,%Y")%></td>-->
             <!--</tr>-->
             <% @ship_details.as_json.each do |k, v| %>
-                <% unless v.nil? || v == 0 %>
+                <% unless v.blank? || v == 0 %>
                     <tr>
                       <td><%= k.humanize.capitalize %></td>
                       <% if !!v == v %>
@@ -77,7 +77,7 @@
 
           <table>
             <% @ship_details[0].as_json.each do |k, v| %>
-                <% unless v.nil? || v == 0 %>
+                <% unless v.blank? || v == 0 %>
                     <tr>
                       <td> <%= k.humanize.capitalize %> </td>
                       <% if !!v == v %>
@@ -108,7 +108,7 @@
           <table style="width:81.5%">
             <% #@table_one = @ship_details[0] %>
             <% @ship_details[0].as_json.each do |k, v| %>
-                <% unless v.nil? || v == 0 %>
+                <% unless v.blank? || v == 0 %>
                     <tr>
                       <td width="40%"><%= k.humanize.capitalize %></td>
                       <% if !!v == v %>
@@ -136,7 +136,7 @@
           <table>
             <% #@table_one = @ship_details[0] %>
             <% @ship_details[0].as_json.each do |k, v| %>
-                <% unless v.nil? || v == 0 %>
+                <% unless v.blank? || v == 0 %>
                     <tr>
                       <td> <%= k.humanize.capitalize %> </td>
                       <% if !!v == v %>

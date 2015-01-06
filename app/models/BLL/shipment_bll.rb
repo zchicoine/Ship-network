@@ -15,7 +15,7 @@ class ShipmentBLL < Shipment
                                          broker_website:result[:website] ,broker_telephone:result[:telephone],broker_country:result[:country],
                                         broker_city:result[:city],
                                         deadweight_cargo_capacity: result[:deadweight_cargo_capacity],deadweight: result[:deadweight],
-                                         open_start_date: result[:open_start_date],open_end_date:  result[:open_end_date],
+                                         open_start_date: result[:open_start_date].to_date,open_end_date:  result[:open_end_date].to_date,
                                          vessel_category: result[:vessel_category], ship_name:  ship_name ,  port_name:  port_name
                                         }
             return {value: coverted_to_ruby_hash, error: nil}

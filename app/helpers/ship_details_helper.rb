@@ -1,4 +1,6 @@
 module ShipDetailsHelper
+    included ShipsHelper
+
     # the general info attributes based on blue column of the Ship database sheet
     def get_ship_details_general_info(ship_name)
         column_name = ['ships.deadweight','ships.deadweight_cargo_capacity','ship_details.draft', 'ship_details.built',
@@ -8,7 +10,11 @@ module ShipDetailsHelper
 
         result = UnitOfWork.instance.ship_detail.get_ship_detail_with_specific_column(ship_name,column_name)
         if(result[:error].nil?)
-            return result[:value]
+           value = result[:value]
+           # get the vessel_category
+           value[:vessel_category] =  get_vessel_category_name(value[:vessel_category])
+           value[:vessel_type] =  get_vessel_type_name(value[:vessel_type])
+            return value
         end
     end
 

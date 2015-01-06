@@ -1,10 +1,6 @@
 module SidePanelHelper
+    included ShipsHelper
 
-
-
-    def vessel_classes
-        ShipBLL::get_categories_as_hash_string.values
-    end
 
     def get_number_of_ships_globally
         result =  UnitOfWork.instance.shipment.get_total_number_of_ships_count_once
@@ -71,9 +67,6 @@ module SidePanelHelper
         end
     end
 
-    def get_vessel_category_name(number)
-        ShipBLL::get_categories_as_hash_string[Ship.vessel_categories.keys[number]]
-    end
 
 
 end
