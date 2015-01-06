@@ -1,0 +1,22 @@
+
+<thead class="side_bar_default_table text-left">
+<tr>
+    <th colspan="<%= 2 %>" id="shipsByRegion">
+        <%= render 'side_panel/parts_used_in_table/accessories/green_triangle_image'%>
+        <%= locales_CEW.shipsByRegion %>
+    </th>
+</tr>
+</thead>
+<tbody >
+
+<% region_hash_array =get_number_of_ships_for_all_regions %>
+<% region_hash_array.each do |key , value| %>
+
+    <tr class="text-left " >
+        <td ><%= key %></td>
+        <td id="number_of_ship_in_<%= remove_white_space(key)%>"> <%= value%></td>
+    </tr>
+
+<% end %>
+
+</tbody>

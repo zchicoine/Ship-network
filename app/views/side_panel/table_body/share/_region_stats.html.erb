@@ -1,0 +1,19 @@
+
+<thead id="region_stats_table">
+<tr>
+    <th colspan="<%= 2%>" class="region_stats">
+      <%= render 'side_panel/parts_used_in_table/accessories/green_triangle_image'%>
+      <%= locales_CEW.shipsBySizeClass %>
+    </th>
+</tr>
+</thead>
+
+<%
+   ship_category_size = get_number_of_ships_per_region_for_all_category region_name
+   ship_category_size.each do |key, value|
+%>
+    <tr >
+        <td class="text-left"><%=" #{key}:" %></td>
+        <td class="text-right"><%= value   %></td>
+    </tr>
+<% end %>

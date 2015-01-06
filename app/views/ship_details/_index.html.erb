@@ -5,30 +5,50 @@
       <%= link_to "&times;".html_safe ,
                   ship_details_close_path({region_name:@name_of_region,port_name:@name_of_port}),
                   class:"close", remote: true , method: :post %>
-        <h4 class="modal-title">Motor Vessel: <span class="ship_detail_color"><%= @name_of_ship %></span></h4>
+
+        <h4 class="modal-title">Motor Vessel:
+            <span class="ship_detail_color">
+                <%= @name_of_ship %>
+            </span>
+        </h4>
+        <h4 class="modal-title"><%= locales_CEW.openPort %>
+            <span class="ship_detail_color">
+                <%=  @get_open_port_and_date[:value][:name]  %>
+            </span>
+        </h4>
+        <h4 class="modal-title"><%= locales_CEW.openDate %>
+            <span class="ship_detail_color">
+                <%= @get_open_port_and_date[:value][:open_start_date].strftime("%b %d, %Y") %>
+            </span>
+        </h4>
+
     </div>
     <div class="container scroll_inside_table scroll_size_shipdetails">
 
       <div class="row">
         <div class="col-md-6 ship_details-portcall">
-          <% @ship_details = get_ship_details_blue_table @name_of_ship %>
+          <% @ship_details = get_ship_details_general_info @name_of_ship %>
+
              <%= image_tag("greentriangle_down.png", alt:"Greentriangle down"  , height:"16" , width:"16")  %>
+
               <span class="ship_details_inside_span_text_color">General Information</span>
+
           <table>
-            <tr>
-              <td>Vessel Name</td>
-              <td><%= @name_of_ship %></td>
-            </tr>
-            <tr>
-              <td>Open Port</td>
-              <td><%= @get_open_port_and_date[:value][:name] %></td>
-            </tr>
-            <tr>
-              <td>Open Date</td>
-              <td><%= @get_open_port_and_date[:value][:open_start_date] %></td>
-            </tr>
+            <!--<tr>-->
+              <!--<td>Vessel Name</td>-->
+              <!--<td><%= @name_of_ship %></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+              <!--<td>Open Port</td>-->
+              <!--<td><%= @get_open_port_and_date[:value][:name] %></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+              <!--<td><%= locales.capitalize_first_word.openDate %></td>-->
+                <!--&lt;!&ndash; date format ( Jan 12, 2015) &ndash;&gt;-->
+              <!--<td><%= @get_open_port_and_date[:value][:open_start_date].strftime("%b %d,%Y")%></td>-->
+            <!--</tr>-->
             <% @ship_details.as_json.each do |k, v| %>
-                <% unless v.nil? || v == 0 %>
+                <% unless v.blank? || v == 0 %>
                     <tr>
                       <td><%= k.humanize.capitalize %></td>
                       <% if !!v == v %>
@@ -48,7 +68,7 @@
           </table>
         </div>
 
-        <% @ship_details = get_ship_details_green_table @name_of_ship %>
+        <% @ship_details = get_ship_details_capacity @name_of_ship %>
         <% unless @ship_details[1]%>
         <div class="col-md-6 ship_details-portcall" >
 
@@ -57,7 +77,7 @@
 
           <table>
             <% @ship_details[0].as_json.each do |k, v| %>
-                <% unless v.nil? || v == 0 %>
+                <% unless v.blank? || v == 0 %>
                     <tr>
                       <td> <%= k.humanize.capitalize %> </td>
                       <% if !!v == v %>
@@ -79,7 +99,7 @@
         </div>
         <% end %>
 
-        <% @ship_details = get_ship_details_red_table @name_of_ship %>
+        <% @ship_details = get_ship_details_speed_and_consumption @name_of_ship %>
         <% unless @ship_details[1]%>
         <div class="col-md-6 ship_details-portcall">
               <%= image_tag("greentriangle_down.png", alt:"Greentriangle down"  , height:"16" , width:"16")  %>
@@ -88,7 +108,7 @@
           <table style="width:81.5%">
             <% #@table_one = @ship_details[0] %>
             <% @ship_details[0].as_json.each do |k, v| %>
-                <% unless v.nil? || v == 0 %>
+                <% unless v.blank? || v == 0 %>
                     <tr>
                       <td width="40%"><%= k.humanize.capitalize %></td>
                       <% if !!v == v %>
@@ -107,7 +127,7 @@
         </div>
         <% end %>
 
-        <% @ship_details = get_ship_details_yellow_table @name_of_ship %>
+        <% @ship_details = get_ship_details_EF_SC @name_of_ship %>
         <% unless @ship_details[1]%>
         <div class="col-md-6 ship_details-portcall">
               <%= image_tag("greentriangle_down.png", alt:"Greentriangle down"  , height:"16" , width:"16")  %>
@@ -116,7 +136,7 @@
           <table>
             <% #@table_one = @ship_details[0] %>
             <% @ship_details[0].as_json.each do |k, v| %>
-                <% unless v.nil? || v == 0 %>
+                <% unless v.blank? || v == 0 %>
                     <tr>
                       <td> <%= k.humanize.capitalize %> </td>
                       <% if !!v == v %>

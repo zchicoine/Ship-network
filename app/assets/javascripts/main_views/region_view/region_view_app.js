@@ -62,24 +62,24 @@ RegionViewApp.prototype.come_from_global_view = function(_regionView)
 
 RegionViewApp.prototype.come_from_region_view = function(_regionView)
 {
-    var _currentRegion = current_region();
+    var _currentRegion = current_region.value;
     var _regionObject =      region_objects_variable.return_object_region(_regionView.name);
-    _regionView.controller.clear_all_listeners_of_the_regions();
-    region_objects_variable.each_object().region_polygon_setOptions({'clickable': true});
-    _regionObject.region_polygon_setOptions({'clickable': false});
 
+
+    _regionView.controller.clear_all_listeners_of_the_regions();
+    // enable click on other regions within region layer
+    region_objects_variable.each_object().region_polygon_setOptions({'clickable': true});
+    // disable click on the region the user is seeing.
+    _regionObject.region_polygon_setOptions({'clickable': false});
     set_event_listeners_on_the_map_viewHelper(_regionView.name,_regionView);
 
     if (current_location.value == COME_FROM_MAP) {
-
-        _regionObject.default_map_navigate(_currentRegion);
-
+        _regionObject.update_map_navigate(_currentRegion);
     }else
     {
-
-        _regionObject.default_map_navigate();
-
+        _regionObject.update_map_navigate();
     }
+
     MAP.Controller.current_zoom_layer.value = REGION_LEVEL;
     _regionView.controller.map_customization(_regionView.name);
     _regionView.render();
@@ -91,23 +91,20 @@ RegionViewApp.prototype.come_from_port_view = function(_regionView)
     this.come_from_region_view(_regionView);
 }
 
-
 RegionViewApp.prototype.come_from_ship_view = function(_regionObject)
 {
 
-    var _currentRegion = current_region();
+    var _currentRegion = current_region.value;
 
     if (! GoogleMapAppInstance.is_map_shown()) {
 
         set_event_listeners_on_the_map_viewHelper(_currentRegion,_regionObject);
         region_objects_variable.each_object().set_map_label(MAP.google_map());
-        region_objects_variable.return_object_region(_currentRegion).default_map_navigate();
+        region_objects_variable.return_object_region(_currentRegion).update_map_navigate();
         _regionObject.draw();
     } else
     {
-
         _regionObject.draw();
-
     }
 }
 

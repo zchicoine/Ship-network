@@ -7,11 +7,12 @@ Rails.application.routes.draw do
     devise_for :brokers, controllers: { sessions: "brokers/sessions" }
 
     #--------------
-    post 'side_bar/index' => 'side_bar#index'
-    post 'side_bar/region_short_info' => 'side_bar#region_short_info'
-    post 'side_bar/broker_contact' => 'side_bar#broker_contact'
+    post 'side_panel/index' => 'side_panel#index'
+    post 'side_panel/region_short_info' => 'side_panel#region_short_info'
+    post 'side_panel/broker_contact' => 'side_panel#broker_contact'
     #--------------
     post  'google_map/port_coordinates' => 'google_map#port_coordinates'
+    post  'google_map/index' => 'google_map#index'
 
     #--------------
     post 'link_list_back_history/refresh' => 'link_list_back_history#refresh'

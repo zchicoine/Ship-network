@@ -1,6 +1,6 @@
 class UnitOfWork
     include Singleton
-    attr_accessor :_ship,:_port,:_shipment
+    attr_accessor :_ship,:_port,:_shipment,:_ship_detail
 
     def ship
         if _ship.nil?
@@ -19,6 +19,12 @@ class UnitOfWork
             return _shipment =  ShipmentBLL.new
         end
         _shipment
+    end
+    def ship_detail
+        if _ship_detail.nil?
+            return _ship_detail =  ShipDetailBLL.new
+        end
+        _ship_detail
     end
 
 end
