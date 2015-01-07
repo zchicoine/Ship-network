@@ -8,14 +8,12 @@ India_and_South_East_Asia_class = function () {
     Region_class.call(this);
     this.name = 'India and South East Asia';
     this.unique_identifier = this.name;
-    this.lat_lang = new google.maps.LatLng(17.686816,83.218482);
+    this.lat_lang =Region_Helper.indiaAndSEA_area_coord()[0];
 
-    this.areas_coordinates =
-    {
-        "Singapore":{ 'short_name':"S'pore",'coordinates':[1.352083,103.819836]},
-        "Vishakapatnam":{'short_name':"Vizag",'coordinates':[17.686816,83.218482]}
+    this.areas_coordinates = {};
+    this.areas_coordinates[Region_Helper.indiaAndSEA_area_names()[0]] = {'short_name':"S'pore",'coordinates':Region_Helper.indiaAndSEA_area_coord()[0]};
+    this.areas_coordinates[Region_Helper.indiaAndSEA_area_names()[1]] = {'short_name':"Vizag" ,'coordinates':Region_Helper.indiaAndSEA_area_coord()[1]};
 
-    };
     this.areas_coordinates = make_json_iterable(this.areas_coordinates);
 
     this.list_of_countries = [  "India" , "Sri Lanka" , "Bangladesh", "Myanmar" , "Thailand" , "Malaysia"

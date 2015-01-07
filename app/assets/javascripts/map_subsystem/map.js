@@ -1,6 +1,6 @@
 var MAP_DEFAULT_ZOOM = 2;
 var MAP_MINZOOM = 2;
-var   MAP_MAXZOOM = 4;
+var   MAP_MAXZOOM = 6;
 var MAP_DEFAULT_CENTER = [29.95,-90.06667];
 
 var MAP;

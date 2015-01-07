@@ -1,3 +1,6 @@
+# this module will not be used on release 0.6+
+# the functionally has been done throw javascript
+
 module LinkListBackHistoryHelperC
     include LevelDefine
 

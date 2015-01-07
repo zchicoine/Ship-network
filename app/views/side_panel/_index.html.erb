@@ -1,0 +1,49 @@
+<div class="aside_ship_details pull-right">
+<aside >
+
+
+    <table id="side_table" class="table" >
+        <thead >
+
+            <tr>
+                <td>
+                    <div >
+                        <table  class="aside_ship_details_table_head table informative_table dropshadow_sidebar radius-top-left-corner radius-top-right-corner ">
+                            <%= render 'side_panel/table_head/map_controller_panel' %>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+        </thead>
+        <tbody >
+            <tr>
+                <td>
+                    <div>
+                        <table class="aside_ship_details_table_body table informative_table short_region_info dropshadow_sidebar radius-top-left-corner radius-top-right-corner ">
+                            <%= render 'side_panel/table_body/global/index' %>
+                        </table>
+
+                    </div>
+                </td>
+            </tr>
+
+        </tbody>
+
+        <tfoot>
+        <tr>
+            <td>
+                <div>
+                    <table class="aside_ship_details_table_foot table informative_table dropshadow_sidebar radius-bottom-left-corner radius-bottom-right-corner ">
+                        <%= render 'side_panel/table_foot/total_deadweight' %>
+                    </table>
+
+                </div>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+
+
+
+</aside>
+</div>

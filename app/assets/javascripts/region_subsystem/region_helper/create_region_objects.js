@@ -122,7 +122,7 @@ Regions_Objects.prototype.regions_objects_json= function(){
 }
 Regions_Objects.prototype.each_object = function(){
 
-    return new Region_Functionality();
+    return new Region_Helper.Region_Functionality();
 
 
 }

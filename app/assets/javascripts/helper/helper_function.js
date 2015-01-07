@@ -4,10 +4,10 @@
  * @returns {boolean}
  */
 var string_match = function(string){
-    if (!(string.match(/[a-zA-Z]/i)) )
-        return false;
+    if (string  && (string.match(/[a-zA-Z]/i)) )
+        return true;
 
-    return true;
+    return false;
 };
 
 var remove_white_space = function(name){
@@ -21,11 +21,26 @@ var remove_white_space = function(name){
  * pword: the pluralize form of the word
  * return the word either pluralize or not based on the value of the number
  */
-var pluralize_word = function(number,word,pword)
+var pluralize_word = function(number,word,ppluralize_word)
 {
-    if(string_match(word) && string_match(pword))
+    if(string_match(word) && string_match(ppluralize_word))
     if(number > 1 && ! isNaN(number))
-        return pword;
+        return ppluralize_word;
 
     return word;
+}
+
+
+/***
+ *  check if the passing parameter is a function
+ * @param fun
+ * return boolean: true or false
+ */
+var isFunction = function(fun)
+{
+    if (typeof(fun) == "function" && typeof fun !== "undefined" && fun)
+        return true;
+
+    return false;
+
 }

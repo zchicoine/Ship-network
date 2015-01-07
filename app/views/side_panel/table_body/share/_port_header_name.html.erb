@@ -1,0 +1,17 @@
+<thead class="table_after_clicking_on_a_port ">
+<tr>
+    <th class="text-left">
+        <small>Port: </small><%=  @side_info[:port_name]%>
+    </th>
+    <th class="text-right" >
+        <%= @ships_at_port.size %>
+        <%= pluralize_word @ships_at_port.size , 'Ship', 'Ships' %>
+    </th>
+</tr>
+
+</thead>
+<tr>
+    <td colspan="<%= 2%>">
+
+    </td>
+</tr>

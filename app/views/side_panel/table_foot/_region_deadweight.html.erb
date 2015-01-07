@@ -1,0 +1,12 @@
+<thead>
+<tr>
+  <th  class="radius-bottom-left-corner ">
+    Total Deadweight:
+  </th>
+  <th class="radius-bottom-right-corner">
+    <% _deadweight =  get_total_deadweight_for_total_ships_per_region  region_name %>
+    <%= number_with_delimiter(_deadweight, :delimiter => ',')%> MTS
+  </th>
+
+</tr>
+</thead>

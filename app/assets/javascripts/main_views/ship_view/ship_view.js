@@ -4,6 +4,8 @@
 var ShipView;
 ShipView = function(name){
     this.name = name;
+    this.display_name = this.name;
+
     this.html_classnames =
     {
         "side_panel":
@@ -53,7 +55,7 @@ ShipView.prototype.controller = {
 ShipView.prototype.render = function(){
 
     send_data_to_side_bar(this.name , SHIP_LEVEL);
-    refresh_link_list_back_history(this.name,SHIP_LEVEL);
+    Back_History.link_list(this.display_name,this.name,SHIP_LEVEL);
     //$(this.html_classnames.current_location.body).html(this.name); // this feature is turn off
 }
 

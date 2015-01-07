@@ -1,0 +1,41 @@
+<thead class="table_after_clicking_on_a_port text-left">
+<tr>
+    <th colspan="<%= 2%>">
+      <%= render 'side_panel/parts_used_in_table/accessories/green_triangle_image'%>
+        Ships in port
+    </th>
+</tr>
+</thead>
+
+
+<tbody class="ship-list">
+<tr >
+    <td colspan="<%= 2%>">
+        <div class="scroll_inside_table scroll_size_sidebar">
+            <table class="table table-hover text-left">
+                <% @ships_at_port.each do |ship|%>
+                    <tr >
+                        <td>
+
+                            <li class="ship_name_on_side_bar btn btn-link" id="<%= "#{ship[:name]}_#{@side_info[:port_name]}_#{@side_info[:region_name]}"  %>" onclick="highlight_on_a_list(this)">
+                                <%= ship[:name] %>
+                            </li>
+
+                        </td>
+                        <td>
+                            <% if ship[:vessel_type].nonzero? %>
+                              <%= ship.vessel_type%>
+                            <% end  %>
+                         </td>
+                    </tr>
+                <%end%>
+
+            </table>
+        </div>
+    </td>
+</tr>
+</tbody>
+<tbody id="ship-details-section">
+
+
+</tbody>

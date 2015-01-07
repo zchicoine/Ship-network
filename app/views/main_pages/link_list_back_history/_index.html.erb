@@ -2,21 +2,4 @@
 
 
 
-        <%
-           first = true
-           @linklist_back_history['name'].zip(@linklist_back_history['url']).each do |name, url|
-        %>
-        <% if first %>
-          <%= link_to name  , url , method: :get %>
-        <%
-           first = false
-           else
-        %>
-            >>
-        <%= link_to name  , url , method: :post, remote:true %>
-        <% end %>
-
-
-    <% end %>
-
 </div>
