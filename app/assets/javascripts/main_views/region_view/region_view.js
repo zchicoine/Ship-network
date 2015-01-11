@@ -102,6 +102,6 @@ RegionView.prototype.draw = function()
 {
     MAP.Controller.current_zoom_layer.value = REGION_LEVEL;
     this.controller.map_customization(this.name);
-    MAP_Navigate.default_map_navigate(this.name);
+    MapNavigateInstance.default_map_navigate(this.name);
     this.render();
 }

@@ -60,7 +60,7 @@ Africa_class.prototype.update_map_navigate = function(come_from)
         default_area = "Tripoli LY";
     }
 
-    MAP_Navigate.default_map_navigate(this.name,default_area);
+    MapNavigateInstance.default_map_navigate(this.name,default_area);
 
 }
 

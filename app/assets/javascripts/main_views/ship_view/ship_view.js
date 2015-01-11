@@ -62,6 +62,7 @@ ShipView.prototype.render = function(){
 ShipView.prototype.draw = function(){
     MAP.Controller.current_zoom_layer.value = SHIP_LEVEL;
     this.controller.map_customization();
+    MapNavigateInstance.update_map_navigate_label_and_tooltip("","","","");
     this.render();
 }
 

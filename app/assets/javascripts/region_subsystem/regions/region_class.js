@@ -47,7 +47,7 @@ Region_class.prototype.update_map_navigate = function(come_from)
 {
 
     var default_area = "North America";
-    MAP_Navigate.default_map_navigate(this.name,default_area);
+    MapNavigateInstance.default_map_navigate(this.name,default_area);
 
 }
 Region_class.prototype.scroll_between_specific_areas = function (navigate_direction){
@@ -63,7 +63,7 @@ Region_class.prototype.scroll_between_specific_areas = function (navigate_direct
         store_navigate_now =  store_navigate_back ;
         store_navigate_back = this.areas_coordinates[store_navigate_now].back;
     }
-    MAP_Navigate.update_map_navigate_label_and_tooltip(this.areas_coordinates[store_navigate_back]['short_name'],this.areas_coordinates[store_navigate_next]['short_name'],store_navigate_back,store_navigate_next);
+    MapNavigateInstance.update_map_navigate_label_and_tooltip(this.areas_coordinates[store_navigate_back]['short_name'],this.areas_coordinates[store_navigate_next]['short_name'],store_navigate_back,store_navigate_next);
     MAP.google_methods.set_center(new google.maps.LatLng(this.areas_coordinates[store_navigate_now]['coordinates'][0],this.areas_coordinates[store_navigate_now]['coordinates'][1]));
 
 

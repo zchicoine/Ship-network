@@ -66,6 +66,7 @@ PortView.prototype.render = function(){
 PortView.prototype.draw = function(){
     MAP.Controller.current_zoom_layer.value = PORT_LEVEL;
     this.controller.map_customization(this.coordinates);
+    MapNavigateInstance.update_map_navigate_label_and_tooltip("","","","");
     this.render();
 }
 
