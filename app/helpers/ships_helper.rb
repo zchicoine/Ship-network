@@ -11,7 +11,8 @@ module ShipsHelper
     def get_vessel_type_name(number)
         if(number == 0)
             return nil
+        else
+            ShipBLL.vessel_types.keys[number].upcase
         end
-        ShipBLL.vessel_types.keys[number].upcase
     end
 end
