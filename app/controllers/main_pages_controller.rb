@@ -15,6 +15,16 @@ class MainPagesController < ApplicationController
           redirect_to(controller: 'admin', action: 'index')
         end
 
+        admin = Broker.find_by(username: 'Admin')
+        if (admin.nil?)
+        begin
+          Broker.create!(username: "Admin", password: "database", admin: true, email: "admin@shipnetwork.com")
+
+        rescue => e
+          puts "#{e.message} for broker Admin"
+        end
+        end
+
     end
 
     # def loginpage
