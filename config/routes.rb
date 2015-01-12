@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     #--------------
     get 'admin/index'
     post 'admin/update_ships_table' => 'admin#update_ships_table'
+    match '/upload_ports_file', to: 'admin#upload_ports_file', via: 'post'
+    match '/upload_ships_file', to: 'admin#upload_ships_file', via: 'post'
     #--------------
     post 'side_bar/index' => 'side_bar#index'
     post 'side_bar/region_short_info' => 'side_bar#region_short_info'
