@@ -1,4 +1,5 @@
-# encoding: utf-8
+#encoding: UTF-8
+require "json"
 class AdminController < ApplicationController
 #  include  AdminHelperC
 
@@ -28,6 +29,26 @@ class AdminController < ApplicationController
     @error_messages_for_shipments
     update_broker
     render ('update_ships_table')
+  end
+
+  def upload_ports_file
+   # encoding: UTF-8
+    #file_content = File.open("test.txt", "r:UTF-8", &:read)
+    uploaded_io = params[:ports]
+    File.open(Rails.root.join('public', uploaded_io.original_filename), 'wb') do |file|
+      file.write(uploaded_io.read)
+    end
+    flash[:notice] = "File uploaded"
+    render "index"
+  end
+
+  def upload_ships_file
+    uploaded_io = params[:ships]
+    File.open(Rails.root.join('public', uploaded_io.original_filename), 'wb') do |file|
+      file.write(uploaded_io.read)
+    end
+    flash[:notice] = "File uploaded"
+    render "index"
   end
 
   def update_port_db
