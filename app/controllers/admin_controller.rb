@@ -32,8 +32,7 @@ class AdminController < ApplicationController
   end
 
   def upload_ports_file
-   # encoding: UTF-8
-    #file_content = File.open("test.txt", "r:UTF-8", &:read)
+    # encoding: UTF-8
     uploaded_io = params[:ports]
     File.open(Rails.root.join('public', uploaded_io.original_filename), 'wb') do |file|
       file.write(uploaded_io.read)
