@@ -1,3 +1,16 @@
-<h1>Admin#index</h1>
-<p>Find me in app/views/admin/index.html.erb</p>
-<%= button_to "Update Vessel Information", action: "update_ships_table" %>
+<h1>Admin</h1>
+<p>Instructions: go to Google Drive and open the Ship spreadsheet. Click on Export JSON then select all the text (ctrl + A) then copy it into a text file. Upload the resuling text file here.</p>
+<label>Ports File (port_data.json)</label>
+<%= form_tag({action: :upload_ports_file}, multipart: true) do %>
+    <%= file_field_tag 'ports' %>
+    <%= submit_tag %>
+<% end %>
+
+<label>Ships File (ship_data.json)</label>
+<%= form_tag({action: :upload_ships_file}, multipart: true) do %>
+    <%= file_field_tag 'ships' %>
+    <%= submit_tag %>
+<% end %>
+<label>Update Database</label>
+<%= button_to "Update Database Information", action: "update_ships_table" %>
+
