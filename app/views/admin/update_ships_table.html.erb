@@ -1,2 +1,16 @@
-<h1>Updated ships</h1>
+<h2>Updated ships</h2>
 
+<table>
+  <% @error_messages_for_ships.each do |item| %>
+          <tr>
+            <td><%= item %></td>
+  <% end %>
+          </tr>
+
+  <% @error_messages_for_ports.each do |item| %>
+      <tr>
+        <td><%= item %></td>
+  <% end %>
+  </tr>
+
+</table>
