@@ -50,17 +50,15 @@ class AdminController < ApplicationController
   end
 
   def update_port_db
+    begin
     tempHash = {}
     open_json_ports_file = File.open(Rails.root.join('public', 'port_data.json'))
     read_file = open_json_ports_file.read
     hash_object = JSON.parse(read_file)
     error_for_ports = Array.new
-    error_for_ports << 'port'
-    begin
-      hash_object.each do |port|
 
-        # to support non-ascii characters like é for example
-        #port.encode!('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '')
+
+      hash_object.each do |port|
 
         region, @name, latitude, longitude = port['region'].to_s, port['portNames'].to_s, port['latitudeDecimal'].to_f,
             port['longitudeDecimal'].to_f
@@ -72,10 +70,10 @@ class AdminController < ApplicationController
 
         unless alternative_port_names_array.empty?
           alternative_port_names_array.each do |alt_name|
-            tempHash[alt_name.to_s.downcase] = @name.to_s.downcase
+            tempHash[alt_name.to_s.strip.downcase] = @name.to_s.downcase
           end
         end
-        tempHash[@name.to_s.downcase] = @name.to_s.downcase           #add also the real name of the port to map to itself
+        tempHash[@name.to_s.strip.downcase] = @name.to_s.downcase           #add also the real name of the port to map to itself
 
 
 
@@ -104,7 +102,6 @@ class AdminController < ApplicationController
     read_file = open_json_ships_file.read
     hash_object = JSON.parse(read_file)
     error_for_ships = Array.new
-    error_for_ships << 'ship'
     begin
       hash_object.each do |ship|
 
@@ -200,11 +197,15 @@ class AdminController < ApplicationController
         end
         # The ship object in this loop also contains the open port and open date, so after updating the ship info,
         # we can can create the shipment (By this moment in the code, the port json file has already been used to update the database)
-
-        open_port = hash_port_names_object[ship['openPort'].to_s.downcase]        # Look for the port where this ship is supposed to be
+        port_name = ship['openPort'].to_s.downcase
+        open_port = hash_port_names_object[ship['openPort'].to_s.strip.downcase]        # Look for the port where this ship is supposed to be
         port = Port.find_by_name(open_port)
         vessel = Ship.find_by_name(ship['motorVessel'].to_s.downcase)
         # We then get the open date
+        # Since we might not have the open port, we store the name
+        if (hash_port_names_object[ship['openPort'].to_s.strip.downcase].nil?)
+        error_for_ships << "This port is not in the database --> " + ship['openPort'].to_s
+        end
         next if (ship['openDate'].nil? or ship['openPort'].nil?)
         open_date_string = ship['openDate'].to_s
         date, time = open_date_string.split("T")
