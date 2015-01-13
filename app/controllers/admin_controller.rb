@@ -204,7 +204,7 @@ class AdminController < ApplicationController
         # We then get the open date
         # Since we might not have the open port, we store the name
         if (hash_port_names_object[ship['openPort'].to_s.strip.downcase].nil?)
-        error_for_ships << "This port is not in the database --> " + ship['openPort'].to_s
+        error_for_ships << "This open port is not in the port database for port name nor alternative port name --> " + ship['openPort'].to_s
         end
         next if (ship['openDate'].nil? or ship['openPort'].nil?)
         open_date_string = ship['openDate'].to_s
