@@ -33,22 +33,22 @@ class AdminController < ApplicationController
   end
 
   def upload_ports_file
-    # encoding: UTF-8
-
 #    cd = CharDet.detect(params[:ports].read)
 #    encoding = cd['encoding']
 #    string_port.encode!('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '')
+
+    # Upload a file
     string_port = params[:ports].read.encode!('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '')
-    File.open(Rails.root.join('public', params[:ports].original_filename), 'wb') do |file|
+    File.open(Rails.root.join('public', 'port_data.json'), 'wb') do |file|   # open a directory in the app where to save the file
           file.write(string_port)
     end
-    flash[:notice] = "File uploaded"
+    flash[:notice] = "File uploaded"   # This is not yet used in front end
     render "index"
   end
 
   def upload_ships_file
     string_ship = params[:ships].read.encode!('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '')
-    File.open(Rails.root.join('public', params[:ships].original_filename), 'wb') do |file|
+    File.open(Rails.root.join('public', 'ship_data.json'), 'wb') do |file|
       file.write(string_ship)
     end
     flash[:notice] = "File uploaded"
@@ -216,9 +216,7 @@ class AdminController < ApplicationController
         year, month, day = date.to_s.split("-")
         start_date = Date.new(year.to_i, month.to_i, day.to_i)
 
-        unless vessel.nil?
-          Shipment.create(ship: vessel, open_start_date: start_date, open_end_date: start_date.advance({days: 5}), port: port)
-        end
+        Shipment.create(ship: vessel, open_start_date: start_date, open_end_date: start_date.advance({days: 5}), port: port)
       end
 
 
@@ -238,19 +236,13 @@ class AdminController < ApplicationController
                            email: "brokers@sterlingoceantransport.com", shipments: all_shipments, website:"www.sterlingoceantransport.com",
                            telephone:"+1(514)807-3707", country:"Canada", city:"Montreal")
           else
-            zack.update(shipments: all_shipments)
+            zack.shipments = all_shipments
           end
 
         rescue => e
           puts "#{e.message} for broker Zack"
         end
 
-        begin
-          Broker.create!(username: "Admin", password: "database", admin: true, email: "admin@shipnetwork.com")
-
-        rescue => e
-          puts "#{e.message} for broker Admin"
-        end
   end
 
   def return_boolean(attribute)
