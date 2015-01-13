@@ -4,13 +4,7 @@ require "json"
 class AdminController < ApplicationController
 #  include  AdminHelperC
 
-  before_action :require_admin_authentification #the admin controller has to be protected to only let admins in.
-  @@error_messages = Array.new
-  def require_admin_authentification
-    unless current_broker.try(:admin?)
-      redirect_to root_path                    #if a broker tries to view an admin page/action, they will be redirected to the main page.
-    end
-  end
+  before_action :require_admin_authentication #the admin controller has to be protected to only let admins in.
 
   def index
       render ('index')  #render the admin view. The main page controller calls this action after the admin logs in
@@ -114,7 +108,7 @@ class AdminController < ApplicationController
     begin
       hash_object.each do |ship|
 
-        @name, deadweight, deadweight_cargo_capacity, vessel_type = ship['motorVessel'].force_encoding('UTF-8'), ship['deadweight'], ship['deadweightCargoCapacity'],
+        @name, deadweight, deadweight_cargo_capacity, vessel_type = ship['motorVessel'], ship['deadweight'], ship['deadweightCargoCapacity'],
             ship['typeOfVessel']
 
         deadweight = deadweight.to_i
@@ -209,6 +203,7 @@ class AdminController < ApplicationController
 
         open_port = hash_port_names_object[ship['openPort'].to_s.downcase]        # Look for the port where this ship is supposed to be
         port = Port.find_by_name(open_port)
+        vessel = Ship.find_by_name(ship['motorVessel'].to_s.downcase)
         # We then get the open date
         next if (ship['openDate'].nil? or ship['openPort'].nil?)
         open_date_string = ship['openDate'].to_s
@@ -243,6 +238,12 @@ class AdminController < ApplicationController
           puts "#{e.message} for broker Zack"
         end
 
+  end
+
+  def require_admin_authentication
+    unless current_broker.try(:admin?)
+      redirect_to root_path                    #if a broker tries to view an admin page/action, they will be redirected to the main page.
+    end
   end
 
   def return_boolean(attribute)
