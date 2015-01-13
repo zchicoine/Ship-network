@@ -57,10 +57,10 @@ class Ship < ActiveRecord::Base
                         errors.add(:vessel_category, "vessel_category doesn't correspond to deadweight")
                     end
             end
-        else
-          if (deadweight_cargo_capacity == 0)
-               errors.add(:deadweight_cargo_capacity, "Either deadweight or deadweight cargo capacity must be present")
-          end
+        #else
+         # if (deadweight_cargo_capacity == 0)
+         #   errors.add(:deadweight_cargo_capacity, "Either deadweight or deadweight cargo capacity must be present")
+         # end
         end
 
     end
