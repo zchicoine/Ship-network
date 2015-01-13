@@ -9,22 +9,12 @@ class MainPagesController < ApplicationController
         
         create_history
 
-
     # Redirect admin to the admin view (through its controller)
         if current_broker.try(:admin?)
           redirect_to(controller: 'admin', action: 'index')
         end
 
-        admin = Broker.find_by(username: 'Admin')
-        if (admin.nil?)
-        begin
-          Broker.create!(username: "Admin", password: "database", admin: true, email: "admin@shipnetwork.com")
-
-        rescue => e
-          puts "#{e.message} for broker Admin"
-        end
-        end
-
+        create_admin_if_none_exists
     end
 
     # def loginpage
@@ -66,4 +56,17 @@ class MainPagesController < ApplicationController
         end
 
     end
+
+    def create_admin_if_none_exists
+      admin = Broker.find_by(username: 'Admin')
+      if (admin.nil?)
+        begin
+          Broker.create!(username: "Admin", password: "database", admin: true, email: "admin@shipnetwork.com")
+
+        rescue => e
+          puts "#{e.message} for broker Admin"
+        end
+      end
+    end
+
 end
