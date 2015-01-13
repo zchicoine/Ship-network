@@ -1,11 +1,12 @@
 <h2>Updated ships</h2>
 
+<% begin %>
 <table>
   <% @error_messages_for_ships.each do |item| %>
-          <tr>
-            <td><%= item %></td>
+      <tr>
+        <td><%= item %></td>
   <% end %>
-          </tr>
+  </tr>
 
   <% @error_messages_for_ports.each do |item| %>
       <tr>
@@ -14,3 +15,6 @@
   </tr>
 
 </table>
+<% rescue => e %>
+<%= e.message %>
+<% end %>
