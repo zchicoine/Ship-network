@@ -1,5 +1,6 @@
-#encoding: UTF-8
 require "json"
+#require "rchardet"
+
 class AdminController < ApplicationController
 #  include  AdminHelperC
 
@@ -33,18 +34,22 @@ class AdminController < ApplicationController
 
   def upload_ports_file
     # encoding: UTF-8
-    uploaded_io = params[:ports]
-    File.open(Rails.root.join('public', uploaded_io.original_filename), 'wb') do |file|
-      file.write(uploaded_io.read)
+
+#    cd = CharDet.detect(params[:ports].read)
+#    encoding = cd['encoding']
+#    string_port.encode!('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '')
+    string_port = params[:ports].read.encode!('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '')
+    File.open(Rails.root.join('public', params[:ports].original_filename), 'wb') do |file|
+          file.write(string_port)
     end
     flash[:notice] = "File uploaded"
     render "index"
   end
 
   def upload_ships_file
-    uploaded_io = params[:ships]
-    File.open(Rails.root.join('public', uploaded_io.original_filename), 'wb') do |file|
-      file.write(uploaded_io.read)
+    string_ship = params[:ships].read.encode!('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '')
+    File.open(Rails.root.join('public', params[:ships].original_filename), 'wb') do |file|
+      file.write(string_ship)
     end
     flash[:notice] = "File uploaded"
     render "index"
@@ -173,11 +178,12 @@ class AdminController < ApplicationController
         unless vessel.nil?
           vessel.update!(vessel_type: temp, deadweight: deadweight.to_i, deadweight_cargo_capacity: deadweight_cargo_capacity.to_i,
                         vessel_category: category_name.to_i)
-        else if !(ship['deadweight'].nil? and ship['deadweightCargoCapacity'].nil?)
+        end
+        if !(ship['deadweight'].nil? and ship['deadweightCargoCapacity'].nil?)
           vessel = Ship.create(name: @name.to_s, vessel_type: temp, deadweight: deadweight.to_i, deadweight_cargo_capacity: deadweight_cargo_capacity.to_i,
                                 vessel_category: category_name.to_i)
-             end
         end
+
 
         draft, built = ship['draft'].to_f, ship['yearBuilt'].to_i
 
@@ -210,8 +216,9 @@ class AdminController < ApplicationController
         year, month, day = date.to_s.split("-")
         start_date = Date.new(year.to_i, month.to_i, day.to_i)
 
-        Shipment.create(ship: vessel, open_start_date: start_date, open_end_date: start_date.advance({days: 5}), port: port)
-
+        unless vessel.nil?
+          Shipment.create(ship: vessel, open_start_date: start_date, open_end_date: start_date.advance({days: 5}), port: port)
+        end
       end
 
 
@@ -222,12 +229,17 @@ class AdminController < ApplicationController
   end
 
   def update_broker
-    Broker.destroy_all
+#    Broker.destroy_all
         begin
-        all_shipments = Shipment.all
-          Broker.create!(username: "Zack", password: "shipment", company: "Sterling Ocean Transport Inc.",
-                         email: "brokers@sterlingoceantransport.com", shipments: all_shipments, website:"www.sterlingoceantransport.com",
-                         telephone:"+1(514)807-3707", country:"Canada", city:"Montreal")
+          all_shipments = Shipment.all
+          zack = Broker.find_by(username: 'Zack')
+          if (zack.nil?)
+            Broker.create!(username: "Zack", password: "shipment", company: "Sterling Ocean Transport Inc.",
+                           email: "brokers@sterlingoceantransport.com", shipments: all_shipments, website:"www.sterlingoceantransport.com",
+                           telephone:"+1(514)807-3707", country:"Canada", city:"Montreal")
+          else
+            zack.update(shipments: all_shipments)
+          end
 
         rescue => e
           puts "#{e.message} for broker Zack"
