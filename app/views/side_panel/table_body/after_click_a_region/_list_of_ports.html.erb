@@ -1,0 +1,32 @@
+<thead class="table_after_clicking_on_a_region text-left">
+<tr>
+    <th colspan="<%= 2%>">
+        <%= render 'side_panel/parts_used_in_table/accessories/green_triangle_image'%>
+        List of Ports
+    </th>
+</tr>
+</thead>
+<tr>
+    <td colspan="<%= 2%>">
+        <div class="scroll_inside_table scroll_size_sidebar" style="overflow: auto; height: 150px; padding: 4px">
+
+
+            <table class="table table-hover text-left">
+                <%  ports_list = get_name_of_ports_and_coordinates_per_region region_name
+                %>
+                <% ports_list.each do  |port|%>
+
+                    <tr >
+                        <td>
+                            <%= link_to port[:name],
+                                        main_pages_port_path(port_info: {port_name: port[:name], port_coordinates: {latitude: port[:latitude], longitude: port[:longitude] } }),
+                                        :remote => true, method: :post
+                            %>
+                        </td>
+                    </tr>
+                <% end %>
+            </table>
+
+        </div>
+    </td>
+</tr>

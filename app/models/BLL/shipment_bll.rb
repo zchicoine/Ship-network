@@ -15,7 +15,7 @@ class ShipmentBLL < Shipment
                                          broker_website:result[:website] ,broker_telephone:result[:telephone],broker_country:result[:country],
                                         broker_city:result[:city],
                                         deadweight_cargo_capacity: result[:deadweight_cargo_capacity],deadweight: result[:deadweight],
-                                         open_start_date: result[:open_start_date],open_end_date:  result[:open_end_date],
+                                         open_start_date: result[:open_start_date].to_date,open_end_date:  result[:open_end_date].to_date,
                                          vessel_category: result[:vessel_category], ship_name:  ship_name ,  port_name:  port_name
                                         }
             return {value: coverted_to_ruby_hash, error: nil}
@@ -25,11 +25,11 @@ class ShipmentBLL < Shipment
 
     end
 
-    def get_open_port_and_date ship_name = "", port_name = ""
+    def get_open_port_date_and_end ship_name = "", port_name = ""
       result = ShipBLL.joins(:ports).select("shipments.open_start_date","shipments.open_end_date", "ports.name").where(
           "ports.name" => port_name,name:ship_name).execute_query 1
       unless result.blank?
-        coverted_to_ruby_hash = {open_start_date: result[:open_start_date], open_end_date: result[:open_end_date], name: result[:name] }
+        coverted_to_ruby_hash = {open_start_date: result[:open_start_date].to_date , open_end_date: result[:open_end_date].to_date, name: result[:name] }
         return {value: coverted_to_ruby_hash, error: nil}
       else
         return {value: 0, error: "Error:  #{ship_name }  and  #{port_name} has no relationship "}
@@ -85,5 +85,15 @@ class ShipmentBLL < Shipment
         end
     end
 
+    # return total number of ships global,
+    # each ship will be count once
+    def get_total_number_of_ships_count_once
+       result = Shipment.distinct().count(:ship_id)
+        unless result.blank?
+            return {value: result, error:nil}
+        else
+            return {value: 0, error: "Error: in ShipmentBLL get_total_number_of_ships_count_once()"}
+        end
+    end
 
 end

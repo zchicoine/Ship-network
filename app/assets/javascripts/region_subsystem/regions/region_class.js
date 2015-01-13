@@ -11,7 +11,7 @@ Region_class = function () {
         "South America":{'short_name':"SA",'coordinates':[-12.05,-77.16667]},
         "Africa":{'short_name':"Africa",'coordinates':[4.05000,9.700000]},
         "Europe":{'short_name':"Europe",'coordinates':[52.3666,4.8999]},
-        "Arabia and Persian Gulf":{'short_name':"A & PG",'coordinates':[-30.559482,22.937506]},
+        "Arabia and Persian Gulf":{'short_name':"A & PG",'coordinates':[33.1376, 47.6367]},
         "India and South East Asia":{'short_name':"SEA",'coordinates':[17.686816,83.218482]},
         "Australia":{'short_name':"Aus",'coordinates':[-32.926689,151.778921]},
         "Far East":{'short_name':"F.E.",'coordinates':[35.179554,129.075642]}
@@ -43,22 +43,11 @@ var store_navigate_next;
     come_from: Global, Region: name of the region should be pass, Port, Ship.
     this the default implementation, each drive class should override this for different implementation
  */
-Region_class.prototype.default_map_navigate = function(come_from)
+Region_class.prototype.update_map_navigate = function(come_from)
 {
 
-    var json_arry_keys =  $.map(this.areas_coordinates, function(values,keys) {return keys;});
-    var keyIndex =   json_arry_keys.indexOf("North America");
-    keyIndex = keyIndex < 0? 0: keyIndex;
-    // at function is part of sugar.js
-    store_navigate_back =   json_arry_keys.at((keyIndex - 1)) ;
-    store_navigate_now =  json_arry_keys.at(keyIndex);
-    store_navigate_next = json_arry_keys.at((keyIndex + 1));
-    console.log(store_navigate_next);
-    var back =  this.areas_coordinates[store_navigate_back]['short_name'];
-    var next =  this.areas_coordinates[store_navigate_next]['short_name'];
-
-
-    update_map_navigate_label_and_tooltip(back,next,store_navigate_back,store_navigate_next);
+    var default_area = "North America";
+    MapNavigateInstance.default_map_navigate(this.name,default_area);
 
 }
 Region_class.prototype.scroll_between_specific_areas = function (navigate_direction){
@@ -74,16 +63,22 @@ Region_class.prototype.scroll_between_specific_areas = function (navigate_direct
         store_navigate_now =  store_navigate_back ;
         store_navigate_back = this.areas_coordinates[store_navigate_now].back;
     }
-    update_map_navigate_label_and_tooltip(this.areas_coordinates[store_navigate_back]['short_name'],this.areas_coordinates[store_navigate_next]['short_name'],store_navigate_back,store_navigate_next);
+    MapNavigateInstance.update_map_navigate_label_and_tooltip(this.areas_coordinates[store_navigate_back]['short_name'],this.areas_coordinates[store_navigate_next]['short_name'],store_navigate_back,store_navigate_next);
     MAP.google_methods.set_center(new google.maps.LatLng(this.areas_coordinates[store_navigate_now]['coordinates'][0],this.areas_coordinates[store_navigate_now]['coordinates'][1]));
 
 
 }
 Region_class.prototype.set_map_label = function(map){
 
+    // check weather a label position is an array object or google.map.LatLng object.
+    // if it is an array then convert to google.map.LatLng object.
+    var label_position = this.map_properties['label_position'];
+    if( Object.prototype.toString.call( label_position ) === '[object Array]'){
+        label_position = new google.maps.LatLng(label_position[0], label_position[1])
+    }
     new Label({
         text: this.map_properties['label'],
-        position: this.map_properties['label_position'],
+        position: label_position,
         map: map
     });
 }

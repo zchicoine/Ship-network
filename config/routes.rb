@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
     root 'main_pages#index'
@@ -14,11 +12,12 @@ Rails.application.routes.draw do
     match '/upload_ports_file', to: 'admin#upload_ports_file', via: 'post'
     match '/upload_ships_file', to: 'admin#upload_ships_file', via: 'post'
     #--------------
-    post 'side_bar/index' => 'side_bar#index'
-    post 'side_bar/region_short_info' => 'side_bar#region_short_info'
-    post 'side_bar/broker_contact' => 'side_bar#broker_contact'
+    post 'side_panel/index' => 'side_panel#index'
+    post 'side_panel/region_short_info' => 'side_panel#region_short_info'
+    post 'side_panel/broker_contact' => 'side_panel#broker_contact'
     #--------------
     post  'google_map/port_coordinates' => 'google_map#port_coordinates'
+    post  'google_map/index' => 'google_map#index'
 
     #--------------
     post 'link_list_back_history/refresh' => 'link_list_back_history#refresh'

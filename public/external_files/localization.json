@@ -1,0 +1,27 @@
+[
+  {
+    "miniBulker": "Mini Bulker",
+    "handysize": "Handysize",
+    "handymax": "Handymax",
+    "supramax": "Supramax",
+    "panamax": "Panamax",
+    "postPanamax": "Post Panamax",
+    "capesize": "Capesize +",
+    "shipsBySizeClass": "Ships by Size Class",
+    "websiteName": "The Ship Network",
+    "shipsByRegion": "Ships by Region",
+    "openPort": "Open Port",
+    "openDate": "Open Date",
+    "sizeClass": "Size Class"
+  },
+  {
+    "miniBulker": "Mini bulker",
+    "postPanamax": "Post panamax",
+    "openPort": "Open port",
+    "openDate": "Open date",
+    "sizeClass": "Size class"
+  },
+  {
+    "sizeClass": "SIZE CLASS"
+  }
+]

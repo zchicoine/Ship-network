@@ -1,0 +1,101 @@
+{
+  "overview": [
+    {
+      "region": "North America",
+      "coordinates": "29.95,-90.06667",
+      "labelCoordinates": "48.2893, -99.3594",
+      "alternativeNames1": "NORTH AMERICA",
+      "alternativeNames2": "North America"
+    },
+    {
+      "region": "South America",
+      "coordinates": "-12.05,-77.16667",
+      "labelCoordinates": "-10.4893, -59.3594",
+      "alternativeNames1": "SOUTH AMERICA",
+      "alternativeNames2": "South America"
+    },
+    {
+      "region": "Africa",
+      "coordinates": "4.05000,9.700000",
+      "labelCoordinates": "17.6493, 11.5994",
+      "alternativeNames1": "AFRICA",
+      "alternativeNames2": "Africa"
+    },
+    {
+      "region": "Europe",
+      "coordinates": "52.3666,4.8999",
+      "labelCoordinates": "53.1289, 45.1102",
+      "alternativeNames1": "EUROPE",
+      "alternativeNames2": "Europe"
+    },
+    {
+      "region": "Arabia and Persian Gulf",
+      "coordinates": "33.1376, 47.6367",
+      "labelCoordinates": "33.1376, 47.6367",
+      "alternativeNames1": "ARABIA & PG",
+      "alternativeNames2": "Arabia & PG"
+    },
+    {
+      "region": "India and South East Asia",
+      "coordinates": "17.686816,83.218482",
+      "labelCoordinates": "24.4471,85.1660",
+      "alternativeNames1": "INDIA & SE ASIA",
+      "alternativeNames2": "India & SE Asia"
+    },
+    {
+      "region": "Australia",
+      "coordinates": "-32.926689,151.778921",
+      "labelCoordinates": "-25.8000, 133.2422",
+      "alternativeNames1": "AUSTRALIA",
+      "alternativeNames2": "Australia"
+    },
+    {
+      "region": "Far East",
+      "coordinates": "35.179554,129.075642",
+      "labelCoordinates": "35.799871, 100.609244",
+      "alternativeNames1": "FAR EAST",
+      "alternativeNames2": "Far East"
+    }
+  ],
+  "regionArea": [
+    {
+      "naAreaName": "New Orleans",
+      "naAreaCoord": "29.95,-90.0666",
+      "saAreaName": "Recalada",
+      "africaAreaName": "Douala",
+      "europeAreaName": "Amsterdam",
+      "aPgAreaName": "Sur",
+      "feAreaName": "Busan",
+      "australiaAreaName": "Dampier",
+      "australiaAreaCoord": "-20.65 ,116.75",
+      "iSeaAreaName": "Singapore",
+      "iSeaAreaCoord": "1.266667,103.83333"
+    },
+    {
+      "naAreaName": "Lazaro Cardenas",
+      "naAreaCoord": "17.883333 ,-102.16667",
+      "saAreaName": "Georgetown",
+      "africaAreaName": "Djibouti",
+      "europeAreaName": "Hemnesberget",
+      "aPgAreaName": "Bandar Khomeini",
+      "feAreaName": "Hong Kong",
+      "australiaAreaName": "Newcastle ",
+      "australiaAreaCoord": "-32.9667 ,151.7833",
+      "iSeaAreaName": "Visakhapatnam",
+      "iSeaAreaCoord": "17.68333333 ,83.3"
+    },
+    {
+      "naAreaName": "New York",
+      "naAreaCoord": "40.71666667, -74",
+      "saAreaName": "Callao",
+      "africaAreaName": "Durban",
+      "europeAreaName": "Istanbul"
+    },
+    {
+      "naAreaName": "Sitka",
+      "naAreaCoord": "57.0333 ,-135.3333",
+      "africaAreaName": "Tripoli LY",
+      "europeAreaName": "Palermo"
+    }
+  ]
+}

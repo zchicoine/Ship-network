@@ -20,6 +20,7 @@ var ShipViewApp = function(){
 ShipViewApp.prototype.start = function(name){
 
     if (string_match(name)) {
+
         this.add_ship(name);
         var _shipViewObject =  this.active_ship[name];
 
@@ -67,6 +68,7 @@ ShipViewApp.prototype.come_from_port_view = function(_shipView)
 
 ShipViewApp.prototype.come_from_ship_view = function(_shipView)
 {
+    _shipView.draw();
 }
 
 

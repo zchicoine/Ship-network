@@ -4,6 +4,7 @@
 var PortView;
 PortView = function(name, coordinates){
     this.name = name;
+    this.display_name = this.name;
     this.coordinates = coordinates;
     this.html_classnames =
     {
@@ -51,20 +52,21 @@ PortView.prototype.controller = {
             }
         )
     },map_customization:function(coordinates){
-    MAP.google_methods.set_zoom(4);
+    MAP.google_methods.set_zoom(6);
     MAP.google_methods.set_center(coordinates);
-}
+    }
 }
 PortView.prototype.render = function(){
 
     send_data_to_side_bar(this.name , PORT_LEVEL);
-    refresh_link_list_back_history(this.name,PORT_LEVEL);
-    $(this.html_classnames.current_location.body).html(this.name);
+    Back_History.link_list(this.display_name,this.name,PORT_LEVEL)
+    $(this.html_classnames.current_location.body).html(this.display_name);
 }
 
 PortView.prototype.draw = function(){
     MAP.Controller.current_zoom_layer.value = PORT_LEVEL;
     this.controller.map_customization(this.coordinates);
+    MapNavigateInstance.update_map_navigate_label_and_tooltip("","","","");
     this.render();
 }
 

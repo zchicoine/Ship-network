@@ -18,7 +18,12 @@ class GoogleMapController < ApplicationController
 
     end
 
+    def index
+        respond_to do |format|
+            format.html{ render :partial => 'google_map/index'}
 
+        end
+    end
 
 
 end
