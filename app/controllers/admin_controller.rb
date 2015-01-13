@@ -1,4 +1,4 @@
-require "json"
+#require "json"
 #require "rchardet"
 
 class AdminController < ApplicationController
