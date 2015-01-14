@@ -47,7 +47,7 @@
                 <!--&lt;!&ndash; date format ( Jan 12, 2015) &ndash;&gt;-->
               <!--<td><%= @get_open_port_and_date[:value][:open_start_date].strftime("%b %d,%Y")%></td>-->
             <!--</tr>-->
-            <% @ship_details.as_json.each do |k, v| %>
+            <% @ship_details.each do |k, v| %>
                 <% unless v.blank? || v == 0 %>
                     <tr>
                       <td><%= k.humanize.capitalize %></td>

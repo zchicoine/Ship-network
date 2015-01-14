@@ -10,10 +10,10 @@ module ShipDetailsHelper
 
         result = UnitOfWork.instance.ship_detail.get_ship_detail_with_specific_column(ship_name,column_name)
         if(result[:error].nil?)
-           value = result[:value]
+           value = result[:value].as_json
            # get the vessel_category
-           value[:vessel_category] =  get_vessel_category_name(value[:vessel_category])
-           value[:vessel_type] =  get_vessel_type_name(value[:vessel_type])
+           value['vessel_category'] =  get_vessel_category_name(value['vessel_category'])
+           value['vessel_type'] =  get_vessel_type_name(value['vessel_type'])
             return value
         end
     end
