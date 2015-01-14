@@ -47,7 +47,7 @@ MainViewGenerator = (function ()
 MainViewGenerator.prototype.globalView = function()
 {
     // enable  navigate the map when the user on global layer
-    MAP_Navigate.enable_map_navigate = true;
+    MapNavigateInstance.enable_map_navigate = true;
     GlobalViewAppInstance.start();
     current_view.value = GLOBAL_LEVEL;
 
@@ -55,7 +55,7 @@ MainViewGenerator.prototype.globalView = function()
 MainViewGenerator.prototype.regionView = function(name)
 {
     // enable  navigate the map when the user on region layer
-    MAP_Navigate.enable_map_navigate = true;
+    MapNavigateInstance.enable_map_navigate = true;
     RegionViewAppInstance.start(name);
     current_region.value = name;
     current_view.value = REGION_LEVEL;
@@ -67,14 +67,14 @@ MainViewGenerator.prototype.portView = function(name,coordinates)
     PortViewAppInstance.add_port(name,coordinates);
 
     // disable  navigate the map when the user on port layer
-    MAP_Navigate.enable_map_navigate = false;
+    MapNavigateInstance.enable_map_navigate = false;
     PortViewAppInstance.start(name);
     current_view.value = PORT_LEVEL;
 }
 MainViewGenerator.prototype.shipView = function(name)
 {
     // disable  navigate the map when the user on ship layer
-    MAP_Navigate.enable_map_navigate = false;
+    MapNavigateInstance.enable_map_navigate = false;
     ShipViewAppInstance.start(name);
     current_view.value = SHIP_LEVEL;
 }

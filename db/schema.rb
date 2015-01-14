@@ -14,9 +14,10 @@
 ActiveRecord::Schema.define(version: 20141029005802) do
 
   create_table "brokers", force: true do |t|
-    t.string   "email",                  default: "", null: false
+    t.string   "email",                  default: "",    null: false
     t.string   "username"
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "encrypted_password",     default: "",    null: false
+    t.boolean  "admin",                  default: false
     t.string   "company"
     t.string   "website"
     t.string   "telephone"

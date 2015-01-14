@@ -11,12 +11,12 @@
                 <%= @name_of_ship %>
             </span>
         </h4>
-        <h4 class="modal-title"><%= locales_CEW.openPort %>
+        <h4 class="modal-title"><%= locales_CEW.openPort %>:
             <span class="ship_detail_color">
                 <%=  @get_open_port_and_date[:value][:name]  %>
             </span>
         </h4>
-        <h4 class="modal-title"><%= locales_CEW.openDate %>
+        <h4 class="modal-title"><%= locales_CEW.openDate %>:
             <span class="ship_detail_color">
                 <%= @get_open_port_and_date[:value][:open_start_date].strftime("%b %d, %Y") %>
             </span>

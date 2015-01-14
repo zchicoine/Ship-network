@@ -5,6 +5,7 @@ class DeviseCreateBroker < ActiveRecord::Migration
             t.string :email,              null: false, default: ""
             t.string :username
             t.string :encrypted_password, null: false, default: ""
+            t.boolean :admin, null: true, default: false
             t.string :company
             t.string :website
             t.string :telephone

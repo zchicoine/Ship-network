@@ -152,6 +152,6 @@ GlobalView.prototype.when_mouseout_a_region = function(){
 
 GlobalView.prototype.draw = function(){
     this.controller.set_region_highlight_on_the_map();
-    MAP_Navigate.default_map_navigate("Global");
+    MapNavigateInstance.default_map_navigate("Global");
     this.render();
 }

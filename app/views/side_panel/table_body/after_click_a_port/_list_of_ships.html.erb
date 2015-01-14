@@ -23,9 +23,11 @@
 
                         </td>
                         <td>
+                          <li class="list-style-type-none">
                             <% if ship[:vessel_type].nonzero? %>
-                              <%= ship.vessel_type%>
+                              <%= ship.vessel_type.upcase%>
                             <% end  %>
+                          </li>
                          </td>
                     </tr>
                 <%end%>

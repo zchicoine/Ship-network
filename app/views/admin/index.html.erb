@@ -1,0 +1,18 @@
+<h1>Admin</h1>
+<p>Instructions: go to Google Drive and open the Ship or Port spreadsheet.
+  Click on Export JSON then select all the text (ctrl + A) then copy it into a text file (one text file for ships and one different text file for ports).
+  Upload the resulting text files here.</p>
+<label>Ports File (port data text file)</label>
+<%= form_tag({action: :upload_ports_file}, multipart: true) do %>
+    <%= file_field_tag 'ports' %>
+    <%= submit_tag %>
+<% end %>
+
+<label>Ships File (ship data text file)</label>
+<%= form_tag({action: :upload_ships_file}, multipart: true) do %>
+    <%= file_field_tag 'ships' %>
+    <%= submit_tag %>
+<% end %>
+<label>Update Database</label>
+<%= button_to "Update Database Information", action: "update_ships_table" %>
+

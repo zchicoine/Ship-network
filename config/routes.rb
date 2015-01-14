@@ -7,6 +7,11 @@ Rails.application.routes.draw do
     devise_for :brokers, controllers: { sessions: "brokers/sessions" }
 
     #--------------
+    get 'admin/index'
+    post 'admin/update_ships_table' => 'admin#update_ships_table'
+    match '/upload_ports_file', to: 'admin#upload_ports_file', via: 'post'
+    match '/upload_ships_file', to: 'admin#upload_ships_file', via: 'post'
+    #--------------
     post 'side_panel/index' => 'side_panel#index'
     post 'side_panel/region_short_info' => 'side_panel#region_short_info'
     post 'side_panel/broker_contact' => 'side_panel#broker_contact'

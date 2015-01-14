@@ -29,19 +29,19 @@ Back_History.link_list = function(display_name,name, level)
                 this.display_history[REGION_LEVEL]=  "  > "  +
                         '<span class=" btn-link" onclick="MainViewGeneratorInstance.regionView(\'' + name + '\')">' + display_name + '</span>';
                 // update the view
-                $('.link_list_back_history').html(this.display_history[GLOBAL_LEVEL] + this.display_history[REGION_LEVEL]);
+                $('.link_list_back_history').html(this.display_history[GLOBAL_LEVEL] + " > " + display_name);
                 break;
             case PORT_LEVEL:
                 this.display_history[PORT_LEVEL]=  "  > "  +
                         '<span class=" btn-link" onclick="MainViewGeneratorInstance.portView(\'' + name + '\')">' + display_name + '</span>';
                 $('.link_list_back_history').html(this.display_history[GLOBAL_LEVEL] + this.display_history[REGION_LEVEL]
-                                                + this.display_history[PORT_LEVEL]);
+                                                + " > " + display_name);
                 break;
             case SHIP_LEVEL:
                 this.display_history[SHIP_LEVEL]=  "  > "  +
                         '<span class=" btn-link" onclick="MainViewGeneratorInstance.shipView(\'' + name + '\')">' + display_name + '</span>';
                 $('.link_list_back_history').html(this.display_history[GLOBAL_LEVEL] + this.display_history[REGION_LEVEL]
-                                                + this.display_history[PORT_LEVEL] + this.display_history[SHIP_LEVEL] );
+                                                + this.display_history[PORT_LEVEL] + " > " + display_name );
                 break;
             default :
                 break;
