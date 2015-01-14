@@ -39,7 +39,7 @@ Region_Helper.access_json_file = (function()
 {
     var _data = [];
     $.ajax({
-        url:"external_files/regions_database.json",
+        url:"/external_files/regions_database.json",
         type: 'GET',
         dataType: "json",
         async:false,
