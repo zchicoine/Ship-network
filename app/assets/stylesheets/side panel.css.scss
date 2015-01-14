@@ -1,0 +1,455 @@
+/* --- General format of the side --- */
+.aside_ship_details {
+
+  //margin-top: 20px;
+ // width: 30%;
+  min-width:28%;
+ max-width:28%;
+  font-weight:400;
+  font-size:14px;
+    font-family: roboto !important;
+    // outer table
+    table{
+
+        td {
+            border-top: solid #ffffff 0px !important;
+            z-index: 10;
+        }
+
+    }
+    // inner tables
+    table table{
+        
+        tbody tr td:first-child{
+            // from bootstrap
+
+            text-align: left;
+            font-weight:400;
+
+        }
+        tbody tr{
+
+              td:nth-child(2){
+              text-align: right;
+              font-weight:400;
+              
+              }
+
+              td a.link_appearance_name {
+
+                      @extend .link_appearance ;
+                      &:hover{
+                          @extend .link_appearance:hover;
+                      }
+                      &:focus{
+                          outline: 0px;
+                      }
+
+
+               
+            }
+          }
+
+    }
+
+
+
+  table tbody tr td div table td{
+
+      border-top: solid #dddddd 1px !important;
+
+
+      table div table tr{
+
+
+        }
+
+  }
+}
+
+.align-link-view-more-info { /* to align to center the view more information link, at the bottom of the sidebar*/
+  text-align: center;
+}
+
+
+.link_appearance{
+          color:#d6de23;
+          font-weight:500;
+
+
+
+          &:hover{
+            color:#d6de23;
+            text-decoration:underline;
+            font-weight:500;
+           
+        }
+}
+
+.informative_table{
+
+
+    th {
+
+        color: #ffffff;
+        font-size: 14pt;
+        background-color: #0A94CB;
+        font-weight:100 !important;
+
+    }
+    tr {
+        display: table-row;
+        height: 1px !important;
+        background-color: white;
+        font-weight:800 ;
+
+    }
+
+
+}
+
+.dropdown-menu-custom{
+    font-weight:400;
+    width: 100%;
+    background-color: #d6de23;
+    cursor:pointer;
+}
+
+/* --- end the general format ---  */
+
+/* table head */
+
+.aside_ship_details_table_head {
+    //  margin-top: -15px;
+    box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.1);
+    border: solid #ffffff 0px !important;
+
+
+
+}
+
+/*  google_map controller table */
+
+
+.map_controller_go_to_region{
+
+    background-color: #d6de23;
+    font-weight:400;
+    li{
+        height: 25px;
+        cursor: pointer;
+        margin-left: 0px;
+
+    }
+    li:hover{
+        background-color: #E8E82A;
+    }
+}
+
+/*  end  google_map controller table */
+/*  end table head  */
+
+
+/*  table body  */
+.aside_ship_details_table_body {
+
+        margin-top: -17px;
+
+}
+
+.dropshadow_sidebar{
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+/*  -----   default table ----- */
+.side_bar_default_table {
+
+}
+/*  end */
+
+/*  ----  after a region has been clicked  ----   */
+.table_after_clicking_on_a_region {
+
+
+}
+
+/* end  */
+
+/*  table foot  */
+.aside_ship_details_table_foot{
+   margin-top: -33px;
+    border: solid #ffffff 0px !important;
+    th{
+       color: #D6de23;
+       font-weight:600;
+       white-space: nowrap;
+    }
+
+
+}
+/*  end table foot   */
+
+
+
+
+
+.thick_horizontal_line{
+    border-bottom: solid 2px !important;
+
+}
+
+/* scroll */
+
+div.scroll_size_shipdetails{ /* defines max height of scroll in ship details module window */
+    max-height: 800px;
+}
+
+div.scroll_size_sidebar{ /* defines max/min height of sidebar list of ships and ports as well as color */
+  min-height: 90px;
+  max-height: 150px;
+  background-color: #eaeaea;
+
+  table {
+        background-color: #eaeaea;
+        border: #eaeaea !important;
+    }
+    td{
+
+        background-color: #eaeaea;
+        text-align: left;
+        border-top: solid #ffffff 0px !important;
+    }
+
+}
+
+div.scroll_inside_table {
+    overflow: auto;
+
+    padding: 4px;
+    
+    
+}
+.scroll_inside_table::-webkit-scrollbar{
+    -moz-webkit-appearance: none;
+    -ms-webkit-appearance: none;
+    -o-webkit-appearance: none;
+    -webkit-appearance: none;
+}
+.scroll_inside_table::-webkit-scrollbar:vertical{
+    width: 10px;
+}
+/*
+.scroll_inside_table::-webkit-scrollbar:horizontal {
+  height: 12px !important;
+}
+*/
+.scroll_inside_table::-webkit-scrollbar-thumb {
+
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    border-radius: 10px;
+
+
+    border: 1px solid #ffffff; /* should match background, can't be transparent */
+
+    background-color: rgba(0, 0, 0, 0.64);
+}
+
+/*-------SHIP DETAILS MODULE WINDOW------------------------------------------------------------------------*/
+
+div.ship_details span{ /*used to customize the 'headers' for the tables*/
+  font-size:18px;
+  font-weight:100;
+}
+
+div.ship_details .col-md-6{ /*puts space between the columns*/
+ padding:10px;
+
+  }
+
+
+.ship_details{ /*main size, positioning and etc for module window*/
+  border:10px solid #c4c4c4;
+  z-index:1;
+  /*top:13%;
+  left:12%;*/
+  border-margin: 0.5 rem;
+  margig-top: 1%;
+  position:relative;
+  background-color: #ffffff;
+  height:800px;
+  width:800px;
+  border-radius: 8px;
+
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.ship_details_inside_span_text_color { /*a class added for each main elements inside the ship-details table
+to keep the color of the text blue */
+  color: #0080ff;
+}
+
+.ship_detail_color { /* changes the size of each ship name that appears in the header, after "Ship details:" title */
+ font-size: 25px !important;
+}
+
+.close {/* defines the size and color of the cross that closes the Ship details window */
+  font-size: 40px;
+  color: white;
+  opacity: 1.0;
+  font-family:roboto;
+}
+
+.close:hover {/* defines the hover color of the cross that closes the Ship details window */
+  color: #eaeaea;
+  opacity:0.9;
+}
+
+.close:active {/* defines active color of the cross that closes the Ship details window */
+  color: #c4c4c4;
+  opacity:0.9;
+}
+
+
+div.ship_details .container{ /*used for the bootstrap grid system. do not delete*/
+  overflow-y: auto;
+  overflow-x: hidden;
+  width:800px;
+  height:730px;
+  padding-left:25px;
+}
+
+.ship_detail-header{ /*used to customize the header for the module window*/
+  z-index:3;
+  color:white;
+  font-weight:200; 
+  font-size:18px;
+
+  background-color:#0A94CB;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  -webkit-border-top-left-radius: 8px;
+  -webkit-border-top-right-radius: 8px;
+}
+
+.ship_details-portcall{ /*vertical table type*/
+  z-index:4;
+  max-width:400px;
+  position:relative;
+  float:left;
+}
+
+div.ship_details-portcall table{ 
+max-width:380px;
+font-size:16px;
+text-align:left;
+border-spacing:2px;
+border-collapse:collapse;
+
+height:50px;
+font-weight:300;
+background-color: #F0F1F1;
+}
+ 
+div.ship_details-portcall td{
+  padding-left:20px;
+  padding-right:30px;
+  height:25px;
+}
+
+div.ship_details-portcall th{ 
+  height:40px;
+  padding-left:20px;
+  font-weight:400;
+  color:white;
+}
+
+div.ship_details-portcall tr:nth-child(odd) { /*makes the row colors alternate between light and dark grey*/
+background-color: #E5E6E7;
+}
+div.ship_details-portcall tr:nth-child(odd):hover { /*hover functionallity*/
+}
+
+div.ship_details-portcall tr:hover{ /*hover functionallity*/
+  background-color: #D3D3D3;
+}
+
+div.ship_details-portcall tr td:first-child{ /*makes the first column blue*/
+background-color: #0A94CB;
+color:white;
+border-bottom:1px solid #027FA5;
+height:30px;
+font-size:16px;
+width:200px;
+font-weight:300;
+}
+
+.table_title{
+  color: #027FA5;
+}
+
+
+/*----BROKER INFO POPUP---------------------------------------------------------------------------*/
+
+.popover-title_ana{
+  display:default;
+  z-index:3;
+  color:white;
+  font-weight:300; 
+  font-size:21px;
+
+  background-color:#0A94CB;
+}
+
+.popover_ana{
+  max-width:450px;
+  width:450px;
+  height:200px;    
+}
+
+
+
+/*-------------------------------------------------------------------------------*/
+
+
+#login { /*button*/
+
+  width: 175px;
+  height: 60px;
+  margin-right: 173px;
+  margin-top: 65px;
+  box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.5);
+  color: white;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 300;
+  background-color: #D6DE23;
+  border-color: #D6DE23;
+  line-height: 45px;
+
+}
+
+#login:hover{
+  border-color:transparent;
+  background-color: #E8E82A;
+
+}
+
+#login:active{
+  background-color: #D6DE23;
+  box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.5);
+  -webkit-transform: translateY(3px);
+  transform: translateY(3px);
+}
