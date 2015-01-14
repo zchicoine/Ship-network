@@ -24,7 +24,7 @@ production:
    adapter: postgresql
    pool: 5
    timeout: 5000
-   host: ec2-54-225-101-18.compute-1.amazonaws.com
-   database: d7q52pcdrudiqq
-   username: rgiucplaszyegc
-   password: EHHPuc-zz0D9SucUNpGpetrud_
+   host: ec2-107-21-226-77.compute-1.amazonaws.com
+   database: ddvj2gnukfji6h
+   username: npndghxwcczjoa
+   password: -amV5oXlGJt5CNMTqKFJB1OgQQ
