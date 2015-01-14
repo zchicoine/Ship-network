@@ -1,10 +1,12 @@
-def clean_database
+#Database cannot contain any seed data if we want to add data form controller or other places in the app (bug in rails).
+#def clean_database
     Ship.destroy_all
     Port.destroy_all
     ShipDetail.destroy_all
     Broker.destroy_all
-end
-
+#end
+=begin
+=begin
 
 # function
 def read_region_file
@@ -12,7 +14,7 @@ def read_region_file
     open("db/data/region.txt") do |ports|
         ports.read.each_line do |port|
             # .encode to fix UTF-8-encoded text (or it will not split the string in the next line)
-            port.encode!('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '')
+           # port.encode!('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '')
             region, name, latitude, longitude = port.chomp.split(";")
 
             begin
@@ -191,11 +193,12 @@ def read_alter_port_name_file
     JSON.parse(file)
 end
 
+
 #Destroy everything that is in the db to start from blank
 clean_database
-read_region_file
-read_ship_db_file
-create_shipments
+#read_region_file
+#read_ship_db_file
+#create_shipments
 
 
 begin
@@ -207,7 +210,16 @@ begin
 rescue => e
     puts "#{e.message} for broker Zack"
 end
-p "Created #{Port.count} ports and #{Ship.count} ships and #{Shipment.count} shipments and #{Broker.count} broker"
+
+begin
+  Broker.create!(username: "Admin", password: "database", admin: true, email: "admin@shipnetwork.com")
+
+rescue => e
+  puts "#{e.message} for broker Admin"
+end
+
+p "Created #{Port.count} ports and #{Ship.count} ships and #{Shipment.count} shipments and #{Broker.count} brokers"
 
 
 # # here some rails query that would be helpful for the developer later on
+=end
