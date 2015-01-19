@@ -50,6 +50,7 @@ class AdminController < ApplicationController
   end
 
   def update_port_db
+    Port.destroy_all
     begin
     tempHash = {}
     open_json_ports_file = File.open(Rails.root.join('public', 'port_data.json'))
@@ -94,6 +95,7 @@ class AdminController < ApplicationController
   end
 
   def update_ship_db
+    Ship.destroy_all
     Shipment.destroy_all
     open_json_temp_file = File.open(Rails.root.join('public', 'temp.json'))    # Read the json file containing the alternative port names
     read_port_names_file = open_json_temp_file.read
