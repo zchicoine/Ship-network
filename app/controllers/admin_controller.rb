@@ -45,12 +45,142 @@ class AdminController < ApplicationController
   end
 
   def upload_ships_file
-    string_ship = params[:ships].read.encode!('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '')
-    File.open(Rails.root.join('public', 'ship_data.json'), 'wb') do |file|
-      file.write(string_ship)
-    end
+    uploaded_file = read_uploaded_file (params[:ships].read.encode!('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: ''))
+    hash_format = convert_it_to_hash_format (uploaded_file)
+    shipment_file = update_and_create_ships (hash_format)
+    store_shipment_file_in_app (shipment_file)
     flash[:notice] = "File uploaded"
     render "index"
+  end
+
+  def read_uploaded_file object
+    string_ship = object
+    return string_ship
+  end
+
+  def convert_it_to_hash_format object
+    read_file = object
+    hash_object = JSON.parse(read_file)
+    return hash_object
+  end
+
+  def update_and_create_ships object
+    array_of_hashes = []
+    begin
+      object.each do |ship|
+
+        @name, deadweight, deadweight_cargo_capacity, vessel_type = ship['motorVessel'], ship['deadweight'], ship['deadweightCargoCapacity'],
+            ship['typeOfVessel']
+
+        deadweight = deadweight.to_i
+        deadweight_cargo_capacity = deadweight_cargo_capacity.to_i
+
+        #next if (deadweight == 0 and deadweight_cargo_capacity == 0)
+
+        case vessel_type
+
+          when "SDBC"
+            temp = 1
+          when "OHBS"
+            temp = 2
+          when "MPP"
+            temp = 3
+          when "TWEEN"
+            temp = 4
+          when "RORO"
+            temp = 5
+          else
+            temp = 0
+        end
+
+        unless (deadweight == 0)
+          case deadweight.to_i
+            when 100000..10000000000
+              category_name = 7
+            when 80000..100000
+              category_name = 6
+            when 65000..80000
+              category_name = 5
+            when 50000..65000
+              category_name = 4
+            when 38000..50000
+              category_name = 3
+            when 18000..38000
+              category_name = 2
+            when 1..18000
+              category_name = 1
+          end
+        else
+          case deadweight_cargo_capacity
+            when 100000..10000000000
+              category_name = 7
+            when 80000..100000
+              category_name = 6
+            when 65000..80000
+              category_name = 5
+            when 50000..65000
+              category_name = 4
+            when 38000..50000
+              category_name = 3
+            when 18000..38000
+              category_name = 2
+            when 1..18000
+              category_name = 1
+          end
+        end
+
+        vessel = Ship.find_by_name(@name.to_s)
+        unless vessel.nil?
+          vessel.update!(vessel_type: temp, deadweight: deadweight.to_i, deadweight_cargo_capacity: deadweight_cargo_capacity.to_i,
+                         vessel_category: category_name.to_i)
+        end
+        if !(ship['deadweight'].nil? and ship['deadweightCargoCapacity'].nil?)
+          vessel = Ship.create(name: @name.to_s, vessel_type: temp, deadweight: deadweight.to_i, deadweight_cargo_capacity: deadweight_cargo_capacity.to_i,
+                               vessel_category: category_name.to_i)
+        end
+
+
+        draft, built = ship['draft'].to_f, ship['yearBuilt'].to_i
+
+        unless (ship['deadweight'].nil? and ship['deadweightCargoCapacity'].nil?)
+          vessel_details = ShipDetail.create(draft: draft, built: built,tons_per_centimeter: ship['tpc'].to_f,
+                                             flag: ship['flag'], classification_society: ship['classificationSociety'], length_over_all: ship['loa'].to_f, beam: ship['beam'].to_f, holds: ship['holds'].to_i,
+                                             hatches: ship['hatches'].to_i, gross_registered_tonnage: ship['grt'], net_registered_tonnage: ship['nrt'], total_cubic_meters_GR: ship['totalCbmGrain'],
+                                             total_cubic_meters_BL: ship['totalCbmBale'], total_cubic_feet_GR: ship['totalCbftGrain'], total_cubic_feet_BL: ship['totalCbftBale'], intermediate_fuel_oil_180?: return_boolean(ship['ifo180']),
+                                             intermediate_fuel_oil_380?: return_boolean(ship['ifo380']), marine_diesel_oil?: return_boolean(ship['mdo']), laden: ship['ladenSpeed'], ballast: ship['ballastSpeed'], economic: ship['ecoSpeed'],
+                                             consumption_at_sea_L: ship['consumptionL'], consumption_at_sea_B: ship['consumptionB'], eco_consumption_L: ship['consupmtionEcoL'],
+                                             marine_diesel_oil_at_sea: ship['mdoAtSea'], marine_gasoline_oil_at_sea: ship['mgoAtSea'], consumption_in_port_Working: ship['inPortWorking'],
+                                             consumption_in_port_Idle: ship['inPortIdle'], marine_diesel_in_port: ship['mdoInPort'], marine_gasoline_oil_in_port: ship['mgoInPort'],
+                                             number_of_cranes: ship['cranes'], crane_capacity: ship['craneCapacity'], combined_crane_capacity: ship['combinedCraneCapacity'], aussie_holds_ladders?: return_boolean(ship['aussieHoldsLadders']),
+                                             CO2_system_on_board?: return_boolean(ship['co2Fitted']), twenty_foot_equivalent_unit?: return_boolean(ship['twentyfootEquivalentUnits']), lakes_fitted?: return_boolean(ship['lakesFitted']),
+                                             log_fitted?: return_boolean(ship['logFitted']), grabber?: return_boolean(ship['grabs']), gearless?: return_boolean(ship['gearless']), double_hull?: return_boolean(ship['doubleHull']), imo_fitted?: return_boolean(ship['imoFitted']), appendix_B_fitted?: return_boolean(ship['appendixBFitted']),
+                                             box_shaped_holds?: return_boolean(ship['boxShapedHolds']), cement_holes_fitted?: return_boolean(ship['cementHolesFitted']), marine_gasoline_oil?: return_boolean(ship['mgo']), ice_classed?: return_boolean(ship['iceClassed']))
+
+
+          vessel.ship_detail = vessel_details
+        end
+        # The ship object in this loop also contains the open port and open date, so after updating the ship info,
+        # we can can create a json file containing the open port and date for each ship
+
+        unless (ship['openPort'].nil? or ship['openDate'].nil?)
+          open_port_open_date_for_ships = {:vessel_name => @name.to_s.downcase, :open_port => ship['openPort'].to_s.downcase,
+                                           :open_date => ship['openDate'].to_s}
+
+          array_of_hashes.push(open_port_open_date_for_ships)
+        end
+      end
+
+
+    rescue => e
+      e.message + " for vessel: " + @name.to_s
+    end
+    return array_of_hashes
+  end
+
+  def store_shipment_file_in_app object
+    File.open("app/assets/javascripts/json/shipments.json","w") do |f|
+      f.write(object.to_json)
+    end
   end
 
   def update_port_db
@@ -94,7 +224,6 @@ class AdminController < ApplicationController
     File.open("public/temp.json","w") do |f|
       f.write(tempHash.to_json)
     end
-    return error_for_ports
   end
 
   def update_ship_db
