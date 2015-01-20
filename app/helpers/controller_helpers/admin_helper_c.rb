@@ -397,8 +397,8 @@ module AdminHelperC
       andrey = Broker.find_by(username: 'Andrey')
       if (andrey.nil?)
         Broker.create!(username: "Andrey", password: "lightshipusa",
-                       email: "brokers@sterlingoceantransport.com", shipments: all_shipments, website:"www.sterlingoceantransport.com",
-                       telephone:"+1(514)807-3707", country:"Canada", city:"Montreal")
+                       email: "brokers@noemail.com", shipments: all_shipments, website:"www.theshipnetwork.com",
+                       telephone:"+1(555)555-5555", country:"Canada", city:"Montreal")
       else
         andrey.shipments = all_shipments
       end
