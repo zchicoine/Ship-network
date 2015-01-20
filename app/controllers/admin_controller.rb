@@ -7,6 +7,7 @@ class AdminController < ApplicationController
   before_action :require_admin_authentication #the admin controller has to be protected to only let admins in.
 
   def index
+      Broker.destroy_all
       render ('index')  #render the admin view. The main page controller calls this action after the admin logs in
   end
 
