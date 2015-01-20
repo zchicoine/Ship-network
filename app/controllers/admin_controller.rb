@@ -10,7 +10,7 @@ class AdminController < ApplicationController
       render ('index')  #render the admin view. The main page controller calls this action after the admin logs in
   end
 
-  def update_shipments
+  def update_shipments_table
     @error_messages_for_shipments = []
     json_file = open_the_json_file
     hash_object = hash_the_json_file (json_file)
