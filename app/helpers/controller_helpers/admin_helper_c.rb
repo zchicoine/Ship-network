@@ -398,11 +398,11 @@ module AdminHelperC
       if (andrey.nil?)
         Broker.create!(username: "Andrey", password: "lightshipusa", shipments: all_shipments)
       else
-        zack.shipments = all_shipments
+        andrey.shipments = all_shipments
       end
 
     rescue => e
-      puts "#{e.message} for broker Zack"
+      puts "#{e.message} for broker Andrey"
     end
 
   end
