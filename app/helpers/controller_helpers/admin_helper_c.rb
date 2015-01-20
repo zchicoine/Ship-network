@@ -394,11 +394,9 @@ module AdminHelperC
 #    Broker.destroy_all
     begin
       all_shipments = Shipment.all
-      zack = Broker.find_by(username: 'Zack')
-      if (zack.nil?)
-        Broker.create!(username: "Zack", password: "shipment", company: "Sterling Ocean Transport Inc.",
-                       email: "brokers@sterlingoceantransport.com", shipments: all_shipments, website:"www.sterlingoceantransport.com",
-                       telephone:"+1(514)807-3707", country:"Canada", city:"Montreal")
+      andrey = Broker.find_by(username: 'Andrey')
+      if (andrey.nil?)
+        Broker.create!(username: "Andrey", password: "lightshipusa", shipments: all_shipments)
       else
         zack.shipments = all_shipments
       end
