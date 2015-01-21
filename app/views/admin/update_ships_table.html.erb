@@ -2,18 +2,11 @@
 
 <% begin %>
 <table>
-  <% @error_messages_for_ships.each do |item| %>
+  <% @error_messages_for_shipments.each do |item| %>
       <tr>
         <td><%= item %></td>
   <% end %>
   </tr>
-
-  <% @error_messages_for_ports.each do |item| %>
-      <tr>
-        <td><%= item %></td>
-  <% end %>
-  </tr>
-
 </table>
 <% rescue => e %>
 <%= e.message %>

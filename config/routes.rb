@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
     #--------------
     get 'admin/index'
-    post 'admin/update_ships_table' => 'admin#update_ships_table'
+    post 'admin/update_shipments_table' => 'admin#update_shipments_table'
     match '/upload_ports_file', to: 'admin#upload_ports_file', via: 'post'
     match '/upload_ships_file', to: 'admin#upload_ships_file', via: 'post'
     #--------------
