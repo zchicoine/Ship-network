@@ -8,12 +8,12 @@ gem 'devise', '~> 3.2.4'
 # Use sqlite3 as the database for Active Record
 
 group :development, :test do
-gem 'sqlite3' , '~> 1.3.9'
-gem 'rspec-rails', ' 3.0.1'
+  gem 'sqlite3' , '~> 1.3.9'
+  gem 'rspec-rails', ' 3.0.1'
 end
 
 group :test do
-  gem 'selenium-webdriver', '~> 2.42.0' 
+  gem 'selenium-webdriver', '~> 2.42.0'
   gem 'capybara', '~> 2.3.0'
   gem 'shoulda', '~> 3.5.0'
 
