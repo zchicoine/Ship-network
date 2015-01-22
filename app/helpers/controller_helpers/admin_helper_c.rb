@@ -179,8 +179,8 @@ module AdminHelperC
                                                                                         box_shaped_holds?: return_boolean(ship['boxShapedHolds']), cement_holes_fitted?: return_boolean(ship['cementHolesFitted']), marine_gasoline_oil?: return_boolean(ship['mgo']), ice_classed?: return_boolean(ship['iceClassed'])})
 
         else
-          Ship.create(name: @name.to_s.downcase, vessel_type: temp, deadweight: deadweight.to_i, deadweight_cargo_capacity: deadweight_cargo_capacity.to_i,
-                               vessel_category: category_name.to_i, ship_detail_attributes: {draft: draft, built: built,tons_per_centimeter: ship['tpc'].to_f,
+          Ship.create!(name: @name.to_s.downcase, vessel_type: temp, deadweight: deadweight.to_i, deadweight_cargo_capacity: deadweight_cargo_capacity.to_i,
+                               vessel_category: category_name.to_i, ship_detail_attributes: {draft: ship['draft'].to_f, built: ship['yearBuilt'].to_i, tons_per_centimeter: ship['tpc'].to_f,
                                                                                               flag: ship['flag'], classification_society: ship['classificationSociety'], length_over_all: ship['loa'].to_f, beam: ship['beam'].to_f, holds: ship['holds'].to_i,
                                                                                               hatches: ship['hatches'].to_i, gross_registered_tonnage: ship['grt'], net_registered_tonnage: ship['nrt'], total_cubic_meters_GR: ship['totalCbmGrain'],
                                                                                               total_cubic_meters_BL: ship['totalCbmBale'], total_cubic_feet_GR: ship['totalCbftGrain'], total_cubic_feet_BL: ship['totalCbftBale'], intermediate_fuel_oil_180?: return_boolean(ship['ifo180']),
