@@ -21,15 +21,15 @@ module AdminHelperC
       read_port_names_file = open_json_temp_file.read
       hash_port_names_object = JSON.parse(read_port_names_file)
       object.each do |shipment|
-        @vessel_name = shipment['vessel_name']
-        @port_name = shipment['open_port'].to_s
-        port_name = shipment['open_port'].to_s.strip.downcase
+        @vessel_name = format_string(shipment['vessel_name'])
+        @port_name = format_string(shipment['open_port'])
+        port_name = format_string(shipment['open_port'])
         open_port = hash_port_names_object[port_name]        # Look for the port where this ship is supposed to be
-        port = Port.find_by_name(open_port)
-        vessel = Ship.find_by_name!(shipment['vessel_name'].to_s.strip.downcase)
+        port = Port.find_by_name(format_string(open_port))
+        vessel = Ship.find_by_name!(format_string(shipment['vessel_name']))
         # We then get the open date
         # Since we might not have the open port, we store the name
-        if (hash_port_names_object[shipment['open_port'].to_s.strip.downcase].nil?)
+        if (hash_port_names_object[format_string(shipment['open_port'])].nil?)
           error_for_ships << "This open port is not in the port database for port name nor alternative port name --> " + shipment['open_port'].to_s
         end
         next if (shipment['open_date'].nil? or shipment['open_port'].nil?)
@@ -50,28 +50,28 @@ module AdminHelperC
     begin
       tempHash = {}
       object.each do |port|
-        region, @name, latitude, longitude = port['region'].to_s, port['portNames'].to_s.strip, port['latitudeDecimal'].to_f,
+        region, @name, latitude, longitude = format_string(port['region']), format_string(port['portNames']), port['latitudeDecimal'].to_f,
             port['longitudeDecimal'].to_f
 
-        # create a hash for alternative port name. Alternative port name are in the same file as port info, so we can do this here.
-        # The key is the alt. name. So for shipments, we will look at the hash file to find the real name of the port (the value)
+        # create a hash for alternative port name. Alternative port name are in the same file as the port data file, so we can do this here.
+        # The key is the alt. name and the value is the official port name. So for shipments, we will look at the hash file to find the real name of the port (the value)
 
         alternative_port_names_array = port['alternatePortNames'].to_s.split(",")
 
         unless alternative_port_names_array.empty?
           alternative_port_names_array.each do |alt_name|
-            tempHash[alt_name.to_s.strip.downcase] = @name.to_s.downcase
+            tempHash[format_string(alt_name)] = format_string(@name)
           end
         end
-        tempHash[@name.to_s.strip.downcase] = @name.to_s.downcase           #add also the real name of the port to map to itself
+        tempHash[format_string(@name)] = format_string(@name)          #add also the real name of the port to map to itself
 
 
 
-        current_port = Port.find_by_name(@name.to_s)
+        current_port = Port.find_by_name(format_string(@name))
         unless current_port.nil?
           current_port.update(latitude: latitude.to_f, longitude: longitude.to_f, region: region.to_s)
         else
-          Port.create(name: @name.to_s, latitude: latitude.to_f, longitude: longitude.to_f, region: region.to_s)
+          Port.create(name: format_string(@name), latitude: latitude.to_f, longitude: longitude.to_f, region: region.to_s)
         end
       end
     rescue => e
@@ -103,7 +103,7 @@ module AdminHelperC
     begin
       object.each do |ship|
 
-        @name, deadweight, deadweight_cargo_capacity, vessel_type = ship['motorVessel'].to_s.downcase.strip, ship['deadweight'], ship['deadweightCargoCapacity'],
+        @name, deadweight, deadweight_cargo_capacity, vessel_type = format_string(ship['motorVessel']), ship['deadweight'], ship['deadweightCargoCapacity'],
             ship['typeOfVessel']
 
         deadweight = deadweight.to_i
@@ -162,7 +162,7 @@ module AdminHelperC
               category_name = 1
           end
         end
-        vessel = Ship.find_by_name(@name.to_s.downcase.strip)
+        vessel = Ship.find_by_name(format_string(@name))
         unless vessel.nil?
           vessel.update(vessel_type: temp, deadweight: deadweight.to_i, deadweight_cargo_capacity: deadweight_cargo_capacity.to_i,
                          vessel_category: category_name.to_i, ship_detail_attributes: {draft: ship['draft'].to_f, built: ship['yearBuilt'].to_i, tons_per_centimeter: ship['tpc'].to_f,
@@ -179,7 +179,7 @@ module AdminHelperC
                                                                                         box_shaped_holds?: return_boolean(ship['boxShapedHolds']), cement_holes_fitted?: return_boolean(ship['cementHolesFitted']), marine_gasoline_oil?: return_boolean(ship['mgo']), ice_classed?: return_boolean(ship['iceClassed'])})
 
         else if (!deadweight.nil? and !deadweight_cargo_capacity.nil?)
-          Ship.create(name: @name.to_s.downcase, vessel_type: temp, deadweight: deadweight.to_i, deadweight_cargo_capacity: deadweight_cargo_capacity.to_i,
+          Ship.create(name: format_string(@name), vessel_type: temp, deadweight: deadweight.to_i, deadweight_cargo_capacity: deadweight_cargo_capacity.to_i,
                                vessel_category: category_name.to_i, ship_detail_attributes: {draft: ship['draft'].to_f, built: ship['yearBuilt'].to_i, tons_per_centimeter: ship['tpc'].to_f,
                                                                                               flag: ship['flag'], classification_society: ship['classificationSociety'], length_over_all: ship['loa'].to_f, beam: ship['beam'].to_f, holds: ship['holds'].to_i,
                                                                                               hatches: ship['hatches'].to_i, gross_registered_tonnage: ship['grt'], net_registered_tonnage: ship['nrt'], total_cubic_meters_GR: ship['totalCbmGrain'],
@@ -199,7 +199,7 @@ module AdminHelperC
         # we can can create a json file containing the open port and date for each ship
 
         unless (ship['openPort'].nil? or ship['openDate'].nil?)
-          open_port_open_date_for_ships = {:vessel_name => @name.to_s.downcase, :open_port => ship['openPort'].to_s.downcase,
+          open_port_open_date_for_ships = {:vessel_name => format_string(@name), :open_port => format_string(ship['openPort']),
                                            :open_date => ship['openDate'].to_s}
 
           array_of_hashes.push(open_port_open_date_for_ships)
@@ -436,6 +436,11 @@ module AdminHelperC
         return false
       end
     end
+  end
+
+  def format_string object
+    new_string = object.to_s.downcase.strip
+    return new_string
   end
 
 end
