@@ -38,7 +38,7 @@ module AdminHelperC
         year, month, day = date.to_s.split("-")
         start_date = Date.new(year.to_i, month.to_i, day.to_i)
 
-        Shipment.create(ship: vessel, open_start_date: start_date, open_end_date: start_date.advance({days: 5}), port: port)
+        Shipment.create!(ship: vessel, open_start_date: start_date, open_end_date: start_date.advance({days: 5}), port: port)
       end
     rescue => e
       error_for_ships <<  e.message + " for vessel: " + @vessel_name.to_s + " port: " + @port_name.to_s
@@ -103,7 +103,7 @@ module AdminHelperC
     begin
       object.each do |ship|
 
-        @name, deadweight, deadweight_cargo_capacity, vessel_type = ship['motorVessel'].strip, ship['deadweight'], ship['deadweightCargoCapacity'],
+        @name, deadweight, deadweight_cargo_capacity, vessel_type = ship['motorVessel'].to_s.downcase.strip, ship['deadweight'], ship['deadweightCargoCapacity'],
             ship['typeOfVessel']
 
         deadweight = deadweight.to_i
@@ -162,7 +162,7 @@ module AdminHelperC
               category_name = 1
           end
         end
-        vessel = Ship.find_by_name(@name.to_s)
+        vessel = Ship.find_by_name(@name.to_s.downcase.strip)
         unless vessel.nil?
           vessel.update(vessel_type: temp, deadweight: deadweight.to_i, deadweight_cargo_capacity: deadweight_cargo_capacity.to_i,
                          vessel_category: category_name.to_i, ship_detail_attributes: {draft: ship['draft'].to_f, built: ship['yearBuilt'].to_i, tons_per_centimeter: ship['tpc'].to_f,
@@ -178,8 +178,8 @@ module AdminHelperC
                                                                                         log_fitted?: return_boolean(ship['logFitted']), grabber?: return_boolean(ship['grabs']), gearless?: return_boolean(ship['gearless']), double_hull?: return_boolean(ship['doubleHull']), imo_fitted?: return_boolean(ship['imoFitted']), appendix_B_fitted?: return_boolean(ship['appendixBFitted']),
                                                                                         box_shaped_holds?: return_boolean(ship['boxShapedHolds']), cement_holes_fitted?: return_boolean(ship['cementHolesFitted']), marine_gasoline_oil?: return_boolean(ship['mgo']), ice_classed?: return_boolean(ship['iceClassed'])})
 
-        else
-          Ship.create!(name: @name.to_s.downcase, vessel_type: temp, deadweight: deadweight.to_i, deadweight_cargo_capacity: deadweight_cargo_capacity.to_i,
+        else if (!deadweight.nil? and !deadweight_cargo_capacity.nil?)
+          Ship.create(name: @name.to_s.downcase, vessel_type: temp, deadweight: deadweight.to_i, deadweight_cargo_capacity: deadweight_cargo_capacity.to_i,
                                vessel_category: category_name.to_i, ship_detail_attributes: {draft: ship['draft'].to_f, built: ship['yearBuilt'].to_i, tons_per_centimeter: ship['tpc'].to_f,
                                                                                               flag: ship['flag'], classification_society: ship['classificationSociety'], length_over_all: ship['loa'].to_f, beam: ship['beam'].to_f, holds: ship['holds'].to_i,
                                                                                               hatches: ship['hatches'].to_i, gross_registered_tonnage: ship['grt'], net_registered_tonnage: ship['nrt'], total_cubic_meters_GR: ship['totalCbmGrain'],
@@ -192,8 +192,9 @@ module AdminHelperC
                                                                                               CO2_system_on_board?: return_boolean(ship['co2Fitted']), twenty_foot_equivalent_unit?: return_boolean(ship['twentyfootEquivalentUnits']), lakes_fitted?: return_boolean(ship['lakesFitted']),
                                                                                               log_fitted?: return_boolean(ship['logFitted']), grabber?: return_boolean(ship['grabs']), gearless?: return_boolean(ship['gearless']), double_hull?: return_boolean(ship['doubleHull']), imo_fitted?: return_boolean(ship['imoFitted']), appendix_B_fitted?: return_boolean(ship['appendixBFitted']),
                                                                                               box_shaped_holds?: return_boolean(ship['boxShapedHolds']), cement_holes_fitted?: return_boolean(ship['cementHolesFitted']), marine_gasoline_oil?: return_boolean(ship['mgo']), ice_classed?: return_boolean(ship['iceClassed'])})
-        end
 
+             end
+        end
         # The ship object in this loop also contains the open port and open date, so after updating the ship info,
         # we can can create a json file containing the open port and date for each ship
 
@@ -398,19 +399,27 @@ module AdminHelperC
   def update_broker
 #    Broker.destroy_all
     begin
+      name = 'Zack'
+      password = 'shipment'
+
       all_shipments = Shipment.all
-      zack = Broker.find_by(username: 'Zack')
-      if (zack.nil?)
-        Broker.create!(username: "Zack", password: "shipment", company: "Sterling Ocean Transport Inc.",
-                       email: "brokers@sterlingoceantransport.com", shipments: all_shipments, website:"www.sterlingoceantransport.com",
-                       telephone:"+1(514)807-3707", country:"Canada", city:"Montreal")
+      broker = Broker.find_by(username: name.to_s)
+      if (broker.nil?)
+        new_broker = create_broker name, password
+        new_broker.shipments = all_shipments
       else
-        andrey.shipments = all_shipments
+        broker.shipments = all_shipments
       end
     rescue => e
-      puts "#{e.message} for broker Andrey"
+      puts "#{e.message} for broker Zack"
     end
 
+  end
+
+  def create_broker name, password
+    Broker.create!(username: name.to_s, password: password.to_s, company: "Sterling Ocean Transport Inc.",
+                   email: "brokers@sterlingoceantransport.com", website:"www.sterlingoceantransport.com",
+                   telephone:"+1(514)807-3707", country:"Canada", city:"Montreal")
   end
 
   def require_admin_authentication
