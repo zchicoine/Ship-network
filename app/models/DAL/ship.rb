@@ -10,6 +10,7 @@ class Ship < ActiveRecord::Base
     enum vessel_category: [:No_Type, :MiniBulker, :Handysize, :Handymax , :Supramax, :Panamax, :PostPanamax, :Capesize]
 
     has_one :ship_detail, :dependent => :destroy
+    accepts_nested_attributes_for :ship_detail, update_only: true
     has_many :shipments
     has_many :ports, :through => :shipments, :dependent => :destroy
 

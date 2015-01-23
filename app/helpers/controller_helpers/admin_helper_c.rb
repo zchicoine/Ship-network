@@ -21,10 +21,12 @@ module AdminHelperC
       read_port_names_file = open_json_temp_file.read
       hash_port_names_object = JSON.parse(read_port_names_file)
       object.each do |shipment|
-        port_name = shipment['open_port'].to_s.downcase
+        @vessel_name = shipment['vessel_name']
+        @port_name = shipment['open_port'].to_s
+        port_name = shipment['open_port'].to_s.strip.downcase
         open_port = hash_port_names_object[port_name]        # Look for the port where this ship is supposed to be
         port = Port.find_by_name(open_port)
-        vessel = Ship.find_by_name(shipment['vessel_name'].to_s.downcase)
+        vessel = Ship.find_by_name!(shipment['vessel_name'].to_s.strip.downcase)
         # We then get the open date
         # Since we might not have the open port, we store the name
         if (hash_port_names_object[shipment['open_port'].to_s.strip.downcase].nil?)
@@ -39,7 +41,7 @@ module AdminHelperC
         Shipment.create(ship: vessel, open_start_date: start_date, open_end_date: start_date.advance({days: 5}), port: port)
       end
     rescue => e
-      error_for_ships <<  e.message + " for vessel: " + @name.to_s
+      error_for_ships <<  e.message + " for vessel: " + @vessel_name.to_s + " port: " + @port_name.to_s
     end
     return error_for_ships
   end
@@ -48,7 +50,7 @@ module AdminHelperC
     begin
       tempHash = {}
       object.each do |port|
-        region, @name, latitude, longitude = port['region'].to_s, port['portNames'].to_s, port['latitudeDecimal'].to_f,
+        region, @name, latitude, longitude = port['region'].to_s, port['portNames'].to_s.strip, port['latitudeDecimal'].to_f,
             port['longitudeDecimal'].to_f
 
         # create a hash for alternative port name. Alternative port name are in the same file as port info, so we can do this here.
@@ -69,7 +71,7 @@ module AdminHelperC
         unless current_port.nil?
           current_port.update(latitude: latitude.to_f, longitude: longitude.to_f, region: region.to_s)
         else
-          current_port = Port.create(name: @name.to_s, latitude: latitude.to_f, longitude: longitude.to_f, region: region.to_s)
+          Port.create(name: @name.to_s, latitude: latitude.to_f, longitude: longitude.to_f, region: region.to_s)
         end
       end
     rescue => e
@@ -97,10 +99,11 @@ module AdminHelperC
 
   def update_and_create_ships object
     array_of_hashes = []
+#    ShipDetail.destroy_all
     begin
       object.each do |ship|
 
-        @name, deadweight, deadweight_cargo_capacity, vessel_type = ship['motorVessel'], ship['deadweight'], ship['deadweightCargoCapacity'],
+        @name, deadweight, deadweight_cargo_capacity, vessel_type = ship['motorVessel'].strip, ship['deadweight'], ship['deadweightCargoCapacity'],
             ship['typeOfVessel']
 
         deadweight = deadweight.to_i
@@ -159,37 +162,38 @@ module AdminHelperC
               category_name = 1
           end
         end
-
         vessel = Ship.find_by_name(@name.to_s)
         unless vessel.nil?
-          vessel.update!(vessel_type: temp, deadweight: deadweight.to_i, deadweight_cargo_capacity: deadweight_cargo_capacity.to_i,
-                         vessel_category: category_name.to_i)
+          vessel.update(vessel_type: temp, deadweight: deadweight.to_i, deadweight_cargo_capacity: deadweight_cargo_capacity.to_i,
+                         vessel_category: category_name.to_i, ship_detail_attributes: {draft: ship['draft'].to_f, built: ship['yearBuilt'].to_i, tons_per_centimeter: ship['tpc'].to_f,
+                                                                                        flag: ship['flag'], classification_society: ship['classificationSociety'], length_over_all: ship['loa'].to_f, beam: ship['beam'].to_f, holds: ship['holds'].to_i,
+                                                                                        hatches: ship['hatches'].to_i, gross_registered_tonnage: ship['grt'], net_registered_tonnage: ship['nrt'], total_cubic_meters_GR: ship['totalCbmGrain'],
+                                                                                        total_cubic_meters_BL: ship['totalCbmBale'], total_cubic_feet_GR: ship['totalCbftGrain'], total_cubic_feet_BL: ship['totalCbftBale'], intermediate_fuel_oil_180?: return_boolean(ship['ifo180']),
+                                                                                        intermediate_fuel_oil_380?: return_boolean(ship['ifo380']), marine_diesel_oil?: return_boolean(ship['mdo']), laden: ship['ladenSpeed'], ballast: ship['ballastSpeed'], economic: ship['ecoSpeed'],
+                                                                                        consumption_at_sea_L: ship['consumptionL'], consumption_at_sea_B: ship['consumptionB'], eco_consumption_L: ship['consupmtionEcoL'],
+                                                                                        marine_diesel_oil_at_sea: ship['mdoAtSea'], marine_gasoline_oil_at_sea: ship['mgoAtSea'], consumption_in_port_Working: ship['inPortWorking'],
+                                                                                        consumption_in_port_Idle: ship['inPortIdle'], marine_diesel_in_port: ship['mdoInPort'], marine_gasoline_oil_in_port: ship['mgoInPort'],
+                                                                                        number_of_cranes: ship['cranes'], crane_capacity: ship['craneCapacity'], combined_crane_capacity: ship['combinedCraneCapacity'], aussie_holds_ladders?: return_boolean(ship['aussieHoldsLadders']),
+                                                                                        CO2_system_on_board?: return_boolean(ship['co2Fitted']), twenty_foot_equivalent_unit?: return_boolean(ship['twentyfootEquivalentUnits']), lakes_fitted?: return_boolean(ship['lakesFitted']),
+                                                                                        log_fitted?: return_boolean(ship['logFitted']), grabber?: return_boolean(ship['grabs']), gearless?: return_boolean(ship['gearless']), double_hull?: return_boolean(ship['doubleHull']), imo_fitted?: return_boolean(ship['imoFitted']), appendix_B_fitted?: return_boolean(ship['appendixBFitted']),
+                                                                                        box_shaped_holds?: return_boolean(ship['boxShapedHolds']), cement_holes_fitted?: return_boolean(ship['cementHolesFitted']), marine_gasoline_oil?: return_boolean(ship['mgo']), ice_classed?: return_boolean(ship['iceClassed'])})
+
+        else
+          Ship.create!(name: @name.to_s.downcase, vessel_type: temp, deadweight: deadweight.to_i, deadweight_cargo_capacity: deadweight_cargo_capacity.to_i,
+                               vessel_category: category_name.to_i, ship_detail_attributes: {draft: ship['draft'].to_f, built: ship['yearBuilt'].to_i, tons_per_centimeter: ship['tpc'].to_f,
+                                                                                              flag: ship['flag'], classification_society: ship['classificationSociety'], length_over_all: ship['loa'].to_f, beam: ship['beam'].to_f, holds: ship['holds'].to_i,
+                                                                                              hatches: ship['hatches'].to_i, gross_registered_tonnage: ship['grt'], net_registered_tonnage: ship['nrt'], total_cubic_meters_GR: ship['totalCbmGrain'],
+                                                                                              total_cubic_meters_BL: ship['totalCbmBale'], total_cubic_feet_GR: ship['totalCbftGrain'], total_cubic_feet_BL: ship['totalCbftBale'], intermediate_fuel_oil_180?: return_boolean(ship['ifo180']),
+                                                                                              intermediate_fuel_oil_380?: return_boolean(ship['ifo380']), marine_diesel_oil?: return_boolean(ship['mdo']), laden: ship['ladenSpeed'], ballast: ship['ballastSpeed'], economic: ship['ecoSpeed'],
+                                                                                              consumption_at_sea_L: ship['consumptionL'], consumption_at_sea_B: ship['consumptionB'], eco_consumption_L: ship['consupmtionEcoL'],
+                                                                                              marine_diesel_oil_at_sea: ship['mdoAtSea'], marine_gasoline_oil_at_sea: ship['mgoAtSea'], consumption_in_port_Working: ship['inPortWorking'],
+                                                                                              consumption_in_port_Idle: ship['inPortIdle'], marine_diesel_in_port: ship['mdoInPort'], marine_gasoline_oil_in_port: ship['mgoInPort'],
+                                                                                              number_of_cranes: ship['cranes'], crane_capacity: ship['craneCapacity'], combined_crane_capacity: ship['combinedCraneCapacity'], aussie_holds_ladders?: return_boolean(ship['aussieHoldsLadders']),
+                                                                                              CO2_system_on_board?: return_boolean(ship['co2Fitted']), twenty_foot_equivalent_unit?: return_boolean(ship['twentyfootEquivalentUnits']), lakes_fitted?: return_boolean(ship['lakesFitted']),
+                                                                                              log_fitted?: return_boolean(ship['logFitted']), grabber?: return_boolean(ship['grabs']), gearless?: return_boolean(ship['gearless']), double_hull?: return_boolean(ship['doubleHull']), imo_fitted?: return_boolean(ship['imoFitted']), appendix_B_fitted?: return_boolean(ship['appendixBFitted']),
+                                                                                              box_shaped_holds?: return_boolean(ship['boxShapedHolds']), cement_holes_fitted?: return_boolean(ship['cementHolesFitted']), marine_gasoline_oil?: return_boolean(ship['mgo']), ice_classed?: return_boolean(ship['iceClassed'])})
         end
-        if !(ship['deadweight'].nil? and ship['deadweightCargoCapacity'].nil?)
-          vessel = Ship.create(name: @name.to_s, vessel_type: temp, deadweight: deadweight.to_i, deadweight_cargo_capacity: deadweight_cargo_capacity.to_i,
-                               vessel_category: category_name.to_i)
-        end
 
-
-        draft, built = ship['draft'].to_f, ship['yearBuilt'].to_i
-
-        unless (ship['deadweight'].nil? and ship['deadweightCargoCapacity'].nil?)
-          vessel_details = ShipDetail.create(draft: draft, built: built,tons_per_centimeter: ship['tpc'].to_f,
-                                             flag: ship['flag'], classification_society: ship['classificationSociety'], length_over_all: ship['loa'].to_f, beam: ship['beam'].to_f, holds: ship['holds'].to_i,
-                                             hatches: ship['hatches'].to_i, gross_registered_tonnage: ship['grt'], net_registered_tonnage: ship['nrt'], total_cubic_meters_GR: ship['totalCbmGrain'],
-                                             total_cubic_meters_BL: ship['totalCbmBale'], total_cubic_feet_GR: ship['totalCbftGrain'], total_cubic_feet_BL: ship['totalCbftBale'], intermediate_fuel_oil_180?: return_boolean(ship['ifo180']),
-                                             intermediate_fuel_oil_380?: return_boolean(ship['ifo380']), marine_diesel_oil?: return_boolean(ship['mdo']), laden: ship['ladenSpeed'], ballast: ship['ballastSpeed'], economic: ship['ecoSpeed'],
-                                             consumption_at_sea_L: ship['consumptionL'], consumption_at_sea_B: ship['consumptionB'], eco_consumption_L: ship['consupmtionEcoL'],
-                                             marine_diesel_oil_at_sea: ship['mdoAtSea'], marine_gasoline_oil_at_sea: ship['mgoAtSea'], consumption_in_port_Working: ship['inPortWorking'],
-                                             consumption_in_port_Idle: ship['inPortIdle'], marine_diesel_in_port: ship['mdoInPort'], marine_gasoline_oil_in_port: ship['mgoInPort'],
-                                             number_of_cranes: ship['cranes'], crane_capacity: ship['craneCapacity'], combined_crane_capacity: ship['combinedCraneCapacity'], aussie_holds_ladders?: return_boolean(ship['aussieHoldsLadders']),
-                                             CO2_system_on_board?: return_boolean(ship['co2Fitted']), twenty_foot_equivalent_unit?: return_boolean(ship['twentyfootEquivalentUnits']), lakes_fitted?: return_boolean(ship['lakesFitted']),
-                                             log_fitted?: return_boolean(ship['logFitted']), grabber?: return_boolean(ship['grabs']), gearless?: return_boolean(ship['gearless']), double_hull?: return_boolean(ship['doubleHull']), imo_fitted?: return_boolean(ship['imoFitted']), appendix_B_fitted?: return_boolean(ship['appendixBFitted']),
-                                             box_shaped_holds?: return_boolean(ship['boxShapedHolds']), cement_holes_fitted?: return_boolean(ship['cementHolesFitted']), marine_gasoline_oil?: return_boolean(ship['mgo']), ice_classed?: return_boolean(ship['iceClassed']))
-
-
-          vessel.ship_detail = vessel_details
-        end
         # The ship object in this loop also contains the open port and open date, so after updating the ship info,
         # we can can create a json file containing the open port and date for each ship
 
@@ -201,11 +205,12 @@ module AdminHelperC
         end
       end
 
-
     rescue => e
       e.message + " for vessel: " + @name.to_s
     end
+
     return array_of_hashes
+
   end
 
   def store_shipment_file_in_app object
@@ -394,11 +399,11 @@ module AdminHelperC
 #    Broker.destroy_all
     begin
       all_shipments = Shipment.all
-      andrey = Broker.find_by(username: 'Andrey')
-      if (andrey.nil?)
-        Broker.create!(username: "Andrey", password: "lightshipusa",
-                       email: "brokers@noemail.com", shipments: all_shipments, website:"www.theshipnetwork.com",
-                       telephone:"+1(555)555-5555", country:"Canada", city:"Montreal")
+      zack = Broker.find_by(username: 'Zack')
+      if (zack.nil?)
+        Broker.create!(username: "Zack", password: "shipment", company: "Sterling Ocean Transport Inc.",
+                       email: "brokers@sterlingoceantransport.com", shipments: all_shipments, website:"www.sterlingoceantransport.com",
+                       telephone:"+1(514)807-3707", country:"Canada", city:"Montreal")
       else
         andrey.shipments = all_shipments
       end

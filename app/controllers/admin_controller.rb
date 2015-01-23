@@ -1,6 +1,3 @@
-#require "json"
-#require "rchardet"
-
 class AdminController < ApplicationController
   include  AdminHelperC
 
