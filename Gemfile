@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.1'
+gem 'rails', '4.1.9'
 gem 'bootstrap-sass', '~> 3.1.1.1'
 gem 'devise', '~> 3.2.4'
 # Use sqlite3 as the database for Active Record
@@ -16,7 +16,6 @@ group :test do
   gem 'selenium-webdriver', '~> 2.42.0' 
   gem 'capybara', '~> 2.3.0'
   gem 'shoulda', '~> 3.5.0'
-
   gem 'factory_girl_rails', '~> 4.4.1'
 end
 
