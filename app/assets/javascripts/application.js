@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require bootstrap
+//= require bootstrap-sass-official
 //= require sugar
 //= require infobox_packed
 //= require jquery.actual.min
