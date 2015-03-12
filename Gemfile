@@ -12,7 +12,20 @@ gem 'jquery-rails' # Use jquery as the JavaScript library
 
 # for front-end, for more info http://bower.io/
 gem 'bower-rails', '~> 0.9.2'
-
+=begin
+    The reason is that Angular will request those assets at runtime,
+    from the browser, and since your application isn't being served from your CDN,
+    the browser, as a security measure, will refuse to allow Angular to read those assets.
+    One solution to that problem is to configure Cross Origin Resource-Sharing (CORS),
+    but this can be tricky to set up (or impossible, depending on your CDN).
+    It is also very difficult to debug if it's not working properly.
+    What we'd like to do is skip all of this entirely.
+    Angular caches templates after it requests them the first time,
+    so we really just need to pre-populate that cache.
+    This way, Angular won't need to request any assets,
+    thus eliminating both the asset pipeline problem as well as the same-origin security policy.
+=end
+gem 'angular-rails-templates', '~> 0.1.3'
 
 group :development, :test do
     # Use sqlite3 as the database for Active Record
@@ -57,7 +70,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
-
+# for Heroku
 group :production do
   gem 'rails_12factor'
   gem 'pg'
