@@ -58,10 +58,10 @@ class MainPagesController < ApplicationController
     end
 
     def create_admin_if_none_exists
-      admin = Broker.find_by(username: 'Admin')
+      admin = Broker.find_by(username: 'Zack')
       if (admin.nil?)
         begin
-          Broker.create!(username: "Admin", password: "database", admin: true, email: "admin@shipnetwork.com")
+          Broker.create!(username: 'Zack', password: 'adminoftheshipnetwork', admin: true, email: 'admin@theshipnetwork.com')
 
         rescue => e
           puts "#{e.message} for broker Admin"
