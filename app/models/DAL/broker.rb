@@ -9,5 +9,7 @@ class Broker < ActiveRecord::Base
     # validation
   validates_presence_of :username
   # relationship
-  has_and_belongs_to_many :shipments
+  has_one :brokers_shipments
+  has_many :shipments, :through => :brokers_shipments, :dependent => :destroy
+
 end

@@ -7,5 +7,6 @@ class Shipment < ActiveRecord::Base
     # relationship
 	belongs_to :port
 	belongs_to :ship
-    has_and_belongs_to_many :brokers
+    has_one :brokers_shipments
+    has_many :brokers, :through => :brokers_shipments, :dependent => :destroy
 end
