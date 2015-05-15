@@ -31,6 +31,7 @@ group :development, :test do
     # Use sqlite3 as the database for Active Record
     gem 'sqlite3' , '~> 1.3.9'
     gem 'rspec-rails', ' 3.0.1'
+    gem 'rails-erd' , '~> 1.4.0'# for more info https://github.com/voormedia/rails-erd
 end
 
 group :test do
