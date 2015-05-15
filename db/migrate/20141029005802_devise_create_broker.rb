@@ -6,11 +6,17 @@ class DeviseCreateBroker < ActiveRecord::Migration
             t.string :username
             t.string :encrypted_password, null: false, default: ""
             t.boolean :admin, null: true, default: false
+            # broker info
             t.string :company
             t.string :website
             t.string :telephone
             t.string :country
             t.string :city
+            # broker status
+            t.integer :ship_emails
+            t.integer :personal_emails
+            t.integer :order_emails
+            t.integer :not_ship_emails
             ## Recoverable
             t.string   :reset_password_token
             t.datetime :reset_password_sent_at
