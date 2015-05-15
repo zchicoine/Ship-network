@@ -13,7 +13,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require bootstrap
+//= require bootstrap-sass-official
+//= require angular/angular
+//= require angular-route/angular-route
+//= require angular-rails-templates
 //= require sugar
 //= require infobox_packed
 //= require jquery.actual.min

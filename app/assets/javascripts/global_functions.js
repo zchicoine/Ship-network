@@ -1,3 +1,8 @@
+/*
+ TODO: change the file name to be more descriptive
+  */
+
+// TODO: all the global variables should be changes to be include under T_S_N
 var GLOBAL_LEVEL = 0;       var COME_FROM_START= 0;
 var REGION_LEVEL = 1;       var COME_FROM_MAP = 1;
 var PORT_LEVEL = 2;         var COME_FROM_MOTOR_VESSEL = 2;
@@ -12,5 +17,30 @@ refresh_current_view = function(name){
 }
 
 
+/**
+ * T_S_N:  The Ship Network
+ * Define one global var.
+ * the following is taken from "Maintainable JavaScript by Nicholas Zakas(O’Reilly). Copyright 2012 Nicholas Zakas, 978-1-449-32768-2"
+ */
+var T_S_N;
+T_S_N = {
+    // assurance that the namespace only creat once.
+    namespace: function (ns)
+    {
+        var parts = ns.split(".");
+        var object = this;
+        var i;
+
+        for (i = 0; i < parts.length; i++) {
+
+            if (!object[parts[i]]) {
+                object[parts[i]] = {};
+            }
+
+            object = object[parts[i]];
+        }
+        return object;
+    }
+};
 
 
