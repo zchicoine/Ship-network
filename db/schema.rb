@@ -37,6 +37,10 @@ ActiveRecord::Schema.define(version: 20141029005802) do
   create_table "brokers_shipments", id: false, force: true do |t|
     t.integer "shipment_id"
     t.integer "broker_id"
+    t.string  "email_body"
+    t.string  "email_subject"
+    t.string  "original_email_address"
+    t.date    "email_date"
   end
 
   create_table "ports", force: true do |t|
@@ -84,6 +88,8 @@ ActiveRecord::Schema.define(version: 20141029005802) do
     t.integer  "number_of_cranes"
     t.float    "crane_capacity"
     t.integer  "combined_crane_capacity"
+    t.boolean  "mechanical_or_electrical_ventilation?"
+    t.boolean  "self_trimming?"
     t.boolean  "aussie_holds_ladders?"
     t.boolean  "CO2_system_on_board?"
     t.boolean  "twenty_foot_equivalent_unit?"
