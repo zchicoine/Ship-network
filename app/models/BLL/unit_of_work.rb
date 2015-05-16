@@ -31,11 +31,4 @@ class UnitOfWork
         end
         @_broker
     end
-    def broker_shipment
-        if @_broker_shipment.nil?
-            return @_broker_shipment =  BrokersShipmentsBLL.new
-        end
-        @_broker_shipment
-    end
-
 end

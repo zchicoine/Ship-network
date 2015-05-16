@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141029005802) do
+ActiveRecord::Schema.define(version: 20150516213756) do
 
   create_table "brokers", force: true do |t|
     t.string   "email",                  default: "",    null: false
@@ -41,10 +41,6 @@ ActiveRecord::Schema.define(version: 20141029005802) do
   create_table "brokers_shipments", id: false, force: true do |t|
     t.integer "shipment_id"
     t.integer "broker_id"
-    t.string  "email_body",             null: false
-    t.string  "email_subject",          null: false
-    t.string  "original_email_address"
-    t.date    "email_date",             null: false
   end
 
   create_table "ports", force: true do |t|
@@ -115,17 +111,31 @@ ActiveRecord::Schema.define(version: 20141029005802) do
 
   add_index "ship_details", ["ship_id"], name: "index_ship_details_on_ship_id"
 
+  create_table "ship_emails", force: true do |t|
+    t.string  "email_body",             null: false
+    t.string  "email_subject",          null: false
+    t.string  "original_email_address"
+    t.date    "email_date",             null: false
+    t.integer "broker_id"
+  end
+
+  add_index "ship_emails", ["broker_id"], name: "index_ship_emails_on_broker_id"
+
+  create_table "ship_emails_shipments", id: false, force: true do |t|
+    t.integer "shipment_id"
+    t.integer "ship_email_id"
+  end
+
   create_table "shipments", force: true do |t|
-    t.integer  "port_id"
     t.integer  "ship_id"
+    t.integer  "port_id"
     t.date     "open_start_date", null: false
     t.date     "open_end_date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "shipments", ["port_id"], name: "index_shipments_on_port_id"
-  add_index "shipments", ["ship_id"], name: "index_shipments_on_ship_id"
+  add_index "shipments", ["ship_id", "port_id"], name: "index_shipments_on_ship_id_and_port_id", unique: true
 
   create_table "ships", force: true do |t|
     t.string   "name"

@@ -1,15 +1,13 @@
 class CreateShipments < ActiveRecord::Migration
   def change
-    create_table :shipments do |t|
-      t.integer :port_id
-      t.integer :ship_id
+    create_table :shipments do  |t|
+      t.belongs_to :ship
+      t.belongs_to :port
       t.date :open_start_date, null: false
       t.date :open_end_date
       
       t.timestamps
     end
-    # add_index lines make it faster to access information via the join model
-    add_index :shipments, :port_id
-    add_index :shipments, :ship_id
+    add_index 'shipments', %w(ship_id port_id), :unique => true
   end
 end
