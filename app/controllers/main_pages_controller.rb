@@ -5,11 +5,8 @@
 =end
 
 class MainPagesController < ApplicationController
-    include LinkListBackHistoryHelperC
 
     def index
-        
-        create_history
 
     # Redirect admin to the admin view (through its controller)
     #     if current_broker.try(:admin?)

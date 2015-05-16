@@ -20,14 +20,12 @@ Rails.application.routes.draw do
     post  'google_map/index' => 'google_map#index'
 
     #--------------
-    post 'link_list_back_history/refresh' => 'link_list_back_history#refresh'
-    #--------------
     post 'ship_details/show' => 'ship_details#show'
     post  'ship_details/close' => 'ship_details#close'
     #--------------
-    post 'main_pages/region' => "main_pages#region"
-    post 'main_pages/port' => "main_pages#port"
-    post 'main_pages/ship' => "main_pages#ship"
+    post 'main_pages/region' => 'main_pages#region'
+    post 'main_pages/port' => 'main_pages#port'
+    post 'main_pages/ship' => 'main_pages#ship'
 
 
 

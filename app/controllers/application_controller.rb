@@ -2,8 +2,10 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-    include LevelDefine
-    require 'parameter_sanitizer'
+
+  # this is used to know from which layer (Port,Ship etc) the request coming from
+  include LevelDefine
+  require 'parameter_sanitizer'
 
   protected
 
