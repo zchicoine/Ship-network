@@ -1,10 +1,10 @@
+# TODO review this file and delete unnecessary comments and code
+
 class ShipmentBLL < Shipment
     extend CustomQuery
     # this class will have special query that involved shipment table
 
-    #get_shipCategory_deadweight_brokerName_openStartDate_and_endDate
-
-        #  return {value: result/0, error: nil/message}
+        #  TODO delete this method, see get_shipment_data in brokers_shipments_bll.rb
     def get_shipCategory_deadweight_brokerName_openStartDate_and_endDate ship_name = "", port_name = ""
         result = ShipBLL.joins(:ports, :shipments => [:brokers]).select("brokers.*",
                                 "shipments.open_start_date","shipments.open_end_date",:deadweight_cargo_capacity, :deadweight,:vessel_category).where(
@@ -15,7 +15,7 @@ class ShipmentBLL < Shipment
                                          broker_website:result[:website] ,broker_telephone:result[:telephone],broker_country:result[:country],
                                         broker_city:result[:city],
                                         deadweight_cargo_capacity: result[:deadweight_cargo_capacity],deadweight: result[:deadweight],
-                                         open_start_date: result[:open_start_date].to_date,open_end_date:  result[:open_end_date].to_date,
+                                         open_start_date: result[:open_start_date].to_date,open_end_date:  result[:open_end_date],
                                          vessel_category: result[:vessel_category], ship_name:  ship_name ,  port_name:  port_name
                                         }
             return {value: coverted_to_ruby_hash, error: nil}
@@ -29,7 +29,7 @@ class ShipmentBLL < Shipment
       result = ShipBLL.joins(:ports).select("shipments.open_start_date","shipments.open_end_date", "ports.name").where(
           "ports.name" => port_name,name:ship_name).execute_query 1
       unless result.blank?
-        coverted_to_ruby_hash = {open_start_date: result[:open_start_date].to_date , open_end_date: result[:open_end_date].to_date, name: result[:name] }
+        coverted_to_ruby_hash = {open_start_date: result[:open_start_date].to_date , open_end_date: result[:open_end_date], name: result[:name] }
         return {value: coverted_to_ruby_hash, error: nil}
       else
         return {value: 0, error: "Error:  #{ship_name }  and  #{port_name} has no relationship "}

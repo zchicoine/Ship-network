@@ -1,3 +1,5 @@
+# TODO review this file and delete unnecessary comments and code
+
 =begin
     This is the main pages of the ship network
 =end
@@ -10,9 +12,9 @@ class MainPagesController < ApplicationController
         create_history
 
     # Redirect admin to the admin view (through its controller)
-        if current_broker.try(:admin?)
-          redirect_to(controller: 'admin', action: 'index')
-        end
+    #     if current_broker.try(:admin?)
+    #       redirect_to(controller: 'admin', action: 'index')
+    #     end
 
         create_admin_if_none_exists
     end

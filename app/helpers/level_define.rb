@@ -1,3 +1,5 @@
+# TODO review this file and delete unnecessary comments and code
+
 module LevelDefine
     GLOBAL_LEVEL = 0
     REGION_LEVEL = 1

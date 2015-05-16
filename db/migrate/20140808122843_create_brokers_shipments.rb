@@ -4,10 +4,10 @@ class CreateBrokersShipments < ActiveRecord::Migration
         t.belongs_to :shipment
         t.belongs_to :broker
         # the reason why email information is here because each shipment can have multiple brokers
-        t.string :email_body
-        t.string :email_subject
+        t.string :email_body , null: false
+        t.string :email_subject , null: false
         t.string :original_email_address # email address of the original sender
-        t.date :email_date
+        t.date :email_date , null: false
     end
   end
 end

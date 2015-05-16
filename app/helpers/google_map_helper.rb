@@ -1,9 +1,12 @@
+# TODO review this file and delete unnecessary comments and code
+
+
 =begin
     This file is to provide functions that Google google_map API will use.
 
 =end
-
 module GoogleMapHelper
+
 
 
     # this function has to change, for now I will over ride them

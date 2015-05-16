@@ -3,7 +3,7 @@ class CreateShipments < ActiveRecord::Migration
     create_table :shipments do |t|
       t.integer :port_id
       t.integer :ship_id
-      t.date :open_start_date
+      t.date :open_start_date, null: false
       t.date :open_end_date
       
       t.timestamps

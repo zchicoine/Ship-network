@@ -1,3 +1,5 @@
+# TODO review this file and delete unnecessary comments and code
+
 # this module will not be used on release 0.6+
 # the functionally has been done throw javascript
 

@@ -1,3 +1,5 @@
+# TODO review this file and delete unnecessary comments and code
+
 class ShipsController < ApplicationController
   before_action :set_ship, only: [:show, :edit, :update, :destroy]
 

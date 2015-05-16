@@ -1,3 +1,5 @@
+# TODO review this file and delete unnecessary comments and code
+
 class PortsController < ApplicationController
     before_action :set_port, only: [:show, :edit, :update, :destroy]
 

@@ -96,7 +96,7 @@ class SidePanelController < ApplicationController
         @side_info = {region_name: cookies[:region_name] || "No region selected"}
         @side_info[:ship_name] = ship_name
         @side_info[:port_name] = cookies[:port_name]
-        result = UnitOfWork.instance.shipment.get_shipCategory_deadweight_brokerName_openStartDate_and_endDate @side_info[:ship_name], @side_info[:port_name]
+        result = UnitOfWork.instance.broker_shipment.get_shipment_data(current_broker[:email],@side_info[:port_name],@side_info[:ship_name])
         if result[:error].nil?
             @ship_info = result[:value]
         end

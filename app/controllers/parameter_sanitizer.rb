@@ -1,5 +1,6 @@
+# TODO explain what this file responsibility
 
-    class ParameterSanitizer < Devise::ParameterSanitizer
+class ParameterSanitizer < Devise::ParameterSanitizer
 
         def sign_in
             default_params.permit(:username)
