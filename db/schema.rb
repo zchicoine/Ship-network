@@ -41,10 +41,10 @@ ActiveRecord::Schema.define(version: 20141029005802) do
   create_table "brokers_shipments", id: false, force: true do |t|
     t.integer "shipment_id"
     t.integer "broker_id"
-    t.string  "email_body"
-    t.string  "email_subject"
+    t.string  "email_body",             null: false
+    t.string  "email_subject",          null: false
     t.string  "original_email_address"
-    t.date    "email_date"
+    t.date    "email_date",             null: false
   end
 
   create_table "ports", force: true do |t|
@@ -118,7 +118,7 @@ ActiveRecord::Schema.define(version: 20141029005802) do
   create_table "shipments", force: true do |t|
     t.integer  "port_id"
     t.integer  "ship_id"
-    t.date     "open_start_date"
+    t.date     "open_start_date", null: false
     t.date     "open_end_date"
     t.datetime "created_at"
     t.datetime "updated_at"
