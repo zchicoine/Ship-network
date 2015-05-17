@@ -5,9 +5,9 @@ class BrokerBLL < Broker
     # :return [Hash] {value: {ship:, personal, order:, not_ship:}, error:nil}
     def get_emails_status(email_address)
         begin
-            result = BrokerBLL.select(:ship_emails,:personal_emails,:order_emails,:not_ship_emails).where(email:email_address).execute_query(1)
+            result = BrokerBLL.select(:num_ship_emails,:num_personal_emails,:num_order_emails,:num_not_ship_emails).where(email:email_address).execute_query(1)
             unless result.blank?
-                {value:{ship:result.ship_emails,personal:result.personal_emails,order:result.order_emails,not_ship:result.not_ship_emails}, error:nil}
+                {value:{ship:result.num_ship_emails,personal:result.num_personal_emails,order:result.num_order_emails,not_ship:result.num_not_ship_emails}, error:nil}
             else
                 {value:'',error:'No information is available '}
             end

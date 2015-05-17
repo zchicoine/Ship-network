@@ -23,10 +23,10 @@ ActiveRecord::Schema.define(version: 20150516213756) do
     t.string   "telephone"
     t.string   "country"
     t.string   "city"
-    t.integer  "ship_emails"
-    t.integer  "personal_emails"
-    t.integer  "order_emails"
-    t.integer  "not_ship_emails"
+    t.integer  "num_ship_emails",        default: 0
+    t.integer  "num_personal_emails",    default: 0
+    t.integer  "num_order_emails",       default: 0
+    t.integer  "num_not_ship_emails",    default: 0
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
