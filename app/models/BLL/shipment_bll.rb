@@ -1,8 +1,9 @@
-# TODO review this file and delete unnecessary comments and code
-
+# TODO review this file and delete unnecessary comments and code (in progress)
+###
+# Has special query that involved shipment table
+###
 class ShipmentBLL < Shipment
     extend CustomQuery
-    # this class will have special query that involved shipment table
 
     # :param [String] email address of a broker, port name,  ship name
     # :description  this method should return all the data for the shipments
@@ -13,44 +14,49 @@ class ShipmentBLL < Shipment
     def get_shipment_data(email_address,port_name,ship_name)
         begin
             # get shipment
-            shipment = ShipmentBLL.joins(:port).includes(:ship).where(
-                'ports.name' => port_name, 'ships.name' => ship_name).execute_query(1)
-            # TODO
-            ship_email = ShipEmailBLL.joins(:shipments).includes(:broker).where(
-                'brokers.email' => email_address, 'shipments.id' => shipment.id).execute_query(1)
+            shipment = ShipmentBLL.joins(:port).includes(:ship, :brokers,:ship_emails).where(
+                'ports.name' => port_name, 'ships.name' => ship_name, 'brokers.email' => email_address).execute_query(1)
 
-            unless ship_email.nil?
+            unless shipment.nil?
+                # shipment has to have only one broker since we query by a broker email
+                if shipment.brokers.count == 1
+                    broker_data = shipment.brokers.first
+                end
+
+                if shipment.ship_emails.count == 1
+                    ship_email = shipment.ship_emails.first
+                else
+                    # because the website can accept a shipment without associate to an email
+                    ship_email = ShipEmail.new
+                end
+
                 convert_to_ruby_hash = {
-                    broker_name: ship_email.broker.username,
+                    broker_name: broker_data.username,
                     broker_email: email_address,
-                    broker_company:ship_email.broker.company,
-                    broker_website:ship_email.broker.website,
-                    broker_telephone:ship_email.broker.telephone,
-                    broker_country:ship_email.broker.country,
-                    broker_city:ship_email.broker.city,
-                    email_body:ship_email[:email_body],
-                    email_subject:ship_email[:email_subject],
-                    email_date:ship_email[:email_date],
+                    broker_company:broker_data.company,
+                    broker_website:broker_data.website,
+                    broker_telephone:broker_data.telephone,
+                    broker_country:broker_data.country,
+                    broker_city:broker_data.city,
+                    email_body:ship_email.email_body,
+                    email_subject:ship_email.email_subject,
+                    email_date:ship_email.email_date,
                     open_start_date: shipment[:open_start_date].to_date,
                     deadweight_cargo_capacity: shipment.ship.deadweight_cargo_capacity,
                     deadweight: shipment.ship.deadweight,
-                    vessel_category: shipment.ship.vessel_category,
+                    vessel_category: shipment.ship[:vessel_category],
                     ship_name: ship_name,
-                    port_name:  port_name
+                    port_name: port_name
                 }
                 return {value:convert_to_ruby_hash, error:nil}
             else
-                return {value:'', error:"No data for #{email_address} with ship: #{ship} and port: #{port}"}
+                return {value:'', error:"No data for #{email_address} with ship: #{ship_name} and port: #{port_name}"}
             end
-
         rescue Exception => e
 
-            {value:'', error:e}
+            return {value:'', error:e}
         end
     end
-
-
-
 
     def get_open_port_date_and_end ship_name = "", port_name = ""
       result = ShipBLL.joins(:ports).select("shipments.open_start_date","shipments.open_end_date", "ports.name").where(
