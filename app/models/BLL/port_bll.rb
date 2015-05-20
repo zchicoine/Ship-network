@@ -1,12 +1,13 @@
 
     class PortBLL < Port
-
         extend CustomQuery
 
-        # return hash {value: result/0 and error: nil/message}
-        def retrieve_port_by_name port_name = ""
+
+        # :param port name
+        # :return hash {value: result/0 and error: nil/message}
+        def by_name(port_name)
             port_name
-           result =   Port.find_by(name: port_name)
+           result =   Port.find_by(name: port_name.downcase)
             unless result.blank?
                 return {value: result, error: nil}
             else
