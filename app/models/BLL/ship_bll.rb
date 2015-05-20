@@ -1,26 +1,19 @@
 
 class ShipBLL < Ship
-
     extend CustomQuery
     extend LocalizationHelper
 
-    # return hash {value: result/0 and error: nil/message}
-    def retrieve_a_ship ship_name = ""
+    # :description
+    # :param [String] ship name
+    # :return hash {value: result/0 and error: nil/message}
+    def get_by_name(ship_name)
+        result =  ShipBLL.where(name: ship_name).execute_query(1)
 
-        unless ship_name.blank?
-            # take method return an array with one object only
-            result =  Ship.where(name: ship_name).take(1)[0]
-            unless result.blank?
-                return {value: result, error: nil}
-            else
-                return {value: 0, error: "Error: ship name #{ship_name} does not exist"}
-            end
+        unless result.blank?
+            return {value: result, error: nil}
         else
-            return {value: 0, error: "Error:  the parameters invalid"}
+            return {value: 0, error: "Error: ship name #{ship_name} does not exist"}
         end
-
-
-
     end
 
 

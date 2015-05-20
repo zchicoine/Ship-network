@@ -5,7 +5,7 @@
 
         # :param port name
         # :return hash {value: result/0 and error: nil/message}
-        def by_name(port_name)
+        def get_by_name(port_name)
             port_name
            result =   Port.find_by(name: port_name.downcase)
             unless result.blank?

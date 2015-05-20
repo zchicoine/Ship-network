@@ -2,7 +2,8 @@ class Ship < ActiveRecord::Base
 
     validates_presence_of :name
     validates_uniqueness_of :name, case_sensitive: false
-    validates :deadweight, numericality: {greater_than_or_equal_to: 0}, :if => "deadweight_validates?"
+    validates :deadweight, numericality: {greater_than_or_equal_to: 0}
+    validates :deadweight_cargo_capacity, numericality: {greater_than_or_equal_to: 0}, if: :deadweight_validates?
     validates :vessel_category,presence: true, if: :vessel_category_validates?
     validate  :vessel_type_validates?
 
@@ -15,11 +16,10 @@ class Ship < ActiveRecord::Base
     has_many :ports, :through => :shipments, :dependent => :destroy
 
     def deadweight_validates?
-        if (deadweight != 0 or !deadweight_cargo_capacity.nil?)
-            return true
-
+        if deadweight <= 0 and deadweight_cargo_capacity <= 0
+            errors.add(:deadweight, 'and Deadweight cargo capacity cannot both be <= 0 or nil')
         else
-            return errors.add(:deadweight, "deadweight and deadweight cargo capacity cannot be less than 0 or nil")
+            true
         end
     end
 
