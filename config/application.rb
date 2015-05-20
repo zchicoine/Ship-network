@@ -22,6 +22,7 @@ module ShipNetwork
       config.autoload_paths += Dir[Rails.root.join('app', 'models', '{**}')]
       config.autoload_paths += Dir[Rails.root.join('app', 'helpers', '*.{**/}').to_s]
       config.autoload_paths += Dir[Rails.root.join('app', 'helpers', '{**}')]
-      # config.i18n.default_locale = :de
+      config.autoload_paths += Dir[Rails.root.join('app', 'helpers/controller_helpers', '*.{**/}').to_s]
+    # config.i18n.default_locale = :de
   end
 end

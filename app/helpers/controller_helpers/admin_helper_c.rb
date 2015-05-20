@@ -405,27 +405,9 @@ module AdminHelperC
   end
 =end
 
-  def update_broker
-#    Broker.destroy_all
-    begin
-      all_shipments = Shipment.all
-      andrey = Broker.find_by(username: 'Andrey')
-      if (andrey.nil?)
-        Broker.create!(username: "Andrey", password: "lightshipusa",
-                       email: "brokers@noemail.com", shipments: all_shipments, website:"www.theshipnetwork.com",
-                       telephone:"+1(555)555-5555", country:"Canada", city:"Montreal")
-      else
-        andrey.shipments = all_shipments
-      end
-    rescue => e
-      puts "#{e.message} for broker Andrey"
-    end
-
-  end
-
   def require_admin_authentication
     unless current_broker.try(:admin?)
-      redirect_to root_path                    #if a broker tries to view an admin page/action, they will be redirected to the main page.
+      redirect_to root_path                    #if a broker tries to view an admin_helpers page/action, they will be redirected to the main page.
     end
   end
 

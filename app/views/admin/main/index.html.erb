@@ -2,6 +2,7 @@
 <p>Instructions: go to Google Drive and open the Ship or Port spreadsheet.
   Click on Export JSON then select all the text (ctrl + A) then copy it into a text file (one text file for ships and one different text file for ports).
   Upload the resulting text files here.</p>
+
 <label>Update Port Database</label>
 <%= form_tag({action: :upload_ports_file}, multipart: true) do %>
     <%= file_field_tag 'ports' %>
@@ -13,6 +14,15 @@
     <%= file_field_tag 'ships' %>
     <%= submit_tag %>
 <% end %>
-<label>Update Shipment Database (ships at ports)</label>
-<%= button_to "Update Ships at Port Information", action: "update_shipments_table" %>
+
+
+<label>Update Broker Database</label>
+<%= form_tag({action: :upload_brokers_file}, multipart: true) do %>
+    <%= file_field_tag 'brokers' %>
+    <%= submit_tag %>
+<% end %>
+
+
+<!--<label>Update Shipment Database (ships at ports)</label>-->
+<!--<%# button_to "Update Ships at Port Information", action: "update_shipments_table" %>-->
 

@@ -7,10 +7,10 @@ Rails.application.routes.draw do
     devise_for :brokers, controllers: { sessions: 'brokers/sessions'}
 
     #--------------
-    get 'admin/index'
-    post 'admin/update_shipments_table' => 'admin#update_shipments_table'
-    match 'admin/upload_ports_file', to: 'admin#upload_ports_file', via: 'post'
-    match 'admin/upload_ships_file', to: 'admin#upload_ships_file', via: 'post'
+    match 'admin/', to: 'admin/main#index', via: 'get'
+    match 'admin/upload_ports_file', to: 'admin/main#upload_ports_file', via: 'post'
+    match 'admin/upload_ships_file', to: 'admin/main#upload_ships_file', via: 'post'
+    match 'admin/upload_brokers_file', to: 'admin/main#upload_brokers_file', via: 'post'
     #--------------
     post 'side_panel/index' => 'side_panel#index'
     post 'side_panel/region_short_info' => 'side_panel#region_short_info'
@@ -75,9 +75,9 @@ Rails.application.routes.draw do
   #   resources :photos, concerns: :toggleable
 
   # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
+  #   namespace :admin_helpers do
+  #     # Directs /admin_helpers/products/* to Admin::ProductsController
+  #     # (app/controllers/admin_helpers/products_controller.rb)
   #     resources :products
   #   end
 end
