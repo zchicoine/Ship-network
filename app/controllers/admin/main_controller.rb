@@ -4,6 +4,8 @@
 class Admin::MainController < ApplicationController
   include  AdminHelperC
   include  AdminHelpers::BrokersHelperC
+  include  AdminHelpers::ShipsHelperC
+  include  AdminHelpers::PortsHelperC
 
   before_action :require_admin_authentication #the admin_helpers controller has to be protected to only let admins in.
 
