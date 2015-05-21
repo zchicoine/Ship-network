@@ -1,0 +1,17 @@
+<ul id="admin-main-tap" class="nav nav-tabs">
+    <li role="presentation"><%= link_to 'Home', controller: 'admin/main', action:'index'%></li>
+    <li role="presentation" class="active"><%= link_to 'Shipment', controller: 'admin/shipment', action:'index'%></li>
+    <li role="presentation"><%= link_to 'Email', controller: 'admin/email', action:'index'%></li>
+</ul>
+<hr/>
+
+<label>Update Shipment Database</label>
+<%= form_tag({action: :upload_shipments_file}, multipart: true ,class:'form-inline') do %>
+    <div class="form-group">
+        <%= file_field_tag 'shipments' %>
+    </div>
+    <div class="form-group">
+        <%= submit_tag 'Upload Shipment', class: 'btn btn-primary' %>
+    </div>
+<% end %>
+<hr/>

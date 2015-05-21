@@ -1,28 +1,46 @@
-<h1>Admin</h1>
-<p>Instructions: go to Google Drive and open the Ship or Port spreadsheet.
+<ul id="admin-main-tap" class="nav nav-tabs">
+    <li role="presentation" class="active"><%= link_to 'Home', controller: 'admin/main', action:'index'%></li>
+    <li role="presentation"><%= link_to 'Shipment', controller: 'admin/shipment', action:'index'%></li>
+    <li role="presentation"><%= link_to 'Email', controller: 'admin/email', action:'index'%></li>
+</ul>
+<hr/>
+
+<p>
+    Instructions: go to Google Drive and open the Ship or Port spreadsheet.
   Click on Export JSON then select all the text (ctrl + A) then copy it into a text file (one text file for ships and one different text file for ports).
   Upload the resulting text files here.</p>
+<hr/>
 
 <label>Update Port Database</label>
-<%= form_tag({action: :upload_ports_file}, multipart: true) do %>
-    <%= file_field_tag 'ports' %>
-    <%= submit_tag %>
+<%= form_tag({action: :upload_ports_file}, multipart: true ,class:'form-inline') do %>
+    <div class="form-group">
+        <%= file_field_tag 'ports' %>
+    </div>
+    <div class="form-group">
+        <%= submit_tag 'Upload Ports', class: 'btn btn-primary' %>
+    </div>
 <% end %>
+<hr/>
 
 <label>Update Ship Database</label>
-<%= form_tag({action: :upload_ships_file}, multipart: true) do %>
-    <%= file_field_tag 'ships' %>
-    <%= submit_tag %>
+<%= form_tag({action: :upload_ships_file}, multipart: true ,class:'form-inline') do %>
+    <div class="form-group">
+        <%= file_field_tag 'ships' %>
+    </div>
+    <div class="form-group">
+        <%= submit_tag 'Upload Ships', class: 'btn btn-primary'%>
+    </div>
 <% end %>
-
+<hr/>
 
 <label>Update Broker Database</label>
-<%= form_tag({action: :upload_brokers_file}, multipart: true) do %>
-    <%= file_field_tag 'brokers' %>
-    <%= submit_tag %>
+<%= form_tag({action: :upload_brokers_file}, multipart: true ,class:'form-inline') do %>
+    <div class="form-group">
+        <%= file_field_tag 'brokers' %>
+    </div>
+    <div class="form-group">
+        <%= submit_tag 'Upload Brokers', class: 'btn btn-primary'%>
+    </div>
 <% end %>
 
-
-<!--<label>Update Shipment Database (ships at ports)</label>-->
-<!--<%# button_to "Update Ships at Port Information", action: "update_shipments_table" %>-->
 
