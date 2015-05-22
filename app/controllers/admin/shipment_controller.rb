@@ -12,6 +12,18 @@ class Admin::ShipmentController < ApplicationController
     end
 
     def upload_shipments_file
-
+        begin
+            uploaded_file = read_uploaded_file(params[:shipments])
+            if uploaded_file[:error].blank?
+                hash_format = convert_it_to_hash_format(uploaded_file[:data])
+                result = update_and_create_broker(hash_format)
+                @error_messages = result[:error]
+            else
+                @error_messages = [uploaded_file[:error]]
+            end
+            render('logs')
+        rescue => e
+            @error_messages = [e.message]
+        end
     end
 end
