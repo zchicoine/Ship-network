@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     match 'admin/shipment/upload', to: 'admin/shipment#upload_shipments_file', via: 'post'
     #--------------
     match 'admin/email', to: 'admin/email#index', via: 'get'
+    #--------------
+    match 'admin/broker', to: 'admin/broker#index', via: 'get'
     #-------------- End Admin panel --------------#
     #--------------
     post 'side_panel/index' => 'side_panel#index'

@@ -1,0 +1,46 @@
+<ul id="admin-main-tap" class="nav nav-tabs">
+  <li role="presentation"><%= link_to 'Home', controller: 'admin/main', action:'index'%></li>
+  <li role="presentation"><%= link_to 'Shipment', controller: 'admin/shipment', action:'index'%></li>
+  <li role="presentation"><%= link_to 'Email', controller: 'admin/email', action:'index'%></li>
+  <li role="presentation" class="active"><%= link_to 'Brokers', controller: 'admin/broker', action:'index'%></li>
+</ul>
+<hr/>
+<table class="table table-striped">
+  <tr>
+    <th>
+      ID
+    </th>
+    <th>
+      Email
+    </th>
+    <th>
+      Username
+    </th>
+    <th>
+      # ship emails
+    </th>
+    <th>
+      # recognized emails
+    </th>
+  </tr>
+  <% @brokers.each do |broker|%>
+    <tr>
+      <td>
+        <%= broker.id %>
+      </td>
+      <td>
+        <%= broker.email %>
+      </td>
+      <td>
+        <%= broker.username %>
+      </td>
+      <td>
+        <%= broker.num_ship_emails %>
+      </td>
+      <td>
+        <%= broker.ship_emails.count %>
+      </td>
+    </tr>
+  <% end%>
+
+</table>
