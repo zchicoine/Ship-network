@@ -16,6 +16,9 @@
     <th>
       Username
     </th>
+      <th>
+          # shipments
+      </th>
     <th>
       # ship emails
     </th>
@@ -34,6 +37,9 @@
       <td>
         <%= broker.username %>
       </td>
+        <td>
+            <%= broker.shipments.count %>
+        </td>
       <td>
         <%= broker.num_ship_emails %>
       </td>
