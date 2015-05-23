@@ -20,3 +20,50 @@
     </div>
 <% end %>
 
+<hr/>
+<table class="table table-striped">
+    <tr>
+        <th>
+            ID
+        </th>
+        <th>
+            Email Subject
+        </th>
+        <th>
+            Email date
+        </th>
+        <th>
+            Original email address
+        </th>
+        <th>
+            # shipments
+        </th>
+        <th>
+           Broker Id
+        </th>
+    </tr>
+    <% @emails.each do |email|%>
+        <tr>
+            <td>
+                <%= email.id %>
+            </td>
+            <td>
+                <%= email.email_subject %>
+            </td>
+            <td>
+                <%= email.email_date %>
+            </td>
+            <td>
+                <%= email.original_email_address %>
+            </td>
+            <td>
+                <%= email.shipments.count %>
+            </td>
+            <td>
+                <%= email.broker_id %>
+            </td>
+        </tr>
+    <% end%>
+
+</table>
+

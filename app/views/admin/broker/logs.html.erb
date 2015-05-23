@@ -1,0 +1,13 @@
+<h2>Updated</h2>
+
+<% begin %>
+    <table>
+        <% @error_messages.each do |item| %>
+            <tr>
+                <td><%= item %></td>
+            </tr>
+        <% end %>
+    </table>
+<% rescue => e %>
+    <%= e.message %>
+<% end %>

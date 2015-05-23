@@ -21,7 +21,17 @@
         <div >
             <% flash.each do |key, value| %>
                 <div class="<%= flash_class(key) %> alert-dismissible" role="alert">
-                    <%= value   %>
+                    <% values = value if value.is_a? Array %>
+                    <% unless values.blank? %>
+                        <%  values.each do |v| %>
+                            <div>
+                                <%= v %>
+                            </div>
+                            <hr/>
+                        <% end %>
+                    <%else %>
+                    <%= value %>
+                    <% end %>
                 </div>
             <% end %>
             <%= yield %>

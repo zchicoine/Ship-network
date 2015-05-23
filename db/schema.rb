@@ -120,6 +120,7 @@ ActiveRecord::Schema.define(version: 20150516213756) do
   end
 
   add_index "ship_emails", ["broker_id"], name: "index_ship_emails_on_broker_id"
+  add_index "ship_emails", ["email_subject", "email_date"], name: "index_ship_emails_on_email_subject_and_email_date", unique: true
 
   create_table "ship_emails_shipments", id: false, force: true do |t|
     t.integer "shipment_id"

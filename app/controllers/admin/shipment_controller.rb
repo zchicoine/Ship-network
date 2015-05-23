@@ -22,9 +22,9 @@ class Admin::ShipmentController < ApplicationController
             else
                 @error_messages = [uploaded_file[:error]]
             end
-            render('logs')
         rescue => e
             @error_messages = [e.message]
         end
+        render('logs')
     end
 end

@@ -10,7 +10,6 @@ Rails.application.routes.draw do
     match 'admin/', to: 'admin/main#index', via: 'get'
     match 'admin/upload_ports_file', to: 'admin/main#upload_ports_file', via: 'post'
     match 'admin/upload_ships_file', to: 'admin/main#upload_ships_file', via: 'post'
-    match 'admin/upload_brokers_file', to: 'admin/main#upload_brokers_file', via: 'post'
     #--------------
     match 'admin/shipment', to: 'admin/shipment#index', via: 'get'
     match 'admin/shipment/upload', to: 'admin/shipment#upload_shipments_file', via: 'post'
@@ -21,6 +20,7 @@ Rails.application.routes.draw do
     match 'admin/email/update_broker_ship_emails', to: 'admin/email#update_broker_ship_emails', via: 'post'
     #--------------
     match 'admin/broker', to: 'admin/broker#index', via: 'get'
+    match 'admin/broker/upload_brokers_file', to: 'admin/broker#upload_brokers_file', via: 'post'
     #-------------- End Admin panel --------------#
     #--------------
     post 'side_panel/index' => 'side_panel#index'

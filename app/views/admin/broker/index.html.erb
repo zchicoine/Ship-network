@@ -5,6 +5,18 @@
   <li role="presentation" class="active"><%= link_to 'Brokers', controller: 'admin/broker', action:'index'%></li>
 </ul>
 <hr/>
+
+<label>Update Broker Database</label>
+<%= form_tag({action: :upload_brokers_file}, multipart: true ,class:'form-inline') do %>
+    <div class="form-group">
+        <%= file_field_tag 'brokers' %>
+    </div>
+    <div class="form-group">
+        <%= submit_tag 'Upload Brokers', class: 'btn btn-primary'%>
+    </div>
+<% end %>
+
+<hr/>
 <table class="table table-striped">
   <tr>
     <th>

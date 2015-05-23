@@ -93,17 +93,6 @@ module AdminHelpers
 
                     end
 
-                    ### TODO delete this once the shipment done
-                    # The ship object in this loop also contains the open port and open date, so after updating the ship info,
-                    # we can can create a json file containing the open port and date for each ship
-                    unless (ship['openPort'].nil? or ship['openDate'].nil?)
-                        open_port_open_date_for_ships = {:vessel_name => @name.to_s.downcase,
-                                                         :open_port => ship['openPort'].to_s.downcase,
-                                                         :open_date => ship['openDate'].to_s}
-
-                        temp_hash[:data].push(open_port_open_date_for_ships)
-                    end
-
                 rescue => e
                     temp_hash[:error].push(e.message + ' for vessel: ' + @name.to_s)
                 end

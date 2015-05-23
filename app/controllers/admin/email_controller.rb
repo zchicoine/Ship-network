@@ -8,17 +8,18 @@ class Admin::EmailController < ApplicationController
     before_action :require_admin_authentication #the admin_helpers controller has to be protected to only let admins in.
 
     def index
+        @emails = ShipEmailBLL.all
         render ('index')
     end
 
     def categorize
         flash[:success] = " #{Kee.new.categorize_emails(50)} has been categorize"
-        render('index')
+        redirect_to(admin_email_path)
     end
 
     def categorize_update
         flash[:success] = 'successful but this feature is not yet implement'
-        render('index')
+        redirect_to(admin_email_path)
     end
     def update_broker_ship_emails
         broker_result = UnitOfWork.instance.broker.get_by_email(params[:broker_email])
@@ -47,7 +48,6 @@ class Admin::EmailController < ApplicationController
         else
             flash[:error] = broker_result[:error]
         end
-        render('index')
-
+        redirect_to(admin_email_path)
     end
 end
