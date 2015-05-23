@@ -19,6 +19,11 @@
     <!-- container -->
     <div class="container">
         <div >
+            <% flash.each do |key, value| %>
+                <div class="<%= flash_class(key) %> alert-dismissible" role="alert">
+                    <%= value   %>
+                </div>
+            <% end %>
             <%= yield %>
         </div>
         <!-- end of container -->

@@ -11,5 +11,6 @@ class CreateShipEmail < ActiveRecord::Migration
       t.integer :broker_id
     end
     add_index :ship_emails, :broker_id
+    add_index 'ship_emails', %w(email_subject email_date), :unique => true
   end
 end

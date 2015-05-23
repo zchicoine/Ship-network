@@ -33,10 +33,11 @@ class Admin::MainController < ApplicationController
           else
               @error_messages = [uploaded_file[:error]]
           end
-          render('update_ships_table')
+
       rescue => e
           @error_messages = [e.message]
       end
+      render('update_ships_table')
   end
 
   def upload_ports_file
@@ -51,10 +52,10 @@ class Admin::MainController < ApplicationController
           else
               @error_messages = [uploaded_file[:error]]
           end
-          render('update_ships_table')
       rescue => e
           @error_messages = [e.message]
       end
+      render('update_ships_table')
   end
 
   def upload_ships_file
@@ -69,12 +70,11 @@ class Admin::MainController < ApplicationController
           else
               @error_messages = [uploaded_file[:error]]
           end
-          render('update_ships_table')
+
       rescue => e
           @error_messages = [e.message]
       end
-
-
+      render('update_ships_table')
   end
 
 end

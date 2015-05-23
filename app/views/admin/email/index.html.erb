@@ -4,3 +4,19 @@
     <li role="presentation" class="active"><%= link_to 'Email', controller: 'admin/email', action:'index'%></li>
     <li role="presentation"><%= link_to 'Brokers', controller: 'admin/broker', action:'index'%></li>
 </ul>
+<hr/>
+    <%= button_to 'Categorize', {controller: 'admin/email', action:'categorize'},
+                  {id:'admin-categorize-emails',class: 'btn btn-default', title: 'categorize emails by ship, order, personal or not_ship on emails server'} %>
+    <%= button_to 'Update status for each broker', {controller: 'admin/email', action:'categorize_update'},
+                  {id:'admin-update-categorize-emails',class: 'btn btn-default', title: 'update categorize emails for each broker on the system '} %>
+
+<label>Retrieve a broker ship emails from Gmail server</label>
+<%= form_tag({action: :update_broker_ship_emails}, class:'form-inline') do %>
+    <div class="form-group">
+        <%= email_field_tag 'broker_email' %>
+    </div>
+    <div class="form-group">
+        <%= submit_tag 'Retrieve', class: 'btn btn-primary' %>
+    </div>
+<% end %>
+

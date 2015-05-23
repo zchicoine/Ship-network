@@ -16,6 +16,9 @@ Rails.application.routes.draw do
     match 'admin/shipment/upload', to: 'admin/shipment#upload_shipments_file', via: 'post'
     #--------------
     match 'admin/email', to: 'admin/email#index', via: 'get'
+    match 'admin/email/categorize', to: 'admin/email#categorize', via: 'post'
+    match 'admin/email/categorize_update', to: 'admin/email#categorize_update', via: 'post'
+    match 'admin/email/update_broker_ship_emails', to: 'admin/email#update_broker_ship_emails', via: 'post'
     #--------------
     match 'admin/broker', to: 'admin/broker#index', via: 'get'
     #-------------- End Admin panel --------------#
@@ -24,8 +27,8 @@ Rails.application.routes.draw do
     post 'side_panel/region_short_info' => 'side_panel#region_short_info'
     post 'side_panel/broker_contact' => 'side_panel#broker_contact'
     #--------------
-    post  'google_map/port_coordinates' => 'google_map#port_coordinates'
-    post  'google_map/index' => 'google_map#index'
+    post 'google_map/port_coordinates' => 'google_map#port_coordinates'
+    post 'google_map/index' => 'google_map#index'
 
     #--------------
     post 'ship_details/show' => 'ship_details#show'
