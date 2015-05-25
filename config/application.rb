@@ -8,6 +8,7 @@ Bundler.require(*Rails.groups)
 
 module ShipNetwork
   class Application < Rails::Application
+    include Kee
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -27,11 +28,10 @@ module ShipNetwork
 
     # config.after_initialize takes a block which will be run after Rails has finished initializing the application.
     # That includes the initialization of the framework itself
-      config.after_initialize do
-          email_config = {auth_type: :basic , email_address:'strtupfab5@gmail.com',password:'Hj12!@#$'}
-          Kee.config_connection(email_config)
-      end
-
+    config.after_initialize do
+      email_config = {auth_type: :basic , email_address:'strtupfab5@gmail.com',password:'Hj12!@#$'}
+      Kee.config_connection(email_config)
+    end
 
   end
 end
