@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150516213756) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "brokers", force: true do |t|
     t.string   "email",                  default: "",    null: false
     t.string   "username"
@@ -34,9 +37,9 @@ ActiveRecord::Schema.define(version: 20150516213756) do
     t.datetime "updated_at"
   end
 
-  add_index "brokers", ["email"], name: "index_brokers_on_email", unique: true
-  add_index "brokers", ["reset_password_token"], name: "index_brokers_on_reset_password_token", unique: true
-  add_index "brokers", ["username"], name: "index_brokers_on_username", unique: true
+  add_index "brokers", ["email"], name: "index_brokers_on_email", unique: true, using: :btree
+  add_index "brokers", ["reset_password_token"], name: "index_brokers_on_reset_password_token", unique: true, using: :btree
+  add_index "brokers", ["username"], name: "index_brokers_on_username", unique: true, using: :btree
 
   create_table "brokers_shipments", id: false, force: true do |t|
     t.integer "shipment_id"
@@ -52,7 +55,7 @@ ActiveRecord::Schema.define(version: 20150516213756) do
     t.datetime "updated_at"
   end
 
-  add_index "ports", ["name"], name: "index_ports_on_name", unique: true
+  add_index "ports", ["name"], name: "index_ports_on_name", unique: true, using: :btree
 
   create_table "ship_details", force: true do |t|
     t.float    "draft"
@@ -109,18 +112,18 @@ ActiveRecord::Schema.define(version: 20150516213756) do
     t.datetime "updated_at"
   end
 
-  add_index "ship_details", ["ship_id"], name: "index_ship_details_on_ship_id"
+  add_index "ship_details", ["ship_id"], name: "index_ship_details_on_ship_id", using: :btree
 
   create_table "ship_emails", force: true do |t|
-    t.string  "email_body",             null: false
-    t.string  "email_subject",          null: false
+    t.text    "email_body",             null: false
+    t.text    "email_subject",          null: false
     t.string  "original_email_address"
     t.date    "email_date",             null: false
     t.integer "broker_id"
   end
 
-  add_index "ship_emails", ["broker_id"], name: "index_ship_emails_on_broker_id"
-  add_index "ship_emails", ["email_subject", "email_date"], name: "index_ship_emails_on_email_subject_and_email_date", unique: true
+  add_index "ship_emails", ["broker_id"], name: "index_ship_emails_on_broker_id", using: :btree
+  add_index "ship_emails", ["email_subject", "email_date"], name: "index_ship_emails_on_email_subject_and_email_date", unique: true, using: :btree
 
   create_table "ship_emails_shipments", id: false, force: true do |t|
     t.integer "shipment_id"
@@ -136,7 +139,7 @@ ActiveRecord::Schema.define(version: 20150516213756) do
     t.datetime "updated_at"
   end
 
-  add_index "shipments", ["ship_id", "port_id"], name: "index_shipments_on_ship_id_and_port_id", unique: true
+  add_index "shipments", ["ship_id", "port_id"], name: "index_shipments_on_ship_id_and_port_id", unique: true, using: :btree
 
   create_table "ships", force: true do |t|
     t.string   "name"
@@ -148,6 +151,6 @@ ActiveRecord::Schema.define(version: 20150516213756) do
     t.datetime "updated_at"
   end
 
-  add_index "ships", ["name"], name: "index_ships_on_name", unique: true
+  add_index "ships", ["name"], name: "index_ships_on_name", unique: true, using: :btree
 
 end

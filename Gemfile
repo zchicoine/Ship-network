@@ -3,13 +3,13 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.9'
-gem 'devise', '~> 3.2.4'
+gem 'devise', '~> 3.4.1'
 gem 'slim-rails' ,'~> 3.0.1' # for more info http://slim-lang.com/
 gem 'sass-rails', '~> 4.0.3'# Use SCSS for stylesheets
 gem 'jbuilder', '~> 2.0' # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'coffee-rails', '~> 4.0.0'# Use CoffeeScript for .js.coffee assets and views
 gem 'jquery-rails' # Use jquery as the JavaScript library
-
+gem 'pg'
 # for front-end, for more info http://bower.io/
 gem 'bower-rails', '~> 0.9.2'
 =begin
@@ -75,5 +75,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 # for Heroku
 group :production do
   gem 'rails_12factor'
-  gem 'pg'
 end
