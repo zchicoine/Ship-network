@@ -83,8 +83,9 @@ module AdminHelpers
             shipments.each do |key,value|
                 begin
                     ship_email = ShipEmail.find_by!(id:key)
-                    ship_email.shipments.push(value[:shipments])
                     ship_email.original_email_address = value[:original_email]
+                    ship_email.save!
+                    ship_email.shipments.push(value[:shipments])
                     ship_email.broker.shipments.push(value[:shipments])
                     ship_email.update!
                 rescue => e

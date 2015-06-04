@@ -41,6 +41,7 @@ class ShipmentBLL < Shipment
                     email_body:ship_email.email_body,
                     email_subject:ship_email.email_subject,
                     email_date:ship_email.email_date,
+                    original_email_address:ship_email.original_email_address,
                     open_start_date: shipment[:open_start_date].to_date,
                     deadweight_cargo_capacity: shipment.ship.deadweight_cargo_capacity,
                     deadweight: shipment.ship.deadweight,

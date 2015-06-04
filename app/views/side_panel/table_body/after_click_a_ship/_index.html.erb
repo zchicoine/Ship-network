@@ -16,13 +16,44 @@
         <%= @ship_info[:port_name] %>
     </td>
 </tr>
-<tr class="text-left  ship-info-small-window">
-    <td>
+<!--<tr class="text-left  ship-info-small-window">-->
+    <!--<td>-->
       <%= locales.capitalize_first_word.openDate %>:
-    </td>
-    <td>
-        <%=  @ship_info[:open_start_date].strftime("%b %d, %Y")%>
-    </td>
+    <!--</td>-->
+    <!--<td>-->
+        <!--<%#  @ship_info[:open_start_date].strftime("%b %d, %Y")%>-->
+    <!--</td>-->
+<!--</tr>-->
+<tr class="text-left  ship-info-small-window">
+  <td>
+    <%= locales.capitalize_first_word.originalEmail %>:
+  </td>
+  <td>
+    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#side-panel-email-modal">
+      <%=  @ship_info[:original_email_address]%>
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="side-panel-email-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog  modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title text-left" id="myModalLabel">
+              <%= @ship_info[:email_subject] %>
+
+            </h4>
+          </div>
+          <div class="modal-body">
+            <textarea readonly cols="110" rows="30"><%= @ship_info[:email_body] %> </textarea>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </td>
 </tr>
 <tr class="text-left  ship-info-small-window ">
   <% unless @ship_info[:deadweight] == 0 %>
