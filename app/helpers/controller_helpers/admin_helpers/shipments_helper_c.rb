@@ -7,7 +7,7 @@ module AdminHelpers
         def update_shipments (object)
             temp_hash = {}
             temp_hash[:error] = []
-            temp_hash[:data] = {}
+            temp_hash[:data] = {brokerId:{},email:{}} # if the email id is blank then use broker ID
             # Open the alternative port file
             open_json_temp_file = File.open(Rails.root.join('app', 'assets', 'javascripts', 'json', 'alternative_port_names.json'))    # Read the json file containing the alternative port names
             read_port_names_file = open_json_temp_file.read
@@ -29,32 +29,67 @@ module AdminHelpers
                         open_date = shipment['openDate']
                     end
                     open_date_string = open_date
-                    date, time = open_date_string.split("T")
+                    date, time = open_date_string.split('T')
                     start_date =  Date.parse(date)
-                    temp_hash[:data][shipment['brokerId'].to_i] = [] if temp_hash[:data][shipment['brokerId'].to_i].blank?
-                    temp_hash[:data][shipment['brokerId'].to_i].push(Shipment.find_or_initialize_by(ship: vessel[:value],
-                                                                         open_start_date: start_date,
-                                                                         open_end_date: start_date.advance({days: 5}),
-                                                                         port: port[:value])
-                    )
+
+                    if shipment['emailId'].blank?
+                        temp_hash[:data][:brokerId][shipment['brokerId'].to_i] = [] if temp_hash[:data][:brokerId][shipment['brokerId'].to_i].blank?
+                        temp_hash[:data][:brokerId][shipment['brokerId'].to_i].push(Shipment.find_or_initialize_by(ship: vessel[:value],
+                                                                                                        open_start_date: start_date,
+                                                                                                        open_end_date: start_date.advance({days: 5}),
+                                                                                                        port: port[:value])
+                        )
+                    else
+                        temp_hash[:data][:email][shipment['emailId'].to_i] = {shipments:[],original_email:shipment['originalSender']} if temp_hash[:data][:email][shipment['emailId'].to_i].blank?
+                        temp_hash[:data][:email][shipment['emailId'].to_i][:shipments].push(Shipment.find_or_initialize_by(ship: vessel[:value],
+                                                                                                                   open_start_date: start_date,
+                                                                                                                   open_end_date: start_date.advance({days: 5}),
+                                                                                                                   port: port[:value])
+                        )
+                    end
+
 
                 rescue => e
-                    temp_hash[:error].push( "Error: #{e.message} -> broker: #{shipment['brokerId']} -> vessel: #{shipment['shipName']} -> port: #{ shipment['portName']}")
+                    temp_hash[:error].push( "Error: #{e.message} -> broker: #{shipment['brokerId']} -> broker: #{shipment['emailId']} -> vessel: #{shipment['shipName']} -> port: #{ shipment['portName']}")
                 end
 
+                temp_hash[:error].zip(insert_shipments_via_broker(temp_hash[:data][:brokerId]))
+                temp_hash[:error].zip(insert_shipments_via_email(temp_hash[:data][:email]))
             end
-            # assciste shipment to brokers
-            temp_hash[:data].each do |key,value|
+            temp_hash
+        end
+
+        private
+
+        # :description associate shipment to brokers
+        def insert_shipments_via_broker(shipments)
+            errors = []
+            shipments.each do |key,value|
                 begin
                     broker = Broker.find_by!(id:key)
                     broker.shipments = value
                     broker.save!
                 rescue => e
-                    temp_hash[:error].push( "Error: #{e.message} ")
+                    errors.push( "Error: insert_shipments_via_broker  #{e.message} ")
                 end
-
             end
-            return temp_hash
+            return errors
+        end
+
+        # :param [Hash] {'1':{shipments:[],original_email:''},'2': {shipments:[],original_email:''}, etc}
+        def insert_shipments_via_email(shipments)
+            errors = []
+            shipments.each do |key,value|
+                begin
+                    ship_email = ShipEmail.find_by!(id:key)
+                    ship_email.shipments = value[:shipments]
+                    ship_email.original_email_address = value[:original_email]
+                    ship_email.save!
+                rescue => e
+                    errors.push( "Error: insert_shipments_via_email #{e.message} ")
+                end
+            end
+            return errors
         end
     end
 end

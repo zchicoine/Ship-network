@@ -23,7 +23,7 @@ class Admin::ShipmentController < ApplicationController
                 @error_messages = [uploaded_file[:error]]
             end
         rescue => e
-            @error_messages = [e.message]
+            @error_messages = ["Error in upload_shipments_file: #{e.message}"]
         end
         render('logs')
     end
