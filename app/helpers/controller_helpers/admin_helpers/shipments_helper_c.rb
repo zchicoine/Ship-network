@@ -53,9 +53,10 @@ module AdminHelpers
                     temp_hash[:error].push( "Error: #{e.message} -> broker: #{shipment['brokerId']} -> broker: #{shipment['emailId']} -> vessel: #{shipment['shipName']} -> port: #{ shipment['portName']}")
                 end
 
-                temp_hash[:error].zip(insert_shipments_via_broker(temp_hash[:data][:brokerId]))
-                temp_hash[:error].zip(insert_shipments_via_email(temp_hash[:data][:email]))
+
             end
+            temp_hash[:error].concat(insert_shipments_via_broker(temp_hash[:data][:brokerId]))
+            temp_hash[:error].concat(insert_shipments_via_email(temp_hash[:data][:email]))
             temp_hash
         end
 
@@ -67,10 +68,10 @@ module AdminHelpers
             shipments.each do |key,value|
                 begin
                     broker = Broker.find_by!(id:key)
-                    broker.shipments = value
-                    broker.save!
+                    broker.shipments.push(value)
+                    broker.update!
                 rescue => e
-                    errors.push( "Error: insert_shipments_via_broker  #{e.message} ")
+                    errors.push( "Error: insert_shipments_via_broker -> Broker ID  #{key}  --> cause #{e.cause}")
                 end
             end
             return errors
@@ -82,11 +83,12 @@ module AdminHelpers
             shipments.each do |key,value|
                 begin
                     ship_email = ShipEmail.find_by!(id:key)
-                    ship_email.shipments = value[:shipments]
+                    ship_email.shipments.push(value[:shipments])
                     ship_email.original_email_address = value[:original_email]
-                    ship_email.save!
+                    ship_email.broker.shipments.push(value[:shipments])
+                    ship_email.update!
                 rescue => e
-                    errors.push( "Error: insert_shipments_via_email #{e.message} ")
+                    errors.push("Error: insert_shipments_via_email: -> Email ID  #{key} --> cause #{e.cause}  ")
                 end
             end
             return errors

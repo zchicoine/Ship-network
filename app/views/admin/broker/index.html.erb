@@ -50,9 +50,7 @@
         <%= broker.username %>
       </td>
         <td>
-          <% shipments = 0 %>
-          <% broker.ship_emails.each {|email| shipments += email.shipments.count} %>
-            <%= broker.shipments.count + shipments %>
+            <%= broker.shipments.count %>
         </td>
       <td>
         <%= broker.num_ship_emails %>

@@ -4,5 +4,6 @@ class CreateBrokersShipments < ActiveRecord::Migration
         t.belongs_to :shipment
         t.belongs_to :broker
     end
+    add_index 'brokers_shipments', %w(shipment_id broker_id), :unique => true
   end
 end
