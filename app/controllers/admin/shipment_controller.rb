@@ -9,6 +9,7 @@ class Admin::ShipmentController < ApplicationController
     before_action :require_admin_authentication #the admin_helpers controller has to be protected to only let admins in.
 
     def index
+        @shipments = ShipmentBLL.paginate(page: params[:page])
         render ('index')
     end
 

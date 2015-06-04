@@ -16,3 +16,45 @@
     </div>
 <% end %>
 <hr/>
+
+<hr/>
+<%= will_paginate @shipments %>
+<table class="table table-striped">
+  <tr>
+    <th>
+      ID
+    </th>
+    <th>
+      ship
+    </th>
+    <th>
+     ports
+    </th>
+    <th>
+      Brokers Id
+    </th>
+  </tr>
+  <% @shipments.each do |shipment|%>
+      <tr>
+        <td>
+          <%= shipment.id %>
+        </td>
+        <td>
+            <%= shipment.ship.name %>
+        </td>
+        <td>
+          <%= shipment.port.name %>
+        </td>
+        <td>
+          <% brokers = []
+             shipment.brokers.each do |broker|
+                 brokers.push(broker.id)
+             end
+          %>
+          <%= brokers %>
+        </td>
+      </tr>
+  <% end%>
+
+</table>
+<%= will_paginate @shipments %>
