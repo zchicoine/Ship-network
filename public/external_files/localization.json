@@ -12,14 +12,16 @@
     "shipsByRegion": "Ships by Region",
     "openPort": "Open Port",
     "openDate": "Open Date",
-    "sizeClass": "Size Class"
+    "sizeClass": "Size Class",
+    "originalEmail": "From"
   },
   {
     "miniBulker": "Mini bulker",
     "postPanamax": "Post panamax",
     "openPort": "Open port",
     "openDate": "Open date",
-    "sizeClass": "Size class"
+    "sizeClass": "Size class",
+    "originalEmail": "From"
   },
   {
     "sizeClass": "SIZE CLASS"

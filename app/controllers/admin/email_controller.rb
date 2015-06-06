@@ -3,12 +3,11 @@
 ###
 class Admin::EmailController < ApplicationController
     include  AdminHelperC
-
     layout 'admin'
     before_action :require_admin_authentication #the admin_helpers controller has to be protected to only let admins in.
 
     def index
-        @emails = ShipEmailBLL.all
+        @emails = ShipEmailBLL.paginate(page: params[:page])
         render ('index')
     end
 
@@ -18,7 +17,22 @@ class Admin::EmailController < ApplicationController
     end
 
     def categorize_update
-        flash[:success] = 'successful but this feature is not yet implement'
+            Broker.all.each do |broker|
+                begin
+                    status = Kee.new.obtain_emails_status(broker.email)
+                    broker.num_ship_emails = status[:num_ship]
+                    broker.num_not_ship_emails = status[:num_not_ship]
+                    broker.num_order_emails = status[:num_order]
+                    broker.num_personal_emails = status[:num_personal]
+                    broker.save!
+                rescue => e
+                    flash[:error] =[] if flash[:error].blank?
+                    flash[:error].push("#{e} for #{broker.email}")
+                end
+            end
+            if flash[:error].blank?
+                flash[:success]= 'successful'
+            end
         redirect_to(admin_email_path)
     end
     def update_broker_ship_emails

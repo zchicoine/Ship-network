@@ -9,6 +9,7 @@ class Admin::ShipmentController < ApplicationController
     before_action :require_admin_authentication #the admin_helpers controller has to be protected to only let admins in.
 
     def index
+        @shipments = ShipmentBLL.paginate(page: params[:page])
         render ('index')
     end
 
@@ -23,7 +24,7 @@ class Admin::ShipmentController < ApplicationController
                 @error_messages = [uploaded_file[:error]]
             end
         rescue => e
-            @error_messages = [e.message]
+            @error_messages = ["Error in upload_shipments_file: #{e.message}"]
         end
         render('logs')
     end

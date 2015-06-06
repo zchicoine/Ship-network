@@ -4,5 +4,6 @@ class CreateShipEmailsShipments < ActiveRecord::Migration
       t.belongs_to :shipment
       t.belongs_to :ship_email
     end
+    add_index 'ship_emails_shipments', %w(shipment_id ship_email_id), :unique => true
   end
 end

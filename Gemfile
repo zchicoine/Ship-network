@@ -10,6 +10,9 @@ gem 'jbuilder', '~> 2.0' # Build JSON APIs with ease. Read more: https://github.
 gem 'coffee-rails', '~> 4.0.0'# Use CoffeeScript for .js.coffee assets and views
 gem 'jquery-rails' # Use jquery as the JavaScript library
 gem 'pg'
+# Pagination
+gem 'will_paginate',           '3.0.7'
+gem 'bootstrap-will_paginate', '0.0.10'
 # for front-end, for more info http://bower.io/
 gem 'bower-rails', '~> 0.9.2'
 =begin
