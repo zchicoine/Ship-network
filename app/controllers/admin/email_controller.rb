@@ -7,7 +7,7 @@ class Admin::EmailController < ApplicationController
     before_action :require_admin_authentication #the admin_helpers controller has to be protected to only let admins in.
 
     def index
-        @emails = ShipEmailBLL.paginate(page: params[:page])
+        @emails = ShipEmailBLL.order('id').paginate(page: params[:page] )
         render ('index')
     end
 
@@ -44,7 +44,7 @@ class Admin::EmailController < ApplicationController
     def update_broker_ship_emails
         broker_result = UnitOfWork.instance.broker.get_by_email(params[:broker_email])
         if broker_result[:error].nil?
-            emails = Kee.new.obtain_ship_emails(broker_result[:value].email)
+            emails = Kee.new.obtain_ship_emails(broker_result[:value].email,10)
             if emails.blank?
                 flash[:error] = "There are no ship emails for #{broker_result[:value].email}"
             else
