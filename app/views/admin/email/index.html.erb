@@ -21,6 +21,7 @@
 <% end %>
 
 <hr/>
+<%= button_to 'Reset emails', {action:'reset'}, class:'btn btn-link' , method: :post,  data: { confirm: 'Are you sure?'} %>
 <%= will_paginate @emails %>
 <table class="table table-striped">
     <tr>

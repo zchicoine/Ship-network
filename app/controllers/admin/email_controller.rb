@@ -11,6 +11,12 @@ class Admin::EmailController < ApplicationController
         render ('index')
     end
 
+    def reset
+        ShipEmailBLL.destroy_all
+        flash[:success] = 'Has been reset'
+        redirect_to(admin_email_path)
+    end
+
     def categorize
         flash[:success] = " #{Kee.new.categorize_emails(50)} has been categorize"
         redirect_to(admin_email_path)

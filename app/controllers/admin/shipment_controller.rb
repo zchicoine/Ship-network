@@ -13,6 +13,12 @@ class Admin::ShipmentController < ApplicationController
         render ('index')
     end
 
+    def reset
+        ShipmentBLL.destroy_all
+        flash[:success] = 'Has been reset'
+        redirect_to(admin_shipment_path)
+    end
+
     def upload_shipments_file
         begin
             uploaded_file = read_uploaded_file(params[:shipments])

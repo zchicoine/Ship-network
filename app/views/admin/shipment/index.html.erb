@@ -14,10 +14,11 @@
     <div class="form-group">
         <%= submit_tag 'Upload Shipment', class: 'btn btn-primary' %>
     </div>
+
 <% end %>
-<hr/>
 
 <hr/>
+<%= button_to 'Reset Shipment', {action:'reset'}, class:'btn btn-link' , method: :post,  data: { confirm: 'Are you sure?'} %>
 <%= will_paginate @shipments %>
 <table class="table table-striped">
   <tr>

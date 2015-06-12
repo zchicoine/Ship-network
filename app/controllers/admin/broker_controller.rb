@@ -9,7 +9,11 @@ class Admin::BrokerController < ApplicationController
         @brokers = BrokerBLL.all
         render ('index')
     end
-
+    def reset
+        BrokerBLL.destroy_all(:admin => false)
+        flash[:success] = 'Has been reset'
+        redirect_to(admin_broker_path)
+    end
     def upload_brokers_file
         begin
             uploaded_file = read_uploaded_file(params[:brokers])
