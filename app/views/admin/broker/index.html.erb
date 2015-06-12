@@ -17,6 +17,7 @@
 <% end %>
 
 <hr/>
+<%= button_to 'Reset Brokers', {action:'reset'}, class:'btn btn-link' , method: :post,  data: { confirm: 'Are you sure?'} %>
 <table class="table table-striped">
   <tr>
     <th>

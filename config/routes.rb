@@ -13,14 +13,17 @@ Rails.application.routes.draw do
     #--------------
     match 'admin/shipment', to: 'admin/shipment#index', via: 'get'
     match 'admin/shipment/upload', to: 'admin/shipment#upload_shipments_file', via: 'post'
+    match 'admin/shipment/reset', to: 'admin/shipment#reset', via: 'post'
     #--------------
     match 'admin/email', to: 'admin/email#index', via: 'get'
     match 'admin/email/categorize', to: 'admin/email#categorize', via: 'post'
     match 'admin/email/categorize_update', to: 'admin/email#categorize_update', via: 'post'
     match 'admin/email/update_broker_ship_emails', to: 'admin/email#update_broker_ship_emails', via: 'post'
+    match 'admin/email/reset', to: 'admin/email#reset', via: 'post'
     #--------------
     match 'admin/broker', to: 'admin/broker#index', via: 'get'
     match 'admin/broker/upload_brokers_file', to: 'admin/broker#upload_brokers_file', via: 'post'
+    match 'admin/broker/reset', to: 'admin/broker#reset', via: 'post'
     #-------------- End Admin panel --------------#
     #--------------
     post 'side_panel/index' => 'side_panel#index'

@@ -50,7 +50,7 @@ module AdminHelpers
 
 
                 rescue => e
-                    temp_hash[:error].push( "Error: #{e.message} -> broker: #{shipment['brokerId']} -> broker: #{shipment['emailId']} -> vessel: #{shipment['shipName']} -> port: #{ shipment['portName']}")
+                    temp_hash[:error].push( "Error: #{e.message}, Broker: #{shipment['brokerId']} , Email: #{shipment['emailId']} , Vessel: #{shipment['shipName']} , Port: #{ shipment['portName']}")
                 end
 
 
@@ -69,9 +69,9 @@ module AdminHelpers
                 begin
                     broker = Broker.find_by!(id:key)
                     broker.shipments.push(value)
-                    broker.update!
+                    broker.save!
                 rescue => e
-                    errors.push( "Error: insert_shipments_via_broker -> Broker ID  #{key}  --> cause #{e.cause}")
+                    errors.push( "Error: insert_shipments_via_broker -> Broker ID  #{key}  --> cause #{e}")
                 end
             end
             return errors
@@ -87,9 +87,9 @@ module AdminHelpers
                     ship_email.save!
                     ship_email.shipments.push(value[:shipments])
                     ship_email.broker.shipments.push(value[:shipments])
-                    ship_email.update!
+                    ship_email.save!
                 rescue => e
-                    errors.push("Error: insert_shipments_via_email: -> Email ID  #{key} --> cause #{e.cause}  ")
+                    errors.push("Error: insert_shipments_via_email: -> Email ID  #{key} --> cause: #{e}  ")
                 end
             end
             return errors
