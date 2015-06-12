@@ -52,8 +52,8 @@ class Admin::EmailController < ApplicationController
                 emails.each do |email|
                     begin
                     ShipEmail.create! do |s|
-                        s.email_subject = email[:subject]
-                        s.email_body = email[:body]
+                        s.email_subject = email[:subject].force_encoding('ASCII-8BIT').encode('UTF-8', :invalid => :replace, :undef => :replace, :replace => '?')
+                        s.email_body = email[:body].force_encoding('ASCII-8BIT').encode('UTF-8' , :invalid => :replace, :undef => :replace, :replace => '?')
                         s.email_date =  DateTime.parse(email[:date].to_s).to_date
                         s.broker_id = broker_result[:value].id
                     end
