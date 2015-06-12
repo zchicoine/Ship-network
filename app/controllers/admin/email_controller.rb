@@ -12,6 +12,7 @@ class Admin::EmailController < ApplicationController
     end
 
     def reset
+        Kee.new.remove_stars
         ShipEmailBLL.destroy_all
         flash[:success] = 'Has been reset'
         redirect_to(admin_email_path)
