@@ -51,12 +51,14 @@ class Admin::EmailController < ApplicationController
             else
                 emails.each do |email|
                     begin
-                    ShipEmail.create! do |s|
-                        s.email_subject = email[:subject].force_encoding('ASCII-8BIT').encode('UTF-8', :invalid => :replace, :undef => :replace, :replace => '?')
-                        s.email_body = email[:body].force_encoding('ASCII-8BIT').encode('UTF-8' , :invalid => :replace, :undef => :replace, :replace => '?')
-                        s.email_date =  DateTime.parse(email[:date].to_s).to_date
-                        s.broker_id = broker_result[:value].id
-                    end
+                        ship_email = ShipEmail.create! do |s|
+                            s.email_subject = email[:subject]
+                            s.email_body = email[:body]
+                            s.email_date =  DateTime.parse(email[:date].to_s).to_date
+                            s.broker_id = broker_result[:value].id
+                        end
+                        AdminHelpers::EmailsHelperC.recognition_script(ship_email.email_body, broker_result[:value], ship_email)
+                        # flash[:success] = "#{number_of_shipments_created} shipments created"
                     rescue => e
                         flash[:error] =[] if flash[:error].blank?
                         flash[:error].push("#{e}   for #{email[:subject]}")
