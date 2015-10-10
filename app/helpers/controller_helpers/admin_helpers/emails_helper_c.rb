@@ -1,5 +1,5 @@
 # AdminHelpers::EmailsHelperC.recognition_script(email)
-require 'Date'
+# require 'Date'
 
 module AdminHelpers
 	module EmailsHelperC
