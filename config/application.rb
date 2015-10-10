@@ -28,7 +28,7 @@ module ShipNetwork
     # config.after_initialize takes a block which will be run after Rails has finished initializing the application.
     # That includes the initialization of the framework itself
     config.after_initialize do
-      email_config = {auth_type: :basic , email_address:'emailfilter@theshipnetwork.com',password:'MasterCoder1991'}
+      email_config = {auth_type: :basic , email_address:'strtupfab5@gmail.com',password:'Hj12!@#$'}
       Kee.config_connection(email_config)
     end
 
