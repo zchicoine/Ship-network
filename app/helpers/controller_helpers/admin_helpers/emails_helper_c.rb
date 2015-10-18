@@ -9,7 +9,7 @@ module AdminHelpers
 
 	        ShipBLL.find_each do |ship|
 	        	name = ship.name.downcase
-	          if (body_of_email.include? name)
+	          if body_of_email.match(/[^\s]*#{name}[$\s]*/)
 	            list_of_vessels_and_their_indices.push([body_of_email.index(name), name])
 	          end
 	        end
