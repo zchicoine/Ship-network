@@ -1,3 +1,6 @@
+ENV['EMAIL_FILTER_ADDRESS'] = 'shipemailtest1@gmail.com'
+ENV['EMAIL_FILTER_PASSWORD'] = 'shipemailtest'
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 

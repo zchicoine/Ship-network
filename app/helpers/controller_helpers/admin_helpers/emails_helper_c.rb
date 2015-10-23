@@ -81,6 +81,7 @@ module AdminHelpers
 	      # look for words containing '@'
 	      first_chunk_of_text.each { |word|
 	        if(word.include? '@')
+	        	p 'SKITTLES ' + word
 	          list_of_email_addresses_and_their_indices.push([body_of_email.index(word), word])
 	        end
 	      }
@@ -89,7 +90,7 @@ module AdminHelpers
 	      	raise "Error 2: The body of email did not contain any email addresses (from beginning of text to the first vessel name)."
 	        # return {value: {}, error: "Error 2: The body of email did not contain any email addresses (from beginning of text to the first vessel name)."}
 	      else
-	        list_of_email_addresses_and_their_indices = list_of_email_addresses_and_their_indices.sort {|a,b| a[0] <=> b[0]}
+	        # list_of_email_addresses_and_their_indices = list_of_email_addresses_and_their_indices.sort {|a,b| a[0] <=> b[0]}
 	        return {value: list_of_email_addresses_and_their_indices, error: nil}
 	      end
 	    end
@@ -113,7 +114,12 @@ module AdminHelpers
 	      end
 	      #  We get the emails in the addresses ("@") found in the body of the email received
 	      list_of_email_address_and_their_indices = find_email_addresses(list_of_vessel_and_their_indices_in_text[:value], email)
-	      unless(list_of_email_address_and_their_indices[:error].nil?)
+	      if list_of_email_address_and_their_indices[:error].nil?
+	      	if  list_of_email_address_and_their_indices[:value] && !list_of_email_address_and_their_indices[:value].empty?
+	      		ship_email.original_email_address = list_of_email_address_and_their_indices[:value][0][1]
+	      		ship_email.save
+	      	end
+	      else
 	        return list_of_email_address_and_their_indices[:error]
 	      end
 	      shipment_count = 0
