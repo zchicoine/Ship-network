@@ -8,11 +8,9 @@ module AdminHelpers
 	        body_of_email.downcase!
 	        body_of_email.gsub!(/\n/, ' ')
 	        body_text = body_of_email.match(/[\s\S]+?([m][\/\.\-]{,1}[v][\s\S]+)/)
-	     		puts "SKITTLES body_text: #{body_text[1]}"
 	        if body_text && !body_text[1].empty? 
 	         	body_text = body_text[1]
 	         	regards = body_text.match(/([\s\S]+(?:[b]{,1}rgds|regards))/)
-	         	puts "SKITTLES regards: #{regards}"
 		        if regards && !regards[1].empty?
 		        	body_text = regards[1]
 		        end
@@ -21,7 +19,6 @@ module AdminHelpers
 		      end
 	        
 	        body_of_email = body_text
-	        puts "SKITTLES body_of_email: #{body_text}"
 
 	        ShipBLL.find_each do |ship|
 	        	name = ship.name.downcase
@@ -34,7 +31,6 @@ module AdminHelpers
 	        	raise "No ships found in the body of the email"
 	          # return {value: {}, error: "Error 0: no ships were found in the body of the email"}
 	        else
-	        	puts "LIST OF VESSELS: " + "#{list_of_vessels_and_their_indices}"
 	          list_of_vessels_and_their_indices = list_of_vessels_and_their_indices.sort {|a,b| a[0] <=> b[0]}
 	          return {value: list_of_vessels_and_their_indices, error: nil}
 	        end
@@ -57,7 +53,8 @@ module AdminHelpers
 	    def find_port_names(vessels_and_their_indices, list_of_slices_of_text, body_of_email)
 	      list_of_ports_associated_to_ships = Array.new
 	      all_ports_in_each_chunk_of_text = Array.new
-	      p beginning_of_email = body_of_email[0...(vessels_and_their_indices[0][0])]
+	      header_end_index = body_of_email.index /[m][\/\.\-]{,1}[v]/}
+	      beginning_of_email = body_of_email[header_end_index...(vessels_and_their_indices[0][0])]
 	      #For each chunk of text, we collect the ports it includes
 	      for i in 0...list_of_slices_of_text.length
 	        PortBLL.find_each {|port|
