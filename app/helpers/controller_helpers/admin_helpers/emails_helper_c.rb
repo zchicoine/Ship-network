@@ -53,7 +53,7 @@ module AdminHelpers
 	    def find_port_names(vessels_and_their_indices, list_of_slices_of_text, body_of_email)
 	      list_of_ports_associated_to_ships = Array.new
 	      all_ports_in_each_chunk_of_text = Array.new
-	      header_end_index = body_of_email.index /[m][\/\.\-]{,1}[v]/}
+	      header_end_index = body_of_email.index /[m][\/\.\-]{,1}[v]/
 	      beginning_of_email = body_of_email[header_end_index...(vessels_and_their_indices[0][0])]
 	      #For each chunk of text, we collect the ports it includes
 	      for i in 0...list_of_slices_of_text.length
