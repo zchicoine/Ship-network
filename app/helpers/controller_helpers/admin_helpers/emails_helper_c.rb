@@ -6,6 +6,22 @@ module AdminHelpers
 	    def find_vessels_in_email_and_their_index (body_of_email)
 	        list_of_vessels_and_their_indices = Array.new
 	        body_of_email.downcase!
+	        body_of_email.gsub!(/\n/, ' ')
+	        body_text = body_of_email.match(/[\s\S]+?([m][\/\.\-]{,1}[v][\s\S]+)/)
+	     		puts "SKITTLES body_text: #{body_text[1]}"
+	        if body_text && !body_text[1].empty? 
+	         	body_text = body_text[1]
+	         	regards = body_text.match(/([\s\S]+(?:[b]{,1}rgds|regards))/)
+	         	puts "SKITTLES regards: #{regards}"
+		        if regards && !regards[1].empty?
+		        	body_text = regards[1]
+		        end
+		      else
+		      	raise "This ship email is missing necessary formatting to parse shipments"
+		      end
+	        
+	        body_of_email = body_text
+	        puts "SKITTLES body_of_email: #{body_text}"
 
 	        ShipBLL.find_each do |ship|
 	        	name = ship.name.downcase
@@ -18,6 +34,7 @@ module AdminHelpers
 	        	raise "No ships found in the body of the email"
 	          # return {value: {}, error: "Error 0: no ships were found in the body of the email"}
 	        else
+	        	puts "LIST OF VESSELS: " + "#{list_of_vessels_and_their_indices}"
 	          list_of_vessels_and_their_indices = list_of_vessels_and_their_indices.sort {|a,b| a[0] <=> b[0]}
 	          return {value: list_of_vessels_and_their_indices, error: nil}
 	        end
@@ -74,14 +91,15 @@ module AdminHelpers
 
 	    def find_email_addresses(vessels_and_their_indices, body_of_email)
 	      list_of_email_addresses_and_their_indices = Array.new
+	      header_text = body_of_email.match(/([\s\S]+?)[Mm][\/\.\-]{,1}[Vv]/)
+	      header_words = header_text[1].split if header_text
 	      # Cut from beginning of text to first vessel name to find email address
-	      first_chunk_of_text = [body_of_email[0..vessels_and_their_indices[0][0]]]
-	      # split that chunk of text by white space to have a list of words
-	      first_chunk_of_text = first_chunk_of_text[0].split
+	      # first_chunk_of_text = [body_of_email[0..vessels_and_their_indices[0][0]]]
+	      # # split that chunk of text by white space to have a list of words
+	      # first_chunk_of_text = first_chunk_of_text[0].split
 	      # look for words containing '@'
-	      first_chunk_of_text.each { |word|
+	      header_words.each { |word|
 	        if(word.include? '@')
-	        	p 'SKITTLES ' + word
 	          list_of_email_addresses_and_their_indices.push([body_of_email.index(word), word])
 	        end
 	      }
