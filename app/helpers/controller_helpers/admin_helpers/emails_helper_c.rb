@@ -144,8 +144,10 @@ module AdminHelpers
 	        today = Date.today
 	        open_start_date = Date.new(today.year, today.month, 5)
 	        open_end_date = Date.new(today.year, today.month, 25)
-	        shipment =  ShipmentBLL.create(ship_id: ship.id, port_id: port.id, open_start_date: open_start_date, open_end_date: open_end_date)
-	        broker.shipments << shipment
+			shipment =  ShipmentBLL.find_or_initialize_by(ship_id: ship.id, port_id: port.id)
+			shipment.open_start_date = open_start_date
+			shipment.open_end_date = open_end_date
+			shipment.save	        broker.shipments << shipment
 	        ship_email.shipments << shipment
 	        shipment_count += 1
 	      end

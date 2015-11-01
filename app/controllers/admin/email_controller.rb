@@ -44,12 +44,10 @@ class Admin::EmailController < ApplicationController
             else
                 emails.each do |email|
                     begin
-                        ship_email = ShipEmail.create! do |s|
-                            s.email_subject = email[:subject]
-                            s.email_body = email[:body]
-                            s.email_date =  DateTime.parse(email[:date].to_s).to_date
-                            s.broker_id = broker_result[:value].id
-                        end
+                        ship_email = ShipEmail.find_or_initialize_by(email_subject:email[:subject],email_date: DateTime.parse(email[:date].to_s).to_date)
+                        ship_email.email_body = email[:body]
+                        ship_email.broker_id = broker_result[:value].id
+                        ship_email.save!
                         AdminHelpers::EmailsHelperC.recognition_script(ship_email.email_body, broker_result[:value], ship_email)
                         # flash[:success] = "#{number_of_shipments_created} shipments created"
                     rescue => e
