@@ -13,6 +13,11 @@ class Admin::MainController < ApplicationController
       render ('index')  #render the admin_helpers view. The main page controller calls this action after the admin_helpers logs in
   end
 
+  def reset_ports
+      PortBLL.destroy_all
+      flash[:success] = 'Has been reset'
+      render('update_ships_table')
+  end
   def upload_ports_file
       begin
           uploaded_file = read_uploaded_file(params[:ports])
@@ -31,6 +36,11 @@ class Admin::MainController < ApplicationController
       render('update_ships_table')
   end
 
+  def reset_ships
+      ShipBLL.destroy_all
+      flash[:success] = 'Has been reset'
+      render('update_ships_table')
+  end
   def upload_ships_file
       begin
           uploaded_file = read_uploaded_file(params[:ships])

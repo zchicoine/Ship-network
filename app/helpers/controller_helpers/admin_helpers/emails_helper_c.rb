@@ -147,7 +147,8 @@ module AdminHelpers
 			shipment =  ShipmentBLL.find_or_initialize_by(ship_id: ship.id, port_id: port.id)
 			shipment.open_start_date = open_start_date
 			shipment.open_end_date = open_end_date
-			shipment.save	        broker.shipments << shipment
+			shipment.save
+			broker.shipments << shipment
 	        ship_email.shipments << shipment
 	        shipment_count += 1
 	      end

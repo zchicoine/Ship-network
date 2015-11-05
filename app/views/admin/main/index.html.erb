@@ -11,7 +11,7 @@
   Click on Export JSON then select all the text (ctrl + A) then copy it into a text file (one text file for ships and one different text file for ports).
   Upload the resulting text files here.</p>
 <hr/>
-
+<%= button_to 'Reset Ports', {action:'reset_ports'}, class:'btn btn-link' , method: :post,  data: { confirm: 'Are you sure?'} %>
 <label>Update Port Database</label>
 <%= form_tag({action: :upload_ports_file}, multipart: true ,class:'form-inline') do %>
     <div class="form-group">
@@ -22,7 +22,7 @@
     </div>
 <% end %>
 <hr/>
-
+<%= button_to 'Reset Ships', {action:'reset_ships'}, class:'btn btn-link' , method: :post,  data: { confirm: 'Are you sure?'} %>
 <label>Update Ship Database</label>
 <%= form_tag({action: :upload_ships_file}, multipart: true ,class:'form-inline') do %>
     <div class="form-group">
