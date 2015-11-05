@@ -11,14 +11,20 @@ default: &default
 
 development:
   adapter: postgresql
-  pool: 5432
+  database: ship_network
+  pool: 5
   timeout: 5000
-  host: ec2-54-83-204-244.compute-1.amazonaws.com
-  database: d3rsvispekd6lc
-  username: pogwdeaforqlbr
-  password: 32dnG9t_4HiEktN4XOrK9cxAAa
+  host: localhost
 
+#   adapter: postgresql
+#   pool: 5432
+#   timeout: 5000
+#   host: ec2-54-83-204-244.compute-1.amazonaws.com
+#   database: d3rsvispekd6lc
+#   username: pogwdeaforqlbr
+#   password: 32dnG9t_4HiEktN4XOrK9cxAAa
 
+# postgres://pogwdeaforqlbr:32dnG9t_4HiEktN4XOrK9cxAAa@ec2-54-83-204-244.compute-1.amazonaws.com:5432/d3rsvispekd6lc
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.

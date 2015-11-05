@@ -1,5 +1,4 @@
 # AdminHelpers::EmailsHelperC.recognition_script(email)
-require 'Date'
 
 module AdminHelpers
 	module EmailsHelperC
@@ -7,10 +6,23 @@ module AdminHelpers
 	    def find_vessels_in_email_and_their_index (body_of_email)
 	        list_of_vessels_and_their_indices = Array.new
 	        body_of_email.downcase!
+	        body_of_email.gsub!(/\n/, ' ')
+	        body_text = body_of_email.match(/[\s\S]+?([m][\/\.\-]{,1}[v][\s\S]+)/)
+	        if body_text && !body_text[1].empty? 
+	         	body_text = body_text[1]
+	         	regards = body_text.match(/([\s\S]+(?:[b]{,1}rgds|regards))/)
+		        if regards && !regards[1].empty?
+		        	body_text = regards[1]
+		        end
+		      else
+		      	raise "This ship email is missing necessary formatting to parse shipments"
+		      end
+	        
+	        body_of_email = body_text
 
 	        ShipBLL.find_each do |ship|
 	        	name = ship.name.downcase
-	          if (body_of_email.include? name)
+	          if body_of_email.match(/(?:^|\s+)#{name}(?:$|\s+)/)
 	            list_of_vessels_and_their_indices.push([body_of_email.index(name), name])
 	          end
 	        end
@@ -41,7 +53,8 @@ module AdminHelpers
 	    def find_port_names(vessels_and_their_indices, list_of_slices_of_text, body_of_email)
 	      list_of_ports_associated_to_ships = Array.new
 	      all_ports_in_each_chunk_of_text = Array.new
-	      p beginning_of_email = body_of_email[0...(vessels_and_their_indices[0][0])]
+	      header_end_index = body_of_email.index /[m][\/\.\-]{,1}[v]/
+	      beginning_of_email = body_of_email[header_end_index...(vessels_and_their_indices[0][0])]
 	      #For each chunk of text, we collect the ports it includes
 	      for i in 0...list_of_slices_of_text.length
 	        PortBLL.find_each {|port|
@@ -75,12 +88,14 @@ module AdminHelpers
 
 	    def find_email_addresses(vessels_and_their_indices, body_of_email)
 	      list_of_email_addresses_and_their_indices = Array.new
+	      header_text = body_of_email.match(/([\s\S]+?)[Mm][\/\.\-]{,1}[Vv]/)
+	      header_words = header_text[1].split if header_text
 	      # Cut from beginning of text to first vessel name to find email address
-	      first_chunk_of_text = [body_of_email[0..vessels_and_their_indices[0][0]]]
-	      # split that chunk of text by white space to have a list of words
-	      first_chunk_of_text = first_chunk_of_text[0].split
+	      # first_chunk_of_text = [body_of_email[0..vessels_and_their_indices[0][0]]]
+	      # # split that chunk of text by white space to have a list of words
+	      # first_chunk_of_text = first_chunk_of_text[0].split
 	      # look for words containing '@'
-	      first_chunk_of_text.each { |word|
+	      header_words.each { |word|
 	        if(word.include? '@')
 	          list_of_email_addresses_and_their_indices.push([body_of_email.index(word), word])
 	        end
@@ -90,7 +105,7 @@ module AdminHelpers
 	      	raise "Error 2: The body of email did not contain any email addresses (from beginning of text to the first vessel name)."
 	        # return {value: {}, error: "Error 2: The body of email did not contain any email addresses (from beginning of text to the first vessel name)."}
 	      else
-	        list_of_email_addresses_and_their_indices = list_of_email_addresses_and_their_indices.sort {|a,b| a[0] <=> b[0]}
+	        # list_of_email_addresses_and_their_indices = list_of_email_addresses_and_their_indices.sort {|a,b| a[0] <=> b[0]}
 	        return {value: list_of_email_addresses_and_their_indices, error: nil}
 	      end
 	    end
@@ -114,7 +129,12 @@ module AdminHelpers
 	      end
 	      #  We get the emails in the addresses ("@") found in the body of the email received
 	      list_of_email_address_and_their_indices = find_email_addresses(list_of_vessel_and_their_indices_in_text[:value], email)
-	      unless(list_of_email_address_and_their_indices[:error].nil?)
+	      if list_of_email_address_and_their_indices[:error].nil?
+	      	if  list_of_email_address_and_their_indices[:value] && !list_of_email_address_and_their_indices[:value].empty?
+	      		ship_email.original_email_address = list_of_email_address_and_their_indices[:value][0][1]
+	      		ship_email.save
+	      	end
+	      else
 	        return list_of_email_address_and_their_indices[:error]
 	      end
 	      shipment_count = 0
