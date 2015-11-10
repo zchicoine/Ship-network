@@ -62,13 +62,6 @@ module AdminHelpers
 	          if(list_of_slices_of_text[i].include? name)
 	            all_ports_in_each_chunk_of_text.push([list_of_slices_of_text[i].index(name), name])
 	          end
-	          #We check also if from the beginning of the email until the first vessel found there are any ports found which would mean that we missed a vessel
-	          #usually vessels always come before ports
-	          if(beginning_of_email.include? name)
-	          	raise "Error 1: a human should handle this message because port name: '#{name}' was found before the first found vessel which indicates that we might have missed a previous vessel"
-	            # return{value: {}, error: "Error 1: a human should handle this message because port name: \'" + name +
-	                # " \' was found before the first found vessel which indicates that we might have missed a previous vessel"}
-	          end
 	        }
 	        if(all_ports_in_each_chunk_of_text.length == 0)
 	          vessel = vessels_and_their_indices[i][1]
