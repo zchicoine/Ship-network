@@ -30,7 +30,7 @@ gem 'bower-rails', '~> 0.9.2'
 =end
 gem 'angular-rails-templates', '~> 0.1.3'
 
-gem 'kee', :git => 'https://352ffffde264ced769d4c9122f94fde591668927:x-oauth-basic@github.com/zchicoine/KEE.git' , :branch => 'dev', require: 'kee'  
+gem 'kee', :git => 'https://cc4f40bac1dda61ca6d29fd0d733831918b792eb:x-oauth-basic@github.com/zchicoine/KEE.git' , :branch => 'dev', require: 'kee'  
 34 34   group :development, :test do  
 
 group :development, :test do
