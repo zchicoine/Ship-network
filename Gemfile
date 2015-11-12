@@ -31,7 +31,6 @@ gem 'bower-rails', '~> 0.9.2'
 gem 'angular-rails-templates', '~> 0.1.3'
 
 gem 'kee', :git => 'https://cc4f40bac1dda61ca6d29fd0d733831918b792eb:x-oauth-basic@github.com/zchicoine/KEE.git' , :branch => 'dev', require: 'kee'  
-group :development, :test do  
 
 group :development, :test do
     # Use sqlite3 as the database for Active Record
